@@ -1,10 +1,12 @@
 # PyMuPDF
 
+[中文](./README.CN.md)
+
 **PyMuPDF** is a high performance **Python** library for data extraction, analysis, conversion & manipulation of [PDF (and other) documents](https://pymupdf.readthedocs.io/en/latest/the-basics.html#supported-file-types).
 
 # Community
-Join us on **Discord** here: [#pymupdf](https://discord.gg/TSpYGBW4eq)
 
+Join us on **Discord** here: [#pymupdf](https://discord.gg/TSpYGBW4eq)
 
 # Installation
 
@@ -15,7 +17,6 @@ Join us on **Discord** here: [#pymupdf](https://discord.gg/TSpYGBW4eq)
 There are **no mandatory** external dependencies. However, some [optional features](#pymupdf-optional-features) become available only if additional packages are installed.
 
 You can also try without installing by visiting [PyMuPDF.io](https://pymupdf.io/#examples).
-
 
 # Usage
 
@@ -29,12 +30,9 @@ for page in doc: # iterate the document pages
 
 ```
 
-
 # Documentation
 
 Full documentation can be found on [pymupdf.readthedocs.io](https://pymupdf.readthedocs.io).
-
-
 
 # <a id="pymupdf-optional-features"></a>Optional Features
 
@@ -42,19 +40,12 @@ Full documentation can be found on [pymupdf.readthedocs.io](https://pymupdf.read
 * [pymupdf-fonts](https://pypi.org/project/pymupdf-fonts/) contains some nice fonts for your text output.
 * [Tesseract-OCR](https://github.com/tesseract-ocr/tesseract) for optical character recognition in images and document pages.
 
-
-
 # About
 
 **PyMuPDF** adds **Python** bindings and abstractions to [MuPDF](https://mupdf.com/), a lightweight **PDF**, **XPS**, and **eBook** viewer, renderer, and toolkit. Both **PyMuPDF** and **MuPDF** are maintained and developed by [Artifex Software, Inc](https://artifex.com).
 
 **PyMuPDF** was originally written by [Jorj X. McKie](mailto:jorj.x.mckie@outlook.de).
 
-
 # License and Copyright
 
 **PyMuPDF** is available under [open-source AGPL](https://www.gnu.org/licenses/agpl-3.0.html) and commercial license agreements. If you determine you cannot meet the requirements of the **AGPL**, please contact [Artifex](https://artifex.com/contact/pymupdf-inquiry.php) for more information regarding a commercial license.
-
-
-
-
