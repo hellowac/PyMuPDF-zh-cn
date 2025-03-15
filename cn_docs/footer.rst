@@ -1,6 +1,6 @@
 .. raw:: html
 
-   <div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>Do you have any feedback on this page?</b></a></div>
+   <div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div>
 
 ----
 
@@ -14,7 +14,7 @@
 
    </script>
 
-   <p style="color:#999" id="footerDisclaimer">This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.</p>
+   <p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
 
 
 

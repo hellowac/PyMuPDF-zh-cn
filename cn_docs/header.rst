@@ -1,6 +1,6 @@
 .. meta::
    :author: Artifex
-   :description: PyMuPDF is a high-performance Python library for data extraction, analysis, conversion & manipulation of PDF (and other) documents.
+   :description: PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。
    :keywords: PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript
 
 

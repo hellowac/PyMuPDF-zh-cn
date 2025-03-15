@@ -165,224 +165,322 @@
     </style>
 
     <br/>
-    <dl class="simple">
-    <dt><strong id="transP1">Copying</strong></dt><dd><p id="transP2">This refers to opening a document and then saving it to a new file. This test measures the speed of reading a <cite>PDF</cite> and re-writing as a new <cite>PDF</cite>. This process is also at the core of functions like merging / joining multiple documents. The numbers below therefore apply to <cite>PDF</cite> joining and merging.</p>
 
-    <p id="transP3">The results for all 7,031 pages are:</p>
-    </dd>
-    </dl>
+.. tab:: 中文
 
+    .. raw:: html
 
-    <div class="graph">
+        <dl class="simple">
+        <dt><strong id="transP1">复制</strong></dt><dd><p id="transP2">这指的是打开一个文档然后将其保存到新文件。此测试测量读取 <cite>PDF</cite> 并重新写入新 <cite>PDF</cite> 的速度。此过程也是合并/连接多个文档等功能的核心。因此，以下数字适用于 <cite>PDF</cite> 连接和合并。</p>
 
-        <div class="central-graph" id="copying-graph">
+        <p id="transP3">所有 7,031 页的结果如下：</p>
+        </dd>
+        </dl>
 
-            <div class="about-graph-y-axis-text">
-                <div class="segment">600</div>
-                <div class="segment">500</div>
-                <div class="segment">400</div>
-                <div class="segment">300</div>
-                <div class="segment">200</div>
-                <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP4">seconds</div></div>
+        <div class="graph">
+
+            <div class="central-graph" id="copying-graph">
+
+                <div class="about-graph-y-axis-text">
+                    <div class="segment">600</div>
+                    <div class="segment">500</div>
+                    <div class="segment">400</div>
+                    <div class="segment">300</div>
+                    <div class="segment">200</div>
+                    <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP4">seconds</div></div>
+                </div>
+
+                <div class="about-graph-y-axis">
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
+
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">3.05</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">10.54</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">33.57</div></div>
+                <div class="about-column"><div class="about-graph-area d"></div><div class="text">494.04</div></div>
+
             </div>
 
-            <div class="about-graph-y-axis">
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">PDFrw</div>
+                <div class="segment">PikePDF</div>
+                <div class="segment">PyPDF2</div>
             </div>
 
-            <div class="about-column"><div class="about-graph-area a"></div><div class="text">3.05</div></div>
-            <div class="about-column"><div class="about-graph-area b"></div><div class="text">10.54</div></div>
-            <div class="about-column"><div class="about-graph-area c"></div><div class="text">33.57</div></div>
-            <div class="about-column"><div class="about-graph-area d"></div><div class="text">494.04</div></div>
-
-        </div>
-
-        <div class="about-graph-x-axis">
-            <div class="segment">PyMuPDF</div>
-            <div class="segment">PDFrw</div>
-            <div class="segment">PikePDF</div>
-            <div class="segment">PyPDF2</div>
-        </div>
-
-        <div class="about-graph-x-axis speed">
-            <div class="segment"><i id="transP5">fastest</i></div>
-            <div class="segment">&#8592;</div>
-            <div class="segment">&#8592;</div>
-            <div class="segment"><i id="transP6">slowest</i></div>
-        </div>
-
-    </div>
-
-    <br/>
-    <dl class="simple">
-    <dt><strong id="transP7">Text Extraction</strong></dt><dd><p id="transP8">This refers to extracting simple, plain text from every page of the document and storing it in a text file.</p>
-
-    <p id="transP9">The results for all 7,031 pages are:</p>
-    </dd>
-    </dl>
-
-    <div class="graph">
-
-        <div class="central-graph" id="text-graph">
-
-            <div class="about-graph-y-axis-text">
-
-                <div class="segment">400</div>
-                <div class="segment">300</div>
-                <div class="segment">200</div>
-                <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP10">seconds</div></div>
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP5">最快</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP6">最慢</i></div>
             </div>
 
-            <div class="about-graph-y-axis">
+        </div>
+        
+        <br/>
+        <dl class="simple">
+        <dt><strong id="transP7">文本提取</strong></dt><dd><p id="transP8">这指的是从文档的每一页中提取简单的纯文本并将其存储在文本文件中。</p>
 
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
+        <p id="transP9">所有 7,031 页的结果如下：</p>
+        </dd>
+        </dl>
+
+        <div class="graph">
+
+            <div class="central-graph" id="text-graph">
+
+                <div class="about-graph-y-axis-text">
+
+                    <div class="segment">400</div>
+                    <div class="segment">300</div>
+                    <div class="segment">200</div>
+                    <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP10">seconds</div></div>
+                </div>
+
+                <div class="about-graph-y-axis">
+
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
+
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">8.01</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">27.42</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">101.64</div></div>
+                <div class="about-column"><div class="about-graph-area d"></div><div class="text">227.27</div></div>
+
             </div>
 
-            <div class="about-column"><div class="about-graph-area a"></div><div class="text">8.01</div></div>
-            <div class="about-column"><div class="about-graph-area b"></div><div class="text">27.42</div></div>
-            <div class="about-column"><div class="about-graph-area c"></div><div class="text">101.64</div></div>
-            <div class="about-column"><div class="about-graph-area d"></div><div class="text">227.27</div></div>
-
-        </div>
-
-        <div class="about-graph-x-axis">
-            <div class="segment">PyMuPDF</div>
-            <div class="segment">XPDF</div>
-            <div class="segment">PyPDF2</div>
-            <div class="segment">PDFMiner</div>
-        </div>
-
-        <div class="about-graph-x-axis speed">
-            <div class="segment"><i id="transP11">fastest</i></div>
-            <div class="segment">&#8592;</div>
-            <div class="segment">&#8592;</div>
-            <div class="segment"><i id="transP12">slowest</i></div>
-        </div>
-
-    </div>
-
-
-    <br/>
-
-    <dl class="simple">
-    <dt><strong id="transP13">Rendering</strong></dt><dd><p id="transP14">This refers to making an image (like PNG) from every page of a document at a given DPI resolution. This feature is the basis for displaying a document in a GUI window.</p>
-
-    <p id="transP15">The results for all 7,031 pages are:</p>
-
-    </dd>
-    </dl>
-
-
-    <div class="graph">
-
-        <div class="central-graph" id="rendering-graph">
-
-            <div class="about-graph-y-axis-text">
-                <div class="segment">1000</div>
-                <div class="segment">800</div>
-                <div class="segment">600</div>
-                <div class="segment">400</div>
-                <div class="segment">200<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP16">seconds</div></div>
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">XPDF</div>
+                <div class="segment">PyPDF2</div>
+                <div class="segment">PDFMiner</div>
             </div>
 
-            <div class="about-graph-y-axis">
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
-                <div class="segment"></div>
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP11">最快</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP12">最慢</i></div>
             </div>
 
-            <div class="about-column"><div class="about-graph-area a"></div><div class="text">367.04</div></div>
-            <div class="about-column"><div class="about-graph-area b"></div><div class="text">646</div></div>
-            <div class="about-column"><div class="about-graph-area c"></div><div class="text">851.52</div></div>
+        </div>
+
+
+        <br/>
+
+        <dl class="simple">
+        <dt><strong id="transP13">渲染</strong></dt><dd><p id="transP14">这指的是以给定的 DPI 分辨率从文档的每一页制作图像（如 PNG）。此功能是在 GUI 窗口中显示文档的基础。</p>
+
+        <p id="transP15">所有 7,031 页的结果如下：</p>
+
+        </dd>
+        </dl>
+
+        <div class="graph">
+
+            <div class="central-graph" id="rendering-graph">
+
+                <div class="about-graph-y-axis-text">
+                    <div class="segment">1000</div>
+                    <div class="segment">800</div>
+                    <div class="segment">600</div>
+                    <div class="segment">400</div>
+                    <div class="segment">200<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP16">seconds</div></div>
+                </div>
+
+                <div class="about-graph-y-axis">
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
+
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">367.04</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">646</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">851.52</div></div>
+
+            </div>
+
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">XPDF</div>
+                <div class="segment">PDF2JPG</div>
+            </div>
+
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP17">最快</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP18">最慢</i></div>
+            </div>
 
         </div>
 
-        <div class="about-graph-x-axis">
-            <div class="segment">PyMuPDF</div>
-            <div class="segment">XPDF</div>
-            <div class="segment">PDF2JPG</div>
+.. tab:: 英文
+
+    .. raw:: html
+
+        <dl class="simple">
+        <dt><strong id="transP1">Copying</strong></dt><dd><p id="transP2">This refers to opening a document and then saving it to a new file. This test measures the speed of reading a <cite>PDF</cite> and re-writing as a new <cite>PDF</cite>. This process is also at the core of functions like merging / joining multiple documents. The numbers below therefore apply to <cite>PDF</cite> joining and merging.</p>
+
+        <p id="transP3">The results for all 7,031 pages are:</p>
+        </dd>
+        </dl>
+
+        <div class="graph">
+
+            <div class="central-graph" id="copying-graph">
+
+                <div class="about-graph-y-axis-text">
+                    <div class="segment">600</div>
+                    <div class="segment">500</div>
+                    <div class="segment">400</div>
+                    <div class="segment">300</div>
+                    <div class="segment">200</div>
+                    <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP4">seconds</div></div>
+                </div>
+
+                <div class="about-graph-y-axis">
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
+
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">3.05</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">10.54</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">33.57</div></div>
+                <div class="about-column"><div class="about-graph-area d"></div><div class="text">494.04</div></div>
+
+            </div>
+
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">PDFrw</div>
+                <div class="segment">PikePDF</div>
+                <div class="segment">PyPDF2</div>
+            </div>
+
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP5">fastest</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP6">slowest</i></div>
+            </div>
+
         </div>
 
-        <div class="about-graph-x-axis speed">
-            <div class="segment"><i id="transP17">fastest</i></div>
-            <div class="segment">&#8592;</div>
-            <div class="segment"><i id="transP18"slowest</i></div>
+        <br/>
+        <dl class="simple">
+        <dt><strong id="transP7">Text Extraction</strong></dt><dd><p id="transP8">This refers to extracting simple, plain text from every page of the document and storing it in a text file.</p>
+
+        <p id="transP9">The results for all 7,031 pages are:</p>
+        </dd>
+        </dl>
+
+        <div class="graph">
+
+            <div class="central-graph" id="text-graph">
+
+                <div class="about-graph-y-axis-text">
+
+                    <div class="segment">400</div>
+                    <div class="segment">300</div>
+                    <div class="segment">200</div>
+                    <div class="segment">100<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP10">seconds</div></div>
+                </div>
+
+                <div class="about-graph-y-axis">
+
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
+
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">8.01</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">27.42</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">101.64</div></div>
+                <div class="about-column"><div class="about-graph-area d"></div><div class="text">227.27</div></div>
+
+            </div>
+
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">XPDF</div>
+                <div class="segment">PyPDF2</div>
+                <div class="segment">PDFMiner</div>
+            </div>
+
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP11">fastest</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP12">slowest</i></div>
+            </div>
+
         </div>
 
-    </div>
 
+        <br/>
 
-    <br/>
+        <dl class="simple">
+        <dt><strong id="transP13">Rendering</strong></dt><dd><p id="transP14">This refers to making an image (like PNG) from every page of a document at a given DPI resolution. This feature is the basis for displaying a document in a GUI window.</p>
 
-    <script>
+        <p id="transP15">The results for all 7,031 pages are:</p>
 
-        let langB = document.getElementsByTagName('html')[0].getAttribute('lang');
+        </dd>
+        </dl>
 
-        function getTranslationB(str) {
-            if (langB == "ja") {
-                if (str=="Copying") {
-                    return "コピー";
-                } else if (str == "This refers to opening a document and then saving it to a new file. This test measures the speed of reading a <cite>PDF</cite> and re-writing as a new <cite>PDF</cite>. This process is also at the core of functions like merging / joining multiple documents. The numbers below therefore apply to <cite>PDF</cite> joining and merging.") {
-                    return "以下は、ドキュメントを開いてから新しいファイルとして保存することを指します。このテストは、PDFを読み込み、新しいPDFとして再書き込む速度を測定します。このプロセスは、複数のドキュメントを結合するなどの機能の中核でもあります。したがって、以下の数字はPDFの結合とマージにも適用されます。";
-                } else if (str == "The results for all 7,031 pages are:") {
-                    return "全7,031ページの結果は次のとおりです：";
-                } else if (str == "seconds") {
-                    return "秒";
-                } else if (str == "fastest") {
-                    return "最速";
-                } else if (str == "slowest") {
-                    return "最遅";
-                } else if (str == "Text Extraction") {
-                    return "テキスト抽出";
-                } else if (str == "This refers to extracting simple, plain text from every page of the document and storing it in a text file.") {
-                    return "以下は、ドキュメントの各ページから簡単なプレーンテキストを抽出し、テキストファイルに保存することを指します。";
-                } else if (str == "Rendering") {
-                    return "レンダリング";
-                } else if (str == "This refers to making an image (like PNG) from every page of a document at a given DPI resolution. This feature is the basis for displaying a document in a GUI window.") {
-                    return "この場合、\"レンダリング\" は、指定されたDPI解像度でドキュメントの各ページから画像（PNGなど）を作成することを指します。この機能は、GUIウィンドウでドキュメントを表示するための基本となります。";
-                }
+        <div class="graph">
 
+            <div class="central-graph" id="rendering-graph">
 
+                <div class="about-graph-y-axis-text">
+                    <div class="segment">1000</div>
+                    <div class="segment">800</div>
+                    <div class="segment">600</div>
+                    <div class="segment">400</div>
+                    <div class="segment">200<p>&#9201;</p><div style="font-size:10px;margin-top:-20px;" id="transP16">seconds</div></div>
+                </div>
 
-            }
+                <div class="about-graph-y-axis">
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                    <div class="segment"></div>
+                </div>
 
-            return str;
+                <div class="about-column"><div class="about-graph-area a"></div><div class="text">367.04</div></div>
+                <div class="about-column"><div class="about-graph-area b"></div><div class="text">646</div></div>
+                <div class="about-column"><div class="about-graph-area c"></div><div class="text">851.52</div></div>
 
-        }
+            </div>
 
-        document.getElementById("transP1").innerHTML = getTranslationB("Copying");
-        document.getElementById("transP2").innerHTML = getTranslationB("This refers to opening a document and then saving it to a new file. This test measures the speed of reading a <cite>PDF</cite> and re-writing as a new <cite>PDF</cite>. This process is also at the core of functions like merging / joining multiple documents. The numbers below therefore apply to <cite>PDF</cite> joining and merging.");
+            <div class="about-graph-x-axis">
+                <div class="segment">PyMuPDF</div>
+                <div class="segment">XPDF</div>
+                <div class="segment">PDF2JPG</div>
+            </div>
 
-        document.getElementById("transP3").innerHTML = getTranslationB("The results for all 7,031 pages are:");
-        document.getElementById("transP4").innerHTML = getTranslationB("seconds");
-        document.getElementById("transP5").innerHTML = getTranslationB("fastest");
-        document.getElementById("transP6").innerHTML = getTranslationB("slowest");
-        document.getElementById("transP7").innerHTML = getTranslationB("Text Extraction");
-        document.getElementById("transP8").innerHTML = getTranslationB("This refers to extracting simple, plain text from every page of the document and storing it in a text file.");
-        document.getElementById("transP9").innerHTML = getTranslationB("The results for all 7,031 pages are:");
-        document.getElementById("transP10").innerHTML = getTranslationB("seconds");
-        document.getElementById("transP11").innerHTML = getTranslationB("fastest");
-        document.getElementById("transP12").innerHTML = getTranslationB("slowest");
-        document.getElementById("transP13").innerHTML = getTranslationB("Rendering");
-        document.getElementById("transP14").innerHTML = getTranslationB("This refers to making an image (like PNG) from every page of a document at a given DPI resolution. This feature is the basis for displaying a document in a GUI window.");
-        document.getElementById("transP15").innerHTML = getTranslationB("The results for all 7,031 pages are:");
-        document.getElementById("transP16").innerHTML = getTranslationB("seconds");
-        document.getElementById("transP17").innerHTML = getTranslationB("fastest");
-        document.getElementById("transP18").innerHTML = getTranslationB("slowest");
+            <div class="about-graph-x-axis speed">
+                <div class="segment"><i id="transP17">fastest</i></div>
+                <div class="segment">&#8592;</div>
+                <div class="segment"><i id="transP18">slowest</i></div>
+            </div>
 
-
-
-    </script>
+        </div>
 
 
 

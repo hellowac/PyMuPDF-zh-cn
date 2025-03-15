@@ -19,7 +19,13 @@ sys.path.insert(0, os.path.abspath("."))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 # extensions = ["sphinx.ext.autodoc", "sphinx.ext.coverage", "sphinx.ext.ifconfig"]
-extensions = ['sphinx_copybutton','notfound.extension','sphinxcontrib.googleanalytics']
+extensions = [
+    'sphinx_copybutton',
+    'notfound.extension',
+    'sphinxcontrib.googleanalytics',
+    "sphinx_inline_tabs",  # tabs
+    "sphinx_copybutton",
+]
 # rst2pdf is not available on OpenBSD.
 if hasattr(os, "uname") and os.uname()[0] != "OpenBSD":
     extensions.append("rst2pdf.pdfbuilder")
