@@ -31,7 +31,7 @@ Welcome to |PyMuPDF|
 ----
 
 .. toctree::
-   :caption: About
+   :caption: 关于/About
    :maxdepth: 1
 
    about.rst
@@ -40,7 +40,7 @@ Welcome to |PyMuPDF|
 
 
 .. toctree::
-   :caption: User Guide
+   :caption: 用户指南/User Guide
    :maxdepth: 1
 
    installation.rst
@@ -52,14 +52,14 @@ Welcome to |PyMuPDF|
 
 
 .. toctree::
-   :caption: How to Guide
+   :caption: 教程/How to Guide
    :maxdepth: 3
 
    recipes.rst
 
 
 .. toctree::
-   :caption: API Reference
+   :caption: API参考/API Reference
    :maxdepth: 2
 
    module.rst
@@ -72,7 +72,7 @@ Welcome to |PyMuPDF|
 
 
 .. toctree::
-   :caption: Other
+   :caption: 其他/Other
    :maxdepth: 2
 
    app1.rst
