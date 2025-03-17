@@ -1,5 +1,6 @@
 .. include:: header.rst
 
-.. include:: ../changes.txt
+.. include:: ../changes_cn.txt
+
 
 .. include:: footer.rst

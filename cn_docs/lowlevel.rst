@@ -1,9 +1,18 @@
 .. include:: header.rst
 
 =================================
-Low Level Functions and Classes
+低级函数和类
 =================================
-Contains a number of functions and classes for the experienced user. To be used for special needs or performance requirements.
+
+Low Level Functions and Classes
+
+.. tab:: 中文
+
+   包含许多面向有经验用户的函数和类。用于满足特殊需求或性能要求。
+
+.. tab:: 英文
+
+   Contains a number of functions and classes for the experienced user. To be used for special needs or performance requirements.
 
 .. toctree::
    :maxdepth: 1

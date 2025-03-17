@@ -1,0 +1,2657 @@
+Change Log
+==========
+
+
+**Changes in version 1.25.4 ()**
+
+* **修复的问题**:
+
+  * **修复** `4224 <https://github.com/pymupdf/PyMuPDF/issues/4224>`_: MuPDF 错误：格式错误：1d faxd 中的负码
+  * **修复** `4303 <https://github.com/pymupdf/PyMuPDF/issues/4303>`_: page.get_image_info() 在替换图像后返回过时的缓存结果
+  * **修复** `4309 <https://github.com/pymupdf/PyMuPDF/issues/4309>`_: 删除第一页时发生 FzErrorFormat 错误
+  * **修复** `4336 <https://github.com/pymupdf/PyMuPDF/issues/4336>`_: 性能回退：pix.color_count 在版本 1.25.3 中比 1.23.8 慢 150 倍
+  * **修复** `4341 <https://github.com/pymupdf/PyMuPDF/issues/4341>`_: 当 /Kids 是多个 /Nums 数组时获取无效标签
+
+* **其他**:
+
+  * 修复了合并 PDF 时重复小部件名称的处理（PR #4347）。
+  * 改进了 Pyodide 构建。
+  * 通过禁用 PY_LIMITED_API 来避免 Python-3.13 中与 SWIG 相关的构建错误。
+
+
+**Changes in version 1.25.3 (2025-02-06)**
+
+* 使用 MuPDF-1.25.4.
+
+* **修复的问题**:
+
+  * **修复** `4139 <https://github.com/pymupdf/PyMuPDF/issues/4139>`_: 文本颜色数字在 1.24.14 和 1.25.0 之间发生变化
+  * **修复** `4141 <https://github.com/pymupdf/PyMuPDF/issues/4141>`_: 一些插入方法在没有 /Resources 对象的页面上失败
+  * **修复** `4180 <https://github.com/pymupdf/PyMuPDF/issues/4180>`_: 搜索问题
+  * **修复** `4182 <https://github.com/pymupdf/PyMuPDF/issues/4182>`_: 文本坐标提取错误
+  * **修复** `4245 <https://github.com/pymupdf/PyMuPDF/issues/4245>`_: 高亮显示问题在最近版本中失真
+  * **修复** `4254 <https://github.com/pymupdf/PyMuPDF/issues/4254>`_: add_freetext_annot 在注释框外绘制文本
+
+* **其他**:
+
+  * 在注释方面:
+    * 添加对 FreeTextCallout 子类型的支持。
+    * 添加对富文本的支持。
+  * 为 insert_text*() 添加 miter_limit 参数，以便抑制长斜接线造成的尖角。
+  * 在 `Document.insert_pdf()` 中添加小部件支持。
+  * 向 span 字典中添加 `bibi`。
+  * 向字符字典中添加 `synthetic`。
+  * 修复了 Pyodide 构建。
+
+
+
+**Changes in version 1.25.2 (2025-01-17)**
+
+* **修复的问题**:
+
+  * **修复** `4055 <https://github.com/pymupdf/PyMuPDF/issues/4055>`_: 所有复选框的“是”对于所有 PDF 渲染引擎不起作用
+  * **修复** `4155 <https://github.com/pymupdf/PyMuPDF/issues/4155>`_: samples_mv 不安全
+  * **修复** `4162 <https://github.com/pymupdf/PyMuPDF/issues/4162>`_: 尝试添加签名字段时出现 AttributeError
+  * **修复** `4186 <https://github.com/pymupdf/PyMuPDF/issues/4186>`_: 错误处理带有 CMYK 色彩空间的 JPEG 图像提取
+  * **修复** `4195 <https://github.com/pymupdf/PyMuPDF/issues/4195>`_: 倒置且具有 alpha 通道的 pixmap 无法正确渲染
+  * **修复** `4225 <https://github.com/pymupdf/PyMuPDF/issues/4225>`_: pixmap.pil_save() 由于色彩空间定义失败
+  * **修复** `4232 <https://github.com/pymupdf/PyMuPDF/issues/4232>`_: 错误的字体样式和大小
+
+* **其他**:
+
+  * 使用 Python 内置的 glyphname <> unicode 转换。
+  * 提高 pixmap 色彩反转的速度。
+  * 向 span 字典添加新的 `char_flags` 成员，允许检测不可见文本。
+  * 在 TextPage 输出中检测图像遮罩。
+  * 添加 `Pixmap.pil_image()`。
+
+
+**Changes in version 1.25.1 (2024-12-11)**
+
+* 使用 MuPDF-1.25.2。
+
+* **修复的问题**:
+
+  * **修复** `4125 <https://github.com/pymupdf/PyMuPDF/issues/4125>`_: 转换 Pixmap 的色彩空间时内存泄漏
+  * **修复** `4034 <https://github.com/pymupdf/PyMuPDF/issues/4034>`_: 保存时可能发生 PDF 清理回归问题
+
+
+**Changes in version 1.25.0 (2024-12-05)**
+
+* 使用 MuPDF-1.25.1。
+
+* **修复的问题**:
+
+  * **修复** `4026 <https://github.com/pymupdf/PyMuPDF/issues/4026>`_: page.get_text('blocks') 输出两个非常相似的文本，具有不同的边界框
+  * **修复** `4004 <https://github.com/pymupdf/PyMuPDF/issues/4004>`_: 更新 PDF 表单字段值时发生段错误
+  * **修复** `3887 <https://github.com/pymupdf/PyMuPDF/issues/3887>`_: 使用回退字体时的子集字体问题
+  * **修复** `3886 <https://github.com/pymupdf/PyMuPDF/issues/3886>`_: 插入 HTML 时销毁 PDF 的另一个问题
+  * **修复** `3751 <https://github.com/pymupdf/PyMuPDF/issues/3751>`_: apply_redactions 导致页面内容部分隐藏 / 透明
+
+
+.. codespell:ignore-begin
+
+**Changes in version 1.24.14 (2024-11-19)**
+
+* 使用 MuPDF-1.24.11。
+
+* **修复的问题**:
+
+  * **修复** `3448 <https://github.com/pymupdf/PyMuPDF/issues/3448>`_: get_pixmap 函数移除了表格，仅留下内容
+  * **修复** `3758 <https://github.com/pymupdf/PyMuPDF/issues/3758>`_: 使用 add_redact_annot/apply_redactions 时出现 "malloc(): unaligned tcache chunk detected Aborted (core dumped)" 错误
+  * **修复** `3813 <https://github.com/pymupdf/PyMuPDF/issues/3813>`_: Stories: 嵌套无序列表时有序列表计数出错
+  * **修复** `3933 <https://github.com/pymupdf/PyMuPDF/issues/3933>`_: font.valid_codepoints() - 故障
+  * **修复** `4018 <https://github.com/pymupdf/PyMuPDF/issues/4018>`_: PyMuPDF 在反向遍历零页 PDF 页面时挂起
+  * **修复** `4043 <https://github.com/pymupdf/PyMuPDF/issues/4043>`_: fullcopypage 错误
+  * **修复** `4047 <https://github.com/pymupdf/PyMuPDF/issues/4047>`_: add_redact_annot 时的段错误
+  * **修复** `4050 <https://github.com/pymupdf/PyMuPDF/issues/4050>`_: doc.embfile_info() 返回的字典内容与文档不符
+
+* **其他**:
+
+  * 确保 `Page.get_text()` 中的单词不包含 RTL/LTR 字符混合。
+  * 修复使用系统 MuPDF 时的构建问题。
+  * 为点和向量添加点积功能。
+
+
+**Changes in version 1.24.13 (2024-10-29)**
+
+* **修复的问题**:
+
+  * **修复** `3848 <https://github.com/pymupdf/PyMuPDF/issues/3848>`_: Pixmap 程序崩溃
+  * **修复** `3950 <https://github.com/pymupdf/PyMuPDF/issues/3950>`_: 无法一致地从 PDF 中提取字段标签
+  * **修复** `3981 <https://github.com/pymupdf/PyMuPDF/issues/3981>`_: PyMuPDF 1.24.12 与 pyinstaller 一起使用时抛出错误
+  * **修复** `3994 <https://github.com/pymupdf/PyMuPDF/issues/3994>`_: pix.color_topusage 引发段错误 (core dumped)
+
+
+**Changes in version 1.24.12 (2024-10-21)**
+
+* **修复的问题**:
+
+  * **修复** `3914 <https://github.com/pymupdf/PyMuPDF/issues/3914>`_: 能够将 MuPDF 错误打印到日志中，而不是标准输出
+  * **修复** `3916 <https://github.com/pymupdf/PyMuPDF/issues/3916>`_: insert_htmlbox 错误：整数过大无法转换为浮动
+  * **修复** `3950 <https://github.com/pymupdf/PyMuPDF/issues/3950>`_: 无法一致地从 PDF 中提取字段标签
+
+* 支持的 Python 版本现在是 3.9 到 3.13。
+
+  * 停止支持 Python-3.8，因为其已达到生命周期结束。
+  * 添加对 Python-3.13 的支持，因为该版本现已发布。
+  * 参考链接: https://devguide.python.org/versions/
+
+
+**Changes in version 1.24.11 (2024-10-03)**
+
+* **使用 MuPDF-1.24.10**。
+
+* **修复的问题**:
+
+  * **修复** `3624 <https://github.com/pymupdf/PyMuPDF/issues/3624>`_: 将 PDF 文件转换为图像时出现黑色块
+  * **修复** `3859 <https://github.com/pymupdf/PyMuPDF/issues/3859>`_: doc.need_appearances() 报告 "AttributeError: module 'pymupdf.mupdf' has no attribute 'PDF_TRUE'"
+  * **修复** `3863 <https://github.com/pymupdf/PyMuPDF/issues/3863>`_: apply_redactions() 无法按预期工作
+  * **修复** `3905 <https://github.com/pymupdf/PyMuPDF/issues/3905>`_: 打开流时，可能会抛出 FzErrorFormat 错误，而不是 FileDataError
+
+* 轮子现在使用 Python 稳定 ABI：
+
+  * 每个平台都有一个 PyMuPDF 轮子。
+  * 每个轮子适用于所有受支持的 Python 版本。
+  * 每个轮子使用最旧的支持 Python 版本（目前为 3.8）构建。
+  * 不再提供 PyMuPDFb 轮子。
+
+* **其他**:
+
+  * 对 `get_text_words()` 进行了改进，`sort=True`。
+  * 测试现在始终获取最新版本的所需 Python 包。
+  * 移除了对 setuptools 的依赖。
+  * 在 PyMuPDF-1.24.10 的变更中添加了修复 #3630。
+
+
+**Changes in version 1.24.10 (2024-09-02)**
+
+* **使用 MuPDF-1.24.9**。
+
+* **修复的问题**:
+
+  * **修复** `3450 <https://github.com/pymupdf/PyMuPDF/issues/3450>`_: `get_pixmap` 函数处理时间过长
+  * **修复** `3569 <https://github.com/pymupdf/PyMuPDF/issues/3569>`_: SVG 图像创建时未忽略无效的 OCGs
+  * **修复** `3603 <https://github.com/pymupdf/PyMuPDF/issues/3603>`_: ObjStm 压缩和 PDF 线性化不能一起工作
+  * **修复** `3650 <https://github.com/pymupdf/PyMuPDF/issues/3650>`_: 每个字母之间插入了换行符
+  * **修复** `3661 <https://github.com/pymupdf/PyMuPDF/issues/3661>`_: 更新 `Document` 以检查 `/XYZ` 长度
+  * **修复** `3698 <https://github.com/pymupdf/PyMuPDF/issues/3698>`_: 文档问题 - 注释文档中的旧代码
+  * **修复** `3705 <https://github.com/pymupdf/PyMuPDF/issues/3705>`_: 在某些特定类型的 PDF 文件中，`Document.select()` 表现异常
+  * **修复** `3706 <https://github.com/pymupdf/PyMuPDF/issues/3706>`_: 扩展 `Document.__getitem__` 类型注解，以反映该方法也接受切片
+  * **修复** `3727 <https://github.com/pymupdf/PyMuPDF/issues/3727>`_: `get_pixmap()` 方法导致程序在没有任何异常或消息的情况下退出
+  * **修复** `3767 <https://github.com/pymupdf/PyMuPDF/issues/3767>`_: 无法获取 Tesseract-OCR 5 的 Tessdata
+  * **修复** `3773 <https://github.com/pymupdf/PyMuPDF/issues/3773>`_: `Link.set_border` 报告 TypeError: `'< not supported between instances of 'NoneType' and 'int'`
+  * **修复** `3774 <https://github.com/pymupdf/PyMuPDF/issues/3774>`_: `fitz.__version__` 不再工作
+  * **修复** `3789 <https://github.com/pymupdf/PyMuPDF/issues/3789>`_: 调用 `insert_pdf` 时抛出 `ValueError: not enough values to unpack (expected 3, got 2)`
+  * **修复** `3820 <https://github.com/pymupdf/PyMuPDF/issues/3820>`_: 改进了 `namedDest` 处理
+
+  * **修复** `3630 <https://github.com/pymupdf/PyMuPDF/issues/3630>`_: `page.apply_redactions` 给出了不需要的黑色矩形
+
+* **其他**:
+
+  * 无法同时使用对象流和线性化；如果尝试这么做，将引发异常。 (#3603)
+  * 修复了对不存在的 `/Contents` 对象的处理。
+
+ 
+**Changes in version 1.24.9 (2024-07-24)**
+
+* 使用 MuPDF-1.24.8.
+
+
+**Changes in version 1.24.8 (2024-07-22)**
+
+* **修复的问题**:
+
+  * **修复** `3636 <https://github.com/pymupdf/PyMuPDF/issues/3636>`_: `open` 函数的 API 文档不容易找到。
+  * **修复** `3654 <https://github.com/pymupdf/PyMuPDF/issues/3654>`_: `docx` 解析在 1.24.7 中已损坏。
+  * **修复** `3677 <https://github.com/pymupdf/PyMuPDF/issues/3677>`_: 无法在 PyMuPDF 1.24.6 和 1.24.7 中提取子集字体名称。
+  * **修复** `3687 <https://github.com/pymupdf/PyMuPDF/issues/3687>`_: `Page.get_text` 在处理 EPUB 文件时导致 `AssertionError`。
+
+* **其他**:
+
+  * 修复了代码中由 codespell 检测到的各种拼写错误。
+  * 改进了我们在 Windows 上修改 MuPDF 默认配置的方式。
+  * 使文本搜索支持联字。
+
+
+**Changes in version 1.24.7 (2024-06-26)**
+
+* **修复的问题**:
+
+  * **修复** `3615 <https://github.com/pymupdf/PyMuPDF/issues/3615>`_: `Document.pagemode` 或 `Document.pagelayout` 在处理 EPUB 文件时崩溃。
+  * **修复** `3616 <https://github.com/pymupdf/PyMuPDF/issues/3616>`_: 未报告为最新版本。
+
+
+**Changes in version 1.24.6 (2024-06-25)**
+
+**基于 MuPDF-1.24.4 的版本**
+
+* **修复** `3599 <https://github.com/pymupdf/PyMuPDF/issues/3599>`_：`Story.fit_width()` 产生异常换行。
+* **修复** `3594 <https://github.com/pymupdf/PyMuPDF/issues/3594>`_：Amazon 可持续发展报告的文本提取乱码问题。
+* **修复** `3591 <https://github.com/pymupdf/PyMuPDF/issues/3591>`_：`Page.get_drawings()` 返回的 `width` 始终为 0。
+* **修复** `3561 <https://github.com/pymupdf/PyMuPDF/issues/3561>`_：`page.apply_redactions()` 可能导致 `ZeroDivisionError: float division by zero`。
+* **修复** `3559 <https://github.com/pymupdf/PyMuPDF/issues/3559>`_：`insert_htmlbox` 方法在 `H1`、`H2`、`H3`、`H4` 等标签为空时引发 SegFault 11。
+* **修复** `3539 <https://github.com/pymupdf/PyMuPDF/issues/3539>`_：表格识别中新增对虚线网格的检测支持。
+* **修复** `3519 <https://github.com/pymupdf/PyMuPDF/issues/3519>`_：`get_toc(simple=False)` 抛出 `AttributeError: 'Outline' object has no attribute 'rect'`。
+* **修复** `3510 <https://github.com/pymupdf/PyMuPDF/issues/3510>`_：`page.get_label()` 可能在文档第一页返回错误标签。
+* **修复** `3494 <https://github.com/pymupdf/PyMuPDF/issues/3494>`_：在 `subset_fonts` 与 `insert_pdf` 结合使用时，1.24.2/1.24.3 版本可能会引入错误字符。
+* **修复** `3470 <https://github.com/pymupdf/PyMuPDF/issues/3470>`_：`subset_fonts` 可能在发生错误时无异常或警告直接退出。
+* **修复** `3400 <https://github.com/pymupdf/PyMuPDF/issues/3400>`_：在 PyMuPDF 1.24.2 版本中，`set_toc` 可能导致某些旋转页面的链接坐标被修改。
+* **修复** `3347 <https://github.com/pymupdf/PyMuPDF/issues/3347>`_：当 PDF 页面的高度不同时，某些指向页面内部的链接可能不正确。
+* **修复** `3237 <https://github.com/pymupdf/PyMuPDF/issues/3237>`_：`set_metadata()` 方法无法正常工作。
+* **修复** `3493 <https://github.com/pymupdf/PyMuPDF/discussions/3493>`_：隔离 PyMuPDF 与其他库的相互影响，解决 PyMuPDF 与 `GdkPixbuf` 等其他库同时加载时的兼容性问题。
+
+**其他改动**
+
+* 解决了 PyMuPDF 在并发使用时由于临时文件名固定而导致
+
+
+
+**Changes in version 1.24.5 (2024-05-30)**
+
+* Fixed issues:
+
+  * **Fixed** `3479 <https://github.com/pymupdf/PyMuPDF/issues/3479>`_: regression: fill_textbox: IndexError: pop from empty list
+  * **Fixed** `3488 <https://github.com/pymupdf/PyMuPDF/issues/3488>`_: set_toc method error
+
+* Other:
+
+  * Some more fixes to use MuPDF floating formatting.
+  * Removed/disabled some unnecessary diagnostics.
+  * Fixed utils.do_links() crash.
+  * Experimental new functions `pymupdf.apply_pages()` and `pymupdf.get_text()`.
+  * Addresses wrong label generation for label styles "a" and "A".
+
+
+**Changes in version 1.24.4 (2024-05-16)**
+
+  * **Fixed** `3418 <https://github.com/pymupdf/PyMuPDF/issues/3418>`_: Re-introduced bug, text align add_redact_annot
+  * **Fixed** `3472 <https://github.com/pymupdf/PyMuPDF/issues/3472>`_: insert_pdf gives SystemError
+
+* Other:
+
+  * Fixed sysinstall test failing to remove all of prior installation before
+    new install.
+  * Fixed `utils.do_links()` crash.
+  * Correct `TextPage` creation Code.
+  * Unified various diagnostics.
+  * Fix bug in `page_merge()`.
+
+
+**Changes in version 1.24.3 (2024-05-09)**
+
+*
+  The Python module is now called `pymupdf`. `fitz` is still supported for
+  backwards compatibility.
+
+* Use MuPDF-1.24.2.
+
+* Fixed issues:
+
+  * **Fixed** `3357 <https://github.com/pymupdf/PyMuPDF/issues/3357>`_: PyMuPDF==1.24.0 will hanging when using page.get_text("text")
+  * **Fixed** `3376 <https://github.com/pymupdf/PyMuPDF/issues/3376>`_: Redacting results are not as expected in 1.24.x.
+  * **Fixed** `3379 <https://github.com/pymupdf/PyMuPDF/issues/3379>`_: Documentation mismatch for get_text_blocks return value order.
+  * **Fixed** `3381 <https://github.com/pymupdf/PyMuPDF/issues/3381>`_: Contents stream contains floats in scientific notation
+  * **Fixed** `3402 <https://github.com/pymupdf/PyMuPDF/issues/3402>`_: Cannot add Widgets containing inter-field-calculation JavaScript
+  * **Fixed** `3414 <https://github.com/pymupdf/PyMuPDF/issues/3414>`_: missing attribute set_dpi()
+  * **Fixed** `3430 <https://github.com/pymupdf/PyMuPDF/issues/3430>`_: page.get_text() cause process freeze with certain pdf on v1.24.2
+
+* Other:
+
+  * New/modified methods:
+
+    * `Page.remove_rotation()`: new, set page rotation to zero while keeping appearance.
+
+  * Fixed some problems when checking for PDF properties.
+  * Fixed pip builds from sdist
+    (see discussion `3360 <https://github.com/pymupdf/PyMuPDF/discussions/3360>`_:
+    Alpine linux docker build failing "No matching distribution found for pymupdfb==1.24.1").
+
+
+**Changes in version 1.24.2 (2024-04-17)**
+
+* Removed obsolete classic implementation from releases
+  (previously available as module `fitz_old`).
+
+* Fixed issues:
+
+  * **Fixed** `3331 <https://github.com/pymupdf/PyMuPDF/issues/3331>`_: Document.pages() is incorrectly type-hinted
+  * **Fixed** `3354 <https://github.com/pymupdf/PyMuPDF/issues/3354>`_: PyMuPDF==1.24.1: AttributeError: property 'metadata' of 'Document' object has no setter
+
+* Other:
+
+  * New/modified methods:
+  
+    * `Document.bake()`: new, make annotations / fields permanent content.
+    * `Page.cluster_drawings()`: new, identifies drawing items
+      (i.e. vector graphics or line-art)
+      that belong together based on their geometrical vicinity.
+    * `Page.apply_redactions()`: added new parameter `text`.
+    * `Document.subset_fonts()`: use MuPDF's `pdf_subset_fonts()` instead of PyMuPDF code.
+    
+  * The `Document` class now supports page numbers specified as slices.
+  * Avoid causing MuPDF warnings.
+
+
+**Changes in version 1.24.1 (2024-04-02)**
+
+* Fixed issues:
+
+  * **Fixed** `3278 <https://github.com/pymupdf/PyMuPDF/issues/3278>`_: apply_redactions moves some unredacted text
+  * **Fixed** `3301 <https://github.com/pymupdf/PyMuPDF/issues/3301>`_: Be more permissive when classifying links as kind LINK_URI
+  * **Fixed** `3306 <https://github.com/pymupdf/PyMuPDF/issues/3306>`_: Text containing capital 'ET' not appearing as annotation
+
+* Other:
+
+  * Use MuPDF-1.24.1.
+  * Support ObjStm Compression.
+    Methods `Document.save()`, `Document.ez_save()` and `Document.write()`
+    now support new parameters `use_objstm`, compression_effort` and
+    `preserve_metadata`.
+
+
+**Changes in version 1.24.0 (2024-03-21)**
+
+* Fixed issues:
+
+  * **Fixed** `3281 <https://github.com/pymupdf/PyMuPDF/issues/3281>`_: Preparing metadata (pyproject.toml) did not run successfully
+  * **Fixed** `3279 <https://github.com/pymupdf/PyMuPDF/issues/3279>`_: PyMuPDF no longer builds in Alpine Linux
+  * **Fixed** `3257 <https://github.com/pymupdf/PyMuPDF/issues/3257>`_: apply_redactions() deleting text outside of annoted box
+  * **Fixed** `3216 <https://github.com/pymupdf/PyMuPDF/issues/3216>`_: AttributeError: 'Annot' object has no attribute '__del__'
+  * **Fixed** `3207 <https://github.com/pymupdf/PyMuPDF/issues/3207>`_: get_drawings's items is missing line from h path operator
+  * **Fixed** `3201 <https://github.com/pymupdf/PyMuPDF/issues/3201>`_: Memory leaks when merging PDFs
+  * **Fixed** `3197 <https://github.com/pymupdf/PyMuPDF/issues/3197>`_: page.get_text() returns hexadecimal text for some characters
+  * **Fixed** `3196 <https://github.com/pymupdf/PyMuPDF/issues/3196>`_: Remove text not working in 1.23.25 version vs 1.20.2
+  * **Fixed** `3172 <https://github.com/pymupdf/PyMuPDF/issues/3172>`_: PDF's 45º lines dissapearing in png conversion
+  * **Fixed** `3135 <https://github.com/pymupdf/PyMuPDF/issues/3135>`_: Do not log warnings to stdout
+  * **Fixed** `3125 <https://github.com/pymupdf/PyMuPDF/issues/3125>`_: get_pixmap method stuck on one page and runs forever
+  * **Fixed** `2964 <https://github.com/pymupdf/PyMuPDF/issues/2964>`_: There is an issue with the image generated by the page.get_pixmap() function
+
+* Other:
+
+  * Use MuPDF-1.24.0.
+  * Add support for redacting vector graphics.
+  * Several fixes for table module
+    
+    * Add new method for outputting the table as a markdown string.
+    
+    * Address errors in computing the table header object:
+    
+      We now allow None as the cell value, because this will be resolved where
+      needed (e.g. in the pandas DataFrame).
+
+      We previously tried to enforce rect-like tuples in all header cell
+      bboxes, however this fails for tables with all-None columns.  This fix
+      enables this and constructs an empty string in the corresponding cell
+      string.
+
+      We now correctly include start / stop points of lines in the bbox of the
+      clustered graphic.  We previously joined the line's rectangle - which had
+      no effect because this is always empty.
+
+  * Improved exception text if we fail to open document.
+  * Fixed build with new libclang 18.
+  
+
+**Changes in version 1.23.26 (2024-02-29)**
+
+* Fixed issues:
+
+  * **Fixed** `3199 <https://github.com/pymupdf/PyMuPDF/issues/3199>`_: Add entry_points to setuptools configuration to provide command-line console scripts
+  * **Fixed** `3209 <https://github.com/pymupdf/PyMuPDF/issues/3209>`_: Empty vertices in ink annotation
+
+* Other:
+
+  * Improvements to table detection:
+  
+    * Improved check for empty tables, fixes bugs when determining table headers.
+    * Improved computation of enveloping vector graphic rectangles.
+    * Ignore more meaningless "pseudo" tables
+
+  * Install command-line 'pymupdf' command that runs fitz/__main__.py.
+  * Don't overwrite MuPDF's config.h when building on non-Windows.
+  * Fix `Story` constructor's `archive` arg to match docs - now accepts a single `Archive` constructor arg.
+  * Do not include MuPDF source in sdist; will be downloaded automatically when building.
+
+
+**Changes in version 1.23.25 (2024-02-20)**
+
+* Fixed issues:
+
+  * **Fixed** `3182 <https://github.com/pymupdf/PyMuPDF/issues/3182>`_: Pixmap.invert_irect argument type error
+  * **Fixed** `3186 <https://github.com/pymupdf/PyMuPDF/issues/3186>`_: extractText() extracts broken text from pdf
+  * **Fixed** `3191 <https://github.com/pymupdf/PyMuPDF/issues/3191>`_: Error on .find_tables()
+
+* Other:
+
+  * When building, be able to specify python-config directly, with environment
+    variable `PIPCL_PYTHON_CONFIG`.
+
+
+**Changes in version 1.23.24 (2024-02-19)**
+
+* Fixed issues:
+
+  * **Fixed** `3148 <https://github.com/pymupdf/PyMuPDF/issues/3148>`_: Table extraction - vertical text not handled correctly
+  * **Fixed** `3179 <https://github.com/pymupdf/PyMuPDF/issues/3179>`_: Table Detection: Incorrect Separation of Vector Graphics Clusters
+  * **Fixed** `3180 <https://github.com/pymupdf/PyMuPDF/issues/3180>`_: Cannot show optional content group: AttributeError: module 'fitz.mupdf' has no attribute 'pdf_array_push_drop'
+
+* Other:
+
+  * Be able to test system install using `sudo pip install` instead of a venv.
+
+
+**Changes in version 1.23.23 (2024-02-18)**
+
+* Fixed issues:
+
+  * **Fixed** `3126 <https://github.com/pymupdf/PyMuPDF/issues/3126>`_: Initialising Archive with a pathlib.Path fails.
+  * **Fixed** `3131 <https://github.com/pymupdf/PyMuPDF/issues/3131>`_: Calling the next attribute of an Annot raises a "No attribute .parent" warning
+  * **Fixed** `3134 <https://github.com/pymupdf/PyMuPDF/issues/3134>`_: Using an IRect as clip parameter in Page.get_pixmap no longer works since 1.23.9
+  * **Fixed** `3140 <https://github.com/pymupdf/PyMuPDF/issues/3140>`_: PDF document stays in use after closing
+  * **Fixed** `3150 <https://github.com/pymupdf/PyMuPDF/issues/3150>`_: doc.select() hangs on this doc.
+  * **Fixed** `3163 <https://github.com/pymupdf/PyMuPDF/issues/3163>`_: AssertionError on using fitz.IRect
+  * **Fixed** `3177 <https://github.com/pymupdf/PyMuPDF/issues/3177>`_: fitz.Pixmap(None, pix) Unrecognised args for constructing Pixmap
+
+* Other:
+
+  *
+    Improved `Document.select() by using new MuPDF function
+    `pdf_rearrange_pages()`. This is a more complete (and faster)
+    implementation of what needs to be done here in that not only pages will
+    be rearranged, but also consequential changes will be made to the table
+    of contents, links to removed pages and affected entries in the Optional
+    Content definitions.
+  * `TextWriter.appendv()`: added `small_caps` arg.
+  * Fixed some valgrind errors with MuPDF master.
+  * Fixed `Document.insert_image()` when build with MuPDF master.
+
+
+**Changes in version 1.23.22 (2024-02-12)**
+
+* Fixed issues:
+
+  * **Fixed** `3143 <https://github.com/pymupdf/PyMuPDF/issues/3143>`_: Difference in decoding of OCGs names between doc.get_ocgs() and page.get_drawings()
+
+  * **Fixed** `3139 <https://github.com/pymupdf/PyMuPDF/issues/3139>`_: Pixmap resizing needs positional arg "clip" - even if None.
+
+* Other:
+
+  * Removed the use of MuPDF function `fz_image_size()` from PyMuPDF.
+
+
+**Changes in version 1.23.21 (2024-02-01)**
+
+* Fixed issues:
+
+* Other:
+
+  * Fixed bug in set_xml_metadata(), PR `3112 https://github.com/pymupdf/PyMuPDF/pull/3112>`_: Fix pdf_add_stream metadata error
+  * Fixed lack of `.parent` member in `TextPage` from `Annot.get_textpage()`.
+  * Fixed bug in `Page.add_widget()`.
+
+
+**Changes in version 1.23.20 (2024-01-29)**
+
+* Bug fixes:
+
+  * **Fixed** `3100 <https://github.com/pymupdf/PyMuPDF/issues/3100>`_: Wrong internal property accessed in get_xml_metadata
+
+* Other:
+
+  * Significantly improved speed of `Document.get_toc()`.
+
+
+**Changes in version 1.23.19 (2024-01-25)**
+
+* Bug fixes:
+
+  * **Fixed** `3087 <https://github.com/pymupdf/PyMuPDF/issues/3087>`_: Exception in insert_image with mask specified
+  * **Fixed** `3094 <https://github.com/pymupdf/PyMuPDF/issues/3094>`_: TypeError: '<' not supported between instances of 'FzLocation' and 'int' in doc.delete_pages
+
+* Other:
+
+  * When finding tables:
+  
+    * Allow addition of user-defined "virtual" vector graphics when finding tables.
+    * Confirm that the enveloping bboxes of vector graphics are inside the clip rectangle.
+    * Avoid slow finding of rectangle intersections.
+
+  * Added `Font.bbox` property.
+
+
+**Changes in version 1.23.18 (2024-01-23)**
+
+* Bug fixes:
+
+  * **Fixed** `3081 <https://github.com/pymupdf/PyMuPDF/issues/3081>`_: doc.close() not closing the document
+
+* Other:
+
+  * Reduced size of sdist to fit on pypi.org (by reducing size of two test files).
+  * Fix `Annot.file_info()` if no `Desc` item.
+
+
+**Changes in version 1.23.17 (2024-01-22)**
+
+* Bug fixes:
+
+  * **Fixed** `3062 <https://github.com/pymupdf/PyMuPDF/issues/3062>`_: page_rotation_reset does not return page to original rotation
+  * **Fixed** `3070 <https://github.com/pymupdf/PyMuPDF/issues/3070>`_: update_link(): AttributeError: 'Page' object has no attribute 'super'
+
+* Other:
+
+  * Fixed bug in `Page.links()` (PR #3075).
+  * Fixed bug in `Page.get_bboxlog()` with layers.
+  * Add support for timeouts in scripts/ and tests/run_compound.py.
+
+
+**Changes in version 1.23.16 (2024-01-18)**
+
+* Bug fixes:
+
+  * **Fixed** `3058 <https://github.com/pymupdf/PyMuPDF/issues/3058>`_: Pixmap created from CMYK JPEG delivers RGB format
+
+* Other:
+
+  * In table detection strategy "lines_strict", exclude fill-only vector graphics.
+  * Fixed sysinstall test failure.
+  * In documentation, update feature matrix with item about text writing.
+
+
+**Changes in version 1.23.15 (2024-01-16)**
+
+* Bug fixes:
+
+  * **Fixed** `3050 <https://github.com/pymupdf/PyMuPDF/issues/3050>`_: python3.9 pix.set_pixel has something wrong in c.append( ord(i))
+
+* Other:
+
+  * Improved docs for Page.find_tables().
+
+
+**Changes in version 1.23.14 (2024-01-15)**
+
+* Bug fixes:
+
+  * **Fixed** `3038 <https://github.com/pymupdf/PyMuPDF/issues/3038>`_: JM_pixmap_from_display_list > Assertion Error : Checking for wrong type
+  * **Fixed** `3039 <https://github.com/pymupdf/PyMuPDF/issues/3039>`_: Issue with doc.close() not closing the document in PyMuPDF
+
+* Other:
+
+  * Ensure valid "re" rectangles in `Page.get_drawings()` with derotated pages.
+
+
+**Changes in version 1.23.13 (2024-01-15)**
+
+* Bug fixes:
+
+  * **Fixed** `2979 <https://github.com/pymupdf/PyMuPDF/issues/2979>`_: list index out of range in to_pandas()
+  * **Fixed** `3001 <https://github.com/pymupdf/PyMuPDF/issues/3001>`_: Calling find_tables() on one document alters the bounding boxes of a subsequent document
+
+* Other:
+
+  * Fixed `Rect.height` and `Rect.width` to never return negative values.
+  * Fixed `TextPage.extractIMGINFO()`'s returned `dictkey_yres` value.
+
+
+**Changes in version 1.23.12 (2024-01-12)**
+
+* * **Fixed** `3027 <https://github.com/pymupdf/PyMuPDF/issues/3027>`_: Page.get_text throws Attribute Error for 'parent'
+
+
+**Changes in version 1.23.11 (2024-01-12)**
+
+* Fixed some Pixmap construction bugs.
+* Fixed Pixmap.yres().
+
+
+**Changes in version 1.23.10 (2024-01-12)**
+
+* Bug fixes:
+
+  * **Fixed** `3020 <https://github.com/pymupdf/PyMuPDF/issues/3020>`_: Can't resize a PixMap
+
+* Other:
+
+  * Fixed Page.delete_image().
+
+
+**Changes in version 1.23.9 (2024-01-11)**
+
+* Default to new "rebased" implementation.
+
+  * The old "classic" implementation is available with `import fitz_old as fitz`.
+  * For more information about why we are changing to the rebased implementation,
+    see: https://github.com/pymupdf/PyMuPDF/discussions/2680
+
+* Use MuPDF-1.23.9.
+
+* Bug fixes (rebased implementation only):
+
+  * **Fixed** `2911 <https://github.com/pymupdf/PyMuPDF/issues/2911>`_: Page.derotation_matrix returns a tuple instead of a Matrix with rebased implementation
+  * **Fixed** `2919 <https://github.com/pymupdf/PyMuPDF/issues/2919>`_: Rebased version: KeyError in resolve_names when merging pdfs
+  * **Fixed** `2922 <https://github.com/pymupdf/PyMuPDF/issues/2922>`_: New feature that allows inserting named-destination links doesn't work
+  * **Fixed** `2943 <https://github.com/pymupdf/PyMuPDF/issues/2943>`_: ZeroDivisionError: float division by zero when use apply_redactions()
+  * **Fixed** `2950 <https://github.com/pymupdf/PyMuPDF/issues/2950>`_: Shelling out to pip during tests is problematic
+  * **Fixed** `2954 <https://github.com/pymupdf/PyMuPDF/issues/2954>`_: Replacement unicode character in text extraction
+  * **Fixed** `2957 <https://github.com/pymupdf/PyMuPDF/issues/2957>`_: apply_redactions() moving text
+  * **Fixed** `2961 <https://github.com/pymupdf/PyMuPDF/issues/2961>`_: Passing a string as a page number raises IndexError instead of TypeError.
+  * **Fixed** `2969 <https://github.com/pymupdf/PyMuPDF/issues/2969>`_: annot.next throws AttributeError
+  * **Fixed** `2978 <https://github.com/pymupdf/PyMuPDF/issues/2978>`_: 1.23.9rc1: module 'fitz.mupdf' has no attribute 'fz_copy_pixmap_rect'
+
+  * **Fixed** `2907 <https://github.com/pymupdf/PyMuPDF/issues/2907>`_: segfault trying to call clean_contents on certain pdfs with python 3.12
+  * **Fixed** `2905 <https://github.com/pymupdf/PyMuPDF/issues/2905>`_: SystemError: <built-in function TextPage_extractIMGINFO> returned a result with an exception set
+  * **Fixed** `2742 <https://github.com/pymupdf/PyMuPDF/issues/2742>`_: Segmentation Fault when inserting three (but not two) copies of the same source page into one destination page
+
+* Other:
+
+  * Add optional setting of opacity to `Page.insert_htmlbox()`.
+  * Fixed issue with add_redact_annot() mentioned in #2934.
+  * Fixed `Page.rotation()` to return 0 for non-PDF documents instead of raising an exception.
+  * Fixed internal quad detection to cope with any Python sequence.
+  * Fixed rebased `fitz.pymupdf_version_tuple` - was previously set to mupdf version.
+  * Improved support for Linux system installs, including adding regular testing on Github.
+  * Add missing `flake8` to `scripts/gh_release.py:test_packages`.
+  * Use newly public functions in MuPDF-1.23.8.
+  * Improved `scripts/test.py` to help investigation of MuPDF issues.
+
+
+**Changes in version 1.23.8 (2023-12-19)**
+
+* Bug fixes (rebased implementation only):
+
+  * **Fixed** `2634 <https://github.com/pymupdf/PyMuPDF/issues/2634>`_: get_toc and set_toc do not behave consistently for rotated pages
+  * **Fixed** `2861 <https://github.com/pymupdf/PyMuPDF/issues/2861>`_: AttributeError in getLinkDict during PDF Merge
+  * **Fixed** `2871 <https://github.com/pymupdf/PyMuPDF/issues/2871>`_: KeyError in getLinkDict during PDF merge
+  * **Fixed** `2886 <https://github.com/pymupdf/PyMuPDF/issues/2886>`_: Error in Skeleton for Named Link Destinations
+
+* Bug fixes (rebased and classic implementations):
+  
+  * **Fixed** `2885 <https://github.com/pymupdf/PyMuPDF/issues/2885>`_: pymupdf find tables too slow
+
+* Other:
+
+  * Rebased implementation:
+  
+    * `Page.insert_htmlbox()`: new, much more powerful alternative to `Page.insert_textbox()` or `TextWriter.fill_textbox()`, using `Story`.
+    * `Story.fit*()`: new methods for fitting a Story into an expanded rect.
+    * `Story.write_with_links()`: add support for external links.
+    * `Document.language()`: fixed to use MuPDF's new `mupdf.fz_string_from_text_language2()`.
+    * `Document.subset_fonts()` - fixed.
+    * Fixed internal `Archive._add_treeitem()` method.
+    * Fixed `fitz_new.__doc__` to contain PyMuPDF and Python version information, and OS name.
+    * Removed use of `(*args, **kwargs)` in API, we now specify keyword args explicitly.
+    * Work with new MuPDF Python exception classes.
+
+  * Fixed bug where `button_states()` returns None when `/AP` points to an indirect object.
+  * Fixed pillow test to not ignore all errors, and install pillow when testing.
+  * Added test for `fitz.css_for_pymupdf_font()` (uses package `pymupdf-fonts`).
+  * Simplified Github Actions test specifications.
+  * Updated `tests/README.md`.
+
+
+**Changes in version 1.23.7 (2023-11-30)**
+
+* Bug fixes in rebased implementation, not fixed in classic implementation:
+
+  * **Fixed** `2232 <https://github.com/pymupdf/PyMuPDF/issues/2232>`_: Geometry helper classes should support keyword arguments
+  * **Fixed** `2788 <https://github.com/pymupdf/PyMuPDF/issues/2788>`_: Problem with get_toc in pymupdf 1.23.6
+  * **Fixed** `2791 <https://github.com/pymupdf/PyMuPDF/issues/2791>`_: Experiencing small memory leak in save()
+
+* Bug fixes (rebased and classic implementations):
+
+  * **Fixed** `2736 <https://github.com/pymupdf/PyMuPDF/issues/2736>`_: Failure when set cropbox with mediabox negative value
+  * **Fixed** `2749 <https://github.com/pymupdf/PyMuPDF/issues/2749>`_: RuntimeError: cycle in structure tree
+  * **Fixed** `2753 <https://github.com/pymupdf/PyMuPDF/issues/2753>`_: Story.write_with_links will ignore everything after the first "page break" in the HTML.
+  * **Fixed** `2812 <https://github.com/pymupdf/PyMuPDF/issues/2812>`_: find_tables on landscape page generates reversed text
+  * **Fixed** `2829 <https://github.com/pymupdf/PyMuPDF/issues/2829>`_: [cannot create /Annot for kind] is still printed despite #2345 is closed.
+  * **Fixed** `2841 <https://github.com/pymupdf/PyMuPDF/issues/2841>`_: Unexpected KeyError when using scrub with fitz_new
+
+* Use MuPDF-1.23.7.
+
+* Other:
+
+  * Rebased implementation:
+  
+    * Added flake8 code checking to test suite, and made various fixes.
+    * Disable diagnostics during Document constructor to match classic implementation.
+  
+  * Additional fix to `2553 <https://github.com/pymupdf/PyMuPDF/issues/2553>`_: Invalid characters in versions >= 1.22
+  * Fixed `MuPDF Bug 707324 <https://bugs.ghostscript.com/show_bug.cgi?id=707324>`_: Story: HTML table row background color repeated incorrectly
+  * Added `scripts/test.py`, for simple build+test of PyMuPDF git checkout.
+  * Added `fitz.pymupdf_version_tuple`, e.g. `(1, 23, 6)`.
+  * Restored mistakenly-reverted fix for `2345 <https://github.com/pymupdf/PyMuPDF/issues/2345>`_: Turn off print statements in utils.py
+  * Include any trailing `... repeated <N> times...` text in warnings returned by `mupdf_warnings()` (rebased only).
+  
+
+
+**Changes in version 1.23.6 (2023-11-06)**
+
+* Bug fixes:
+
+  * **Fixed** `2553 <https://github.com/pymupdf/PyMuPDF/issues/2553>`_: Invalid characters in versions >= 1.22
+  * **Fixed** `2608 <https://github.com/pymupdf/PyMuPDF/issues/2608>`_: Incorrect utf32 text extraction (high & low surrogates are split)
+  * **Fixed** `2710 <https://github.com/pymupdf/PyMuPDF/issues/2710>`_: page.rect and text location wrong / differing from older version
+  * **Fixed** `2774 <https://github.com/pymupdf/PyMuPDF/issues/2774>`_: wrong encoding for "\?" character when sort=True
+  * **Fixed** `2775 <https://github.com/pymupdf/PyMuPDF/issues/2775>`_: fitz_new does not work with python3.10 or earlier
+  * **Fixed** `2777 <https://github.com/pymupdf/PyMuPDF/issues/2777>`_: With fitz_new, wrong type for Page.mediabox
+
+* Other:
+
+  * Use MuPDF-1.23.5.
+  * Added Document.resolve_names() (rebased implementation only).
+
+
+**Changes in version 1.23.5 (2023-10-11)**
+
+* Bug fixes:
+
+  * **Fixed** `2341 <https://github.com/pymupdf/PyMuPDF/issues/2341>`_: Handling negative values in the zoom section for LINK_GOTO in linkDest
+  * **Fixed** `2522 <https://github.com/pymupdf/PyMuPDF/issues/2522>`_: Typo in set_layer() - NameError: name 'f' is not defined
+  * **Fixed** `2548 <https://github.com/pymupdf/PyMuPDF/issues/2548>`_: Fitz freezes on some PDFs when calling the fitz.Page.get_text_blocks method.
+  * **Fixed** `2596 <https://github.com/pymupdf/PyMuPDF/issues/2596>`_: save(garbage=3) breaks get_pixmap() with side effect
+  * **Fixed** `2635 <https://github.com/pymupdf/PyMuPDF/issues/2635>`_: "clean=True" makes objects invisible in the pdf
+  * **Fixed** `2637 <https://github.com/pymupdf/PyMuPDF/issues/2637>`_: Page.insert_textbox incorrectly handles the last word if it starts a new line
+  * **Fixed** `2699 <https://github.com/pymupdf/PyMuPDF/issues/2699>`_: extract paragraph with below table
+  * **Fixed** `2703 <https://github.com/pymupdf/PyMuPDF/issues/2703>`_: Wrong fontsize calculation in corner cases ("page.get_texttrace()")
+  * **Fixed** `2710 <https://github.com/pymupdf/PyMuPDF/issues/2710>`_: page.rect and text location wrong / differing from older version
+  * **Fixed** `2723 <https://github.com/pymupdf/PyMuPDF/issues/2723>`_: When will a Python 3.12 wheel be available?
+  * **Fixed** `2730 <https://github.com/pymupdf/PyMuPDF/issues/2730>`_: persistent get_text() formatting
+
+* Other:
+
+  * Use MuPDF-1.23.4.
+  * Fix optimisation flags with system installs.
+  * Fixed the problem that the clip parameter does not take effect during table recognition
+  * Support Pillow mode "RGBa"
+  * Support extra word delimiters
+  * Support checking valid PDF name objects
+
+
+**Changes in version 1.23.4 (2023-09-26)**
+
+* Improved build instructions.
+* Fixed Tesseract in rebased implementation.
+* Improvements to build/install with system MuPDF.
+* Fixed Pyodide builds.
+* Fixed rebased bug in _insert_image().
+
+* Bug fixes:
+
+  * **Fixed** `2556 <https://github.com/pymupdf/PyMuPDF/issues/2556>`_: Segmentation fault at caling get_cdrawings(extended=True)
+  * **Fixed** `2637 <https://github.com/pymupdf/PyMuPDF/issues/2637>`_: Page.insert_textbox incorrectly handles the last word if it starts a new line
+  * **Fixed** `2683 <https://github.com/pymupdf/PyMuPDF/issues/2683>`_: Windows sdist build failure - non-quoting of path and using UNIX which command
+  * **Fixed** `2691 <https://github.com/pymupdf/PyMuPDF/issues/2691>`_: Page.get_textpage_ocr() bug in rebased fitz_new version
+  * **Fixed** `2692 <https://github.com/pymupdf/PyMuPDF/issues/2692>`_: Page.get_pixmap(clip=Rect()) bug in rebased fitz_new version
+
+
+**Changes in version 1.23.3 (2023-08-31)**
+
+* Fixed use of Tesseract for OCR.
+
+
+**Changes in version 1.23.2 (2023-08-28)**
+
+* **Fixed** `#2613 <https://github.com/pymupdf/PyMuPDF/issues/2613>`_: release 1.23.0 not MacOS-arm64 compatible
+
+
+**Changes in version 1.23.1 (2023-08-24)**
+
+* Updated README and package summary description.
+
+*
+  Fixed a problem on some Linux installations with Python-3.10
+  (and possibly earlier versions) where `import fitz` failed with
+  `ImportError: libcrypt.so.2: cannot open shared object file: No such
+  file or directory`.
+
+*
+  Fixed `incompatible architecture` error on MacOS arm64.
+
+*
+  Fixed installation warning from Poetry about missing entry in wheels'
+  RECORD files.
+
+
+**Changes in version 1.23.0 (2023-08-22)**
+
+* Add method `find_tables()` to the `Page` object.
+
+  This allows locating tables on any supported document page, and
+  extracting table content by cell.
+
+* New "rebased" implementation of PyMuPDF.
+
+  The rebased implementation is available as Python module
+  `fitz_new`. It can be used as a drop-in replacement with `import
+  fitz_new as fitz`.
+
+*
+  Python-independent MuPDF libraries are now in a second wheel called
+  `PyMuPDFb` that will be automatically installed by pip.
+
+  This is to save space on pypi.org - a full release only needs one
+  `PyMuPDFb` wheel for each OS.
+
+* Bug fixes:
+
+  * **Fixed** `#2542 <https://github.com/pymupdf/PyMuPDF/issues/2542>`_: fitz.utils.scrub AttributeError Annot object has no attribute fileUpd inside
+  * **Fixed** `#2533 <https://github.com/pymupdf/PyMuPDF/issues/2533>`_: get_texttrace returned a incorrect character bbox
+  * **Fixed** `#2537 <https://github.com/pymupdf/PyMuPDF/issues/2537>`_: Validation when setting a grouped RadioButton throws a RuntimeError: path to 'V' has indirects
+
+* Other changes:
+
+  * Dropped support for Python-3.7.
+
+  * Fix for wrong page / annot `/Contents` cleaning.
+    
+    We need to set `pdf_filter_options::no_update` to zero.
+
+  * Added new function get_tessdata().
+
+  * Cope with problem `/Annot` arrays.
+  
+    When copying page annotations in method Document.insert_pdf we
+    previously did not check the validity of members of the `/Annots`
+    array.  For faulty members (like null or non-dictionary items) this
+    could cause unnecessary exceptions. This fix implements more checks
+    and skips such array items.
+
+  * Additional annotation type checks.
+
+    We did not previously check for annotation type when getting /
+    setting annotation border properties. This is now checked in
+    accordance with MuPDF.
+
+  * Increase fault tolerance.
+    
+    Avoid exceptions in method `insert_pdf()` when source pages contains
+    invalid items in the `/Annots` array.
+
+  * Return empty border dict for applicable annots.
+    
+    We previously were returning a non-empty border dictionary even for
+    non-applicable annotation types.  We now return the empty dictionary
+    `{}` in these cases. This requires some corresponding changes in the
+    annotation `.update()` method, namely for dashes and border width.
+
+  * Restrict `set_rect` to applicable annot types.
+
+    We were insufficiently excluding non-applicable annotation types
+    from `set_rect()` method.  We now let MuPDF catch unsupported
+    annotations and return `False` in these cases.
+
+  * Wrong fontsize computation in `page.get_texttrace()`.
+    
+    When computing the font size we were using the final text
+    transformation matrix, where we should have taken `span->trm`
+    instead.  This is corrected here.
+
+  * Updates to cope with changes to latest MuPDF.
+  
+    `pdf_lookup_anchor()` has been removed.
+
+  * Update fill_textbox to better respect rect.width
+
+    The function norm_words in fill_textbox had a bug in its last
+    loop, appending n+1 characters when actually measuring width of n
+    characters.  It led to a bug in fill_texbox when you tried to write
+    a single word mostly composed of "wide" letters (M,m, W, w...),
+    causing the written text to exceed the given rect.
+
+    The fix was just to replace n+1 by n.
+
+  * Add `script_focus` and `script_blur` options to widget.
+
+
+
+**Changes in version 1.22.5 (2023-06-21)**
+
+* This release uses ``MuPDF-1.22.2``.
+
+* Bug fixes:
+
+  * **Fixed** `#2365 <https://github.com/pymupdf/PyMuPDF/issues/2365>`_: Incorrect dictionary values for type "fs" drawings.
+  * **Fixed** `#2391 <https://github.com/pymupdf/PyMuPDF/issues/2391>`_: Check box automatically uncheck when we update same checkbox more than 1 times.
+  * **Fixed** `#2400 <https://github.com/pymupdf/PyMuPDF/issues/2400>`_: Gaps within text of same line not filled with spaces.
+  * **Fixed** `#2404 <https://github.com/pymupdf/PyMuPDF/issues/2404>`_: Blacklining an image in PDF won't remove underlying content in version 1.22.X.
+  * **Fixed** `#2430 <https://github.com/pymupdf/PyMuPDF/issues/2430>`_: Incorrectly reducing ref count of Py_None.
+  * **Fixed** `#2450 <https://github.com/pymupdf/PyMuPDF/issues/2450>`_: Empty fill color and fill opacity for paths with fill and stroke operations with 1.22.*
+  * **Fixed** `#2462 <https://github.com/pymupdf/PyMuPDF/issues/2462>`_: Error at "get_drawing(extended=True )"
+  * **Fixed** `#2468 <https://github.com/pymupdf/PyMuPDF/issues/2468>`_: Decode error when trying to get drawings  
+  * **Fixed** `#2710 <https://github.com/pymupdf/PyMuPDF/issues/2710>`_: page.rect and text location wrong / differing from older version
+  * **Fixed** `#2723 <https://github.com/pymupdf/PyMuPDF/issues/2723>`_: When will a Python 3.12 wheel be available?
+
+* New features:
+
+  * **Changed** Annotations now support "cloudy" borders.
+    The :attr:`Annot.border` property has the new item `clouds`,
+    and method :meth:`Annot.set_border` supports the corresponding `clouds` argument.
+
+  * **Changed** Radio button widgets in the same RB group
+    are now consistently updated **if the group is defined in the standard way**.
+
+  * **Added** Support for the `/Locked` key in PDF Optional Content.
+    This array inside the catalog entry `/OCProperties` can now be extracted and set.
+
+  * **Added** Support for new parameter `tessdata` in OCR functions.
+    New function :meth:`get_tessdata` locates the language support folder if Tesseract is installed.
+
+
+
+**Changes in version 1.22.3 (2023-05-10)**
+
+* This release uses ``MuPDF-1.22.0``.
+
+* Bug fixes:
+
+  * **Fixed** `#2333 <https://github.com/pymupdf/PyMuPDF/issues/2333>`_: Unable to set any of button radio group in form
+
+
+**Changes in version 1.22.2 (2023-04-26)**
+
+* This release uses ``MuPDF-1.22.0``.
+
+* Bug fixes:
+
+  * **Fixed** `#2369 <https://github.com/pymupdf/PyMuPDF/issues/2369>`_: Image extraction bugs with newer versions
+
+
+**Changes in version 1.22.1 (2023-04-18)**
+
+* This release uses ``MuPDF-1.22.0``.
+
+* Bug fixes:
+
+  * **Fixed** `#2345 <https://github.com/pymupdf/PyMuPDF/issues/2345>`_: Turn off print statements in utils.py
+  * **Fixed** `#2348 <https://github.com/pymupdf/PyMuPDF/issues/2348>`_: extract_image returns an extension "flate" instead of "png"
+  * **Fixed** `#2350 <https://github.com/pymupdf/PyMuPDF/issues/2350>`_: Can not make widget (checkbox) to read-only by adding flags PDF_FIELD_IS_READ_ONLY
+  * **Fixed** `#2355 <https://github.com/pymupdf/PyMuPDF/issues/2355>`_: 1.22.0 error when using get_toc (AttributeError: 'SwigPyObject' object has no attribute)
+
+
+**Changes in version 1.22.0 (2023-04-14)**
+
+* This release uses ``MuPDF-1.22.0``.
+
+* Behavioural changes:
+
+  * Text extraction now includes glyphs that overlap with clip rect; previously
+    they were included only if they were entirely contained within the clip
+    rect.
+
+* Bug fixes:
+
+  * **Fixed** `#1763 <https://github.com/pymupdf/PyMuPDF/issues/1763>`_: Interactive(smartform) form PDF calculation not working in pymupdf
+  * **Fixed** `#1995 <https://github.com/pymupdf/PyMuPDF/issues/1995>`_: RuntimeError: image is too high for a long paged pdf file when trying
+  * **Fixed** `#2093 <https://github.com/pymupdf/PyMuPDF/issues/2093>`_: Image in pdf changes color after applying redactions
+  * **Fixed** `#2108 <https://github.com/pymupdf/PyMuPDF/issues/2108>`_: Redaction removing more text than expected
+  * **Fixed** `#2141 <https://github.com/pymupdf/PyMuPDF/issues/2141>`_: Failed to read JPX header when trying to get blocks
+  * **Fixed** `#2144 <https://github.com/pymupdf/PyMuPDF/issues/2144>`_: Replace image throws an error
+  * **Fixed** `#2146 <https://github.com/pymupdf/PyMuPDF/issues/2146>`_: Wrong Handling of Reference Count of "None" Object
+  * **Fixed** `#2161 <https://github.com/pymupdf/PyMuPDF/issues/2161>`_: Support adding images as pages directly
+  * **Fixed** `#2168 <https://github.com/pymupdf/PyMuPDF/issues/2168>`_: ``page.add_highlight_annot(start=pointa, stop=pointb)`` not working
+  * **Fixed** `#2173 <https://github.com/pymupdf/PyMuPDF/issues/2173>`_: Double free of ``Colorspace`` used in ``Pixmap``
+  * **Fixed** `#2179 <https://github.com/pymupdf/PyMuPDF/issues/2179>`_: Incorrect documentation for ``pixmap.tint_with()``
+  * **Fixed** `#2208 <https://github.com/pymupdf/PyMuPDF/issues/2208>`_: Pushbutton widget appears as check box
+  * **Fixed** `#2210 <https://github.com/pymupdf/PyMuPDF/issues/2210>`_: ``apply_redactions()`` move pdf text to right after redaction
+  * **Fixed** `#2220 <https://github.com/pymupdf/PyMuPDF/issues/2220>`_: ``Page.delete_image()`` | object has no attribute ``is_image``
+  * **Fixed** `#2228 <https://github.com/pymupdf/PyMuPDF/issues/2228>`_: open some pdf cost too much time
+  * **Fixed** `#2238 <https://github.com/pymupdf/PyMuPDF/issues/2238>`_: Bug - can not extract data from file in the newest version 1.21.1
+  * **Fixed** `#2242 <https://github.com/pymupdf/PyMuPDF/issues/2242>`_: Python quits silently in ``Story.element_positions()`` if callback function prototype is wrong
+  * **Fixed** `#2246 <https://github.com/pymupdf/PyMuPDF/issues/2246>`_: TextWriter write text in a wrong position
+  * **Fixed** `#2248 <https://github.com/pymupdf/PyMuPDF/issues/2248>`_: After redacting the content, the position of the remaining text changes
+  * **Fixed** `#2250 <https://github.com/pymupdf/PyMuPDF/issues/2250>`_: docs: unclear or broken link in page.rst
+  * **Fixed** `#2251 <https://github.com/pymupdf/PyMuPDF/issues/2251>`_: mupdf_display_errors does not apply to Pixmap when loading broken image
+  * **Fixed** `#2270 <https://github.com/pymupdf/PyMuPDF/issues/2270>`_: ``Annot.get_text("words")`` - doesn't return the first line of words
+  * **Fixed** `#2275 <https://github.com/pymupdf/PyMuPDF/issues/2275>`_: insert_image: document that rotations are counterclockwise
+  * **Fixed** `#2278 <https://github.com/pymupdf/PyMuPDF/issues/2278>`_: Can not make widget (checkbox) to read-only by adding flags PDF_FIELD_IS_READ_ONLY
+  * **Fixed** `#2290 <https://github.com/pymupdf/PyMuPDF/issues/2290>`_: Different image format/data from Page.get_text("dict") and Fitz.get_page_images()
+  * **Fixed** `#2293 <https://github.com/pymupdf/PyMuPDF/issues/2293>`_: 68 failed tests when installing from sdist on my box
+  * **Fixed** `#2300 <https://github.com/pymupdf/PyMuPDF/issues/2300>`_: Too much recursion in tree (parents), makes program terminate
+  * **Fixed** `#2322 <https://github.com/pymupdf/PyMuPDF/issues/2322>`_: add_highlight_annot using clip generates "A Number is Out of Range" error in PDF
+
+* Other:
+
+  * Add key "/AS (Yes)" to the underlying annot object of a selected button form field.
+
+  * Remove unused ``Document`` methods ``has_xref_streams()`` and
+    ``has_old_style_xrefs()`` as MuPDF equivalents have been removed.
+
+  * Add new ``Document`` methods and properties for getting/setting
+    ``/PageMode``, ``/PageLayout`` and ``/MarkInfo``.
+
+  * New ``Document`` property ``version_count``, which contains the number of
+    incremental saves plus one.
+
+  * New ``Document`` property ``is_fast_webaccess`` which tells whether the
+    document is linearized.
+
+  * ``DocumentWriter`` is now a context manager.
+
+  * Add support for ``Pixmap`` JPEG output.
+
+  * Add support for drawing rectangles with rounded corners.
+
+  * ``get_drawings()``: added optional ``extended`` arg.
+
+  * Fixed issue where trace devices' state was not being initialised
+    correctly; data returned from things like ``fitz.Page.get_texttrace()``
+    might be slightly altered, e.g. ``linewidth`` values.
+
+  * Output warning to ``stderr`` if it looks like we are being used with
+    current directory containing an invalid ``fitz/`` directory, because
+    this can break import of ``fitz`` module. For example this happens
+    if one attempts to use ``fitz`` when current directory is a PyMuPDF
+    checkout.
+
+* Documentation:
+
+  * General rework:
+
+    * Introduces a new home page and new table of contents.
+    * Structural update to include new About section.
+    * Comparison & performance graphing.
+    * Includes performance methodology in appendix.
+    * Updates conf.py to understand single back-ticks as code.
+    * Converts double back-ticks to single back-ticks.
+    * Removes redundant files.
+
+  * Improve ``insert_file()`` documentation.
+
+  * ``get_bboxlog()``: aded optional ``layers`` to ``get_bboxlog()``.
+  * ``Page.get_texttrace()``: add new dictionary key ``layer``, name of Optional Content Group.
+
+  * Mention use of Python venv in installation documentation.
+
+  * Added missing fix for #2057 to release 1.21.1's changelog.
+
+  * Fixes many links to the PyMuPDF-Utilities repo scripts.
+
+  * Avoid duplication of ``changes.txt`` and ``docs/changes.rst``.
+
+* Build
+
+  * Added ``pyproject.toml`` file to improve builds using pip etc.
+
+
+
+**Changes in Version 1.21.1 (2022-12-13)**
+
+* This release uses ``MuPDF-1.21.1``.
+
+* Bug fixes:
+
+  * **Fixed** `#2110 <https://github.com/pymupdf/PyMuPDF/issues/2110>`_: Fully embedded font is extracted only partially if it occupies more than one object
+  * **Fixed** `#2094 <https://github.com/pymupdf/PyMuPDF/issues/2094>`_: Rectangle Detection Logic
+  * **Fixed** `#2088 <https://github.com/pymupdf/PyMuPDF/issues/2088>`_: Destination point not set for named links in toc
+  * **Fixed** `#2087 <https://github.com/pymupdf/PyMuPDF/issues/2087>`_: Image with Filter "[/FlateDecode/JPXDecode]" not extracted
+  * **Fixed** `#2086 <https://github.com/pymupdf/PyMuPDF/issues/2086>`_: Document.save() owner_pw & user_pw has buffer overflow bug
+  * **Fixed** `#2076 <https://github.com/pymupdf/PyMuPDF/issues/2076>`_: Segfault in fitz.py
+  * **Fixed** `#2057 <https://github.com/pymupdf/PyMuPDF/issues/2057>`_: Document.save garbage parameter not working in PyMuPDF 1.21.0
+  * **Fixed** `#2051 <https://github.com/pymupdf/PyMuPDF/issues/2051>`_: Missing DPI Parameter
+  * **Fixed** `#2048 <https://github.com/pymupdf/PyMuPDF/issues/2048>`_: Invalid size of TextPage and bbox with newest version 1.21.0
+  * **Fixed** `#2045 <https://github.com/pymupdf/PyMuPDF/issues/2045>`_: SystemError: <built-in function Page_get_texttrace> returned a result with an error set
+  * **Fixed** `#2039 <https://github.com/pymupdf/PyMuPDF/issues/2039>`_: 1.21.0 fails to build against system libmupdf
+  * **Fixed** `#2036 <https://github.com/pymupdf/PyMuPDF/issues/2036>`_: Archive::Archive defined twice
+
+* Other
+
+  * Swallow "&zoom=nan" in link uri strings.
+  * Add new Page utility methods ``Page.replace_image()`` and ``Page.delete_image()``.
+
+* Documentation:
+
+  * `#2040 <https://github.com/pymupdf/PyMuPDF/issues/2040>`_: Added note about test failure with non-default build of MuPDF, to ``tests/README.md``.
+  * `#2037 <https://github.com/pymupdf/PyMuPDF/issues/2037>`_: In ``docs/installation.rst``, mention incompatibility with chocolatey.org on Windows.
+  * `#2061 <https://github.com/pymupdf/PyMuPDF/issues/2061>`_: Fixed description of ``Annot.file_info``.
+  * `#2065 <https://github.com/pymupdf/PyMuPDF/issues/2065>`_: Show how to insert internal PDF link.
+  * Improved description of building from source without an sdist.
+  * Added information about running tests.
+  * `#2084 <https://github.com/pymupdf/PyMuPDF/issues/2084>`_: Fixed broken link to PyMuPDF-Utilities.
+
+
+**Changes in Version 1.21.0 (2022-11-8)**
+
+* This release uses ``MuPDF-1.21.0``.
+
+* New feature: Stories.
+
+* Added wheels for Python-3.11.
+
+* Bug fixes:
+
+  * **Fixed** `#1701 <https://github.com/pymupdf/PyMuPDF/issues/1701>`_: Broken custom image insertion.
+  * **Fixed** `#1854 <https://github.com/pymupdf/PyMuPDF/issues/1854>`_: `Document.delete_pages()` declines keyword arguments.
+  * **Fixed** `#1868 <https://github.com/pymupdf/PyMuPDF/issues/1868>`_: Access Violation Error at `page.apply_redactions()`.
+  * **Fixed** `#1909 <https://github.com/pymupdf/PyMuPDF/issues/1909>`_: Adding text with `fontname="Helvetica"` can silently fail.
+  * **Fixed** `#1913 <https://github.com/pymupdf/PyMuPDF/issues/1913>`_: `draw_rect()`: does not respect width if color is not specified.
+  * **Fixed** `#1917 <https://github.com/pymupdf/PyMuPDF/issues/1917>`_: `subset_fonts()`: make it possible to silence the stdout.
+  * **Fixed** `#1936 <https://github.com/pymupdf/PyMuPDF/issues/1936>`_: Rectangle detection can be incorrect producing wrong output.
+  * **Fixed** `#1945 <https://github.com/pymupdf/PyMuPDF/issues/1945>`_: Segmentation fault when saving with `clean=True`.
+  * **Fixed** `#1965 <https://github.com/pymupdf/PyMuPDF/issues/1965>`_: `pdfocr_save()` Hard Crash.
+  * **Fixed** `#1971 <https://github.com/pymupdf/PyMuPDF/issues/1971>`_: Segmentation fault when using `get_drawings()`.
+  * **Fixed** `#1946 <https://github.com/pymupdf/PyMuPDF/issues/1946>`_: `block_no` and `block_type` switched in `get_text()` docs.
+  * **Fixed** `#2013 <https://github.com/pymupdf/PyMuPDF/issues/2013>`_: AttributeError: 'Widget' object has no attribute '_annot' in delete widget.
+
+* Misc changes to core code:
+
+  * Fixed various compiler warnings and a sequence-point bug.
+  * Added support for Memento builds.
+  * Fixed leaks detected by Memento in test suite.
+  * Fixed handling of exceptions in set_name() and set_rect().
+  * Allow build with latest MuPDF, for regular testing of PyMuPDF master.
+  * Cope with new MuPDF exceptions when setting rect for some Annot types.
+  * Reduced cosmetic differences between MuPDF's config.h and PyMuPDF's _config.h.
+  * Cope with various changes to MuPDF API.
+
+* Other:
+
+  * Fixed various broken links and typos in docs.
+  * Mention install of `swig-python` on MacOS for #875.
+  * Added (untested) wheels for macos-arm64.
+  
+
+
+
+**Changes in Version 1.20.2**
+
+* This release uses ``MuPDF-1.20.3``.
+
+* **Fixed** `#1787 <https://github.com/pymupdf/PyMuPDF/issues/1787>`_.
+  Fix linking issues on Unix systems.
+
+* **Fixed** `#1824 <https://github.com/pymupdf/PyMuPDF/issues/1824>`_.
+  SegFault when applying redactions overlapping a transparent image. (Fixed
+  in ``MuPDF-1.20.3``.)
+
+* Improvements to documentation:
+
+  * Improved information about building from source in ``docs/installation.rst``.
+  * Clarified memory allocation setting ``JM_MEMORY` in ``docs/tools.rst``.
+  * Fixed link to PDF Reference manual in ``docs/app3.rst``.
+  * Fixed building of html documentation on OpenBSD.
+  * Moved old ``docs/faq.rst`` into separate ``docs/recipes-*`` files.
+
+* Removed some unused files and directories:
+
+  * ``installation/``
+  * ``docs/wheelnames.txt``
+
+
+**Changes in Version 1.20.1**
+
+* **Fixed** `#1724 <https://github.com/pymupdf/PyMuPDF/issues/1724>`_.
+  Fix for building on FreeBSD.
+
+* **Fixed** `#1771 <https://github.com/pymupdf/PyMuPDF/issues/1771>`_.
+  `linkDest()` had a broken call to `re.match()`, introduced in 1.20.0.
+
+* **Fixed** `#1751 <https://github.com/pymupdf/PyMuPDF/issues/1751>`_.
+  `get_drawings()` and `get_cdrawings()` previously always returned with `closePath=False`.
+
+* **Fixed** `#1645 <https://github.com/pymupdf/PyMuPDF/issues/1645>`_.
+  Default FreeText annotation text color is now black.
+
+* Improvements to sphinx-generated documentation:
+
+  * Use readthedocs theme with enhancements.
+  * Renamed the `.txt` files to have `.rst` suffixes.
+
+------
+
+**Changes in Version 1.20.0**
+
+This release uses ``MuPDF-1.20.0``, released 2022-06-15.
+
+* Cope with new MuPDF link uri format, changed from ``#<int>,<int>,<int>`` to ``#page=<int>&zoom=<float>,<float>,<float>``.
+
+ * In ``tests/test_insertpdf.py``, use new reference output ``joined-1.20.pdf``. We also check that new output values are approximately the same as the old ones.
+
+* **Fixed** `#1738 <https://github.com/pymupdf/PyMuPDF/issues/1738>`_. Leak of `pdf_graft_map`.
+  Also fixed a SEGV issue that this seemed to expose, caused by incorrect freeing of underlying fz_document.
+
+* **Fixed** `#1733 <https://github.com/pymupdf/PyMuPDF/issues/1733>`_. Fixed ownership of `Annotation.get_pixmap()`.
+
+Changes to build/release process:
+
+* If pip builds from source because an appropriate wheel is not available, we no longer require MuPDF to be pre-installed. Instead the required MuPDF source is embedded in the sdist and automatically built into PyMuPDF.
+
+* Various changes to ``setup.py`` to download the required MuPDF release as required. See comments at start of setup.py for details.
+
+* Added ``.github/workflows/build_wheels.yml`` to control building of wheels on Github.
+
+------
+
+**Changes in Version 1.19.6**
+
+* **Fixed** `#1620 <https://github.com/pymupdf/PyMuPDF/issues/1620>`_. The :ref:`TextPage` created by :meth:`Page.get_textpage` will now be freed correctly (removed memory leak).
+* **Fixed** `#1601 <https://github.com/pymupdf/PyMuPDF/issues/1601>`_. Document open errors should now be more concise and easier to interpret. In the course of this, two PyMuPDF-specific Python exceptions have been **added:**
+
+    - ``EmptyFileError`` -- raised when trying to create a :ref:`Document` (``fitz.open()``) from an empty file or zero-length memory.
+    - ``FileDataError`` -- raised when MuPDF encounters irrecoverable document structure issues.
+
+* **Added** :meth:`Page.load_widget` given a PDF field's xref.
+
+* **Added** Dictionary :attr:`pdfcolor` which provide the about 500 colors defined as PDF color values with the lower case color name as key.
+
+* **Added** algebra functionality to the :ref:`Quad` class. These objects can now also be added and subtracted among themselves, and be multiplied by numbers and matrices.
+
+* **Added** new constants defining the default text extraction flags for more comfortable handling. Their naming convention is like :data:`TEXTFLAGS_WORDS` for ``page.get_text("words")``. See :ref:`text_extraction_flags`.
+
+* **Changed** :meth:`Page.annots` and :meth:`Page.widgets` to detect and prevent reloading the page (illegally) inside the iterator loops via :meth:`Document.reload_page`. Doing this brings down the interpretor. Documented clean ways to do annotation and widget mass updates within properly designed loops.
+
+* **Changed** several internal utility functions to become standalone ("SWIG inline") as opposed to be part of the :ref:`Tools` class. This, among other things, increases the performance of geometry object creation.
+
+* **Changed** :meth:`Document.update_stream` to always accept stream updates - whether or not the dictionary object behind the xref already is a stream. Thus the former ``new`` parameter is now ignored and will be removed in v1.20.0.
+
+
+------
+
+**Changes in Version 1.19.5**
+
+* **Fixed** `#1518 <https://github.com/pymupdf/PyMuPDF/issues/1518>`_. A limited "fix": in some cases, rectangles and quadrupels were not correctly encoded to support re-drawing by :ref:`Shape`.
+
+* **Fixed** `#1521 <https://github.com/pymupdf/PyMuPDF/issues/1521>`_. This had the same ultimate reason behind issue #1510.
+
+* **Fixed** `#1513 <https://github.com/pymupdf/PyMuPDF/issues/1513>`_. Some Optional Content functions did not support non-ASCII characters.
+
+* **Fixed** `#1510 <https://github.com/pymupdf/PyMuPDF/issues/1510>`_. Support more soft-mask image subtypes.
+
+* **Fixed** `#1507 <https://github.com/pymupdf/PyMuPDF/issues/1507>`_. Immunize against items in the outlines chain, that are ``"null"`` objects.
+
+* **Fixed** re-opened `#1417 <https://github.com/pymupdf/PyMuPDF/issues/1417>`_. ("too many open files"). This was due to insufficient calls to MuPDF's ``fz_drop_document()``. This also fixes `#1550 <https://github.com/pymupdf/PyMuPDF/issues/1550>`_.
+
+* **Fixed** several undocumented issues in relation to incorrectly setting the text span origin :data:`point_like`.
+
+* **Fixed** undocumented error computing the character bbox in method :meth:`Page.get_texttrace` when text is **flipped** (as opposed to just rotated).
+
+* **Added** items to the dictionary returned by :meth:`image_properties`: ``orientation`` and ``transform`` report the natural image orientation (EXIF data).
+
+* **Added** method :meth:`Document.xref_copy`. It will make a given target PDF object an exact copy of a source object.
+
+
+------
+
+**Changes in Version 1.19.4**
+
+
+* **Fixed** `#1505 <https://github.com/pymupdf/PyMuPDF/issues/1505>`_. Immunize against circular outline items.
+
+* **Fixed** `#1484 <https://github.com/pymupdf/PyMuPDF/issues/1484>`_. Correct CropBox coordinates are now returned in all situations.
+
+* **Fixed** `#1479 <https://github.com/pymupdf/PyMuPDF/issues/1479>`_.
+
+* **Fixed** `#1474 <https://github.com/pymupdf/PyMuPDF/issues/1474>`_. TextPage objects are now properly deleted again.
+
+* **Added** :ref:`Page` methods and attributes for PDF ``/ArtBox``, ``/BleedBox``, ``/TrimBox``.
+
+* **Added** global attribute :attr:`TESSDATA_PREFIX` for easy checking of OCR support.
+
+* **Changed** :meth:`Document.xref_set_key` such that dictionary keys will physically be removed if set to value ``"null"``.
+
+* **Changed** :meth:`Document.extract_font` to optionally return a dictionary (instead of a tuple).
+
+------
+
+**Changes in Version 1.19.3**
+
+This patch version implements minor improvements for :ref:`Pixmap` and also some important fixes.
+
+* **Fixed** `#1351 <https://github.com/pymupdf/PyMuPDF/discussions/1351>`_. Reverted code that introduced the memory growth in v1.18.15.
+
+* **Fixed** `#1417 <https://github.com/pymupdf/PyMuPDF/discussions/1417>`_. Developped circumvention for growth of open file handles using :meth:`Document.insert_pdf`.
+
+* **Fixed** `#1418 <https://github.com/pymupdf/PyMuPDF/discussions/1418>`_. Developped circumvention for memory growth using :meth:`Document.insert_pdf`.
+
+* **Fixed** `#1430 <https://github.com/pymupdf/PyMuPDF/discussions/1430>`_. Developped circumvention for mass pixmap generations of document pages.
+
+* **Fixed** `#1433 <https://github.com/pymupdf/PyMuPDF/discussions/1433>`_. Solves a bbox error for some Type 3 font in PyMuPDF text processing.
+
+* **Added** :meth:`Pixmap.color_topusage` to determine the share of the most frequently used color. Solves `#1397 <https://github.com/pymupdf/PyMuPDF/discussions/1397>`_.
+
+* **Added** :meth:`Pixmap.warp` which makes a new pixmap from a given arbitrary convex quad inside the pixmap.
+
+* **Added** :attr:`Annot.irt_xref` and :meth:`Annot.set_irt_xref` to inquire or set the `/IRT` ("In Responde To") property of an annotation. Implements `#1450 <https://github.com/pymupdf/PyMuPDF/discussions/1450>`_.
+
+* **Added** :meth:`Rect.torect` and :meth:`IRect.torect` which compute a matrix that transforms to a given other rectangle.
+
+* **Changed** :meth:`Pixmap.color_count` to also return the count of each color.
+* **Changed** :meth:`Page.get_texttrace` to also return correct span and character bboxes if ``span["dir"] != (1, 0)``.
+
+------
+
+**Changes in Version 1.19.2**
+
+This patch version implements minor improvements for :meth:`Page.get_drawings` and also some important fixes.
+
+* **Fixed** `#1388 <https://github.com/pymupdf/PyMuPDF/discussions/1388>`_. Fixed intermittent memory corruption when insert or updating annotations.
+
+* **Fixed** `#1375 <https://github.com/pymupdf/PyMuPDF/discussions/1375>`_. Inconsistencies between line numbers as returned by the "words" and the "dict" options of :meth:`Page.get_text` have been corrected.
+
+* **Fixed** `#1364 <https://github.com/pymupdf/PyMuPDF/issues/1342>`_. The check for being a ``"rawdict"`` span in :meth:`recover_span_quad` now works correctly.
+
+* **Fixed** `#1342 <https://github.com/pymupdf/PyMuPDF/issues/1364>`_. Corrected the check for rectangle infiniteness in :meth:`Page.show_pdf_page`.
+
+* **Changed** :meth:`Page.get_drawings`, :meth:`Page.get_cdrawings` to return an indicator on the area orientation covered by a rectangle. This implements `#1355 <https://github.com/pymupdf/PyMuPDF/issues/1355>`_. Also, the recognition rate for rectangles and quads has been significantly improved.
+
+* **Changed** all text search and extraction methods to set the new ``flags`` option ``TEXT_MEDIABOX_CLIP`` to ON by default. That bit causes the automatic suppression of all characters that are completely outside a page's mediabox (in as far as that notion is supported for a document type). This eliminates the need for using ``clip=page.rect`` or similar for omitting text outside the visible area.
+
+* **Added** parameter ``"dpi"`` to :meth:`Page.get_pixmap` and :meth:`Annot.get_pixmap`. When given, parameter ``"matrix"`` is ignored, and a :ref:`Pixmap` with the desired dots per inch is created.
+
+* **Added** attributes :attr:`Pixmap.is_monochrome` and :attr:`Pixmap.is_unicolor` allowing fast checks of pixmap properties. Addresses `#1397 <https://github.com/pymupdf/PyMuPDF/discussions/1397>`_.
+
+* **Added** method :meth:`Pixmap.color_count` to determine the unique colors in the pixmap.
+
+* **Added** boolean parameter ``"compress"`` to PDF document method :meth:`Document.update_stream`. Addresses / enables solution for `#1408 <https://github.com/pymupdf/PyMuPDF/discussions/1408>`_.
+
+------
+
+**Changes in Version 1.19.1**
+
+This is the first patch version to support MuPDF v1.19.0. Apart from one bug fix, it includes important improvements for OCR support and the option to **sort extracted text** to the standard reading order "from top-left to bottom-right".
+
+* **Fixed** `#1328 <https://github.com/pymupdf/PyMuPDF/issues/1328>`_. "words" text extraction again returns correct ``(x0, y0)`` coordinates.
+
+* **Changed** :meth:`Page.get_textpage_ocr`: it now supports parameter ``dpi`` to control OCR quality. It is also possible to choose whether the **full page** should be OCRed or **only the images displayed** by the page.
+
+* **Changed** :meth:`Page.get_drawings` and :meth:`Page.get_cdrawings` to automatically convert colors to RGB color tuples. Implements `#1332 <https://github.com/pymupdf/PyMuPDF/discussions/1332>`_. Similar change was applied to :meth:`Page.get_texttrace`.
+
+* **Changed** :meth:`Page.get_text` to support a parameter ``sort``. If set to ``True`` the output is conveniently sorted.
+
+
+------
+
+**Changes in Version 1.19.0**
+
+This is the first version supporting MuPDF 1.19.*, published 2021-10-05. It introduces many new features compared to the previous version 1.18.*.
+
+PyMuPDF has now picked up integrated Tesseract OCR support, which was already present in MuPDF v1.18.0.
+
+* Supported images can be OCRed via their :ref:`Pixmap` which results in a 1-page PDF with a text layer.
+* All supported document pages (i.e. not only PDFs), can be OCRed using specialized text extraction methods. The result is a mixture of standard and OCR text (depending on which part of the page was deemed to require OCRing) that can be searched and extracted without restrictions.
+* All this requires an independent installation of Tesseract. MuPDF actually (only) needs the location of Tesseract's ``"tessdata"`` folder, where its language support data are stored. This location must be available as environment variable ``TESSDATA_PREFIX``.
+
+A new MuPDF feature is **journalling PDF updates**, which is also supported by this PyMuPDF version. Changes may be logged, rolled back or replayed, allowing to implement a whole new level of control over PDF document integrity -- similar to functions present in modern database systems.
+
+A third feature (unrelated to the new MuPDF version) includes the ability to detect when page **objects cover or hide each other**. It is now e.g. possible to see that text is covered by a drawing or an image.
+
+* **Changed** terminology and meaning of important geometry concepts: Rectangles are now characterized as *finite*, *valid* or *empty*, while the definitions of these terms have also changed. Rectangles specifically are now thought of being "open": not all corners and sides are considered part of the retangle. Please do read the :ref:`Rect` section for details.
+
+* **Added** new parameter `"no_new_id"` to :meth:`Document.save` / :meth:`Document.tobytes` methods. Use it to suppress updating the second item of the document ``/ID`` which in PDF indicates that the original file has been updated. If the PDF has no ``/ID`` at all yet, then no new one will be created either.
+
+* **Added** a **journalling facility** for PDF updates. This allows logging changes, undoing or redoing them, or saving the journal for later use. Refer to :meth:`Document.journal_enable` and friends.
+
+* **Added** new :ref:`Pixmap` methods :meth:`Pixmap.pdfocr_save` and :meth:`Pixmap.pdfocr_tobytes`, which generate a 1-page PDF containing the pixmap as PNG image with OCR text layer.
+
+* **Added** :meth:`Page.get_textpage_ocr` which executes optical character recognition for the page, then extracts the results and stores them together with "normal" page content in a :ref:`TextPage`. Use or reuse this object in subsequent text extractions and text searches to avoid multiple efforts. The existing text search and text extraction methods have been extended to support a separately created textpage -- see next item.
+
+* **Added** a new parameter ``textpage`` to text extraction and text search methods. This allows reuse of a previously created :ref:`TextPage` and thus achieves significant runtime benefits -- which is especially important for the new OCR features. But "normal" text extractions can definitely also benefit.
+
+* **Added** :meth:`Page.get_texttrace`, a technical method delivering low-level text character properties. It was present before as a private method, but the author felt it now is mature enough to be officially available. It specifically includes a "sequence number" which indicates the page appearance build operation that painted the text.
+
+* **Added** :meth:`Page.get_bboxlog` which delivers the list of rectangles of page objects like text, images or drawings. Its significance lies in its sequence: rectangles intersecting areas with a lower index are covering or hiding them.
+
+* **Changed** methods :meth:`Page.get_drawings` and :meth:`Page.get_cdrawings` to include a "sequence number" indicating the page appearance build operation that created the drawing.
+
+* **Fixed** `#1311 <https://github.com/pymupdf/PyMuPDF/issues/1311>`_. Field values in comboboxes should now be handled correctly.
+* **Fixed** `#1290 <https://github.com/pymupdf/PyMuPDF/issues/1290>`_. Error was caused by incorrect rectangle emptiness check, which is fixed due to new geometry logic of this version.
+* **Fixed** `#1286 <https://github.com/pymupdf/PyMuPDF/issues/1286>`_. Text alignment for redact annotations is working again.
+* **Fixed** `#1287 <https://github.com/pymupdf/PyMuPDF/issues/1287>`_. Infinite loop issue for non-Windows systems when applying some redactions has been resolved.
+* **Fixed** `#1284 <https://github.com/pymupdf/PyMuPDF/issues/1284>`_. Text layout destruction after applying redactions in some cases has been resolved.
+
+------
+
+**Changes in Version 1.18.18 / 1.18.19**
+
+* **Fixed** issue `#1266 <https://github.com/pymupdf/PyMuPDF/issues/1266>`_. Failure to set :attr:`Pixmap.samples` in important cases, was hotfixed in a new version 1.18.19.
+
+* **Fixed** issue `#1257 <https://github.com/pymupdf/PyMuPDF/issues/1257>`_. Removing the read-only flag from PDF fields is now possible.
+
+* **Fixed** issue `#1252 <https://github.com/pymupdf/PyMuPDF/issues/1252>`_. Now correctly specifying the ``zoom`` value for PDF link annotations.
+
+* **Fixed** issue `#1244 <https://github.com/pymupdf/PyMuPDF/issues/1244>`_. Now correctly computing the transform matrix in :meth:`Page.get_image__bbox`.
+
+* **Fixed** issue `#1241 <https://github.com/pymupdf/PyMuPDF/issues/1241>`_. Prevent returning artifact characters in :meth:`Page.get_textbox`, which happened in certain constellations.
+
+* **Fixed** issue `#1234 <https://github.com/pymupdf/PyMuPDF/issues/1234>`_. Avoid creating infinite rectangles in corner cases -- :meth:`Page.get_drawings`, :meth:`Page.get_cdrawings`.
+
+* **Added** test data and test scripts to the source PyPI source distribution.
+
+------
+
+**Changes in Version 1.18.17**
+
+Focus of this version are major performance improvements of selected functions.
+
+* **Fixed** issue `#1199 <https://github.com/pymupdf/PyMuPDF/issues/1199>`_. Using a non-existing page number in :meth:`Document.get_page_images` and friends will no longer lead to segfaults.
+
+* **Changed** :meth:`Page.get_drawings` to now differentiate between "stroke", "fill" and combined paths. Paths containing more than one rectangle (i.e. "re" items) are now supported. Extracting "clipped" paths is now available as an option.
+
+* **Added** :meth:`Page.get_cdrawings`, performance-optimized version of :meth:`Page.get_drawings`.
+
+* **Added** :attr:`Pixmap.samples_mv`, *memoryview* of a pixmap's pixel area. Does not copy and thus always accesses the current state of that area.
+
+* **Added** :attr:`Pixmap.samples_ptr`, Python "pointer" to a pixmap's pixel area. Allows much faster creation (factor 800+) of Qt images.
+
+
+
+------
+
+**Changes in Version 1.18.16**
+
+* **Fixed** issue `#1184 <https://github.com/pymupdf/PyMuPDF/issues/1184>`_. Existing PDF widget fonts in a PDF are now accepted (i.e. not forcedly changed to a Base-14 font).
+
+* **Fixed** issue `#1154 <https://github.com/pymupdf/PyMuPDF/issues/1154>`_. Text search hits should now be correct when ``clip`` is specified.
+
+* **Fixed** issue `#1152 <https://github.com/pymupdf/PyMuPDF/issues/1152>`_.
+
+* **Fixed** issue `#1146 <https://github.com/pymupdf/PyMuPDF/issues/1146>`_.
+
+* **Added** :attr:`Link.flags` and :meth:`Link.set_flags` to the :ref:`Link` class. Implements enhancement requests `#1187 <https://github.com/pymupdf/PyMuPDF/issues/1187>`_.
+
+* **Added** option to *simulate* :meth:`TextWriter.fill_textbox` output for predicting the number of lines, that a given text would occupy in the textbox.
+
+* **Added** text output support as subcommand `gettext` to the ``fitz`` CLI module. Most importantly, original **physical text layout** reproduction is now supported.
+
+
+------
+
+**Changes in Version 1.18.15**
+
+* **Fixed** issue `#1088 <https://github.com/pymupdf/PyMuPDF/issues/1088>`_. Removing an annotation's fill color should now work again both ways, using the ``fill_color=[]`` argument in :meth:`Annot.update` as well as ``fill=[]`` in :meth:`Annot.set_colors`.
+
+* **Fixed** issue `#1081 <https://github.com/pymupdf/PyMuPDF/issues/1081>`_. :meth:`Document.subset_fonts`: fixed an error which created wrong character widths for some fonts.
+
+* **Fixed** issue `#1078 <https://github.com/pymupdf/PyMuPDF/issues/1078>`_. :meth:`Page.get_text` and other methods related to text extraction: changed the default value of the :ref:`TextPage` ``flags`` parameter. All whitespace and :data:`ligatures` are now preserved.
+
+* **Fixed** issue `#1085 <https://github.com/pymupdf/PyMuPDF/issues/1085>`_. The old *snake_cased* alias of ``fitz.detTextlength`` is now defined correctly.
+
+* **Changed** :meth:`Document.subset_fonts` will now correctly prefix font subsets with an appropriate six letter uppercase tag, complying with the PDF specification.
+
+* **Added** new method :meth:`Widget.button_states` which returns the possible values that a button-type field can have when being set to "on" or "off".
+
+* **Added** support of text with **Small Capital** letters to the :ref:`Font` and :ref:`TextWriter` classes. This is reflected by an additional bool parameter ``small_caps`` in various of their methods.
+
+
+------
+
+**Changes in Version 1.18.14**
+
+* **Finished** implementing new, "snake_cased" names for methods and properties, that were "camelCased" and awkward in many aspects. At the end of this documentation, there is section :ref:`Deprecated` with more background and a mapping of old to new names.
+
+* **Fixed** issue `#1053 <https://github.com/pymupdf/PyMuPDF/issues/1053>`_. :meth:`Page.insert_image`: when given, include image mask in the hash computation.
+
+* **Fixed** issue `#1043 <https://github.com/pymupdf/PyMuPDF/issues/1043>`_. Added ``Pixmap.getPNGdata`` to the aliases of :meth:`Pixmap.tobytes`.
+
+* **Fixed** an internal error when computing the enveloping rectangle of drawn paths as returned by :meth:`Page.get_drawings`.
+
+* **Fixed** an internal error occasionally causing loops when outputting text via :meth:`TextWriter.fill_textbox`.
+
+* **Added** :meth:`Font.char_lengths`, which returns a tuple of character widths of a string.
+
+* **Added** more ways to specify pages in :meth:`Document.delete_pages`. Now a sequence (list, tuple or range) can be specified, and the Python ``del`` statement can be used. In the latter case, Python ``slices`` are also accepted.
+
+* **Changed** :meth:`Document.del_toc_item`, which disables a single item of the TOC: previously, the title text was removed. Instead, now the complete item will be shown grayed-out by supporting viewers.
+
+
+------
+
+**Changes in Version 1.18.13**
+
+* **Fixed** issue `#1014 <https://github.com/pymupdf/PyMuPDF/issues/1014>`_.
+* **Fixed** an internal memory leak when computing image bboxes -- :meth:`Page.get_image_bbox`.
+* **Added** support for low-level access and modification of the PDF trailer. Applies to :meth:`Document.xref_get_keys`, :meth:`Document.xref_get_key`, and :meth:`Document.xref_set_key`.
+* **Added** documentation for maintaining private entries in PDF metadata.
+* **Added** documentation for handling transparent image insertions, :meth:`Page.insert_image`.
+* **Added** :meth:`Page.get_image_rects`, an improved version of :meth:`Page.get_image_bbox`.
+* **Changed** :meth:`Document.delete_pages` to support various ways of specifying pages to delete. Implements `#1042 <https://github.com/pymupdf/PyMuPDF/issues/1042>`_.
+* **Changed** :meth:`Page.insert_image` to also accept the xref of an existing image in the file. This allows "copying" images between pages, and extremely fast mutiple insertions.
+* **Changed** :meth:`Page.insert_image` to also accept the integer parameter ``alpha``. To be used for performance improvements.
+* **Changed** :meth:`Pixmap.set_alpha` to support new parameters for pre-multiplying colors with their alpha values and setting a specific color to fully transparent (e.g. white).
+* **Changed** :meth:`Document.embfile_add` to automatically set creation and modification date-time. Correspondingly, :meth:`Document.embfile_upd` automatically maintains modification date-time (``/ModDate`` PDF key), and :meth:`Document.embfile_info` correspondingly reports these data. In addition, the embedded file's associated "collection item" is included via its :data:`xref`. This supports the development of PDF portfolio applications.
+
+------
+
+**Changes in Version 1.18.11 / 1.18.12**
+
+* **Fixed** issue `#972 <https://github.com/pymupdf/PyMuPDF/issues/972>`_. Improved layout of source distribution material.
+* **Fixed** issue `#962 <https://github.com/pymupdf/PyMuPDF/issues/962>`_. Stabilized Linux distribution detection for generating PyMuPDF from sources.
+* **Added:** :meth:`Page.get_xobjects` delivers the result of :meth:`Document.get_page_xobjects`.
+* **Added:** :meth:`Page.get_image_info` delivers meta information for all images shown on the page.
+* **Added:** :meth:`Tools.mupdf_display_warnings` allows setting on / off the display of MuPDF-generated warnings. The default is off.
+* **Added:** :meth:`Document.ez_save` convenience alias of :meth:`Document.save` with some different defaults.
+* **Changed:** Image extractions of document pages now also contain the image's **transformation matrix**. This concerns :meth:`Page.get_image_bbox` and the DICT, JSON, RAWDICT, and RAWJSON variants of :meth:`Page.get_text`.
+
+
+------
+
+**Changes in Version 1.18.10**
+
+* **Fixed** issue `#941 <https://github.com/pymupdf/PyMuPDF/issues/941>`_. Added old aliases for :meth:`DisplayList.get_pixmap` and :meth:`DisplayList.get_textpage`.
+* **Fixed** issue `#929 <https://github.com/pymupdf/PyMuPDF/issues/929>`_. Stabilized removal of JavaScript objects with :meth:`Document.scrub`.
+* **Fixed** issue `#927 <https://github.com/pymupdf/PyMuPDF/issues/927>`_. Removed a loop in the reworked :meth:`TextWriter.fill_textbox`.
+* **Changed** :meth:`Document.xref_get_keys` and :meth:`Document.xref_get_key` to also allow accessing the PDF trailer dictionary. This can be done by using `-1` as the xref number argument.
+* **Added** a number of functions for reconstructing the quads for text lines, spans and characters extracted by :meth:`Page.get_text` options "dict" and "rawdict". See :meth:`recover_quad` and friends.
+* **Added** :meth:`Tools.unset_quad_corrections` to suppress character quad corrections (occasionally required for erroneous fonts).
+
+------
+
+**Changes in Version 1.18.9**
+
+
+* **Fixed** issue `#888 <https://github.com/pymupdf/PyMuPDF/issues/888>`_. Removed ambiguous statements concerning PyMuPDF's license, which is now clearly stated to be GNU AGPL V3.
+* **Fixed** issue `#895 <https://github.com/pymupdf/PyMuPDF/issues/895>`_.
+* **Fixed** issue `#896 <https://github.com/pymupdf/PyMuPDF/issues/896>`_. Since v1.17.6 PyMuPDF suppresses the font subset tags and only reports the base fontname in text extraction outputs "dict" / "json" / "rawdict" / "rawjson". Now a new global parameter can request the old behaviour, :meth:`Tools.set_subset_fontnames`.
+* **Fixed** issue `#885 <https://github.com/pymupdf/PyMuPDF/issues/885>`_. Pixmap creation now also works with filenames given as ``pathlib.Paths``.
+* **Changed** :meth:`Document.subset_fonts`: Text is **not rewritten** any more and should therefore **retain all its origial properties** -- like being hidden or being controlled by Optional Content mechanisms.
+* **Changed** :ref:`TextWriter` output to also accept text in right to left mode (Arabian, Hebrew): :meth:`TextWriter.fill_textbox`, :meth:`TextWriter.append`. These methods now accept a new boolean parameter `right_to_left`, which is *False* by default. Implements `#897 <https://github.com/pymupdf/PyMuPDF/issues/897>`_.
+* **Changed** :meth:`TextWriter.fill_textbox` to return all lines of text, that did not fit in the given rectangle. Also changed the default of the ``warn`` parameter to no longer print a warning message in overflow situations.
+* **Added** a utility function :meth:`recover_quad`, which computes the quadrilateral of a span. This function can be used for correctly marking text extracted with the "dict" or "rawdict" options of :meth:`Page.get_text`.
+
+------
+
+**Changes in Version 1.18.8**
+
+
+This is a bug fix version only. We are publishing early because of the potentially widely used functions.
+
+* **Fixed** issue `#881 <https://github.com/pymupdf/PyMuPDF/issues/881>`_. Fixed a memory leak in :meth:`Page.insert_image` when inserting images from files or memory.
+* **Fixed** issue `#878 <https://github.com/pymupdf/PyMuPDF/issues/878>`_. ``pathlib.Path`` objects should now correctly handle file path hierarchies.
+
+
+------
+
+**Changes in Version 1.18.7**
+
+
+* **Added** an experimental :meth:`Document.subset_fonts` which reduces the size of eligible fonts based on their use by text in the PDF. Implements `#855 <https://github.com/pymupdf/PyMuPDF/discussions/855>`_.
+* **Implemented** request `#870 <https://github.com/pymupdf/PyMuPDF/pull/870>`_: :meth:`Document.convert_to_pdf` now also supports PDF documents.
+* **Renamed** ``Document.write`` to :meth:`Document.tobytes` for greater clarity. But the deprecated name remains available for some time.
+* **Implemented** request `#843 <https://github.com/pymupdf/PyMuPDF/Discussions/843>`_: :meth:`Document.tobytes` now supports linearized PDF output. :meth:`Document.save` now also supports writing to Python **file objects**. In addition, the open function now also supports Python file objects.
+* **Fixed** issue `#844 <https://github.com/pymupdf/PyMuPDF/issues/844>`_.
+* **Fixed** issue `#838 <https://github.com/pymupdf/PyMuPDF/issues/838>`_.
+* **Fixed** issue `#823 <https://github.com/pymupdf/PyMuPDF/issues/823>`_. More logic for better support of OCRed text output (Tesseract, ABBYY).
+* **Fixed** issue `#818 <https://github.com/pymupdf/PyMuPDF/issues/818>`_.
+* **Fixed** issue `#814 <https://github.com/pymupdf/PyMuPDF/issues/814>`_.
+* **Added** :meth:`Document.get_page_labels` which returns a list of page label definitions of a PDF.
+* **Added** :meth:`Document.has_annots` and :meth:`Document.has_links` to check whether these object types are present anywhere in a PDF.
+* **Added** expert low-level functions to simplify inquiry and modification of PDF object sources: :meth:`Document.xref_get_keys` lists the keys of object :data:`xref`, :meth:`Document.xref_get_key` returns type and content of a key, and :meth:`Document.xref_set_key` modifies the key's value.
+* **Added** parameter ``thumbnails`` to :meth:`Document.scrub` to also allow removing page thumbnail images.
+* **Improved** documentation for how to add valid text marker annotations for non-horizontal text.
+
+We continued the process of renaming methods and properties from *"mixedCase"* to *"snake_case"*. Documentation usually mentions the new names only, but old, deprecated names remain available for some time.
+
+
+
+------
+
+**Changes in Version 1.18.6**
+
+* **Fixed** issue `#812 <https://github.com/pymupdf/PyMuPDF/issues/812>`_.
+* **Fixed** issue `#793 <https://github.com/pymupdf/PyMuPDF/issues/793>`_. Invalid document metadata previously prevented opening some documents at all. This error has been removed.
+* **Fixed** issue `#792 <https://github.com/pymupdf/PyMuPDF/issues/792>`_. Text search and text extraction will make no rectangle containment checks at all if the default ``clip=None`` is used.
+* **Fixed** issue `#785 <https://github.com/pymupdf/PyMuPDF/issues/785>`_.
+* **Fixed** issue `#780 <https://github.com/pymupdf/PyMuPDF/issues/780>`_. Corrected a parameter check error.
+* **Fixed** issue `#779 <https://github.com/pymupdf/PyMuPDF/issues/779>`_. Fixed typo
+* **Added** an option to set the desired line height for text boxes. Implements `#804 <https://github.com/pymupdf/PyMuPDF/issues/804>`_.
+* **Changed** text position retrieval to better cope with Tesseract's glyphless font. Implements `#803 <https://github.com/pymupdf/PyMuPDF/issues/803>`_.
+* **Added** an option to choose the prefix of new annotations, fields and links for providing unique annotation ids. Implements request `#807 <https://github.com/pymupdf/PyMuPDF/issues/807>`_.
+* **Added** getting and setting color and text properties for Table of Contents items for PDFs. Implements `#779 <https://github.com/pymupdf/PyMuPDF/issues/779>`_.
+* **Added** PDF page label handling: :meth:`Page.get_label()` returns the page label, :meth:`Document.get_page_numbers` return all page numbers having a specified label, and :meth:`Document.set_page_labels` adds or updates a PDF's page label definition.
+
+
+
+.. note::
+   This version introduces **Python type hinting**. The goal is to provide each parameter and the return value of all functions and methods with type information. This still is work in progress although the majority of functions has already been handled.
+
+
+------
+
+**Changes in Version 1.18.5**
+
+Apart from several fixes, this version also focusses on several minor, but important feature improvements. Among the latter is a more precise computation of proper line heights and insertion points for writing / inserting text. As opposed to using font-agnostic constants, these values are now taken from the font's properties.
+
+Also note that this is the first version which does no longer provide pregenerated wheels for Python versions older than 3.6. PIP also discontinues support for these by end of this year 2020.
+
+* **Fixed** issue `#771 <https://github.com/pymupdf/PyMuPDF/issues/771>`_. By using "small glyph heights" option, the full page text can be extracted.
+* **Fixed** issue `#768 <https://github.com/pymupdf/PyMuPDF/issues/768>`_.
+* **Fixed** issue `#750 <https://github.com/pymupdf/PyMuPDF/issues/750>`_.
+* **Fixed** issue `#739 <https://github.com/pymupdf/PyMuPDF/issues/739>`_. The "dict", "rawdict" and corresponding JSON output variants now have two new *span* keys: ``"ascender"`` and ``"descender"``. These floats represent special font properties which can be used to compute bboxes of spans or characters of **exactly fontsize height** (as opposed to the default line height). An example algorithm is shown in section "Span Dictionary" `here <https://pymupdf.readthedocs.io/en/latest/textpage.html#dictionary-structure-of-extractdict-and-extractrawdict>`_. Also improved the detection and correction of ill-specified ascender / descender values encountered in some fonts.
+* **Added** a new, experimental :meth:`Tools.set_small_glyph_heights` -- also in response to issue `#739 <https://github.com/pymupdf/PyMuPDF/issues/739>`_. This method sets or unsets a global parameter to **always compute bboxes with fontsize height**. If "on", text searching and all text extractions will returned rectangles, bboxes and quads with a smaller height.
+* **Fixed** issue `#728 <https://github.com/pymupdf/PyMuPDF/issues/728>`_.
+* **Changed** fill color logic of 'Polyline' annotations: this parameter now only pertains to line end symbols -- the annotation itself can no longer have a fill color. Also addresses issue `#727 <https://github.com/pymupdf/PyMuPDF/issues/727>`_.
+* **Changed** :meth:`Page.getImageBbox` to also compute the bbox if the image is contained in an XObject.
+* **Changed** :meth:`Shape.insertTextbox`, resp. :meth:`Page.insertTextbox`, resp. :meth:`TextWriter.fillTextbox` to respect font's properties "ascender" / "descender" when computing line height and insertion point. This should no longer lead to line overlaps for multi-line output. These methods used to ignore font specifics and used constant values instead.
+
+
+------
+
+**Changes in Version 1.18.4**
+
+This version adds several features to support PDF Optional Content. Among other things, this includes OCMDs (Optional Content Membership Dictionaries) with the full scope of *"visibility expressions"* (PDF key ``/VE``), text insertions (including the :ref:`TextWriter` class) and drawings.
+
+* **Fixed** issue `#727 <https://github.com/pymupdf/PyMuPDF/issues/727>`_. Freetext annotations now support an uncolored rectangle when ``fill_color=None``.
+* **Fixed** issue `#726 <https://github.com/pymupdf/PyMuPDF/issues/726>`_. UTF-8 encoding errors are now handled for HTML / XML :meth:`Page.getText` output.
+* **Fixed** issue `#724 <https://github.com/pymupdf/PyMuPDF/issues/724>`_. Empty values are no longer stored in the PDF /Info metadata dictionary.
+* **Added** new methods :meth:`Document.set_oc` and :meth:`Document.get_oc` to set or get optional content references for **existing** image and form XObjects. These methods are similar to the same-named methods of :ref:`Annot`.
+* **Added** :meth:`Document.set_ocmd`, :meth:`Document.get_ocmd` for handling OCMDs.
+* **Added** **Optional Content** support for text insertion and drawing.
+* **Added** new method :meth:`Page.deleteWidget`, which deletes a form field from a page. This is analogous to deleting annotations.
+* **Added** support for Popup annotations. This includes defining the Popup rectangle and setting the Popup to open or closed. Methods / attributes :meth:`Annot.set_popup`, :meth:`Annot.set_open`, :attr:`Annot.has_popup`, :attr:`Annot.is_open`, :attr:`Annot.popup_rect`, :attr:`Annot.popup_xref`.
+
+Other changes:
+
+* The **naming of methods and attributes** in PyMuPDF is far from being satisfactory: we have *CamelCases*, *mixedCases* and *lower_case_with_underscores* all over the place. With the :ref:`Annot` as the first candidate, we have started an activity to clean this up step by step, converting to lower case with underscores for methods and attributes while keeping UPPERCASE for the constants.
+
+   - Old names will remain available to prevent code breaks, but they will no longer be mentioned in the documentation.
+   - New methods and attributes of all classes will be named according to the new standard.
+
+------
+
+**Changes in Version 1.18.3**
+
+As a major new feature, this version introduces support for PDF's **Optional Content** concept.
+
+* **Fixed** issue `#714 <https://github.com/pymupdf/PyMuPDF/issues/714>`_.
+* **Fixed** issue `#711 <https://github.com/pymupdf/PyMuPDF/issues/711>`_.
+* **Fixed** issue `#707 <https://github.com/pymupdf/PyMuPDF/issues/707>`_: if a PDF user password, but no owner password is supplied nor present, then the user password is also used as the owner password.
+* **Fixed** ``expand`` and ``deflate`` parameters of methods :meth:`Document.save` and :meth:`Document.write`. Individual image and font compression should now finally work. Addresses issue `#713 <https://github.com/pymupdf/PyMuPDF/issues/713>`_.
+* **Added** a support of PDF optional content. This includes several new :ref:`Document` methods for inquiring and setting optional content status and adding optional content configurations and groups. In addition, images, form XObjects and annotations now can be bound to optional content specifications. **Resolved** issue `#709 <https://github.com/pymupdf/PyMuPDF/issues/709>`_.
+
+
+
+------
+
+**Changes in Version 1.18.2**
+
+This version contains some interesting improvements for text searching: any number of search hits is now returned and the **hit_max** parameter was removed. The new **clip** parameter in addition allows to restrict the search area. Searching now detects hyphenations at line breaks and accordingly finds hyphenated words.
+
+* **Fixed** issue `#575 <https://github.com/pymupdf/PyMuPDF/issues/575>`_: if using ``quads=False`` in text searching, then overlapping rectangles on the same line are joined. Previously, parts of the search string, which belonged to different "marked content" items, each generated their own rectangle -- just as if occurring on separate lines.
+* **Added** :attr:`Document.isRepaired`, which is true if the PDF was repaired on open.
+* **Added** :meth:`Document.setXmlMetadata` which either updates or creates PDF XML metadata. Implements issue `#691 <https://github.com/pymupdf/PyMuPDF/issues/691>`_.
+* **Added** :meth:`Document.getXmlMetadata` returns PDF XML metadata.
+* **Changed** creation of PDF documents: they will now always carry a PDF identification (``/ID`` field) in the document trailer. Implements issue `#691 <https://github.com/pymupdf/PyMuPDF/issues/691>`_.
+* **Changed** :meth:`Page.searchFor`: a new parameter ``clip`` is accepted to restrict the search to this rectangle. Correspondingly, the attribute :attr:`TextPage.rect` is now respected by :meth:`TextPage.search`.
+* **Changed** parameter ``hit_max`` in :meth:`Page.searchFor` and :meth:`TextPage.search` is now obsolete: methods will return all hits.
+* **Changed** character **selection criteria** in :meth:`Page.getText`: a character is now considered to be part of a ``clip`` if its bbox is fully contained. Before this, a non-empty intersection was sufficient.
+* **Changed** :meth:`Document.scrub` to support a new option `redact_images`. This addresses issue `#697 <https://github.com/pymupdf/PyMuPDF/issues/697>`_.
+
+
+------
+
+**Changes in Version 1.18.1**
+
+* **Fixed** issue `#692 <https://github.com/pymupdf/PyMuPDF/issues/692>`_. PyMuPDF now detects and recovers from more cyclic resource dependencies in PDF pages and for the first time reports them in the MuPDF warnings store.
+* **Fixed** issue `#686 <https://github.com/pymupdf/PyMuPDF/issues/686>`_.
+* **Added** opacity options for the :ref:`Shape` class: Stroke and fill colors can now be set to some transparency value. This means that all :ref:`Page` draw methods, methods :meth:`Page.insertText`, :meth:`Page.insertTextbox`, :meth:`Shape.finish`, :meth:`Shape.insertText`, and :meth:`Shape.insertTextbox` support two new parameters: *stroke_opacity* and *fill_opacity*.
+* **Added** new parameter ``mask`` to :meth:`Page.insertImage` for optionally providing an external image mask. Resolves issue `#685 <https://github.com/pymupdf/PyMuPDF/issues/685>`_.
+* **Added** :meth:`Annot.soundGet` for extracting the sound of an audio annotation.
+
+------
+
+**Changes in Version 1.18.0**
+
+This is the first PyMuPDF version supporting MuPDF v1.18. The focus here is on extending PyMuPDF's own functionality -- apart from bug fixing. Subsequent PyMuPDF patches may address features new in MuPDF.
+
+* **Fixed** issue `#519 <https://github.com/pymupdf/PyMuPDF/issues/519>`_. This upstream bug occurred occasionally for some pages only and seems to be fixed now: page layout should no longer be ruined in these cases.
+
+* **Fixed** issue `#675 <https://github.com/pymupdf/PyMuPDF/issues/675>`_.
+
+  - Unsuccessful storage allocations should now always lead to exceptions (circumvention of an upstream bug intermittently crashing the interpreter).
+  - :ref:`Pixmap` size is now based on ``size_t`` instead of ``int`` in C and should be correct even for extremely large pixmaps.
+
+* **Fixed** issue `#668 <https://github.com/pymupdf/PyMuPDF/issues/668>`_. Specification of dashes for PDF drawing insertion should now correctly reflect the PDF spec.
+* **Fixed** issue `#669 <https://github.com/pymupdf/PyMuPDF/issues/669>`_. A major source of memory leakage in :meth:`Page.insert_pdf` has been removed.
+* **Added** keyword *"images"* to :meth:`Page.apply_redactions` for fine-controlling the handling of images.
+* **Added** :meth:`Annot.getText` and :meth:`Annot.getTextbox`, which offer the same functionality as the :ref:`Page` versions.
+* **Added** key *"number"* to the block dictionaries of :meth:`Page.getText` / :meth:`Annot.getText` for options "dict" and "rawdict".
+* **Added** :meth:`glyph_name_to_unicode` and :meth:`unicode_to_glyph_name`. Both functions do not really connect to a specific font and are now independently available, too. The data are now based on the `Adobe Glyph List <https://github.com/adobe-type-tools/agl-aglfn/blob/master/glyphlist.txt>`_.
+* **Added** convenience functions :meth:`adobe_glyph_names` and :meth:`adobe_glyph_unicodes` which return the respective available data.
+* **Added** :meth:`Page.getDrawings` which returns details of drawing operations on a document page. Works for all document types.
+* Improved performance of :meth:`Document.insert_pdf`. Multiple object copies are now also suppressed across multiple separate insertions from the same source. This saves time, memory and target file size. Previously this mechanism was only active within each single method execution. The feature can also be suppressed with the new method bool parameter *final=1*, which is the default.
+* For PNG images created from pixmaps, the resolution (dpi) is now automatically set from the respective :attr:`Pixmap.xres` and :attr:`Pixmap.yres` values.
+
+
+------
+
+**Changes in Version 1.17.7**
+
+* **Fixed** issue `#651 <https://github.com/pymupdf/PyMuPDF/issues/651>`_. An upstream bug causing interpreter crashes in corner case redaction processings was fixed by backporting MuPDF changes from their development repo.
+* **Fixed** issue `#645 <https://github.com/pymupdf/PyMuPDF/issues/645>`_. Pixmap top-left coordinates can be set (again) by their own method, :meth:`Pixmap.set_origin`.
+* **Fixed** issue `#622 <https://github.com/pymupdf/PyMuPDF/issues/622>`_. :meth:`Page.insertImage` again accepts a :data:`rect_like` parameter.
+* **Added** severeal new methods to improve and speed-up table of contents (TOC) handling. Among other things, TOC items can now changed or deleted individually -- without always replacing the complete TOC. Furthermore, access to some PDF page attributes is now possible without first **loading** the page. This has a very significant impact on the performance of TOC manipulation.
+* **Added** an option to :meth:`Document.insert_pdf` which allows displaying progress messages. Adresses `#640 <https://github.com/pymupdf/PyMuPDF/issues/640>`_.
+* **Added** :meth:`Page.getTextbox` which extracts text contained in a rectangle. In many cases, this should obsolete writing your own script for this type of thing.
+* **Added** new ``clip`` parameter to :meth:`Page.getText` to simplify and speed up text extraction of page sub areas.
+* **Added** :meth:`TextWriter.appendv` to add text in **vertical write mode**. Addresses issue `#653 <https://github.com/pymupdf/PyMuPDF/issues/653>`_
+
+
+------
+
+**Changes in Version 1.17.6**
+
+* **Fixed** issue `#605 <https://github.com/pymupdf/PyMuPDF/issues/605>`_
+* **Fixed** issue `#600 <https://github.com/pymupdf/PyMuPDF/issues/600>`_ -- text should now be correctly positioned also for pages with a CropBox smaller than MediaBox.
+* **Added** text span dictionary key ``origin`` which contains the lower left coordinate of the first character in that span.
+* **Added** attribute :attr:`Font.buffer`, a *bytes* copy of the font file.
+* **Added** parameter *sanitize* to :meth:`Page.cleanContents`. Allows switching of sanitization, so only syntax cleaning will be done.
+
+------
+
+**Changes in Version 1.17.5**
+
+* **Fixed** issue `#561 <https://github.com/pymupdf/PyMuPDF/issues/561>`_ -- second go: certain :ref:`TextWriter` usages with many alternating fonts did not work correctly.
+* **Fixed** issue `#566 <https://github.com/pymupdf/PyMuPDF/issues/566>`_.
+* **Fixed** issue `#568 <https://github.com/pymupdf/PyMuPDF/issues/568>`_.
+* **Fixed** -- opacity is now correctly taken from the :ref:`TextWriter` object, if not given in :meth:`TextWriter.writeText`.
+* **Added** a new global attribute :attr:`fitz_fontdescriptors`. Contains information about usable fonts from repository `pymupdf-fonts <https://github.com/pymupdf/pymupdf-fonts>`_.
+* **Added** :meth:`Font.valid_codepoints` which returns an array of unicode codepoints for which the font has a glyph.
+* **Added** option ``text_as_path`` to :meth:`Page.getSVGimage`. this implements `#580 <https://github.com/pymupdf/PyMuPDF/issues/580>`_. Generates much smaller SVG files with parseable text if set to *False*.
+
+
+------
+
+**Changes in Version 1.17.4**
+
+* **Fixed** issue `#561 <https://github.com/pymupdf/PyMuPDF/issues/561>`_. Handling of more than 10 :ref:`Font` objects on one page should now work correctly.
+* **Fixed** issue `#562 <https://github.com/pymupdf/PyMuPDF/issues/562>`_. Annotation pixmaps are no longer derived from the page pixmap, thus avoiding unintended inclusion of page content.
+* **Fixed** issue `#559 <https://github.com/pymupdf/PyMuPDF/issues/559>`_. This **MuPDF** bug is being temporarily fixed with a pre-version of MuPDF's next release.
+* **Added** utility function :meth:`repair_mono_font` for correcting displayed character spacing for some mono-spaced fonts.
+* **Added** utility method :meth:`Document.need_appearances` for fine-controlling Form PDF behavior. Addresses issue `#563 <https://github.com/pymupdf/PyMuPDF/issues/563>`_.
+* **Added** utility function :meth:`sRGB_to_pdf` to recover the PDF color triple for a given color integer in sRGB format.
+* **Added** utility function :meth:`sRGB_to_rgb` to recover the (R, G, B) color triple for a given color integer in sRGB format.
+* **Added** utility function :meth:`make_table` which delivers table cells for a given rectangle and desired numbers of columns and rows.
+* **Added** support for optional fonts in repository `pymupdf-fonts <https://github.com/pymupdf/pymupdf-fonts>`_.
+
+------
+
+**Changes in Version 1.17.3**
+
+* **Fixed** an undocumented issue, which prevented fully cleaning a PDF page when using :meth:`Page.cleanContents`.
+* **Fixed** issue `#540 <https://github.com/pymupdf/PyMuPDF/issues/540>`_. Text extraction for EPUB should again work correctly.
+* **Fixed** issue `#548 <https://github.com/pymupdf/PyMuPDF/issues/548>`_. Documentation now includes ``LINK_NAMED``.
+* **Added** new parameter to control start of text in :meth:`TextWriter.fillTextbox`. Implements `#549 <https://github.com/pymupdf/PyMuPDF/issues/549>`_.
+* **Changed** documentation of :meth:`Page.add_redact_annot` to explain the usage of non-builtin fonts.
+
+------
+
+**Changes in Version 1.17.2**
+
+* **Fixed** issue `#533 <https://github.com/pymupdf/PyMuPDF/issues/533>`_.
+* **Added** options to modify 'Redact' annotation appearance. Implements `#535 <https://github.com/pymupdf/PyMuPDF/issues/535>`_.
+
+
+------
+
+**Changes in Version 1.17.1**
+
+* **Fixed** issue `#520 <https://github.com/pymupdf/PyMuPDF/issues/520>`_.
+* **Fixed** issue `#525 <https://github.com/pymupdf/PyMuPDF/issues/525>`_. Vertices for 'Ink' annots should now be correct.
+* **Fixed** issue `#524 <https://github.com/pymupdf/PyMuPDF/issues/524>`_. It is now possible to query and set rotation for applicable annotation types.
+
+Also significantly improved inline documentation for better support of interactive help.
+
+------
+
+**Changes in Version 1.17.0**
+
+This version is based on MuPDF v1.17. Following are highlights of new and changed features:
+
+* **Added** extended language support for annotations and widgets: a mixture of Latin, Greece, Russian, Chinese, Japanese and Korean characters can now be used in 'FreeText' annotations and text widgets. No special arrangement is required to use it.
+
+* Faster page access is implemented for documents supporting a "chapter" structure. This applies to EPUB documents currently. This comes with several new :ref:`Document` methods and changes for :meth:`Document.loadPage` and the "indexed" page access *doc[n]*: In addition to specifying a page number as before, a tuple *(chaper, pno)* can be specified to identify the desired page.
+
+* **Changed:** Improved support of redaction annotations: images overlapped by redactions are **permanantly modified** by erasing the overlap areas. Also links are removed if overlapped by redactions. This is now fully in sync with PDF specifications.
+
+Other changes:
+
+* **Changed** :meth:`TextWriter.writeText` to support the *"morph"* parameter.
+* **Added** methods :meth:`Rect.morph`, :meth:`IRect.morph`, and :meth:`Quad.morph`, which return a new :ref:`Quad`.
+* **Changed** :meth:`Page.add_freetext_annot` to support text alignment via a new *"align"* parameter.
+* **Fixed** issue `#508 <https://github.com/pymupdf/PyMuPDF/issues/508>`_. Improved image rectangle calculation to hopefully deliver correct values in most if not all cases.
+* **Fixed** issue `#502 <https://github.com/pymupdf/PyMuPDF/issues/502>`_.
+* **Fixed** issue `#500 <https://github.com/pymupdf/PyMuPDF/issues/500>`_. :meth:`Document.convertToPDF` should no longer cause memory leaks.
+* **Fixed** issue `#496 <https://github.com/pymupdf/PyMuPDF/issues/496>`_. Annotations and widgets / fields are now added or modified using the coordinates of the **unrotated page**. This behavior is now in sync with other methods modifying PDF pages.
+* **Added** :attr:`Page.rotationMatrix` and :attr:`Page.derotationMatrix` to support coordinate transformations between the rotated and the original versions of a PDF page.
+
+Potential code breaking changes:
+
+* The private method ``Page._getTransformation()`` has been removed. Use the public :attr:`Page.transformationMattrix` instead.
+
+
+------
+
+**Changes in Version 1.16.18**
+
+This version introduces several new features around PDF text output. The motivation is to simplify this task, while at the same time offering extending features.
+
+One major achievement is using MuPDF's capabilities to dynamically choosing fallback fonts whenever a character cannot be found in the current one. This seemlessly works for Base-14 fonts in combination with CJK fonts (China, Japan, Korea). So a text may contain **any combination of characters** from the Latin, Greek, Russian, Chinese, Japanese and Korean languages.
+
+* **Fixed** issue `#493 <https://github.com/pymupdf/PyMuPDF/issues/493>`_. ``Pixmap(doc, xref)`` should now again correctly resemble the loaded image object.
+* **Fixed** issue `#488 <https://github.com/pymupdf/PyMuPDF/issues/488>`_. Widget names are now modifiable.
+* **Added** new class :ref:`Font` which represents a font.
+* **Added** new class :ref:`TextWriter` which serves as a container for text to be written on a page.
+* **Added** :meth:`Page.writeText` to write one or more :ref:`TextWriter` objects to the page.
+
+
+------
+
+**Changes in Version 1.16.17**
+
+
+* **Fixed** issue `#479 <https://github.com/pymupdf/PyMuPDF/issues/479>`_. PyMuPDF should now more correctly report image resolutions. This applies to both, images (either from images files or extracted from PDF documents) and pixmaps created from images.
+* **Added** :meth:`Pixmap.set_dpi` which sets the image resolution in x and y directions.
+
+------
+
+**Changes in Version 1.16.16**
+
+
+* **Fixed** issue `#477 <https://github.com/pymupdf/PyMuPDF/issues/477>`_.
+* **Fixed** issue `#476 <https://github.com/pymupdf/PyMuPDF/issues/476>`_.
+* **Changed** annotation line end symbol coloring and fixed an error coloring the interior of 'Polyline' /'Polygon' annotations.
+
+------
+
+**Changes in Version 1.16.14**
+
+
+* **Changed** text marker annotations to accept parameters beyond just quadrilaterals such that now **text lines between two given points can be marked**.
+
+* **Added** :meth:`Document.scrub` which **removes potentially sensitive data** from a PDF. Implements `#453 <https://github.com/pymupdf/PyMuPDF/issues/453>`_.
+
+* **Added** :meth:`Annot.blendMode` which returns the **blend mode** of annotations.
+
+* **Added** :meth:`Annot.setBlendMode` to set the annotation's blend mode. This resolves issue `#416 <https://github.com/pymupdf/PyMuPDF/issues/416>`_.
+* **Changed** :meth:`Annot.update` to accept additional parameters for setting blend mode and opacity.
+* **Added** advanced graphics features to **control the anti-aliasing values**, :meth:`Tools.set_aa_level`. Resolves `#467 <https://github.com/pymupdf/PyMuPDF/issues/467>`_
+
+* **Fixed** issue `#474 <https://github.com/pymupdf/PyMuPDF/issues/474>`_.
+* **Fixed** issue `#466 <https://github.com/pymupdf/PyMuPDF/issues/466>`_.
+
+
+
+------
+
+**Changes in Version 1.16.13**
+
+
+* **Added** :meth:`Document.getPageXObjectList` which returns a list of **Form XObjects** of the page.
+* **Added** :meth:`Page.setMediaBox` for changing the physical PDF page size.
+* **Added** :ref:`Page` methods which have been internal before: :meth:`Page.cleanContents` (= :meth:`Page._cleanContents`), :meth:`Page.getContents` (= :meth:`Page._getContents`), :meth:`Page.getTransformation` (= :meth:`Page._getTransformation`).
+
+
+
+------
+
+**Changes in Version 1.16.12**
+
+* **Fixed** issue `#447 <https://github.com/pymupdf/PyMuPDF/issues/447>`_
+* **Fixed** issue `#461 <https://github.com/pymupdf/PyMuPDF/issues/461>`_.
+* **Fixed** issue `#397 <https://github.com/pymupdf/PyMuPDF/issues/397>`_.
+* **Fixed** issue `#463 <https://github.com/pymupdf/PyMuPDF/issues/463>`_.
+* **Added** JavaScript support to PDF form fields, thereby fixing `#454 <https://github.com/pymupdf/PyMuPDF/issues/454>`_.
+* **Added** a new annotation method :meth:`Annot.delete_responses`, which removes 'Popup' and response annotations referring to the current one. Mainly serves data protection purposes.
+* **Added** a new form field method :meth:`Widget.reset`, which resets the field value to its default.
+* **Changed** and extended handling of redactions: images and XObjects are removed if *contained* in a redaction rectangle. Any partial only overlaps will just be covered by the redaction background color. Now an *overlay* text can be specified to be inserted in the rectangle area to **take the place the deleted original** text. This resolves `#434 <https://github.com/pymupdf/PyMuPDF/issues/434>`_.
+
+------
+
+**Changes in Version 1.16.11**
+
+* **Added** Support for redaction annotations via method :meth:`Page.add_redact_annot` and :meth:`Page.apply_redactions`.
+* **Fixed** issue #426 ("PolygonAnnotation in 1.16.10 version").
+* **Fixed** documentation only issues `#443 <https://github.com/pymupdf/PyMuPDF/issues/443>`_ and `#444 <https://github.com/pymupdf/PyMuPDF/issues/444>`_.
+
+------
+
+**Changes in Version 1.16.10**
+
+* **Fixed** issue #421 ("annot.set_rect(rect) has no effect on text Annotation")
+* **Fixed** issue #417 ("Strange behavior for page.deleteAnnot on 1.16.9 compare to 1.13.20")
+* **Fixed** issue #415 ("Annot.setOpacity throws mupdf warnings")
+* **Changed** all "add annotation / widget" methods to store a unique name in the */NM* PDF key.
+* **Changed** :meth:`Annot.setInfo` to also accept direct parameters in addition to a dictionary.
+* **Changed** :attr:`Annot.info` to now also show the annotation's unique id (*/NM* PDF key) if present.
+* **Added** :meth:`Page.annot_names` which returns a list of all annotation names (*/NM* keys).
+* **Added** :meth:`Page.load_annot` which loads an annotation given its unique id (*/NM* key).
+* **Added** :meth:`Document.reload_page` which provides a new copy of a page after finishing any pending updates to it.
+
+
+------
+
+**Changes in Version 1.16.9**
+
+* **Fixed** #412 ("Feature Request: Allow controlling whether TOC entries should be collapsed")
+* **Fixed** #411 ("Seg Fault with page.firstWidget")
+* **Fixed** #407 ("Annot.setOpacity trouble")
+* **Changed** methods :meth:`Annot.setBorder`, :meth:`Annot.setColors`, :meth:`Link.setBorder`, and :meth:`Link.setColors` to also accept direct parameters, and not just cumbersome dictionaries.
+
+------
+
+**Changes in Version 1.16.8**
+
+* **Added** several new methods to the :ref:`Document` class, which make dealing with PDF low-level structures easier. I also decided to provide them as "normal" methods (as opposed to private ones starting with an underscore "_"). These are :meth:`Document.xrefObject`, :meth:`Document.xrefStream`, :meth:`Document.xrefStreamRaw`, :meth:`Document.PDFTrailer`, :meth:`Document.PDFCatalog`, :meth:`Document.metadataXML`, :meth:`Document.updateObject`, :meth:`Document.updateStream`.
+* **Added** :meth:`Tools.mupdf_disply_errors` which sets the display of mupdf errors on *sys.stderr*.
+* **Added** a commandline facility. This a major new feature: you can now invoke several utility functions via *"python -m fitz ..."*. It should obsolete the need for many of the most trivial scripts. Please refer to :ref:`Module`.
+
+
+------
+
+**Changes in Version 1.16.7**
+
+Minor changes to better synchronize the binary image streams of :ref:`TextPage` image blocks and :meth:`Document.extractImage` images.
+
+* **Fixed** issue #394 ("PyMuPDF Segfaults when using TOOLS.mupdf_warnings()").
+* **Changed** redirection of MuPDF error messages: apart from writing them to Python *sys.stderr*, they are now also stored with the MuPDF warnings.
+* **Changed** :meth:`Tools.mupdf_warnings` to automatically empty the store (if not deactivated via a parameter).
+* **Changed** :meth:`Page.getImageBbox` to return an **infinite rectangle** if the image could not be located on the page -- instead of raising an exception.
+
+
+------
+
+**Changes in Version 1.16.6**
+
+* **Fixed** issue #390 ("Incomplete deletion of annotations").
+* **Changed** :meth:`Page.searchFor` / :meth:`Document.searchPageFor` to also support the *flags* parameter, which controls the data included in a :ref:`TextPage`.
+* **Changed** :meth:`Document.getPageImageList`, :meth:`Document.getPageFontList` and their :ref:`Page` counterparts to support a new parameter *full*. If true, the returned items will contain the :data:`xref` of the *Form XObject* where the font or image is referenced.
+
+------
+
+**Changes in Version 1.16.5**
+
+More performance improvements for text extraction.
+
+* **Fixed** second part of issue #381 (see item in v1.16.4).
+* **Added** :meth:`Page.getTextPage`, so it is no longer required to create an intermediate display list for text extractions. Page level wrappers for text extraction and text searching are now based on this, which should improve performance by ca. 5%.
+
+------
+
+**Changes in Version 1.16.4**
+
+
+* **Fixed** issue #381 ("TextPage.extractDICT ... failed ... after upgrading ... to 1.16.3")
+* **Added** method :meth:`Document.pages` which delivers a generator iterator over a page range.
+* **Added** method :meth:`Page.links` which delivers a generator iterator over the links of a page.
+* **Added** method :meth:`Page.annots` which delivers a generator iterator over the annotations of a page.
+* **Added** method :meth:`Page.widgets` which delivers a generator iterator over the form fields of a page.
+* **Changed** :attr:`Document.is_form_pdf` to now contain the number of widgets, and *False* if not a PDF or this number is zero.
+
+
+------
+
+**Changes in Version 1.16.3**
+
+Minor changes compared to version 1.16.2. The code of the "dict" and "rawdict" variants of :meth:`Page.getText` has been ported to C which has greatly improved their performance. This improvement is mostly noticeable with text-oriented documents, where they now should execute almost two times faster.
+
+* **Fixed** issue #369 ("mupdf: cmsCreateTransform failed") by removing ICC colorspace support.
+* **Changed** :meth:`Page.getText` to accept additional keywords "blocks" and "words". These will deliver the results of :meth:`Page.getTextBlocks` and :meth:`Page.getTextWords`, respectively. So all text extraction methods are now available via a uniform API. Correspondingly, there are now new methods :meth:`TextPage.extractBLOCKS` and :meth:`TextPage.extractWords`.
+* **Changed** :meth:`Page.getText` to default bit indicator *TEXT_INHIBIT_SPACES* to **off**. Insertion of additional spaces is **not suppressed** by default.
+
+------
+
+**Changes in Version 1.16.2**
+
+* **Changed** text extraction methods of :ref:`Page` to allow detail control of the amount of extracted data.
+* **Added** :meth:`planish_line` which maps a given line (defined as a pair of points) to the x-axis.
+* **Fixed** an issue (w/o Github number) which brought down the interpreter when encountering certain non-UTF-8 encodable characters while using :meth:`Page.getText` with te "dict" option.
+* **Fixed** issue #362 ("Memory Leak with getText('rawDICT')").
+
+------
+
+**Changes in Version 1.16.1**
+
+* **Added** property :attr:`Quad.is_convex` which checks whether a line is contained in the quad if it connects two points of it.
+* **Changed** :meth:`Document.insert_pdf` to now allow dropping or including links and annotations independently during the copy. Fixes issue #352 ("Corrupt PDF data and ..."), which seemed to intermittently occur when using the method for some problematic PDF files.
+* **Fixed** a bug which, in matrix division using the syntax *"m1/m2"*, caused matrix *"m1"* to be **replaced** by the result instead of delivering a new matrix.
+* **Fixed** issue #354 ("SyntaxWarning with Python 3.8"). We now always use *"=="* for literals (instead of the *"is"* Python keyword).
+* **Fixed** issue #353 ("mupdf version check"), to no longer refuse the import when there are only patch level deviations from MuPDF.
+
+
+
+------
+
+**Changes in Version 1.16.0**
+
+This major new version of MuPDF comes with several nice new or changed features. Some of them imply programming API changes, however. This is a synopsis of what has changed:
+
+* PDF document encryption and decryption is now **fully supported**. This includes setting **permissions**, **passwords** (user and owner passwords) and the desired encryption method.
+* In response to the new encryption features, PyMuPDF returns an integer (ie. a combination of bits) for document permissions, and no longer a dictionary.
+* Redirection of MuPDF errors and warnings is now natively supported. PyMuPDF redirects error messages from MuPDF to *sys.stderr* and no longer buffers them. Warnings continue to be buffered and will not be displayed. Functions exist to access and reset the warnings buffer.
+* Annotations are now **only supported for PDF**.
+* Annotations and widgets (form fields) are now **separate object chains** on a page (although widgets technically still **are** PDF annotations). This means, that you will **never encounter widgets** when using :attr:`Page.firstAnnot` or :meth:`Annot.next`. You must use :attr:`Page.firstWidget` and :meth:`Widget.next` to access form fields.
+* As part of MuPDF's changes regarding widgets, only the following four fonts are supported, when **adding** or **changing** form fields: **Courier, Helvetica, Times-Roman** and **ZapfDingBats**.
+
+List of change details:
+
+* **Added** :meth:`Document.can_save_incrementally` which checks conditions that are preventing use of option *incremental=True* of :meth:`Document.save`.
+* **Added** :attr:`Page.firstWidget` which points to the first field on a page.
+* **Added** :meth:`Page.getImageBbox` which returns the rectangle occupied by an image shown on the page.
+* **Added** :meth:`Annot.setName` which lets you change the (icon) name field.
+* **Added** outputting the text color in :meth:`Page.getText`: the *"dict"*, *"rawdict"* and *"xml"* options now also show the color in sRGB format.
+* **Changed** :attr:`Document.permissions` to now contain an integer of bool indicators -- was a dictionary before.
+* **Changed** :meth:`Document.save`, :meth:`Document.write`, which now fully support password-based decryption and encryption of PDF files.
+* **Changed the names of all Python constants** related to annotations and widgets. Please make sure to consult the **Constants and Enumerations** chapter if your script is dealing with these two classes. This decision goes back to the dropped support for non-PDF annotations. The **old names** (starting with "ANNOT_*" or "WIDGET_*") will be available as deprecated synonyms.
+* **Changed** font support for widgets: only *Cour* (Courier), *Helv* (Helvetica, default), *TiRo* (Times-Roman) and *ZaDb* (ZapfDingBats) are accepted when **adding or changing** form fields. Only the plain versions are possible -- not their italic or bold variations. **Reading** widgets, however will show its original font.
+* **Changed** the name of the warnings buffer to :meth:`Tools.mupdf_warnings` and the function to empty this buffer is now called :meth:`Tools.reset_mupdf_warnings`.
+* **Changed** :meth:`Page.getPixmap`, :meth:`Document.get_page_pixmap`: a new bool argument *annots* can now be used to **suppress the rendering of annotations** on the page.
+* **Changed** :meth:`Page.add_file_annot` and :meth:`Page.add_text_annot` to enable setting an icon.
+* **Removed** widget-related methods and attributes from the :ref:`Annot` object.
+* **Removed** :ref:`Document` attributes *openErrCode*, *openErrMsg*, and :ref:`Tools` attributes / methods *stderr*, *reset_stderr*, *stdout*, and *reset_stdout*.
+* **Removed** **thirdparty zlib** dependency in PyMuPDF: there are now compression functions available in MuPDF. Source installers of PyMuPDF may now omit this extra installation step.
+
+**No version published for MuPDF v1.15.0**
+
+
+------
+
+**Changes in Version 1.14.20 / 1.14.21**
+
+* **Changed** text marker annotations to support multiple rectangles / quadrilaterals. This fixes issue #341 ("Question : How to addhighlight so that a string spread across more than a line is covered by one highlight?") and similar (#285).
+* **Fixed** issue #331 ("Importing PyMuPDF changes warning filtering behaviour globally").
+
+
+------
+
+**Changes in Version 1.14.19**
+
+* **Fixed** issue #319 ("InsertText function error when use custom font").
+* **Added** new method :meth:`Document.get_sigflags` which returns information on whether a PDF is signed. Resolves issue #326 ("How to detect signature in a form pdf?").
+
+
+------
+
+**Changes in Version 1.14.17**
+
+* **Added** :meth:`Document.fullcopyPage` to make full page copies within a PDF (not just copied references as :meth:`Document.copyPage` does).
+* **Changed** :meth:`Page.getPixmap`, :meth:`Document.get_page_pixmap` now use *alpha=False* as default.
+* **Changed** text extraction: the span dictionary now (again) contains its rectangle under the *bbox* key.
+* **Changed** :meth:`Document.movePage` and :meth:`Document.copyPage` to use direct functions instead of wrapping :meth:`Document.select` -- similar to :meth:`Document.delete_page` in v1.14.16.
+
+------
+
+**Changes in Version 1.14.16**
+
+* **Changed** :ref:`Document` methods around PDF */EmbeddedFiles* to no longer use MuPDF's "portfolio" functions. That support will be dropped in MuPDF v1.15 -- therefore another solution was required.
+* **Changed** :meth:`Document.embfile_Count` to be a function (was an attribute).
+* **Added** new method :meth:`Document.embfile_Names` which returns a list of names of embedded files.
+* **Changed** :meth:`Document.delete_page` and :meth:`Document.delete_pages` to internally no longer use :meth:`Document.select`, but instead use functions to perform the deletion directly. As it has turned out, the :meth:`Document.select` method yields invalid outline trees (tables of content) for very complex PDFs and sophisticated use of annotations.
+
+
+------
+
+**Changes in Version 1.14.15**
+
+* **Fixed** issues #301 ("Line cap and Line join"), #300 ("How to draw a shape without outlines") and #298 ("utils.updateRect exception"). These bugs pertain to drawing shapes with PyMuPDF. Drawing shapes without any border is fully supported. Line cap styles and line line join style are now differentiated and support all possible PDF values (0, 1, 2) instead of just being a bool. The previous parameter *roundCap* is deprecated in favor of *lineCap* and *lineJoin* and will be deleted in the next release.
+* **Fixed** issue #290 ("Memory Leak with getText('rawDICT')"). This bug caused memory not being (completely) freed after invoking the "dict", "rawdict" and "json" versions of :meth:`Page.getText`.
+
+
+------
+
+**Changes in Version 1.14.14**
+
+* **Added** new low-level function :meth:`ImageProperties` to determine a number of characteristics for an image.
+* **Added** new low-level function :meth:`Document.is_stream`, which checks whether an object is of stream type.
+* **Changed** low-level functions :meth:`Document._getXrefString` and :meth:`Document._getTrailerString` now by default return object definitions in a formatted form which makes parsing easy.
+
+------
+
+**Changes in Version 1.14.13**
+
+* **Changed** methods working with binary input: while ever supporting bytes and bytearray objects, they now also accept *io.BytesIO* input, using their *getvalue()* method. This pertains to document creation, embedded files, FileAttachment annotations, pixmap creation and others. Fixes issue #274 ("Segfault when using BytesIO as a stream for insertImage").
+* **Fixed** issue #278 ("Is insertImage(keep_proportion=True) broken?"). Images are now correctly presented when keeping aspect ratio.
+
+
+------
+
+**Changes in Version 1.14.12**
+
+* **Changed** the draw methods of :ref:`Page` and :ref:`Shape` to support not only RGB, but also GRAY and CMYK colorspaces. This solves issue #270 ("Is there a way to use CMYK color to draw shapes?"). This change also applies to text insertion methods of :ref:`Shape`, resp. :ref:`Page`.
+* **Fixed** issue #269 ("AttributeError in Document.insert_page()"), which occurred when using :meth:`Document.insert_page` with text insertion.
+
+
+------
+
+**Changes in Version 1.14.11**
+
+* **Changed** :meth:`Page.show_pdf_page` to always position the source rectangle centered in the target. This method now also supports **rotation by arbitrary angles**. The argument *reuse_xref* has been deprecated: prevention of duplicates is now **handled internally**.
+* **Changed** :meth:`Page.insertImage` to support rotated display of the image and keeping the aspect ratio. Only rotations by multiples of 90 degrees are supported here.
+* **Fixed** issue #265 ("TypeError: insertText() got an unexpected keyword argument 'idx'"). This issue only occurred when using :meth:`Document.insert_page` with also inserting text.
+
+------
+
+**Changes in Version 1.14.10**
+
+* **Changed** :meth:`Page.show_pdf_page` to support rotation of the source rectangle. Fixes #261 ("Cannot rotate insterted pages").
+* **Fixed** a bug in :meth:`Page.insertImage` which prevented insertion of multiple images provided as streams.
+
+
+------
+
+**Changes in Version 1.14.9**
+
+* **Added** new low-level method :meth:`Document._getTrailerString`, which returns the trailer object of a PDF. This is much like :meth:`Document._getXrefString` except that the PDF trailer has no / needs no :data:`xref` to identify it.
+* **Added** new parameters for text insertion methods. You can now set stroke and fill colors of glyphs (text characters) independently, as well as the thickness of the glyph border. A new parameter *render_mode* controls the use of these colors, and whether the text should be visible at all.
+* **Fixed** issue #258 ("Copying image streams to new PDF without size increase"): For JPX images embedded in a PDF, :meth:`Document.extractImage` will now return them in their original format. Previously, the MuPDF base library was used, which returns them in PNG format (entailing a massive size increase).
+* **Fixed** issue #259 ("Morphing text to fit inside rect"). Clarified use of :meth:`get_text_length` and removed extra line breaks for long words.
+
+------
+
+**Changes in Version 1.14.8**
+
+* **Added** :meth:`Pixmap.set_rect` to change the pixel values in a rectangle. This is also an alternative to setting the color of a complete pixmap (:meth:`Pixmap.clear_with`).
+* **Fixed** an image extraction issue with JBIG2 (monochrome) encoded PDF images. The issue occurred in :meth:`Page.getText` (parameters "dict" and "rawdict") and in :meth:`Document.extractImage` methods.
+* **Fixed** an issue with not correctly clearing a non-alpha :ref:`Pixmap` (:meth:`Pixmap.clear_with`).
+* **Fixed** an issue with not correctly inverting colors of a non-alpha :ref:`Pixmap` (:meth:`Pixmap.invert_irect`).
+
+------
+
+**Changes in Version 1.14.7**
+
+* **Added** :meth:`Pixmap.set_pixel` to change one pixel value.
+* **Added** documentation for image conversion in the :ref:`FAQ`.
+* **Added** new function :meth:`get_text_length` to determine the string length for a given font.
+* **Added** Postscript image output (changed :meth:`Pixmap.save` and :meth:`Pixmap.tobytes`).
+* **Changed** :meth:`Pixmap.save` and :meth:`Pixmap.tobytes` to ensure valid combinations of colorspace, alpha and output format.
+* **Changed** :meth:`Pixmap.save`: the desired format is now inferred from the filename.
+* **Changed** FreeText annotations can now have a transparent background - see :meth:`Annot.update`.
+
+------
+
+**Changes in Version 1.14.5**
+
+* **Changed:** :ref:`Shape` methods now strictly use the transformation matrix of the :ref:`Page` -- instead of "manually" calculating locations.
+* **Added** method :meth:`Pixmap.pixel` which returns the pixel value (a list) for given pixel coordinates.
+* **Added** method :meth:`Pixmap.tobytes` which returns a bytes object representing the pixmap in a variety of formats. Previously, this could be done for PNG outputs only (:meth:`Pixmap.tobytes`).
+* **Changed:** output of methods :meth:`Pixmap.save` and (the new) :meth:`Pixmap.tobytes` may now also be PSD (Adobe Photoshop Document).
+* **Added** method :meth:`Shape.drawQuad` which draws a :ref:`Quad`. This actually is a shorthand for a :meth:`Shape.drawPolyline` with the edges of the quad.
+* **Changed** method :meth:`Shape.drawOval`: the argument can now be **either** a rectangle (:data:`rect_like`) **or** a quadrilateral (:data:`quad_like`).
+
+------
+
+**Changes in Version 1.14.4**
+
+* **Fixes** issue #239 "Annotation coordinate consistency".
+
+
+------
+
+**Changes in Version 1.14.3**
+
+This patch version contains minor bug fixes and CJK font output support.
+
+* **Added** support for the four CJK fonts as PyMuPDF generated text output. This pertains to methods :meth:`Page.insertFont`, :meth:`Shape.insertText`, :meth:`Shape.insertTextbox`, and corresponding :ref:`Page` methods. The new fonts are available under "reserved" fontnames "china-t" (traditional Chinese), "china-s" (simplified Chinese), "japan" (Japanese), and "korea" (Korean).
+* **Added** full support for the built-in fonts 'Symbol' and 'Zapfdingbats'.
+* **Changed:** The 14 standard fonts can now each be referenced by a 4-letter abbreviation.
+
+------
+
+**Changes in Version 1.14.1**
+
+This patch version contains minor performance improvements.
+
+* **Added** support for :ref:`Document` filenames given as *pathlib* object by using the Python *str()* function.
+
+
+------
+
+**Changes in Version 1.14.0**
+
+To support MuPDF v1.14.0, massive changes were required in PyMuPDF -- most of them purely technical, with little visibility to developers. But there are also quite a lot of interesting new and improved features. Following are the details:
+
+* **Added** "ink" annotation.
+* **Added** "rubber stamp" annotation.
+* **Added** "squiggly" text marker annotation.
+* **Added** new class :ref:`Quad` (quadrilateral or tetragon) -- which represents a general four-sided shape in the plane. The special subtype of rectangular, non-empty tetragons is used in text marker annotations and as returned objects in text search methods.
+* **Added** a new option "decrypt" to :meth:`Document.save` and :meth:`Document.write`. Now you can **keep encryption** when saving a password protected PDF.
+* **Added** suppression and redirection of unsolicited messages issued by the underlying C-library MuPDF. Consult :ref:`RedirectMessages` for details.
+* **Changed:** Changes to annotations now **always require** :meth:`Annot.update` to become effective.
+* **Changed** free text annotations to support the full Latin character set and range of appearance options.
+* **Changed** text searching, :meth:`Page.searchFor`, to optionally return :ref:`Quad` instead :ref:`Rect` objects surrounding each search hit.
+* **Changed** plain text output: we now add a *\n* to each line if it does not itself end with this character.
+* **Fixed** issue 211 ("Something wrong in the doc").
+* **Fixed** issue 213 ("Rewritten outline is displayed only by mupdf-based applications").
+* **Fixed** issue 214 ("PDF decryption GONE!").
+* **Fixed** issue 215 ("Formatting of links added with pyMuPDF").
+* **Fixed** issue 217 ("extraction through json is failing for my pdf").
+
+Behind the curtain, we have changed the implementation of geometry objects: they now purely exist in Python and no longer have "shadow" twins on the C-level (in MuPDF). This has improved processing speed in that area by more than a factor of two.
+
+Because of the same reason, most methods involving geometry parameters now also accept the corresponding Python sequence. For example, in method *"page.show_pdf_page(rect, ...)"* parameter *rect* may now be any :data:`rect_like` sequence.
+
+We also invested considerable effort to further extend and improve the :ref:`FAQ` chapter.
+
+
+------
+
+**Changes in Version 1.13.19**
+
+This version contains some technical / performance improvements and bug fixes.
+
+* **Changed** memory management: for Python 3 builds, Python memory management is exclusively used across all C-level code (i.e. no more native *malloc()* in MuPDF code or PyMuPDF interface code). This leads to improved memory usage profiles and also some runtime improvements: we have seen > 2% shorter runtimes for text extractions and pixmap creations (on Windows machines only to date).
+* **Fixed** an error occurring in Python 2.7, which crashed the interpreter when using :meth:`TextPage.extractRAWDICT` (= *Page.getText("rawdict")*).
+* **Fixed** an error occurring in Python 2.7, when creating link destinations.
+* **Extended** the :ref:`FAQ` chapter with more examples.
+
+------
+
+**Changes in Version 1.13.18**
+
+* **Added** method :meth:`TextPage.extractRAWDICT`, and a corresponding new string parameter "rawdict" to method :meth:`Page.getText`. It extracts text and images from a page in Python *dict* form like :meth:`TextPage.extractDICT`, but with the detail level of :meth:`TextPage.extractXML`, which is position information down to each single character.
+
+------
+
+**Changes in Version 1.13.17**
+
+* **Fixed** an error that intermittently caused an exception in :meth:`Page.show_pdf_page`, when pages from many different source PDFs were shown.
+* **Changed** method :meth:`Document.extractImage` to now return more meta information about the extracted imgage. Also, its performance has been greatly improved. Several demo scripts have been changed to make use of this method.
+* **Changed** method :meth:`Document._getXrefStream` to now return *None* if the object is no stream and no longer raise an exception if otherwise.
+* **Added** method :meth:`Document._deleteObject` which deletes a PDF object identified by its :data:`xref`. Only to be used by the experienced PDF expert.
+* **Added** a method :meth:`paper_rect` which returns a :ref:`Rect` for a supplied paper format string. Example: *fitz.paper_rect("letter") = fitz.Rect(0.0, 0.0, 612.0, 792.0)*.
+* **Added** a :ref:`FAQ` chapter to this document.
+
+------
+
+**Changes in Version 1.13.16**
+
+* **Added** support for correctly setting transparency (opacity) for certain annotation types.
+* **Added** a tool property (:attr:`Tools.fitz_config`) showing the configuration of this PyMuPDF version.
+* **Fixed** issue #193 ('insertText(overlay=False) gives "cannot resize a buffer with shared storage" error') by avoiding read-only buffers.
+
+------
+
+**Changes in Version 1.13.15**
+
+* **Fixed** issue #189 ("cannot find builtin CJK font"), so we are supporting builtin CJK fonts now (CJK = China, Japan, Korea). This should lead to correctly generated pixmaps for documents using these languages. This change has consequences for our binary file size: it will now range between 8 and 10 MB, depending on the OS.
+* **Fixed** issue #191 ("Jupyter notebook kernel dies after ca. 40 pages"), which occurred when modifying the contents of an annotation.
+
+------
+
+**Changes in Version 1.13.14**
+
+This patch version contains several improvements, mainly for annotations.
+
+* **Changed** :attr:`Annot.lineEnds` is now a list of two integers representing the line end symbols. Previously was a *dict* of strings.
+* **Added** support of line end symbols for applicable annotations. PyMuPDF now can generate these annotations including the line end symbols.
+* **Added** :meth:`Annot.setLineEnds` adds line end symbols to applicable annotation types ('Line', 'PolyLine', 'Polygon').
+* **Changed** technical implementation of :meth:`Page.insertImage` and :meth:`Page.show_pdf_page`: they now create there own contents objects, thereby avoiding changes of potentially large streams with consequential compression / decompression efforts and high change volumes with incremental updates.
+
+------
+
+**Changes in Version 1.13.13**
+
+This patch version contains several improvements for embedded files and file attachment annotations.
+
+* **Added** :meth:`Document.embfile_Upd` which allows changing **file content and metadata** of an embedded file. It supersedes the old method :meth:`Document.embfile_SetInfo` (which will be deleted in a future version). Content is automatically compressed and metadata may be unicode.
+* **Changed** :meth:`Document.embfile_Add` to now automatically compress file content. Accompanying metadata can now be unicode (had to be ASCII in the past).
+* **Changed** :meth:`Document.embfile_Del` to now automatically delete **all entries** having the supplied identifying name. The return code is now an integer count of the removed entries (was *None* previously).
+* **Changed** embedded file methods to now also accept or show the PDF unicode filename as additional parameter *ufilename*.
+* **Added** :meth:`Page.add_file_annot` which adds a new file attachment annotation.
+* **Changed** :meth:`Annot.fileUpd` (file attachment annot) to now also accept the PDF unicode *ufilename* parameter. The description parameter *desc* correctly works with unicode. Furthermore, **all** parameters are optional, so metadata may be changed without also replacing the file content.
+* **Changed** :meth:`Annot.fileInfo` (file attachment annot) to now also show the PDF unicode filename as parameter *ufilename*.
+* **Fixed** issue #180 ("page.getText(output='dict') return invalid bbox") to now also work for vertical text.
+* **Fixed** issue #185 ("Can't render the annotations created by PyMuPDF"). The issue's cause was the minimalistic MuPDF approach when creating annotations. Several annotation types have no */AP* ("appearance") object when created by MuPDF functions. MuPDF, SumatraPDF and hence also PyMuPDF cannot render annotations without such an object. This fix now ensures, that an appearance object is always created together with the annotation itself. We still do not support line end styles.
+
+------
+
+**Changes in Version 1.13.12**
+
+* **Fixed** issue #180 ("page.getText(output='dict') return invalid bbox"). Note that this is a circumvention of an MuPDF error, which generates zero-height character rectangles in some cases. When this happens, this fix ensures a bbox height of at least fontsize.
+* **Changed** for ListBox and ComboBox widgets, the attribute list of selectable values has been renamed to :attr:`Widget.choice_values`.
+* **Changed** when adding widgets, any missing of the :ref:`Base-14-Fonts` is automatically added to the PDF. Widget text fonts can now also be chosen from existing widget fonts. Any specified field values are now honored and lead to a field with a preset value.
+* **Added** :meth:`Annot.updateWidget` which allows changing existing form fields -- including the field value.
+
+------
+
+**Changes in Version 1.13.11**
+
+While the preceeding patch subversions only contained various fixes, this version again introduces major new features:
+
+* **Added** basic support for PDF widget annotations. You can now add PDF form fields of types Text, CheckBox, ListBox and ComboBox. Where necessary, the PDF is tranformed to a Form PDF with the first added widget.
+* **Fixed** issues #176 ("wrong file embedding"), #177 ("segment fault when invoking page.getText()")and #179 ("Segmentation fault using page.getLinks() on encrypted PDF").
+
+
+------
+
+**Changes in Version 1.13.7**
+
+* **Added** support of variable page sizes for reflowable documents (e-books, HTML, etc.): new parameters *rect* and *fontsize* in :ref:`Document` creation (open), and as a separate method :meth:`Document.layout`.
+* **Added** :ref:`Annot` creation of many annotations types: sticky notes, free text, circle, rectangle, line, polygon, polyline and text markers.
+* **Added** support of annotation transparency (:attr:`Annot.opacity`, :meth:`Annot.setOpacity`).
+* **Changed** :attr:`Annot.vertices`: point coordinates are now grouped as pairs of floats (no longer as separate floats).
+* **Changed** annotation colors dictionary: the two keys are now named *"stroke"* (formerly *"common"*) and *"fill"*.
+* **Added** :attr:`Document.isDirty` which is *True* if a PDF has been changed in this session. Reset to *False* on each :meth:`Document.save` or :meth:`Document.write`.
+
+------
+
+**Changes in Version 1.13.6**
+
+* Fix #173: for memory-resident documents, ensure the stream object will not be garbage-collected by Python before document is closed.
+
+------
+
+**Changes in Version 1.13.5**
+
+* New low-level method :meth:`Page._setContents` defines an object given by its :data:`xref` to serve as the :data:`contents` object.
+* Changed and extended PDF form field support: the attribute *widget_text* has been renamed to :attr:`Annot.widget_value`. Values of all form field types (except signatures) are now supported. A new attribute :attr:`Annot.widget_choices` contains the selectable values of listboxes and comboboxes. All these attributes now contain *None* if no value is present.
+
+------
+
+**Changes in Version 1.13.4**
+
+* :meth:`Document.convertToPDF` now supports page ranges, reverted page sequences and page rotation. If the document already is a PDF, an exception is raised.
+* Fixed a bug (introduced with v1.13.0) that prevented :meth:`Page.insertImage` for transparent images.
+
+------
+
+**Changes in Version 1.13.3**
+
+Introduces a way to convert **any MuPDF supported document** to a PDF. If you ever wanted PDF versions of your XPS, EPUB, CBZ or FB2 files -- here is a way to do this.
+
+* :meth:`Document.convertToPDF` returns a Python *bytes* object in PDF format. Can be opened like normal in PyMuPDF, or be written to disk with the *".pdf"* extension.
+
+------
+
+**Changes in Version 1.13.2**
+
+The major enhancement is PDF form field support. Form fields are annotations of type *(19, 'Widget')*. There is a new document method to check whether a PDF is a form. The :ref:`Annot` class has new properties describing field details.
+
+* :attr:`Document.is_form_pdf` is true if object type */AcroForm* and at least one form field exists.
+* :attr:`Annot.widget_type`, :attr:`Annot.widget_text` and :attr:`Annot.widget_name` contain the details of a form field (i.e. a "Widget" annotation).
+
+------
+
+**Changes in Version 1.13.1**
+
+* :meth:`TextPage.extractDICT` is a new method to extract the contents of a document page (text and images). All document types are supported as with the other :ref:`TextPage` *extract*()* methods. The returned object is a dictionary of nested lists and other dictionaries, and **exactly equal** to the JSON-deserialization of the old :meth:`TextPage.extractJSON`. The difference is that the result is created directly -- no JSON module is used. Because the user needs no JSON module to interpet the information, it should be easier to use, and also have a better performance, because it contains images in their original **binary format** -- they need not be base64-decoded.
+* :meth:`Page.getText` correspondingly supports the new parameter value *"dict"* to invoke the above method.
+* :meth:`TextPage.extractJSON` (resp. *Page.getText("json")*) is still supported for convenience, but its use is expected to decline.
+
+------
+
+**Changes in Version 1.13.0**
+
+This version is based on MuPDF v1.13.0. This release is "primarily a bug fix release".
+
+In PyMuPDF, we are also doing some bug fixes while introducing minor enhancements. There only very minimal changes to the user's API.
+
+* :ref:`Document` construction is more flexible: the new *filetype* parameter allows setting the document type. If specified, any extension in the filename will be ignored. More completely addresses `issue #156 <https://github.com/pymupdf/PyMuPDF/issues/156>`_. As part of this, the documentation has been reworked.
+
+* Changes to :ref:`Pixmap` constructors:
+    - Colorspace conversion no longer allows dropping the alpha channel: source and target **alpha will now always be the same**. We have seen exceptions and even interpreter crashes when using *alpha = 0*.
+    - As a replacement, the simple pixmap copy lets you choose the target alpha.
+
+* :meth:`Document.save` again offers the full garbage collection range 0 thru 4. Because of a bug in :data:`xref` maintenance, we had to temporarily enforce *garbage > 1*. Finally resolves `issue #148 <https://github.com/pymupdf/PyMuPDF/issues/148>`_.
+
+* :meth:`Document.save` now offers to "prettify" PDF source via an additional argument.
+* :meth:`Page.insertImage` has the additional *stream* \-parameter, specifying a memory area holding an image.
+
+* Issue with garbled PNGs on Linux systems has been resolved (`"Problem writing PNG" #133) <https://github.com/pymupdf/PyMuPDF/issues/133>`_.
+
+
+------
+
+**Changes in Version 1.12.4**
+
+This is an extension of 1.12.3.
+
+* Fix of `issue #147 <https://github.com/pymupdf/PyMuPDF/issues/147>`_: methods :meth:`Document.getPageFontlist` and :meth:`Document.getPageImagelist` now also show fonts and images contained in :data:`resources` nested via "Form XObjects".
+* Temporary fix of `issue #148 <https://github.com/pymupdf/PyMuPDF/issues/148>`_: Saving to new PDF files will now automatically use *garbage = 2* if a lower value is given. Final fix is to be expected with MuPDF's next version. At that point we will remove this circumvention.
+* Preventive fix of illegally using stencil / image mask pixmaps in some methods.
+* Method :meth:`Document.getPageFontlist` now includes the encoding name for each font in the list.
+* Method :meth:`Document.getPageImagelist` now includes the decode method name for each image in the list.
+
+------
+
+**Changes in Version 1.12.3**
+
+This is an extension of 1.12.2.
+
+* Many functions now return *None* instead of *0*, if the result has no other meaning than just indicating successful execution (:meth:`Document.close`, :meth:`Document.save`, :meth:`Document.select`, :meth:`Pixmap.save` and many others).
+
+------
+
+**Changes in Version 1.12.2**
+
+This is an extension of 1.12.1.
+
+* Method :meth:`Page.show_pdf_page` now accepts the new *clip* argument. This specifies an area of the source page to which the display should be restricted.
+
+* New :attr:`Page.CropBox` and :attr:`Page.MediaBox` have been included for convenience.
+
+
+------
+
+**Changes in Version 1.12.1**
+
+This is an extension of version 1.12.0.
+
+* New method :meth:`Page.show_pdf_page` displays another's PDF page. This is a **vector** image and therefore remains precise across zooming. Both involved documents must be PDF.
+
+* New method :meth:`Page.getSVGimage` creates an SVG image from the page. In contrast to the raster image of a pixmap, this is a vector image format. The return is a unicode text string, which can be saved in a *.svg* file.
+
+* Method :meth:`Page.getTextBlocks` now accepts an additional bool parameter "images". If set to true (default is false), image blocks (metadata only) are included in the produced list and thus allow detecting areas with rendered images.
+
+* Minor bug fixes.
+
+* "text" result of :meth:`Page.getText` concatenates all lines within a block using a single space character. MuPDF's original uses "\\n" instead, producing a rather ragged output.
+
+* New properties of :ref:`Page` objects :attr:`Page.MediaBoxSize` and :attr:`Page.CropBoxPosition` provide more information about a page's dimensions. For non-PDF files (and for most PDF files, too) these will be equal to :attr:`Page.rect.bottom_right`, resp. :attr:`Page.rect.top_left`. For example, class :ref:`Shape` makes use of them to correctly position its items.
+
+------
+
+**Changes in Version 1.12.0**
+
+This version is based on and requires MuPDF v1.12.0. The new MuPDF version contains quite a number of changes -- most of them around text extraction. Some of the changes impact the programmer's API.
+
+* :meth:`Outline.saveText` and :meth:`Outline.saveXML` have been deleted without replacement. You probably haven't used them much anyway. But if you are looking for a replacement: the output of :meth:`Document.get_toc` can easily be used to produce something equivalent.
+
+* Class *TextSheet* does no longer exist.
+
+* Text "spans" (one of the hierarchy levels of :ref:`TextPage`) no longer contain positioning information (i.e. no "bbox" key). Instead, spans now provide the font information for its text. This impacts our JSON output variant.
+
+* HTML output has improved very much: it now creates valid documents which can be displayed by browsers to produce a similar view as the original document.
+
+* There is a new output format XHTML, which provides text and images in a browser-readable format. The difference to HTML output is, that no effort is made to reproduce the original layout.
+
+* All output formats of :meth:`Page.getText` now support creating complete, valid documents, by wrapping them with appropriate header and trailer information. If you are interested in using the HTML output, please make sure to read :ref:`HTMLQuality`.
+
+* To support finding text positions, we have added special methods that don't need detours like :meth:`TextPage.extractJSON` or :meth:`TextPage.extractXML`: use :meth:`Page.getTextBlocks` or resp. :meth:`Page.getTextWords` to create lists of text blocks or resp. words, which are accompanied by their rectangles. This should be much faster than the standard text extraction methods and also avoids using additional packages for interpreting their output.
+
+
+------
+
+**Changes in Version 1.11.2**
+
+This is an extension of v1.11.1.
+
+* New :meth:`Page.insertFont` creates a PDF */Font* object and returns its object number.
+
+* New :meth:`Document.extractFont` extracts the content of an embedded font given its object number.
+
+* Methods **FontList(...)** items no longer contain the PDF generation number. This value never had any significance. Instead, the font file extension is included (e.g. "pfa" for a "PostScript Font for ASCII"), which is more valuable information.
+
+* Fonts other than "simple fonts" (Type1) are now also supported.
+
+* New options to change :ref:`Pixmap` size:
+
+    * Method :meth:`Pixmap.shrink` reduces the pixmap proportionally in place.
+
+    * A new :ref:`Pixmap` copy constructor allows scaling via setting target width and height.
+
+
+------
+
+**Changes in Version 1.11.1**
+
+This is an extension of v1.11.0.
+
+* New class *Shape*. It facilitates and extends the creation of image shapes on PDF pages. It contains multiple methods for creating elementary shapes like lines, rectangles or circles, which can be combined into more complex ones and be given common properties like line width or colors. Combined shapes are handled as a unit and e.g. be "morphed" together. The class can accumulate multiple complex shapes and put them all in the page's foreground or background -- thus also reducing the number of updates to the page's :data:`contents` object.
+
+* All *Page* draw methods now use the new *Shape* class.
+
+* Text insertion methods *insertText()* and *insertTextBox()* now support morphing in addition to text rotation. They have become part of the *Shape* class and thus allow text to be freely combined with graphics.
+
+* A new *Pixmap* constructor allows creating pixmap copies with an added alpha channel. A new method also allows directly manipulating alpha values.
+
+* Binary algebraic operations with geometry objects (matrices, rectangles and points) now generally also support lists or tuples as the second operand. You can add a tuple *(x, y)* of numbers to a :ref:`Point`. In this context, such sequences are called ":data:`point_like`" (resp. :data:`matrix_like`, :data:`rect_like`).
+
+* Geometry objects now fully support in-place operators. For example, *p /= m* replaces point p with *p * 1/m* for a number, or *p * ~m* for a :data:`matrix_like` object *m*. Similarly, if *r* is a rectangle, then *r |= (3, 4)* is the new rectangle that also includes *fitz.Point(3, 4)*, and *r &= (1, 2, 3, 4)* is its intersection with *fitz.Rect(1, 2, 3, 4)*.
+
+------
+
+**Changes in Version 1.11.0**
+
+**基于 MuPDF v1.11 的版本**
+
+尽管 MuPDF 将该版本声明为主要是修复错误的版本，但它确实包含了一个重要的新特性：**支持嵌入文件**（亦称为“作品集”或“集合”）。我们扩展了 PyMuPDF 的功能，使其在这一方面的能力略超 *mutool* 实用程序，具体如下：
+
+* *Document* 类新增多个方法和一个新属性，用于处理嵌入文件：
+
+  - *embfile_Info()*：返回嵌入文件列表中某个条目的元数据信息。相比 *mutool*，它提供了更详细的信息，包括用于嵌入文件的所有相关数据（不仅仅是文件名）。
+  - *embfile_Get()*：将嵌入文件的内容解压到 *bytes* 缓冲区中。
+  - *embfile_Add(...)*：向 PDF 作品集中插入新文件。与 *mutool* 不同，我们 **限制** 该方法只能添加 **新名称** 的文件（不允许重复文件名）。
+  - *embfile_Del(...)*：从作品集中删除某个嵌入文件（此功能未在 MuPDF 中提供）。
+  - *embfile_SetInfo()*：修改嵌入文件的名称或描述信息。
+  - *embfile_Count*：包含嵌入文件的数量。
+
+* 我们进行了多项优化，以简化几何对象的处理。这些更改与新 MuPDF 版本无关，其中大多数在 PyMuPDF v1.10.0 中也已实现。这些优化包括：
+
+  * 通过新的属性以名称识别矩形的角，例如：*Rect.bottom_right*。
+  * 新增多个方法来处理集合论相关的问题，例如：
+    - *Rect.contains(x)*：判断矩形是否包含点 *x*。
+    - *IRect.intersects(x)*：判断矩形是否与 *x* 相交。
+  * 加强了对 Pythonic 语言风格的支持。例如::
+
+    if x in rect:  # 现在等价于 rect.contains(x)
+
+* :ref:`Rect` 章节新增了关于**空矩形**和**无限矩形**的背景介绍，并改进了相关的处理方式，以提高一致性。
+
+* 我们开始支持 **生成** PDF 内容，包括以下方法：
+
+  * *Document.insert_page()*：向 PDF 中添加一个新页面，可选地包含一些文本。
+  * *Page.insertImage()*：在 PDF 页面上插入一张新图片。
+  * *Page.insertText()*：在现有页面上添加新文本。
+
+* 现在可以提取和修改**文件附件**注释的内容及其名称。
+
+------
+
+**Changes in Version 1.10.0**
+
+**MuPDF v1.10 影响**
+
+MuPDF 版本 1.10 对我们的绑定产生了重大影响。其中一些变更也影响了 API —— 换句话说，**作为 PyMuPDF 用户的您** 可能需要注意这些更改。
+
+* **链接目标信息已减少**。*linkDest* 类的多个属性不再包含有价值的信息。事实上，该类已从 MuPDF 库中删除，PyMuPDF 仅保留它以确保与现有代码兼容。
+
+* **为了最小化内存占用，MuPDF v1.10 进行了多项优化**：
+
+  - 新增的 *config.h* 文件允许在 C 代码中禁用不需要的功能。利用此功能，我们将二进制文件 *_fitz.o* / *_fitz.pyd* 的大小从 9 MB 缩小到 4.5 MB。使用 UPX 压缩后，文件大小甚至可降至 2.3 MB。
+
+  - Pixmap 现在的 alpha（透明度）通道是可选的。默认情况下，*alpha=False*，这大大减少了 Pixmap 大小（CMYK 约 20%，RGB 约 25%，GRAY 约 50%）。因此，许多 *Pixmap* 构造函数现在接受一个 *alpha* 布尔参数，以控制是否包含透明通道。而其他构造函数（如文件和图像输入）创建的 Pixmap 默认不包含 alpha 通道。需要注意的是，Pixmap 的保存方法不再支持 *savealpha* 选项：如果 alpha 通道存在，则始终会保存它。为尽量减少代码破坏，我们保留了该参数，但它将被忽略。
+
+* **DisplayList 和 TextPage 现在需要提供 mediabox**（即 *page.bound()* 矩形）。这一信息无法从其他来源推导，因此需要修改源代码。我们预计，大多数用户不会直接使用这些较低级的类，因此该更改的影响应较小。
+
+---
+
+**与 1.9.3 版本相比的其他更改**
+
+* 新增 :ref:`Document` 方法 *write()*，可将打开的 PDF 写入内存（而 *save()* 方法则是写入文件）。
+* 现在可以缩放和移动注释（annotations），方法是修改其矩形属性。
+* 现在可以删除注释。:ref:`Page` 类新增方法 *deleteAnnot()*。
+* 现在可以修改各种注释属性，例如内容、日期、标题（作者）、边框、颜色等。
+* 方法 *Document.insert_pdf()* 现在也会复制源页面的注释。
+* *Pages* 类已删除。由于文档现在可以通过索引访问页面（如 *doc[n] = doc.loadPage(n)*），并且文档对象本身可用作迭代器，因此该类的维护价值过低，故被移除。
+* *loadPage(n)* / *doc[n]* 现在支持任意整数作为页面编号，只要满足 *n < pageCount*。例如，*doc[-500]* 仍然是有效的，并会加载页面 *(-500) % pageCount*。
+* 现在文档对象可直接作为迭代器，例如::
+
+    for page in doc:
+        ...  # 对 "page" 进行处理
+
+  这将遍历文档中的所有页面。
+
+* :ref:`Pixmap` 方法 *getSize()* 已被属性 *size* 取代。与以前一样，*Pixmap.size == len(Pixmap)* 仍然成立。
+* 由于透明度（alpha）变为可选，:ref:`Pixmap` 和 :ref:`Colorspace` 类新增多个参数和属性，以支持查询相关特性。
+* :ref:`Page` 类新增属性 *firstAnnot* 和 *firstLink*，分别提供注释链和链接链的起始点。其中，*firstLink* 只是方法 *loadLinks()* 的一个助记符，后者仍然可用。同样，*rect* 是方法 *bound()* 的同义词，后者仍然可用。
+* 由于 Pixmap 现在可以不包含透明通道，:ref:`Pixmap` 的方法 *samplesRGB()* 和 *samplesAlpha()* 已被删除。
+* :ref:`Rect` 现在有一个属性 *irect*，它是方法 *round()* 的同义词。同样，:ref:`IRect` 现在有一个属性 *rect*，用于返回具有相同坐标但浮点数值的 :ref:`Rect`。
+* 文档新增方法 *searchPageFor()*，用于搜索文本字符串。其工作方式与 *Page.searchFor()* 相同，但额外接受页面编号作为参数。
+
+
+------
+
+**Changes in Version 1.9.3**
+
+* **此版本同样基于 MuPDF v1.9a。与 1.9.2 版本相比，主要变更如下**：
+
+  * **主要增强**：现在支持注释（annotations），方式类似于链接（links）。可以显示注释（作为 pixmap），并访问其属性。
+  * 除了文档的 *select()* 方法外，现在可以使用一些更简单的方法来操作 PDF：
+
+    - *copyPage()* 复制文档中的某个页面。
+    - *movePage()* 功能类似，但会删除原始页面。
+    - *delete_page()* 删除指定页面。
+    - *delete_pages()* 删除一个页面范围。
+
+  * *rotation* 或 *setRotation()* 分别用于访问或更改 PDF 页面旋转角度。
+  * 之前已存在但未记录的功能：:ref:`IRect`、:ref:`Rect`、:ref:`Point` 和 :ref:`Matrix` 现在支持 *len()* 方法，并且其坐标属性可通过索引访问，例如 *IRect.x1 == IRect[2]*。
+  * 为方便起见，现在文档支持简单的索引访问：*doc.loadPage(n) == doc[n]*。索引范围可以是 *-pageCount < n < pageCount*，例如 *doc[-1]* 代表文档的最后一页。
+
+------
+
+**Changes in Version 1.9.2**
+
+* **此版本同样基于 MuPDF v1.9a。与 1.9.1 版本相比，主要变更如下**：
+
+  * *fitz.open()*（无参数）现在会创建一个新的空 **PDF** 文档，即如果随后保存，则必须指定 *.pdf* 扩展名。
+  * :ref:`Document` 现在接受以下所有格式（*Document* 和 *open* 是同义词）：
+
+    - *open()*，
+    - *open(filename)*（等效于 *open(filename, None)*），
+    - *open(filetype, area)*（等效于 *open(filetype, stream=area)*）。
+
+    其中，*stream* 的类型可以是 *bytes* 或 *bytearray*。因此，例如可以直接使用 `area = open("file.pdf", "rb").read()`（无需先转换为 bytearray）。
+  * 新方法 *Document.insert_pdf()*（仅适用于 PDF）可以从另一个 PDF 中插入一系列页面。
+  * 现在 *Document* 对象支持 *len()* 函数：``len(doc) == doc.pageCount``。
+  * 新方法 *Document.getPageImageList()* 创建一个页面所使用的图像列表。
+  * 新方法 *Document.getPageFontList()* 创建一个页面所引用的字体列表。
+  * 新的 Pixmap 构造函数 *fitz.Pixmap(doc, xref)* 允许基于已打开的 PDF 文档和图像的 :data:`xref` 号创建 Pixmap。
+  * 新的 Pixmap 构造函数 *fitz.Pixmap(cspace, spix)* 允许基于已有 Pixmap *spix*，将其颜色空间转换为 *cspace*，支持所有颜色空间转换组合。
+  * Pixmap 构造函数 *fitz.Pixmap(colorspace, width, height, samples)* 现在允许 *samples* 既可以是 *bytes*，也可以是 *bytearray*。
+
+
+------
+
+**Changes in Version 1.9.1**
+
+* **此版本的 PyMuPDF 基于 MuPDF 库源代码版本 1.9a，该版本发布于 2016 年 4 月 21 日**。
+
+  请访问 MuPDF 的官方网站查看其中包含的更改和增强功能。
+
+* **版本 1.9.1 相较于版本 1.8.0 的变化**:
+
+  * 新方法 *get_area()* 适用于 *fitz.Rect* 和 *fitz.IRect*。
+  * 现在可以直接从文件创建 Pixmap，使用新的构造函数 *fitz.Pixmap(filename)*。
+  * Pixmap 构造函数 *fitz.Pixmap(image)* 已相应扩展。
+  * 现在可以使用所有可能的点和坐标组合来创建 *fitz.Rect*。
+  * PyMuPDF 的所有类和方法现在都包含 __doc__ 字符串，大多数由 SWIG 自动创建。虽然 PyMuPDF 的文档更加详细，但此功能应该有助于在支持 Python 的 IDE 中进行编程。
+  * 新的文档方法 *getPermits()* 返回与当前访问文档相关的权限（打印、编辑、注释、复制），作为 Python 字典。
+  * 身份矩阵 *fitz.Identity* 现在是 **不可变** 的。
+  * 新的文档方法 *select(list)* 会从文档中删除不在列表中的所有页面。页面也可以被复制和重新排列。
+  * 演示和示例集合中的各种改进和新成员。最显著的是：*PDF_display* 现在支持使用鼠标滚轮滚动，此外还有一个新的示例程序 *wxTableExtract*，可以图形化识别和提取文档中的表格数据。
+  * *fitz.open()* 现在是 *fitz.Document()* 的别名。
+  * 新的 Pixmap 方法 *tobytes()* 将返回一个以 PNG 图像格式表示的 pixmap 的 bytearray。
+  * 新的 Pixmap 方法 *samplesRGB()* 提供一个 *samples* 版本，去除了 alpha 字节（仅限 RGB 颜色空间）。
+  * 新的 Pixmap 方法 *samplesAlpha()* 提供 *samples* 区域的 alpha 字节。
+  * 新的迭代器 *fitz.Pages(doc)* 用于遍历文档的页面集合。
+  * 新的矩阵方法 *invert()*（计算反转矩阵）、*concat()*（计算矩阵乘积）、*pretranslate()*（执行平移操作）。
+  * 新的 *IRect* 方法 *intersect()*（与另一个矩形的交集）、*translate()*（执行平移操作）。
+  * 新的 *Rect* 方法 *intersect()*（与另一个矩形的交集）、*transform()*（使用矩阵进行转换）、*include_point()*（扩大矩形以包含一个点）、*include_rect()*（扩大矩形以包含另一个矩形）。
+  * 文档了 *Point.transform()*（使用矩阵转换点）。
+  * *Matrix*、*IRect*、*Rect* 和 *Point* 类现在支持紧凑的代数表达式来操作这些对象。
+  * 现在可以使用调用模式 *doc.save(doc.name, incremental=True)* 实现增量保存更改。
+  * 现在可以使用文档方法 *set_metadata()* 删除、设置或更改 PDF 的元数据。支持增量保存。
+  * 现在可以使用文档方法 *set_toc(list)* 删除、设置或更改 PDF 的书签（或目录）。支持增量保存。
+
+.. codespell:ignore-end

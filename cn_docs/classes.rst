@@ -1,8 +1,10 @@
 .. include:: header.rst
 
 ============
-Classes
+类
 ============
+
+Classes
 
 .. toctree::
    :maxdepth: 2
