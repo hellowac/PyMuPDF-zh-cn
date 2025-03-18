@@ -3069,6 +3069,7 @@ Document
       :rtype: str
 
     .. method:: layout(rect=None, width=0, height=0, fontsize=11)
+      :no-index:
 
       Re-paginate ("reflow") the document based on the given page dimension and fontsize. This only affects some document types like e-books and HTML. Ignored if not supported. Supported documents have *True* in property :attr:`is_reflowable`.
 
