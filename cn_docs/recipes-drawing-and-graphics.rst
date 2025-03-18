@@ -24,7 +24,7 @@ Drawing and Graphics
 
     形状（Shape）始终作为 **页面的子对象** 创建，通常使用 `shape = page.new_shape()` 进行初始化。该类定义了多个方法，可在页面区域上执行绘图操作。例如，`last_point = shape.draw_rect(rect)` 可沿 `rect = pymupdf.Rect(...)` 定义的边界绘制一个矩形。
 
-    返回的 *last_point* **始终** 是绘图操作结束时的 :ref:`Point`（即 "最后一个点"）。每个基本绘图操作都需要后续调用 :meth:`Shape.finish` 以 "结束" 该操作，但多个绘图可以共享一个 ``finish()`` 方法。
+    返回的 *last_point* **始终** 是绘图操作结束时的 :ref:`Point` （即 "最后一个点"）。每个基本绘图操作都需要后续调用 :meth:`Shape.finish` 以 "结束" 该操作，但多个绘图可以共享一个 `finish()` 方法。
 
     实际上，:meth:`Shape.finish` *定义* 了一组先前的绘图操作，使其形成一个（可能相当复杂的）图形对象。|PyMuPDF| 提供了多个预定义图形，存放于 `shapes_and_symbols.py <https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/shapes/shapes_and_symbols.py>`_ 文件中，该文件展示了这些功能的使用方式。
 
@@ -87,7 +87,7 @@ Drawing and Graphics
     该脚本的运行结果如下所示：
 
     .. image:: images/img-symbols.*
-    :scale: 50
+        :scale: 50
 
 
 .. tab:: 英文
