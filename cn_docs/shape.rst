@@ -5,6 +5,13 @@
 Shape
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 |pdf_only_class|
 
 This class allows creating interconnected graphical elements on a PDF page. Its methods have the same meaning and name as the corresponding :ref:`Page` methods.

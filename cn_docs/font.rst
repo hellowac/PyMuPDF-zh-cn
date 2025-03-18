@@ -6,6 +6,13 @@
 Font
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 * New in v1.16.18
 
 This class represents a font as defined in MuPDF (*fz_font_s* structure). It is required for the new class :ref:`TextWriter` and the new :meth:`Page.write_text`. Currently, it has no connection to how fonts are used in methods :meth:`Page.insert_text` or :meth:`Page.insert_textbox`, respectively.

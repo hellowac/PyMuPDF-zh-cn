@@ -6,6 +6,13 @@
 Point
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 *Point* represents a point in the plane, defined by its x and y coordinates.
 
 ============================ ============================================

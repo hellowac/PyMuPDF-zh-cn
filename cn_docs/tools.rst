@@ -5,6 +5,13 @@
 Tools
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 This class is a collection of utility methods and attributes, mainly around memory management. To simplify and speed up its use, it is automatically instantiated under the name *TOOLS* when PyMuPDF is imported.
 
 ====================================== =================================================

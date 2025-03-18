@@ -6,6 +6,13 @@
 Story
 ================
 
+.. tab:: 中文
+
+
+
+.. tab:: 英文
+
+
 .. role:: htmlTag(emphasis)
 
 * New in v1.21.0

@@ -54,7 +54,7 @@ How To Dynamically Clean Up Corrupt :title:`PDFs`
         print pdf.Info
         # 进行后续处理
 
-    使用命令行工具 *pdftk*（`仅适用于 Windows <https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/>`_，但据报道可在 `Wine <https://www.winehq.org/>`_ 下运行），也可以实现类似效果，详情见 `这里 <http://www.overthere.co.uk/2013/07/22/improving-pypdf2-with-pdftk/>`_。但在该方法中，需要通过 *subprocess.Popen* 作为独立进程调用，并使用 stdin 和 stdout 进行通信。
+    使用命令行工具 *pdftk* （ `仅适用于 Windows <https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/>`_ ，但据报道可在 `Wine <https://www.winehq.org/>`_ 下运行），也可以实现类似效果，详情见 `这里 <http://www.overthere.co.uk/2013/07/22/improving-pypdf2-with-pdftk/>`_ 。但在该方法中，需要通过 *subprocess.Popen* 作为独立进程调用，并使用 stdin 和 stdout 进行通信。
 
 
 .. tab:: 英文
@@ -336,7 +336,7 @@ Solutions
     在大多数情况下，您可能无能为力，但可以尝试以下方法：
 
     1. **始终使用相同的软件** 来创建和修改注释。
-    2. 在使用 PyMuPDF 修改“外部”软件创建的注释时，尽量**避免**调用 :meth:`Annot.update`。以下方法 **无需调用它** ，因此可以尽可能保持原始外观：
+    2. 在使用 PyMuPDF 修改“外部”软件创建的注释时，尽量 **避免** 调用 :meth:`Annot.update`。以下方法 **无需调用它** ，因此可以尽可能保持原始外观：
 
     * :meth:`Annot.set_rect` （更改位置）
     * :meth:`Annot.set_flags` （更改注释行为）

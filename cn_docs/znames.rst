@@ -3,8 +3,10 @@
 .. _Deprecated:
 
 ================
-Deprecated Names
+已废弃名称
 ================
+
+Deprecated Names
 
 .. tab:: 中文
 

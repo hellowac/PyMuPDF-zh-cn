@@ -295,7 +295,7 @@ Annot
 
       .. method:: set_rect(rect)
 
-         更改注释的矩形区域。可以移动注释，并且矩形的两侧可以独立缩放。但注释的外观不会被旋转、翻转或倾斜。此方法仅影响某些注释类型 [#f2]_，对于其他类型会在 Python 的 `sys.stderr` 产生消息，但不会引发异常，而是返回 `False`。
+         更改注释的矩形区域。可以移动注释，并且矩形的两侧可以独立缩放。但注释的外观不会被旋转、翻转或倾斜。此方法仅影响某些注释类型 [#f4]_，对于其他类型会在 Python 的 `sys.stderr` 产生消息，但不会引发异常，而是返回 `False`。
 
          :arg rect_like rect: 注释的新矩形区域（必须是有限且非空的）。例如，使用 *annot.rect + (5, 5, 5, 5)* 将注释位置向右和向下移动 5 个像素。
 
@@ -385,7 +385,7 @@ Annot
                * 'Line'、'Polyline'、'Polygon' 注释：用于为适用的线端符号指定不同于注释的填充颜色 *(v1.16.16 变更)*。
 
          :arg bool cross_out: *(v1.17.2 新增)* 在注释矩形上添加两条对角线，仅适用于 'Redact' 注释。如果不需要，应显式指定 *False*，即使该注释创建时默认值为 *False*。
-         :arg int rotate: 设置新的旋转角度。默认值 (-1) 表示不更改。支持 'FreeText' 和其他几种注释类型（参见 :meth:`Annot.set_rotation`）[#f1]_。对于 'FreeText'，仅可选 0、90、180 或 270 度，否则任何整数都是可接受的。
+         :arg int rotate: 设置新的旋转角度。默认值 (-1) 表示不更改。支持 'FreeText' 和其他几种注释类型（参见 :meth:`Annot.set_rotation`） [#f3]_。对于 'FreeText'，仅可选 0、90、180 或 270 度，否则任何整数都是可接受的。
 
          :rtype: bool
 
@@ -1166,5 +1166,9 @@ Example
 .. [#f1] Rotating an annotation also changes its rectangle. Depending on how the annotation was defined, the original rectangle is **cannot be reconstructed** by setting the rotation value to zero again and will be lost.
 
 .. [#f2] Only the following annotation types support method :meth:`Annot.set_rect`: Text, FreeText, Square, Circle, Redact, Stamp, Caret, FileAttachment, Sound, and Movie.
+
+.. [#f3] 旋转注释会同时改变其矩形区域。根据注释的定义方式，原始矩形 **无法通过将旋转值重置为零来恢复** ，并且会永久丢失。
+
+.. [#f4] 仅以下类型的注释支持方法 :meth:`Annot.set_rect`：Text、FreeText、Square、Circle、Redact、Stamp、Caret、FileAttachment、Sound 和 Movie。
 
 .. include:: footer.rst
