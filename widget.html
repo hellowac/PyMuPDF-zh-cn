@@ -1,0 +1,937 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Xml" href="xml-class.html" /><link rel="prev" title="Tools" href="tools.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Widget - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="widget">
+<span id="id1"></span><h1>Widget<a class="headerlink" href="#widget" title="此标题的永久链接">#</a></h1>
+<p><div style="width:100%; text-align:right"><b>This class is for PDF only.</b></div></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>此类表示一个 PDF 表单字段，也称为“小部件”（widget）。在本文档中，这两个术语可互换使用。从技术上讲，表单字段是 PDF 注释的一种特殊情况，它允许具有有限权限的用户在 PDF 中输入信息，主要用于填写表单。</p>
+<p>与注释类似，小部件存在于 PDF 页面上。与注释类似，页面上的第一个小部件可通过 <a class="reference internal" href="page.html#Page.first_widget" title="Page.first_widget"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_widget</span></code></a> 访问，而后续小部件可通过 <a class="reference internal" href="#Widget.next" title="Widget.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Widget.next</span></code></a> 属性访问。</p>
+<p><em>(版本 1.16.0 变更)</em> MuPDF 不再将小部件视为通用注释的子集。因此，<a class="reference internal" href="page.html#Page.first_annot" title="Page.first_annot"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_annot</span></code></a> 和 <a class="reference internal" href="annot.html#Annot.next" title="Annot.next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.next()</span></code></a> 只会返回 <strong>非小部件注释</strong> ，如果页面上仅存在表单字段，则返回 <em>None</em>。反之，<a class="reference internal" href="page.html#Page.first_widget" title="Page.first_widget"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_widget</span></code></a> 和 <a class="reference internal" href="#Widget.next" title="Widget.next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Widget.next()</span></code></a> 仅返回小部件。这一设计决定仅影响 MuPDF 内部实现；从技术上讲，链接、注释和表单字段有许多共同点，在（Py-）MuPDF 中仍然共享大部分代码。</p>
+<p><strong>类 API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Widget">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Widget</span></span><a class="headerlink" href="#Widget" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Widget.button_states">
+<span class="sig-name descname"><span class="pre">button_states</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Widget.button_states" title="永久链接至目标">#</a></dt>
+<dd><p><em>版本 1.18.15 新增</em></p>
+<p>返回按钮字段的开启 / 关闭（即选中 / 未选中）状态名称。“关闭”状态通常被命名为“Off”，“开启”状态则通常根据功能上下文命名，例如“Yes”、“Female”等。</p>
+<p>此方法可用于确定 <a class="reference internal" href="#Widget.field_value" title="Widget.field_value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">field_value</span></code></a> 在这些情况下可能的值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>一个字典，包含按钮小部件的 <em>正常</em> 和 <em>按下</em> 外观状态对应的“On”和“Off”名称。例如，以下示例显示“选中”值为“Male”：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">button_states</span><span class="p">())</span>
+<span class="go">Gender Second person {&#39;down&#39;: [&#39;Male&#39;, &#39;Off&#39;], &#39;normal&#39;: [&#39;Male&#39;, &#39;Off&#39;]}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Widget.on_state">
+<span class="sig-name descname"><span class="pre">on_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Widget.on_state" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.22.2 新增*</p></li>
+</ul>
+<p>返回复选框和单选按钮的“ON”状态值。对于复选框，此值始终为“Yes”。对于单选按钮，此值用于选中 / 激活按钮。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>使按钮处于“选中”状态的值。对于非复选框、非单选按钮字段，始终返回 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。对于复选框，返回 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>。对于单选按钮，以下示例返回值为“Male”：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">field_name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">button_states</span><span class="p">())</span>
+<span class="go">Gender Second person {&#39;down&#39;: [&#39;Male&#39;, &#39;Off&#39;], &#39;normal&#39;: [&#39;Male&#39;, &#39;Off&#39;]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">on_state</span><span class="p">())</span>
+<span class="go">Male</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+<p>因此，对于复选框和单选按钮，推荐使用以下方法来设置其“选中”状态或检查其状态：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">field</span><span class="o">.</span><span class="n">field_value</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">field</span><span class="o">.</span><span class="n">field_value</span> <span class="o">==</span> <span class="n">field</span><span class="o">.</span><span class="n">on_state</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Widget.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Widget.update" title="永久链接至目标">#</a></dt>
+<dd><p>对小部件进行任何更改后，<strong>必须使用</strong> 此方法将更改存储到 PDF <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Widget.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Widget.reset" title="永久链接至目标">#</a></dt>
+<dd><p>将字段值重置为默认值（如果已定义），或将其删除。不要忘记在之后调用 <a class="reference internal" href="#Widget.update" title="Widget.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.next">
+<span class="sig-name descname"><span class="pre">next</span></span><a class="headerlink" href="#Widget.next" title="永久链接至目标">#</a></dt>
+<dd><p>指向页面上的下一个表单字段。最后一个小部件返回 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.border_color">
+<span class="sig-name descname"><span class="pre">border_color</span></span><a class="headerlink" href="#Widget.border_color" title="永久链接至目标">#</a></dt>
+<dd><p>由最多 4 个浮点数组成的列表，定义字段边框颜色。默认值为 <em>None</em>，此时边框样式和边框宽度将被忽略。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.border_style">
+<span class="sig-name descname"><span class="pre">border_style</span></span><a class="headerlink" href="#Widget.border_style" title="永久链接至目标">#</a></dt>
+<dd><p>定义字段边框线样式的字符串。参考 <a class="reference internal" href="annot.html#Annot.border" title="Annot.border"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.border</span></code></a>。默认值为 “s”（”Solid”），即连续线。在创建小部件时，仅考虑首字母（大小写均可）。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.border_width">
+<span class="sig-name descname"><span class="pre">border_width</span></span><a class="headerlink" href="#Widget.border_width" title="永久链接至目标">#</a></dt>
+<dd><p>定义边框线宽度的浮点数。默认值为 1。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.border_dashes">
+<span class="sig-name descname"><span class="pre">border_dashes</span></span><a class="headerlink" href="#Widget.border_dashes" title="永久链接至目标">#</a></dt>
+<dd><p>由整数组成的列表/元组，定义边框线的虚线属性。仅当 <em>border_style == “D”</em> 且 <a class="reference internal" href="#Widget.border_color" title="Widget.border_color"><code class="xref py py-attr docutils literal notranslate"><span class="pre">border_color</span></code></a> 存在时才有意义。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.choice_values">
+<span class="sig-name descname"><span class="pre">choice_values</span></span><a class="headerlink" href="#Widget.choice_values" title="永久链接至目标">#</a></dt>
+<dd><p>由字符串组成的 Python 序列，定义列表框和组合框的有效选项。对于这些小部件类型，此属性是必需的，且必须包含至少两个元素。对其他类型忽略。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_name">
+<span class="sig-name descname"><span class="pre">field_name</span></span><a class="headerlink" href="#Widget.field_name" title="永久链接至目标">#</a></dt>
+<dd><p>定义字段名称的必填字符串。不进行重复性检查。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_label">
+<span class="sig-name descname"><span class="pre">field_label</span></span><a class="headerlink" href="#Widget.field_label" title="永久链接至目标">#</a></dt>
+<dd><p>可选字符串，包含字段的“备用”名称。通常用于注释、字段使用帮助等。默认值为字段名称。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_value">
+<span class="sig-name descname"><span class="pre">field_value</span></span><a class="headerlink" href="#Widget.field_value" title="永久链接至目标">#</a></dt>
+<dd><p>字段的值。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_flags">
+<span class="sig-name descname"><span class="pre">field_flags</span></span><a class="headerlink" href="#Widget.field_flags" title="永久链接至目标">#</a></dt>
+<dd><p>整数值，定义字段的大量属性。更改此属性时需谨慎，因为它可能会更改字段类型。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_type">
+<span class="sig-name descname"><span class="pre">field_type</span></span><a class="headerlink" href="#Widget.field_type" title="永久链接至目标">#</a></dt>
+<dd><p>定义字段类型的必填整数。取值范围为 0 到 6。在更新小部件时无法更改。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.field_type_string">
+<span class="sig-name descname"><span class="pre">field_type_string</span></span><a class="headerlink" href="#Widget.field_type_string" title="永久链接至目标">#</a></dt>
+<dd><p>由字段类型派生出的描述性字符串。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.fill_color">
+<span class="sig-name descname"><span class="pre">fill_color</span></span><a class="headerlink" href="#Widget.fill_color" title="永久链接至目标">#</a></dt>
+<dd><p>由最多 4 个浮点数组成的列表，定义字段的背景颜色。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.button_caption">
+<span class="sig-name descname"><span class="pre">button_caption</span></span><a class="headerlink" href="#Widget.button_caption" title="永久链接至目标">#</a></dt>
+<dd><p>按钮类型字段的标题字符串。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.is_signed">
+<span class="sig-name descname"><span class="pre">is_signed</span></span><a class="headerlink" href="#Widget.is_signed" title="永久链接至目标">#</a></dt>
+<dd><p>布尔值，指示签名字段的签署状态，否则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#Widget.rect" title="永久链接至目标">#</a></dt>
+<dd><p>包含字段的矩形区域。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.text_color">
+<span class="sig-name descname"><span class="pre">text_color</span></span><a class="headerlink" href="#Widget.text_color" title="永久链接至目标">#</a></dt>
+<dd><p>由 <strong>1、3 或 4 个浮点数</strong> 组成的列表，定义文本颜色。默认值为黑色 (<code class="xref any docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></code>)。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.text_font">
+<span class="sig-name descname"><span class="pre">text_font</span></span><a class="headerlink" href="#Widget.text_font" title="永久链接至目标">#</a></dt>
+<dd><p>定义使用字体的字符串。默认值及无效值的替代值为 <em>“Helv”</em>。有效字体参考名称请见下表。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.text_fontsize">
+<span class="sig-name descname"><span class="pre">text_fontsize</span></span><a class="headerlink" href="#Widget.text_fontsize" title="永久链接至目标">#</a></dt>
+<dd><p>定义文本 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 的浮点数。默认值为 0，这会导致 PDF 查看器软件根据注释矩形和文本量动态选择合适的字体大小。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.text_maxlen">
+<span class="sig-name descname"><span class="pre">text_maxlen</span></span><a class="headerlink" href="#Widget.text_maxlen" title="永久链接至目标">#</a></dt>
+<dd><p>定义最大文本字符数的整数。PDF 查看器不会（或不应）接受更长的文本。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.text_type">
+<span class="sig-name descname"><span class="pre">text_type</span></span><a class="headerlink" href="#Widget.text_type" title="永久链接至目标">#</a></dt>
+<dd><p>定义可接受文本类型的整数（如数字、日期、时间等）。当前仅作参考，创建或更新小部件时将被忽略。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.xref">
+<span class="sig-name descname"><span class="pre">xref</span></span><a class="headerlink" href="#Widget.xref" title="永久链接至目标">#</a></dt>
+<dd><p>小部件的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script">
+<span class="sig-name descname"><span class="pre">script</span></span><a class="headerlink" href="#Widget.script" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.12 新增</p></li>
+</ul>
+<p>关联到小部件的 JavaScript 代码（Unicode 文本），或 <em>None</em>。<strong>按钮类型</strong> 小部件仅支持此脚本操作。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_stroke">
+<span class="sig-name descname"><span class="pre">script_stroke</span></span><a class="headerlink" href="#Widget.script_stroke" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.12 新增</p></li>
+</ul>
+<p>在用户输入文本字段或组合框，或修改可滚动列表框的选项时执行的 JavaScript 代码（Unicode 文本）。可用于验证按键输入，并拒绝或修改输入内容。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_format">
+<span class="sig-name descname"><span class="pre">script_format</span></span><a class="headerlink" href="#Widget.script_format" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.12 新增</p></li>
+</ul>
+<p>在字段格式化以显示当前值之前执行的 JavaScript 代码（Unicode 文本）。此操作可在格式化前修改字段值。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_change">
+<span class="sig-name descname"><span class="pre">script_change</span></span><a class="headerlink" href="#Widget.script_change" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.12 新增</p></li>
+</ul>
+<p>在字段值更改时执行的 JavaScript 代码（Unicode 文本）。此操作可用于验证新值。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_calc">
+<span class="sig-name descname"><span class="pre">script_calc</span></span><a class="headerlink" href="#Widget.script_calc" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.12 新增</p></li>
+</ul>
+<p>在其他字段值更改时重新计算此字段值的 JavaScript 代码（Unicode 文本）。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_blur">
+<span class="sig-name descname"><span class="pre">script_blur</span></span><a class="headerlink" href="#Widget.script_blur" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.22.6 新增</p></li>
+</ul>
+<p>失去焦点时执行的 JavaScript 代码（Unicode 文本）。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Widget.script_focus">
+<span class="sig-name descname"><span class="pre">script_focus</span></span><a class="headerlink" href="#Widget.script_focus" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.22.6 新增</p></li>
+</ul>
+<p>获取焦点时执行的 JavaScript 代码（Unicode 文本）。若不存在，则为 <em>None</em>。</p>
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ol class="arabic">
+<li><p><strong>添加</strong> 或 <strong>更改</strong> 上述脚本时，只需将相应的 JavaScript 源代码赋值给小部件（widget）属性。若要 <strong>删除</strong> 脚本，只需将相应属性设置为 <em>None</em>。</p></li>
+<li><p>按钮（Button）字段仅支持 <a class="reference internal" href="#Widget.script" title="Widget.script"><code class="xref py py-attr docutils literal notranslate"><span class="pre">script</span></code></a> 属性。其他脚本属性会自动设置为 <em>None</em>。</p></li>
+<li><p>建议查阅 <a class="reference external" href="https://experienceleague.adobe.com/docs/experience-manager-learn/assets/FormsAPIReference.pdf?lang=en">这份手册</a> ，其中包含大量关于 Adobe 标准脚本的信息，适用于各种字段类型。例如，如果要添加一个表示日期的文本字段，可以使用以下脚本：</p>
+<p>这些脚本可确保日期格式符合模式要求，并在支持的查看器中显示日期选择器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span><span class="o">.</span><span class="n">script_format</span> <span class="o">=</span> <span class="s1">&#39;AFDate_FormatEx(&quot;mm/dd/yyyy&quot;);&#39;</span>
+<span class="n">widget</span><span class="o">.</span><span class="n">script_stroke</span> <span class="o">=</span> <span class="s1">&#39;AFDate_KeystrokeEx(&quot;mm/dd/yyyy&quot;);&#39;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This class represents a PDF Form field, also called a “widget”. Throughout this documentation, we are using these terms synonymously. Fields technically are a special case of PDF annotations, which allow users with limited permissions to enter information in a PDF. This is primarily used for filling out forms.</p>
+<p>Like annotations, widgets live on PDF pages. Similar to annotations, the first widget on a page is accessible via <a class="reference internal" href="page.html#Page.first_widget" title="Page.first_widget"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_widget</span></code></a> and subsequent widgets can be accessed via the <a class="reference internal" href="#Widget.next" title="Widget.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Widget.next</span></code></a> property.</p>
+<p><em>(Changed in version 1.16.0)</em> MuPDF no longer treats widgets as a subset of general annotations. Consequently, <a class="reference internal" href="page.html#Page.first_annot" title="Page.first_annot"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_annot</span></code></a> and <a class="reference internal" href="annot.html#Annot.next" title="Annot.next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.next()</span></code></a> will deliver <strong>non-widget annotations exclusively</strong>, and be <em>None</em> if only form fields exist on a page. Vice versa, <a class="reference internal" href="page.html#Page.first_widget" title="Page.first_widget"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.first_widget</span></code></a> and <a class="reference internal" href="#Widget.next" title="Widget.next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Widget.next()</span></code></a> will only show widgets. This design decision is purely internal to MuPDF; technically, links, annotations and fields have a lot in common and also continue to share the better part of their code within (Py-) MuPDF.</p>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="id4">
+<h2>小部件的标准字体<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Standard Fonts for Widgets</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>小部件使用它们自己的资源对象 <em>/DR</em> 。一个小部件资源对象至少必须包含一个 <em>/Font</em> 对象。小部件字体独立于页面字体。当前支持14种PDF基本字体，可使用下表中的固定参考名称，或已存在的表单字体名称。当为新的或已更改的小部件指定文本字体时， <strong>可以选择</strong> 第一列表列中的名称（支持大小写）， <strong>或者</strong> 已存在的表单字体。在后者情况下，拼写必须完全匹配。</p>
+<p>要查看已存在的表单字体，请检查列表 <a class="reference internal" href="document.html#Document.FormFonts" title="Document.FormFonts"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.FormFonts</span></code></a>。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>参考名称</strong></p></th>
+<th class="head"><p><strong>Base14字体名称</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CoBI</p></td>
+<td><p>Courier-BoldOblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>CoBo</p></td>
+<td><p>Courier-Bold</p></td>
+</tr>
+<tr class="row-even"><td><p>CoIt</p></td>
+<td><p>Courier-Oblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cour</p></td>
+<td><p>Courier</p></td>
+</tr>
+<tr class="row-even"><td><p>HeBI</p></td>
+<td><p>Helvetica-BoldOblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>HeBo</p></td>
+<td><p>Helvetica-Bold</p></td>
+</tr>
+<tr class="row-even"><td><p>HeIt</p></td>
+<td><p>Helvetica-Oblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>Helv</p></td>
+<td><p>Helvetica <strong>(默认)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Symb</p></td>
+<td><p>Symbol</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiBI</p></td>
+<td><p>Times-BoldItalic</p></td>
+</tr>
+<tr class="row-even"><td><p>TiBo</p></td>
+<td><p>Times-Bold</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiIt</p></td>
+<td><p>Times-Italic</p></td>
+</tr>
+<tr class="row-even"><td><p>TiRo</p></td>
+<td><p>Times-Roman</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZaDb</p></td>
+<td><p>ZapfDingbats</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>通常情况下，可以为每个小部件使用任何字体。但是，我们建议对复选框使用 <em>ZaDb</em> （”ZapfDingbats”）和 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 设为0：大多数PDF查看器在单击复选框时会在字段矩形内正确显示一个合适大小的勾号。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>Widgets use their own resources object <em>/DR</em>. A widget resources object must at least contain a <em>/Font</em> object. Widget fonts are independent from page fonts. We currently support the 14 PDF base fonts using the following fixed reference names, or any name of an already existing field font. When specifying a text font for new or changed widgets, <strong>either</strong> choose one in the first table column (upper and lower case supported), <strong>or</strong> one of the already existing form fonts. In the latter case, spelling must exactly match.</p>
+<p>To find out already existing field fonts, inspect the list <a class="reference internal" href="document.html#Document.FormFonts" title="Document.FormFonts"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.FormFonts</span></code></a>.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Reference</strong></p></th>
+<th class="head"><p><strong>Base14 Fontname</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CoBI</p></td>
+<td><p>Courier-BoldOblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>CoBo</p></td>
+<td><p>Courier-Bold</p></td>
+</tr>
+<tr class="row-even"><td><p>CoIt</p></td>
+<td><p>Courier-Oblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cour</p></td>
+<td><p>Courier</p></td>
+</tr>
+<tr class="row-even"><td><p>HeBI</p></td>
+<td><p>Helvetica-BoldOblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>HeBo</p></td>
+<td><p>Helvetica-Bold</p></td>
+</tr>
+<tr class="row-even"><td><p>HeIt</p></td>
+<td><p>Helvetica-Oblique</p></td>
+</tr>
+<tr class="row-odd"><td><p>Helv</p></td>
+<td><p>Helvetica <strong>(default)</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Symb</p></td>
+<td><p>Symbol</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiBI</p></td>
+<td><p>Times-BoldItalic</p></td>
+</tr>
+<tr class="row-even"><td><p>TiBo</p></td>
+<td><p>Times-Bold</p></td>
+</tr>
+<tr class="row-odd"><td><p>TiIt</p></td>
+<td><p>Times-Italic</p></td>
+</tr>
+<tr class="row-even"><td><p>TiRo</p></td>
+<td><p>Times-Roman</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZaDb</p></td>
+<td><p>ZapfDingbats</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>You are generally free to use any font for every widget. However, we recommend using <em>ZaDb</em> (“ZapfDingbats”) and <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 0 for check boxes: typical viewers will put a correctly sized tickmark in the field’s rectangle, when it is clicked.</p>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>支持的小部件类型<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Supported Widget Types</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>PyMuPDF 支持创建和更新许多类型的小部件，但并非所有类型都受支持。</p>
+<ul>
+<li><p>文本 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_TEXT</span></code>)</p></li>
+<li><p>按钮 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_BUTTON</span></code>)</p></li>
+<li><p>复选框 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_CHECKBOX</span></code>)</p></li>
+<li><p>组合框 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_COMBOBOX</span></code>)</p></li>
+<li><p>列表框 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_LISTBOX</span></code>)</p></li>
+<li><p>单选按钮 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_RADIOBUTTON</span></code>):</p>
+<p>目前，PyMuPDF 不支持 <strong>创建</strong> （互相关联的）单选按钮组，即选中一个按钮时，自动取消选中同组中的其他按钮。此外，小部件对象也不会反映按钮组的存在。然而， <strong>一致地选中或取消选中单选按钮是支持的</strong> ，包括正确设置所属按钮组中维护的值。选中单选按钮可通过将 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">field.on_state()</span></code> 赋值给字段值来完成。 <strong>取消选中</strong> 可通过赋值 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code> 来完成。</p>
+</li>
+<li><p>签名 (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_SIGNATURE</span></code>) <strong>只读</strong>。</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>PyMuPDF supports the creation and update of many, but not all widget types.</p>
+<ul class="simple">
+<li><p>text (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_TEXT</span></code>)</p></li>
+<li><p>push button (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_BUTTON</span></code>)</p></li>
+<li><p>check box (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_CHECKBOX</span></code>)</p></li>
+<li><p>combo box (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_COMBOBOX</span></code>)</p></li>
+<li><p>list box (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_LISTBOX</span></code>)</p></li>
+<li><p>radio button (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_RADIOBUTTON</span></code>): PyMuPDF does not currently support the <strong>creation</strong> of groups of (interconnected) radio buttons, where setting one automatically unsets the other buttons in the group. The widget object also does not reflect the presence of a button group. However: consistently selecting (or unselecting) a radio button is supported. This includes correctly setting the value maintained in the owning button group. Selecting a radio button may be done by either assigning <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">field.on_state()</span></code> to the field value. <strong>De-selecting</strong> the button should be done assigning <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p>signature (<code class="xref any docutils literal notranslate"><span class="pre">PDF_WIDGET_TYPE_SIGNATURE</span></code>) <strong>read only</strong>.</p></li>
+</ul>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>If you intend to re-access a new or updated field (e.g. for making a pixmap), make sure to reload the page first. Either close and re-open the document, or load another page first, or simply do <code class="xref any docutils literal notranslate"><span class="pre">page</span> <span class="pre">=</span> <span class="pre">doc.reload_page(page)</span></code>.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>如果您计划重新访问新建或更新的字段（例如生成位图），请确保先重新加载页面。可以关闭并重新打开文档，或者先加载另一个页面，或者简单地执行 <code class="xref any docutils literal notranslate"><span class="pre">page</span> <span class="pre">=</span> <span class="pre">doc.reload_page(page)</span></code>。</p>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="xml-class.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Xml</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="tools.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Tools</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Widget</a><ul>
+<li><a class="reference internal" href="#Widget"><code class="docutils literal notranslate"><span class="pre">Widget</span></code></a><ul>
+<li><a class="reference internal" href="#Widget.button_states"><code class="docutils literal notranslate"><span class="pre">Widget.button_states()</span></code></a></li>
+<li><a class="reference internal" href="#Widget.on_state"><code class="docutils literal notranslate"><span class="pre">Widget.on_state()</span></code></a></li>
+<li><a class="reference internal" href="#Widget.update"><code class="docutils literal notranslate"><span class="pre">Widget.update()</span></code></a></li>
+<li><a class="reference internal" href="#Widget.reset"><code class="docutils literal notranslate"><span class="pre">Widget.reset()</span></code></a></li>
+<li><a class="reference internal" href="#Widget.next"><code class="docutils literal notranslate"><span class="pre">Widget.next</span></code></a></li>
+<li><a class="reference internal" href="#Widget.border_color"><code class="docutils literal notranslate"><span class="pre">Widget.border_color</span></code></a></li>
+<li><a class="reference internal" href="#Widget.border_style"><code class="docutils literal notranslate"><span class="pre">Widget.border_style</span></code></a></li>
+<li><a class="reference internal" href="#Widget.border_width"><code class="docutils literal notranslate"><span class="pre">Widget.border_width</span></code></a></li>
+<li><a class="reference internal" href="#Widget.border_dashes"><code class="docutils literal notranslate"><span class="pre">Widget.border_dashes</span></code></a></li>
+<li><a class="reference internal" href="#Widget.choice_values"><code class="docutils literal notranslate"><span class="pre">Widget.choice_values</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_name"><code class="docutils literal notranslate"><span class="pre">Widget.field_name</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_label"><code class="docutils literal notranslate"><span class="pre">Widget.field_label</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_value"><code class="docutils literal notranslate"><span class="pre">Widget.field_value</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_flags"><code class="docutils literal notranslate"><span class="pre">Widget.field_flags</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_type"><code class="docutils literal notranslate"><span class="pre">Widget.field_type</span></code></a></li>
+<li><a class="reference internal" href="#Widget.field_type_string"><code class="docutils literal notranslate"><span class="pre">Widget.field_type_string</span></code></a></li>
+<li><a class="reference internal" href="#Widget.fill_color"><code class="docutils literal notranslate"><span class="pre">Widget.fill_color</span></code></a></li>
+<li><a class="reference internal" href="#Widget.button_caption"><code class="docutils literal notranslate"><span class="pre">Widget.button_caption</span></code></a></li>
+<li><a class="reference internal" href="#Widget.is_signed"><code class="docutils literal notranslate"><span class="pre">Widget.is_signed</span></code></a></li>
+<li><a class="reference internal" href="#Widget.rect"><code class="docutils literal notranslate"><span class="pre">Widget.rect</span></code></a></li>
+<li><a class="reference internal" href="#Widget.text_color"><code class="docutils literal notranslate"><span class="pre">Widget.text_color</span></code></a></li>
+<li><a class="reference internal" href="#Widget.text_font"><code class="docutils literal notranslate"><span class="pre">Widget.text_font</span></code></a></li>
+<li><a class="reference internal" href="#Widget.text_fontsize"><code class="docutils literal notranslate"><span class="pre">Widget.text_fontsize</span></code></a></li>
+<li><a class="reference internal" href="#Widget.text_maxlen"><code class="docutils literal notranslate"><span class="pre">Widget.text_maxlen</span></code></a></li>
+<li><a class="reference internal" href="#Widget.text_type"><code class="docutils literal notranslate"><span class="pre">Widget.text_type</span></code></a></li>
+<li><a class="reference internal" href="#Widget.xref"><code class="docutils literal notranslate"><span class="pre">Widget.xref</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script"><code class="docutils literal notranslate"><span class="pre">Widget.script</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_stroke"><code class="docutils literal notranslate"><span class="pre">Widget.script_stroke</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_format"><code class="docutils literal notranslate"><span class="pre">Widget.script_format</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_change"><code class="docutils literal notranslate"><span class="pre">Widget.script_change</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_calc"><code class="docutils literal notranslate"><span class="pre">Widget.script_calc</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_blur"><code class="docutils literal notranslate"><span class="pre">Widget.script_blur</span></code></a></li>
+<li><a class="reference internal" href="#Widget.script_focus"><code class="docutils literal notranslate"><span class="pre">Widget.script_focus</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">小部件的标准字体</a></li>
+<li><a class="reference internal" href="#id5">支持的小部件类型</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

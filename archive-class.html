@@ -1,0 +1,728 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Colorspace" href="colorspace.html" /><link rel="prev" title="Annot" href="annot.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Archive - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="archive">
+<span id="id1"></span><h1>Archive<a class="headerlink" href="#archive" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p><em>新增于 v1.21.0</em></p>
+<p>此类表示对文件夹和容器文件（如 ZIP 和 TAR 归档文件）的泛化。归档文件允许将任意集合的文件夹、ZIP / TAR 文件以及单个二进制数据元素视为一个层次化的文件夹树进行访问。</p>
+<p>在 PyMuPDF 中，归档文件目前仅被 <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> 对象使用，以指定字体、图像和其他资源的查找位置。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>简要描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#id3" title="Archive.add"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.add()</span></code></a></p></td>
+<td><p>向归档添加新数据</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id4" title="Archive.has_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.has_entry()</span></code></a></p></td>
+<td><p>检查指定名称是否为归档成员</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#id5" title="Archive.read_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.read_entry()</span></code></a></p></td>
+<td><p>读取指定名称的数据</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id6" title="Archive.entry_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Archive.entry_list</span></code></a></p></td>
+<td><p>归档项的列表（list[dict]）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>New in v1.21.0</p></li>
+</ul>
+<p>This class represents a generalization of file folders and container files like ZIP and TAR archives. Archives allow accessing arbitrary collections of file folders, ZIP / TAR files and single binary data elements as if they all were part of one hierarchical tree of folders.</p>
+<p>In PyMuPDF, archives are currently only used by <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> objects to specify where to look for fonts, images and other resources.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method / Attribute</strong></p></th>
+<th class="head"><p><strong>Short Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#id3" title="Archive.add"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.add()</span></code></a></p></td>
+<td><p>add new data to the archive</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id4" title="Archive.has_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.has_entry()</span></code></a></p></td>
+<td><p>check if given name is a member</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#id5" title="Archive.read_entry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.read_entry()</span></code></a></p></td>
+<td><p>read the data given by the name</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id6" title="Archive.entry_list"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Archive.entry_list</span></code></a></p></td>
+<td><p>list[dict] of archive items</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Class API</strong></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<dl class="py class">
+<dt class="sig sig-object py" id="Archive">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Archive</span></span><a class="headerlink" href="#Archive" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Archive.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Archive.__init__" title="永久链接至目标">#</a></dt>
+<dd><p>创建一个新的归档文件。如果没有参数，则创建一个空的归档文件。</p>
+<p>如果提供了 <code class="xref any docutils literal notranslate"><span class="pre">content</span></code>，它可以是以下之一：</p>
+<ul class="simple">
+<li><p>另一个 Archive：将该归档作为新归档的子归档。</p></li>
+<li><dl class="simple">
+<dt>字符串：这必须是一个本地文件夹或文件的名称。也支持 <code class="xref any docutils literal notranslate"><span class="pre">pathlib.Path</span></code> 对象。</dt><dd><ul>
+<li><p><strong>文件夹</strong> 会被转换为子归档，以便可以通过文件夹内的文件名访问。</p></li>
+<li><p><strong>文件</strong> 会以 <code class="xref any docutils literal notranslate"><span class="pre">&quot;rb&quot;</span></code> 模式读取，文件内容（二进制数据，<code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code> 对象）会作为一个单一成员的子归档。在这种情况下，<code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 参数是 <strong>必需的</strong>，应指定该项的成员名称。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">zipfile.ZipFile</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">tarfile.TarFile</span></code> 对象：将其作为子归档添加。</p></li>
+<li><p>Python 二进制对象（如 <code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">bytearray</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">io.BytesIO</span></code>）：将其添加为单成员子归档。在这种情况下，<code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 参数是 <strong>必需的</strong>，并应指定该项的成员名称。</p></li>
+<li><p>元组 <code class="xref any docutils literal notranslate"><span class="pre">(data,</span> <span class="pre">name)</span></code>：将其作为一个单成员子归档，成员名称为 <a class="reference internal" href="colorspace.html#Colorspace.name" title="Colorspace.name"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>。<code class="xref any docutils literal notranslate"><span class="pre">data</span></code> 可以是 Python 二进制对象或本地文件名（在这种情况下将使用文件的二进制内容）。如果需要指定 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code>，则使用这种格式。</p></li>
+<li><p>Python 序列：这是一个便利的格式，可以指定上述任何组合。</p></li>
+</ul>
+<p>如果提供了 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code>，它必须是一个字符串。</p>
+<ul class="simple">
+<li><p>如果 <code class="xref any docutils literal notranslate"><span class="pre">content</span></code> 是二进制数据或文件名，则此参数是 <strong>必需的</strong>，必须是数据的成员名称。</p></li>
+<li><p>否则此参数是可选的。它可以用来模拟文件夹名称或挂载点，在该点下可以找到子归档的元素。例如，<code class="xref any docutils literal notranslate"><span class="pre">Archive((data,</span> <span class="pre">&quot;name&quot;),</span> <span class="pre">&quot;path&quot;)</span></code> 表示 <code class="xref any docutils literal notranslate"><span class="pre">data</span></code> 将通过元素名称 <code class="xref any docutils literal notranslate"><span class="pre">&quot;path/name&quot;</span></code> 找到。对其他子归档也是类似的：要检索 ZIP 子归档的成员，必须在成员名前加上 <code class="xref any docutils literal notranslate"><span class="pre">&quot;path/&quot;</span></code>。此参数的主要目的是区分重复的名称。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>如果归档中存在重复的条目名称，总是会返回最后一个具有该名称的条目。在创建归档或向归档追加更多数据时（请参见 <a class="reference internal" href="#id3" title="Archive.add"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.add()</span></code></a>），不会进行重复检查。使用 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 参数可以防止此问题发生。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Archive.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#Archive.add" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个子归档。参数含义与上述完全相同，当然，<code class="xref any docutils literal notranslate"><span class="pre">content</span></code> 参数在此不可省略。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Archive.has_entry">
+<span class="sig-name descname"><span class="pre">has_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Archive.has_entry" title="永久链接至目标">#</a></dt>
+<dd><p>检查在任何子归档中是否存在指定条目。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – 条目的完整名称，包括任何 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 前缀，该前缀表示条目所在的子归档。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref any docutils literal notranslate"><span class="pre">True</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Archive.read_entry">
+<span class="sig-name descname"><span class="pre">read_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Archive.read_entry" title="永久链接至目标">#</a></dt>
+<dd><p>检索指定条目的数据。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – 条目的完整名称，包括任何 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 前缀，该前缀表示条目所在的子归档。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>条目的二进制数据（<code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code>）。如果找不到条目，将引发异常。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Archive.entry_list">
+<span class="sig-name descname"><span class="pre">entry_list</span></span><a class="headerlink" href="#Archive.entry_list" title="永久链接至目标">#</a></dt>
+<dd><p>归档的子归档列表。每个列表项是一个字典，包含以下键：</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">entries</span></code> – 该子归档中的（顶级）条目名称列表。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">fmt</span></code> – 子归档的格式。可能是以下之一：”dir”（文件夹）、”zip”（ZIP 归档）、”tar”（TAR 归档）或 “tree”（单一二进制条目或文件内容）。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">path</span></code> – 添加此子归档时使用的 <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> 参数值。</p></li>
+</ul>
+<p><strong>示例：</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dir1</span> <span class="o">=</span> <span class="s2">&quot;fitz-32&quot;</span>  <span class="c1"># 文件夹名称</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dir2</span> <span class="o">=</span> <span class="s2">&quot;fitz-64&quot;</span>  <span class="c1"># 文件夹名称</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nur-ruhig.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;img&quot;</span><span class="p">)</span>  <span class="c1"># 图像文件</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">members</span> <span class="o">=</span> <span class="p">(</span><span class="n">dir1</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">dir2</span><span class="p">)</span>  <span class="c1"># 我们希望一次性添加这些</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Archive</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">members</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;mypath&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">arch</span><span class="o">.</span><span class="n">entry_list</span><span class="p">)</span>
+<span class="go">[{&#39;entries&#39;: [&#39;310&#39;, &#39;37&#39;, &#39;38&#39;, &#39;39&#39;], &#39;fmt&#39;: &#39;dir&#39;, &#39;path&#39;: &#39;mypath&#39;},</span>
+<span class="go">{&#39;entries&#39;: [&#39;img&#39;], &#39;fmt&#39;: &#39;tree&#39;, &#39;path&#39;: &#39;mypath&#39;},</span>
+<span class="go">{&#39;entries&#39;: [&#39;310&#39;, &#39;311&#39;, &#39;37&#39;, &#39;38&#39;, &#39;39&#39;, &#39;pypy&#39;],</span>
+<span class="go">&#39;fmt&#39;: &#39;dir&#39;,</span>
+<span class="go">&#39;path&#39;: &#39;mypath&#39;}]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Archive</span></span><a class="headerlink" href="#id0" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="永久链接至目标">#</a></dt>
+<dd><p>Creates a new archive. Without parameters, an empty archive is created.</p>
+<p>If provided, <code class="xref any docutils literal notranslate"><span class="pre">content</span></code> may be one of the following:</p>
+<ul>
+<li><p>another Archive: the archive is being made a sub-archive of the new one.</p></li>
+<li><p>a string: this must be the name of a local folder or file. <code class="xref any docutils literal notranslate"><span class="pre">pathlib.Path</span></code> objects are also supported.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A <strong>folder</strong> will be converted to a sub-archive, so its files (and any sub-folders) can be accessed by their names.</p></li>
+<li><p>A <strong>file</strong> will be read with mode <code class="xref any docutils literal notranslate"><span class="pre">&quot;rb&quot;</span></code> and these binary data (a <code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code> object) be treated as a single-member sub-archive. In this case, the <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> parameter is <strong>mandatory</strong> and should be the member name under which this item can be found / retrieved.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>a <code class="xref any docutils literal notranslate"><span class="pre">zipfile.ZipFile</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">tarfile.TarFile</span></code> object: Will be added as a sub-archive.</p></li>
+<li><p>a Python binary object (<code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">bytearray</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">io.BytesIO</span></code>): this will add a single-member sub-archive. In this case, the <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> parameter is <strong>mandatory</strong> and should be the member name under which this item can be found / retrieved.</p></li>
+<li><p>a tuple <code class="xref any docutils literal notranslate"><span class="pre">(data,</span> <span class="pre">name)</span></code>: This will add a single-member sub-archive with the member name <code class="docutils literal notranslate"><span class="pre">name</span></code>. <code class="docutils literal notranslate"><span class="pre">data</span></code> may be a Python binary object or a local file name (in which case its binary file content is used). Use this format if you need to specify <code class="xref any docutils literal notranslate"><span class="pre">path</span></code>.</p></li>
+<li><p>a Python sequence: This is a convenience format to specify any combination of the above.</p></li>
+</ul>
+<p>If provided, <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> must be a string.</p>
+<ul class="simple">
+<li><p>If <code class="xref any docutils literal notranslate"><span class="pre">content</span></code> is either binary data or a file name, this parameter is mandatory and must be the name under which the data can be found.</p></li>
+<li><p>Otherwise this parameter is optional. It can be used to simulate a folder name or a mount point, under which this sub-archive’s elements can be found. For example this specification <code class="xref any docutils literal notranslate"><span class="pre">Archive((data,</span> <span class="pre">&quot;name&quot;),</span> <span class="pre">&quot;path&quot;)</span></code> means that <code class="xref any docutils literal notranslate"><span class="pre">data</span></code> will be found using the element name <code class="xref any docutils literal notranslate"><span class="pre">&quot;path/name&quot;</span></code>. Similar is true for other sub-archives: to retrieve members of a ZIP sub-archive, their names must be prefixed with <code class="xref any docutils literal notranslate"><span class="pre">&quot;path/&quot;</span></code>. The main purpose of this parameter probably is to differentiate between duplicate names.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>If duplicate entry names exist in the archive, always the last entry with that name will be found / retrieved. During archive creation, or appending more data to an archive (see <a class="reference internal" href="#id3" title="Archive.add"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Archive.add()</span></code></a>) no check for duplicates will be made. Use the <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> parameter to prevent this from happening.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="永久链接至目标">#</a></dt>
+<dd><p>Append a sub-archive. The meaning of the parameters are exactly the same as explained above. Of course, parameter <code class="xref any docutils literal notranslate"><span class="pre">content</span></code> is not optional here.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">has_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="永久链接至目标">#</a></dt>
+<dd><p>Checks whether an entry exists in any of the sub-archives.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The fully qualified name of the entry. So must include any <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> prefix under which the entry’s sub-archive has been added.</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref any docutils literal notranslate"><span class="pre">True</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">read_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="永久链接至目标">#</a></dt>
+<dd><p>Retrieve the data of an entry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The fully qualified name of the entry. So must include any <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> prefix under which the entry’s sub-archive has been added.</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>The binary data (<code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code>) of the entry. If not found, an exception is raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">entry_list</span></span><a class="headerlink" href="#id6" title="永久链接至目标">#</a></dt>
+<dd><p>A list of the archive’s sub-archives. Each list item is a dictionary with the following keys:</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">entries</span></code> – a list of (top-level) entry names in this sub-archive.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">fmt</span></code> – the format of the sub-archive. This is one of the strings “dir” (file folder), “zip” (ZIP archive), “tar” (TAR archive), or “tree” for single binary entries or file content.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">path</span></code> – the value of the <code class="xref any docutils literal notranslate"><span class="pre">path</span></code> parameter under which this sub-archive was added.</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dir1</span> <span class="o">=</span> <span class="s2">&quot;fitz-32&quot;</span>  <span class="c1"># a folder name</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dir2</span> <span class="o">=</span> <span class="s2">&quot;fitz-64&quot;</span>  <span class="c1"># a folder name</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">img</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nur-ruhig.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;img&quot;</span><span class="p">)</span>  <span class="c1"># an image file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">members</span> <span class="o">=</span> <span class="p">(</span><span class="n">dir1</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">dir2</span><span class="p">)</span>  <span class="c1"># we want to append these in one go</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Archive</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arch</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">members</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;mypath&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">arch</span><span class="o">.</span><span class="n">entry_list</span><span class="p">)</span>
+<span class="go">[{&#39;entries&#39;: [&#39;310&#39;, &#39;37&#39;, &#39;38&#39;, &#39;39&#39;], &#39;fmt&#39;: &#39;dir&#39;, &#39;path&#39;: &#39;mypath&#39;},</span>
+<span class="go">{&#39;entries&#39;: [&#39;img&#39;], &#39;fmt&#39;: &#39;tree&#39;, &#39;path&#39;: &#39;mypath&#39;},</span>
+<span class="go">{&#39;entries&#39;: [&#39;310&#39;, &#39;311&#39;, &#39;37&#39;, &#39;38&#39;, &#39;39&#39;, &#39;pypy&#39;],</span>
+<span class="go">&#39;fmt&#39;: &#39;dir&#39;,</span>
+<span class="go">&#39;path&#39;: &#39;mypath&#39;}]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="colorspace.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Colorspace</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="annot.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Annot</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Archive</a><ul>
+<li><a class="reference internal" href="#Archive"><code class="docutils literal notranslate"><span class="pre">Archive</span></code></a><ul>
+<li><a class="reference internal" href="#Archive.__init__"><code class="docutils literal notranslate"><span class="pre">Archive.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#Archive.add"><code class="docutils literal notranslate"><span class="pre">Archive.add()</span></code></a></li>
+<li><a class="reference internal" href="#Archive.has_entry"><code class="docutils literal notranslate"><span class="pre">Archive.has_entry()</span></code></a></li>
+<li><a class="reference internal" href="#Archive.read_entry"><code class="docutils literal notranslate"><span class="pre">Archive.read_entry()</span></code></a></li>
+<li><a class="reference internal" href="#Archive.entry_list"><code class="docutils literal notranslate"><span class="pre">Archive.entry_list</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Archive</span></code></a><ul>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Archive.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Archive.add()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">Archive.has_entry()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">Archive.read_entry()</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">Archive.entry_list</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

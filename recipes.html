@@ -1,0 +1,633 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="打开文件" href="how-to-open-a-file.html" /><link rel="prev" title="资源" href="resources.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>PyMuPDF: How to Guide - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><div class="toctree-wrapper compound" id="recipestoc">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how-to-open-a-file.html#supported-file-types">支持的文件类型</a></li>
+<li class="toctree-l2"><a class="reference internal" href="how-to-open-a-file.html#id3">如何打开文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how-to-open-a-file.html#id4">使用 错误的文件扩展名</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how-to-open-a-file.html#id6">打开远程文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how-to-open-a-file.html#id8">从云服务打开文件</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how-to-open-a-file.html#id10">以文本形式打开文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how-to-open-a-file.html#id11">例子</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="how-to-open-a-file.html#c">打开 <code class="docutils literal notranslate"><span class="pre">C#</span></code> 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="how-to-open-a-file.html#xml">打开 <code class="docutils literal notranslate"><span class="pre">XML</span></code> 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="how-to-open-a-file.html#json">打开 <code class="docutils literal notranslate"><span class="pre">JSON</span></code> 文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-a">如何提取所有文档文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#markdown">如何将文本提取为 Markdown</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-a1">如何从页面中提取键值对</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-b">如何从矩形内提取文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-c">如何按自然阅读顺序提取文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-d">如何从文档中 提取表格内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-e">如何标记提取的文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-f">如何标记搜索到的文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-g">如何标记非水平文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-h">如何分析字体特征</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-i">如何插入文本</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="recipes-text.html#recipestext-i-a">如何编写文本行</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-text.html#recipestext-i-b">如何填充文本框</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-text.html#html">如何用 HTML 文本填充文本框</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="recipes-text.html#id18">如何输出 HTML 表格和图像</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recipes-text.html#id19">如何输出世界语言</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recipes-text.html#id20">如何指定自己的字体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="recipes-text.html#id21">如何请求文本对齐</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-text.html#recipestext-j">如何提取带颜色的文本</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-a">如何从文档页面制作图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-b">如何提高 图像分辨率</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#partial-pixmaps">如何创建 Partial Pixmaps (部分像素图/剪辑)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#gui">如何将剪辑缩放到 GUI 窗口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-e">如何创建或隐藏注释图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#pdf">如何提取图像：非 PDF 文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-g">如何提取图像：PDF 文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-h">如何处理图像蒙版</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-i">如何将所有图片（或文件）制作成一个 PDF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-j">如何创建矢量图片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-k">如何转换图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-l">如何使用像素图：粘贴图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-m">如何使用像素图：制作分形</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#numpy">如何与 NumPy 交互</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-o">如何将图像添加到 PDF 页面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-images.html#recipesimages-p">如何使用像素图：检查文本可见性</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-annotations.html#recipesannotations-a">如何添加和修改注释</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-annotations.html#freetext">如何使用 FreeText</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-annotations.html#recipesannotations-c">如何使用墨迹注释</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-drawing-and-graphics.html#recipesdrawingandgraphics-extract-drawings">如何提取绘图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-drawing-and-graphics.html#recipesdrawingandgraphics-delete-drawings">如何删除绘图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-drawing-and-graphics.html#id7">如何绘制图形</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-a">如何添加一行带格式的文本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-b">如何使用图像</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#html-css">如何读取故事的外部 HTML 和 CSS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-d">如何使用故事模板输出数据库内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#pdf">如何与现有 PDF 集成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#pymupdf-fonts">如何从包 pymupdf-fonts 制作多列布局和访问字体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-g">如何制作环绕预定义“禁区”布局的布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#html">如何输出 HTML 表格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-i">如何创建简单的网格布局</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#recipesstories-j">如何生成目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#json">如何显示 JSON 数据列表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-stories.html#story-write">使用替代的 <code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.write*()</span></code> 函数</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="recipes-stories.html#recipesstories-l-a">如何使用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.write()</span></code> 进行基本布局</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-stories.html#story-write-stabilized">如何使用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.write_stabilized()</span></code> 对目录进行迭代布局</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-stories.html#story-write-stabilized-links-pdf">如何使用 <code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.write_stabilized_links()</span></code> 进行迭代布局和创建 PDF 链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-journalling.html#id2">示例会话 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-journalling.html#id3">示例会话 2</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-ocr.html#id1">如何对图像进行 OCR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-ocr.html#id2">如何对文档页面进行 OCR</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-optional-content.html#id2">简介：可选内容概念</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-optional-content.html#pymupdf-pdf">PyMuPDF 支持 PDF 可选内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-optional-content.html#id3">如何添加可选内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-optional-content.html#id4">如何定义复杂的可选内容条件</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#xref">如何遍历 <code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code> 表</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#id2">如何处理对象流</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#id3">如何处理页面内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#pdf">如何访问 PDF 目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#id4">如何访问 PDF 文件尾部</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#xml">如何访问 XML 元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#id5">如何扩展 PDF 元数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-low-level-interfaces.html#id6">如何读取和更新 PDF 对象</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#pdf">如何动态清理损坏的 <cite>PDF</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id5">如何将任何文档转换为 <cite>PDF</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id6">更改注释：意外行为</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id7">问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id8">原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id9">解决方案</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id10">提取的文本缺失或不可读</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id11">问题：未提取任何文本</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id12">原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id13">解决方案</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id15">问题：文本不可读</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id16">原因</a></li>
+<li class="toctree-l3"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html#id17">解决方案</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="how-to-open-a-file.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">打开文件</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="resources.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">资源</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

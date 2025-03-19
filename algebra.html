@@ -1,0 +1,1004 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="低级函数和类" href="lowlevel.html" /><link rel="prev" title="Xml" href="xml-class.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>几何对象的运算符代数 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="algebra">
+<span id="id1"></span><h1>几何对象的运算符代数<a class="headerlink" href="#algebra" title="此标题的永久链接">#</a></h1>
+<p>Operator Algebra for Geometry Objects</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>类的实例：<a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a>、 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a>、 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>、 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> 和 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> 被统称为“几何”对象。</p>
+<p>它们都是 Python 序列的特例，更多背景请参见 <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a>。</p>
+<p>我们为这些类定义了操作符，使得它们在加法、减法、乘法、除法等方面几乎可以像普通数字一样进行操作。</p>
+<p>本章节概述了这些操作的可能性。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Instances of classes <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a>, <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a>, <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>, <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> and <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> are collectively also called “geometry” objects.</p>
+<p>They all are special cases of Python sequences, see <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a> for more background.</p>
+<p>We have defined operators for these classes that allow dealing with them (almost) like ordinary numbers in terms of addition, subtraction, multiplication, division, and some others.</p>
+<p>This chapter is a synopsis of what is possible. For details, please refer to the respective class documentation.</p>
+</div>
+</div>
+<section id="id2">
+<h2>一般说明<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>General Remarks</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<ol class="arabic">
+<li><p>操作符可以是 <strong>二元</strong> 的（即涉及两个对象）或 <strong>一元</strong> 的。</p></li>
+<li><p><strong>二元</strong> 操作的结果类型可以是 <strong>左操作数类的新对象</strong> ，一个布尔值，或者（对于点积）一个浮动数值。</p></li>
+<li><p><strong>一元</strong> 操作的结果是 <strong>相同类的新对象</strong> ，一个布尔值或一个浮动数值。</p></li>
+<li><p>二元操作符 <code class="xref any docutils literal notranslate"><span class="pre">+</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">-</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">*</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">/</span></code> 对所有类都已定义。它们 <em>大致</em> 执行你所期待的操作 —— <strong>不过，第二个操作数…</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>总是可以是一个数字，它会对第一个操作数的每个组件执行相应的操作，</p></li>
+<li><p>总是可以是一个与第一个操作数相同长度的数值序列（2、4或6个元素）——我们称这样的序列为 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a>、 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>、 <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> 或 <a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a> ，分别对应点、矩形、四边形或矩阵。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>矩形支持 <strong>附加的二元</strong> 操作： <strong>交集</strong> （操作符 <code class="xref any docutils literal notranslate"><span class="pre">&quot;&amp;&quot;</span></code>）， <strong>并集</strong> （操作符 <code class="xref any docutils literal notranslate"><span class="pre">&quot;|&quot;</span></code>）以及 <strong>包含性</strong> 检查。</p></li>
+<li><p>二元操作符完全支持就地操作。因此，如果“°”是一个二元操作符，那么表达式 <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">°=</span> <span class="pre">b</span></code> 总是有效，并且等价于 <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">°</span> <span class="pre">b</span></code> 。因此，要小心， <strong>不要</strong> 对两个点执行 <code class="xref any docutils literal notranslate"><span class="pre">p1</span> <span class="pre">*=</span> <span class="pre">p2</span></code>，因为这会使得 “p1” 成为一个 <strong>浮动数值</strong> 。</p></li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<ol class="arabic">
+<li><p>Operators can be either <strong>binary</strong> (i.e. involving two objects) or <strong>unary</strong>.</p></li>
+<li><p>The resulting type of <strong>binary</strong> operations is either a <strong>new object of the left operand’s class,</strong> a bool or (for dot products) a float.</p></li>
+<li><p>The result of <strong>unary</strong> operations is either a <strong>new object</strong> of the same class, a bool or a float.</p></li>
+<li><p>The binary operators <code class="xref any docutils literal notranslate"><span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/</span></code> are defined for all classes. They <em>roughly</em> do what you would expect – <strong>except, that the second operand …</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>may always be a number which then performs the operation on every component of the first one,</p></li>
+<li><p>may always be a numeric sequence of the same length (2, 4 or 6) – we call such sequences <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a>, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>, <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> or <a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a>, respectively.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Rectangles support <strong>additional binary</strong> operations: <strong>intersection</strong> (operator <code class="xref any docutils literal notranslate"><span class="pre">&quot;&amp;&quot;</span></code>), <strong>union</strong> (operator <code class="xref any docutils literal notranslate"><span class="pre">&quot;|&quot;</span></code>) and <strong>containment</strong> checking.</p></li>
+<li><p>Binary operators fully support in-place operations. So if “°” is a binary operator then the expression <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">°=</span> <span class="pre">b</span></code> is always valid and the same as <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">a</span> <span class="pre">°</span> <span class="pre">b</span></code>. Therefore, be careful and do <strong>not</strong> do <code class="xref any docutils literal notranslate"><span class="pre">p1</span> <span class="pre">*=</span> <span class="pre">p2</span></code> for two points, because thereafter “p1” is a <strong>float</strong>.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>一元运算<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Unary Operations</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>操作</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bool(OBJ)</p></td>
+<td><p>如果 OBJ 的所有分量都为零，则为假</p></td>
+</tr>
+<tr class="row-odd"><td><p>abs(OBJ)</p></td>
+<td><p>矩形面积——对于其他类型，等于norm(OBJ)</p></td>
+</tr>
+<tr class="row-even"><td><p>norm(OBJ)</p></td>
+<td><p>分量平方的平方根（欧几里得范数）</p></td>
+</tr>
+<tr class="row-odd"><td><p>+OBJ</p></td>
+<td><p>OBJ 的新副本</p></td>
+</tr>
+<tr class="row-even"><td><p>-OBJ</p></td>
+<td><p>带有否定组件的 OBJ 新副本</p></td>
+</tr>
+<tr class="row-odd"><td><p>~m</p></td>
+<td><p>矩阵“m”的逆，如果不可逆则为零矩阵</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Oper.</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bool(OBJ)</p></td>
+<td><p>is false exactly if all components of OBJ are zero</p></td>
+</tr>
+<tr class="row-odd"><td><p>abs(OBJ)</p></td>
+<td><p>the rectangle area – equal to norm(OBJ) for the other types</p></td>
+</tr>
+<tr class="row-even"><td><p>norm(OBJ)</p></td>
+<td><p>square root of the component squares (Euclidean norm)</p></td>
+</tr>
+<tr class="row-odd"><td><p>+OBJ</p></td>
+<td><p>new copy of OBJ</p></td>
+</tr>
+<tr class="row-even"><td><p>-OBJ</p></td>
+<td><p>new copy of OBJ with negated components</p></td>
+</tr>
+<tr class="row-odd"><td><p>~m</p></td>
+<td><p>inverse of matrix “m”, or the null matrix if not invertible</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2>二元运算<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Binary Operations</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>这些是像 <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">°</span> <span class="pre">b</span></code> 这样的表达式，其中“°”是任何操作符 <code class="xref any docutils literal notranslate"><span class="pre">+</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">-</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">*</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">/</span></code>。二元操作也可以是形如 <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">a</span></code> 的表达式。</p>
+<p>如果“b”是一个数字，那么相应的操作将对“a”的每个组件执行。否则，如果“b”<strong>不是一个数字</strong>，那么将发生以下情况：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>操作符</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a+b, a-b</p></td>
+<td><p>组件-wise 执行，“b”必须是“a-like”。</p></td>
+</tr>
+<tr class="row-odd"><td><p>a*m, a/m</p></td>
+<td><p>““a”可以是一个点、矩形或矩阵，而“m”是一个
+<a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a>。<em>“a/m”</em> 被处理为 <em>“a*~m”</em> （参见下文关于不可逆矩阵的说
+明）。如果“a”是 <strong>点</strong> 或 <strong>矩形</strong> ，
+则执行 <em>“a.transform(m)”</em> 。如果“a”是矩阵，则进行矩阵连接。</p></td>
+</tr>
+<tr class="row-even"><td><p>a*b</p></td>
+<td><p>返回 <strong>点积</strong> ，对于点“a”和点-like 的“b”。</p></td>
+</tr>
+<tr class="row-odd"><td><p>a&amp;b</p></td>
+<td><p><strong>交集矩形：</strong> “a”必须是矩形，“b”是 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>。返回两个操作数中 <strong>包含的最大矩形</strong> 。</p></td>
+</tr>
+<tr class="row-even"><td><p>a|b</p></td>
+<td><p><strong>并集矩形：</strong> “a”必须是矩形，且“b”可以是
+<a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 或 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>。
+返回两个操作数 <strong>包含的最小矩形</strong> 。</p></td>
+</tr>
+<tr class="row-odd"><td><p>b in a</p></td>
+<td><p>如果“b”是数字，则返回 <code class="xref any docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">tuple(a)</span></code>。
+如果“b”是 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a>、<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 或 <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a>，
+则“a”必须是矩形，返回 <code class="xref any docutils literal notranslate"><span class="pre">a.contains(b)</span></code>。</p></td>
+</tr>
+<tr class="row-even"><td><p>a == b</p></td>
+<td><p>如果 <em>bool(a-b)</em> 为 <em>False</em> ，则返回 <em>True</em> （“b”可以是“a-like”）。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>请注意与常规算术运算的一个重要区别：</p>
+<p>矩阵乘法是 <strong>不可交换的</strong> ，即通常情况下我们有 <code class="xref any docutils literal notranslate"><span class="pre">m*n</span> <span class="pre">!=</span> <span class="pre">n*m</span></code>，对于两个矩阵。此外，某些非零矩阵是没有逆矩阵的，例如 <code class="xref any docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">Matrix(1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0)</span></code>。如果你尝试除以这些矩阵，你将会遇到 <code class="xref any docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> 异常，使用操作符 <em>“/”</em>，例如表达式 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">/</span> <span class="pre">m</span></code>。但是，如果你使用 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">*</span> <span class="pre">~m</span></code>，结果将是 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Matrix()</span></code> （零矩阵）。</p>
+<p>诚然，这表示一个不一致，我们正在考虑删除这个行为。暂时，你可以选择避免异常并检查是否 ~m 是零矩阵，或者通过使用 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">/</span> <span class="pre">m</span></code> 接受潜在的 <em>ZeroDivisionError</em> 异常。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>根据这些约定，所有常规的代数规则都适用。例如，可以在 <strong>相同类的对象间</strong> 任意使用括号：如果 r1, r2 是矩形，m1, m2 是矩阵，你可以这样做 <code class="xref any docutils literal notranslate"><span class="pre">(r1</span> <span class="pre">+</span> <span class="pre">r2)</span> <span class="pre">*</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m2</span></code>。</p></li>
+<li><p>对于相同类的所有对象，<code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">c</span> <span class="pre">==</span> <span class="pre">(a</span> <span class="pre">+</span> <span class="pre">b)</span> <span class="pre">+</span> <span class="pre">c</span> <span class="pre">==</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">(b</span> <span class="pre">+</span> <span class="pre">c)</span></code> 是成立的。</p></li>
+<li><p>对于矩阵加法，以下等式成立：<code class="xref any docutils literal notranslate"><span class="pre">(m1</span> <span class="pre">+</span> <span class="pre">m2)</span> <span class="pre">*</span> <span class="pre">m3</span> <span class="pre">==</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m3</span> <span class="pre">+</span> <span class="pre">m2</span> <span class="pre">*</span> <span class="pre">m3</span></code> （分配律）。</p></li>
+<li><p><strong>但应用矩阵的顺序是很重要的：</strong> 如果 r 是一个矩形，m1 和 m2 是矩阵，那么——<strong>小心！:</strong></p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">r</span> <span class="pre">*</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m2</span> <span class="pre">==</span> <span class="pre">(r</span> <span class="pre">*</span> <span class="pre">m1)</span> <span class="pre">*</span> <span class="pre">m2</span> <span class="pre">!=</span> <span class="pre">r</span> <span class="pre">*</span> <span class="pre">(m1</span> <span class="pre">*</span> <span class="pre">m2)</span></code>。</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>These are expressions like <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">°</span> <span class="pre">b</span></code> where “°” is any of the operators <code class="xref any docutils literal notranslate"><span class="pre">+,</span> <span class="pre">-,</span> <span class="pre">*,</span> <span class="pre">/</span></code>. Also binary operations are expressions of the form <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">a</span></code>.</p>
+<p>If “b” is a number, then the respective operation is executed for each component of “a”. Otherwise, if “b” is <strong>not a number,</strong> then the following happens:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Oper.</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>a+b, a-b</p></td>
+<td><p>component-wise execution, “b” must be “a-like”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>a*m, a/m</p></td>
+<td><p>“a” can be a point, rectangle or matrix and “m” is a
+<a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a>. <em>“a/m”</em> is treated as <em>“a*~m”</em> (see note below
+for non-invertible matrices). If “a” is a <strong>point</strong> or a <strong>rectangle</strong>,
+then <em>“a.transform(m)”</em> is executed. If “a” is a matrix, then
+matrix concatenation takes place.</p></td>
+</tr>
+<tr class="row-even"><td><p>a*b</p></td>
+<td><p>returns the <strong>vector dot product</strong> for a point “a” and point-like “b”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>a&amp;b</p></td>
+<td><p><strong>intersection rectangle:</strong> “a” must be a rectangle and
+“b” <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>. Delivers the <strong>largest rectangle</strong>
+contained in both operands.</p></td>
+</tr>
+<tr class="row-even"><td><p>a|b</p></td>
+<td><p><strong>union rectangle:</strong> “a” must be a rectangle, and “b” may be
+<a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> or <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>.
+Delivers the <strong>smallest rectangle</strong> containing both operands.</p></td>
+</tr>
+<tr class="row-odd"><td><p>b in a</p></td>
+<td><p>if “b” is a number, then <code class="xref any docutils literal notranslate"><span class="pre">b</span> <span class="pre">in</span> <span class="pre">tuple(a)</span></code> is returned.
+If “b” is <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a>, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> or <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a>,
+then “a” must be a rectangle, and <code class="xref any docutils literal notranslate"><span class="pre">a.contains(b)</span></code> is returned.</p></td>
+</tr>
+<tr class="row-even"><td><p>a == b</p></td>
+<td><p><em>True</em> if <em>bool(a-b)</em> is <em>False</em> (“b” may be “a-like”).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Please note an important difference to usual arithmetic:</p>
+<p>Matrix multiplication is <strong>not commutative</strong>, i.e. in general we have <code class="xref any docutils literal notranslate"><span class="pre">m*n</span> <span class="pre">!=</span> <span class="pre">n*m</span></code> for two matrices. Also, there are non-zero matrices which have no inverse, for example <code class="xref any docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">Matrix(1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0)</span></code>. If you try to divide by any of these, you will receive a <code class="xref any docutils literal notranslate"><span class="pre">ZeroDivisionError</span></code> exception using operator <em>“/”</em>, e.g. for the expression <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">/</span> <span class="pre">m</span></code>. But if you formulate <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">*</span> <span class="pre">~m</span></code>, the result will be <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Matrix()</span></code> (the null matrix).</p>
+<p>Admittedly, this represents an inconsistency, and we are considering to remove it. For the time being, you can choose to avoid an exception and check whether ~m is the null matrix, or accept a potential <em>ZeroDivisionError</em> by using <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Identity</span> <span class="pre">/</span> <span class="pre">m</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>With these conventions, all the usual algebra rules apply. For example, arbitrarily using brackets <strong>(among objects of the same class!)</strong> is possible: if r1, r2 are rectangles and m1, m2 are matrices, you can do this <code class="xref any docutils literal notranslate"><span class="pre">(r1</span> <span class="pre">+</span> <span class="pre">r2)</span> <span class="pre">*</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m2</span></code>.</p></li>
+<li><p>For all objects of the same class, <code class="xref any docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span> <span class="pre">+</span> <span class="pre">c</span> <span class="pre">==</span> <span class="pre">(a</span> <span class="pre">+</span> <span class="pre">b)</span> <span class="pre">+</span> <span class="pre">c</span> <span class="pre">==</span> <span class="pre">a</span> <span class="pre">+</span> <span class="pre">(b</span> <span class="pre">+</span> <span class="pre">c)</span></code> is true.</p></li>
+<li><p>For matrices in addition the following is true: <code class="xref any docutils literal notranslate"><span class="pre">(m1</span> <span class="pre">+</span> <span class="pre">m2)</span> <span class="pre">*</span> <span class="pre">m3</span> <span class="pre">==</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m3</span> <span class="pre">+</span> <span class="pre">m2</span> <span class="pre">*</span> <span class="pre">m3</span></code> (distributivity property).</p></li>
+<li><p><strong>But the sequence of applying matrices is important:</strong> If r is a rectangle and m1, m2 are matrices, then – <strong>caution!:</strong></p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">r</span> <span class="pre">*</span> <span class="pre">m1</span> <span class="pre">*</span> <span class="pre">m2</span> <span class="pre">==</span> <span class="pre">(r</span> <span class="pre">*</span> <span class="pre">m1)</span> <span class="pre">*</span> <span class="pre">m2</span> <span class="pre">!=</span> <span class="pre">r</span> <span class="pre">*</span> <span class="pre">(m1</span> <span class="pre">*</span> <span class="pre">m2)</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>一些示例<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Some Examples</p>
+<section id="id6">
+<h3>数字操作<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>Manipulation with numbers</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>对于常规算术操作，数字始终允许作为第二操作数。此外，你还可以编写 <code class="xref any docutils literal notranslate"><span class="pre">&quot;x</span> <span class="pre">in</span> <span class="pre">OBJ&quot;</span></code>，其中 <a class="reference internal" href="pixmap.html#Pixmap.x" title="Pixmap.x"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">x</span></code></a> 是一个数字。这实现为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;x</span> <span class="pre">in</span> <span class="pre">tuple(OBJ)&quot;</span></code>：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="go">pymupdf.Rect(6.0, 7.0, 8.0, 9.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="ow">in</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>以下将创建文档页面矩形的左上角四分之一区域：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">Rect(0.0, 0.0, 595.0, 842.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="go">Rect(0.0, 0.0, 297.5, 421.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>以下将提供连接两个点 <strong>p1</strong> 和 <strong>p2</strong> 的线段的 <strong>中点</strong> ：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span>
+<span class="go">Point(2356.0, 1571.5)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>计算两个点的 <strong>向量点积</strong> 。你可以计算它们之间的 <strong>角度余弦</strong> 并检查正交性。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">*</span> <span class="n">p2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 计算 p1 和 p2 之间的角度余弦：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cosine</span> <span class="o">=</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cosine</span>  <span class="c1"># 45 度角的余弦</span>
+<span class="go">0.7071067811865475</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>  <span class="c1"># 验证：</span>
+<span class="go">0.7071067811865476</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 检查正交性</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p3</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># p1 和 p3 正交，因此，按预期：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">*</span> <span class="n">p3</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>For the usual arithmetic operations, numbers are always allowed as second operand. In addition, you can formulate <code class="xref any docutils literal notranslate"><span class="pre">&quot;x</span> <span class="pre">in</span> <span class="pre">OBJ&quot;</span></code>, where x is a number. It is implemented as <code class="xref any docutils literal notranslate"><span class="pre">&quot;x</span> <span class="pre">in</span> <span class="pre">tuple(OBJ)&quot;</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="go">pymupdf.Rect(6.0, 7.0, 8.0, 9.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="ow">in</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The following will create the upper left quarter of a document page rectangle:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">Rect(0.0, 0.0, 595.0, 842.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="go">Rect(0.0, 0.0, 297.5, 421.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The following will deliver the <strong>middle point of a line</strong> that connects two points <strong>p1</strong> and <strong>p2</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span>
+<span class="go">Point(2356.0, 1571.5)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Compute the <strong>vector dot product</strong> of two points. You can compute the <strong>cosine of angles</strong> and check orthogonality.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">*</span> <span class="n">p2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dot</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># compute the cosine of the angle between p1 and p2:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cosine</span> <span class="o">=</span> <span class="n">dot</span> <span class="o">/</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">p2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cosine</span>  <span class="c1"># cosine of 45 degrees</span>
+<span class="go">0.7071067811865475</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span>  <span class="c1"># verify:</span>
+<span class="go">0.7071067811865476</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># check orhogonality</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p3</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># p1 and p3 are orthogonal so, as expected:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">*</span> <span class="n">p3</span>
+<span class="go">0.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h3>使用“类似”对象进行操作<a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p>Manipulation with “like” Objects</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>二元操作的第二个操作数始终可以是“像”左操作数的对象。在这里，“像”意味着“一个与左操作数具有相同长度的数字序列”。以下是一些示例：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>要将一个矩形向右移动 5 像素，可以执行以下操作：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 将 x 坐标加 5</span>
+<span class="go">Rect(105.0, 100.0, 205.0, 200.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>点、矩形和矩阵可以通过矩阵进行 <em>变换</em> 。在 PyMuPDF 中，我们将此操作视为一种 <strong>“乘法”</strong> （或相应的 <strong>“除法”</strong> ），其中第二个操作数可以是“像”矩阵。在这个上下文中，除法表示“与倒矩阵的乘法”：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="n">m</span>
+<span class="go">Point(12.0, 16.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">Point(12.0, 16.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>
+<span class="go">Point(2.0, -2.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">Point(2.0, -2.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">*</span> <span class="n">n</span>  <span class="c1"># 矩阵乘法</span>
+<span class="go">Matrix(14.0, 11.0, 34.0, 27.0, 56.0, 44.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># 矩阵除法</span>
+<span class="go">Matrix(2.5, -3.5, 3.5, -4.5, 5.5, -7.5)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">/</span> <span class="n">m</span>  <span class="c1"># 结果等于单位矩阵</span>
+<span class="go">Matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 看看这个不可逆矩阵：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">~</span><span class="n">m</span>
+<span class="go">Matrix(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 我们尝试两种方式进行除法：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="o">~</span><span class="n">m</span>  <span class="c1"># 结果是点 (0, 0)：</span>
+<span class="go">Point(0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>  <span class="c1"># 但是这会引发异常：</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#6&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="w">    </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>
+  File <span class="nb">&quot;... /site-packages/fitz/pymupdf.py&quot;</span>, line <span class="m">869</span>, in <span class="n">__truediv__</span>
+<span class="w">    </span><span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;matrix not invertible&quot;</span><span class="p">)</span>
+<span class="gr">ZeroDivisionError</span>: <span class="n">matrix not invertible</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>作为特例，矩形支持额外的二元操作：</p>
+<ul class="simple">
+<li><p><strong>交集</strong> – 矩形相交的区域，操作符 <em>“&amp;”</em></p></li>
+<li><p><strong>包含</strong> – 扩展以包含一个点或矩形，操作符 <em>“|”</em></p></li>
+<li><p><strong>包含检查</strong> – 检查一个点或矩形是否在内部</p></li>
+</ul>
+<p>以下是创建包含给定点的最小矩形的示例：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 首先定义一些点</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="go">        for j in range(10):</span>
+<span class="go">            points.append((i, j))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 现在创建一个包含所有这 100 个点的矩形</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 从一个空矩形开始</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>  <span class="c1"># 逐一包含剩余的点</span>
+<span class="go">        r |= p</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>  <span class="c1"># 这是预期的结果：</span>
+<span class="go">Rect(0.0, 0.0, 9.0, 9.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">r</span>  <span class="c1"># 这个点在矩形内部</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 这个矩形也在里面</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">r</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>The second operand of a binary operation can always be “like” the left operand. “Like” in this context means “a sequence of numbers of the same length”. With the above examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">4711</span><span class="p">,</span> <span class="mi">3141</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span>
+<span class="go">Point(4712.0, 3143.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>To shift a rectangle for 5 pixels to the right, do this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># add 5 to the x coordinates</span>
+<span class="go">Rect(105.0, 100.0, 205.0, 200.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Points, rectangles and matrices can be <em>transformed</em> with matrices. In PyMuPDF, we treat this like a <strong>“multiplication”</strong> (or resp. <strong>“division”</strong>), where the second operand may be “like” a matrix. Division in this context means “multiplication with the inverted matrix”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="n">m</span>
+<span class="go">Point(12.0, 16.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">Point(12.0, 16.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>
+<span class="go">Point(2.0, -2.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">Point(2.0, -2.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">*</span> <span class="n">n</span>  <span class="c1"># matrix multiplication</span>
+<span class="go">Matrix(14.0, 11.0, 34.0, 27.0, 56.0, 44.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># matrix division</span>
+<span class="go">Matrix(2.5, -3.5, 3.5, -4.5, 5.5, -7.5)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">/</span> <span class="n">m</span>  <span class="c1"># result is equal to the Identity matrix</span>
+<span class="go">Matrix(1.0, 0.0, 0.0, 1.0, 0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># look at this non-invertible matrix:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">~</span><span class="n">m</span>
+<span class="go">Matrix(0.0, 0.0, 0.0, 0.0, 0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we try dividing by it in two ways:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">*</span> <span class="o">~</span><span class="n">m</span>  <span class="c1"># this delivers point (0, 0):</span>
+<span class="go">Point(0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>  <span class="c1"># but this is an exception:</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#6&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="w">    </span><span class="n">p</span> <span class="o">/</span> <span class="n">m</span>
+  File <span class="nb">&quot;... /site-packages/fitz/pymupdf.py&quot;</span>, line <span class="m">869</span>, in <span class="n">__truediv__</span>
+<span class="w">    </span><span class="k">raise</span> <span class="ne">ZeroDivisionError</span><span class="p">(</span><span class="s2">&quot;matrix not invertible&quot;</span><span class="p">)</span>
+<span class="gr">ZeroDivisionError</span>: <span class="n">matrix not invertible</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>As a specialty, rectangles support additional binary operations:</p>
+<ul class="simple">
+<li><p><strong>intersection</strong> – the common area of rectangle-likes, operator <em>“&amp;”</em></p></li>
+<li><p><strong>inclusion</strong> – enlarge to include a point-like or rect-like, operator <em>“|”</em></p></li>
+<li><p><strong>containment</strong> check – whether a point-like or rect-like is inside</p></li>
+</ul>
+<p>Here is an example for creating the smallest rectangle enclosing given points:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># first define some point-likes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+<span class="go">        for j in range(10):</span>
+<span class="go">            points.append((i, j))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now create a rectangle containing all these 100 points</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># start with an empty rectangle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">points</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>  <span class="c1"># and include remaining points one by one</span>
+<span class="go">        r |= p</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span>  <span class="c1"># here is the to be expected result:</span>
+<span class="go">Rect(0.0, 0.0, 9.0, 9.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">r</span>  <span class="c1"># this point-like lies inside the rectangle</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and this rect-like is also inside</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="ow">in</span> <span class="n">r</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="lowlevel.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">低级函数和类</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="xml-class.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Xml</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">几何对象的运算符代数</a><ul>
+<li><a class="reference internal" href="#id2">一般说明</a></li>
+<li><a class="reference internal" href="#id3">一元运算</a></li>
+<li><a class="reference internal" href="#id4">二元运算</a></li>
+<li><a class="reference internal" href="#id5">一些示例</a><ul>
+<li><a class="reference internal" href="#id6">数字操作</a></li>
+<li><a class="reference internal" href="#id7">使用“类似”对象进行操作</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1722 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="注释" href="recipes-annotations.html" /><link rel="prev" title="文本" href="recipes-text.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>图片 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="recipesimages">
+<span id="id1"></span><h1>图片<a class="headerlink" href="#recipesimages" title="此标题的永久链接">#</a></h1>
+<p>Images</p>
+<section id="recipesimages-a">
+<span id="id2"></span><h2>如何从文档页面制作图像<a class="headerlink" href="#recipesimages-a" title="此标题的永久链接">#</a></h2>
+<p>How to Make Images from Document Pages</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>这个小脚本将获取一个文档文件名，并生成每一页的PNG文件。</p>
+<p>文档可以是任何 <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">支持的类型</span></a>。</p>
+<p>该脚本作为命令行工具工作，期望将文件名作为参数传递。生成的图像文件（每页一个）将存储在脚本所在的目录中:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">pymupdf</span>  <span class="c1"># 导入绑定库</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 从命令行获取文件名</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>  <span class="c1"># 打开文档</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>  <span class="c1"># 遍历页面</span>
+    <span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">()</span>  <span class="c1"># 将页面渲染为图像</span>
+    <span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;page-</span><span class="si">%i</span><span class="s2">.png&quot;</span> <span class="o">%</span> <span class="n">page</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># 将图像保存为PNG</span>
+</pre></div>
+</div>
+<p>脚本目录现在将包含名为 <em>page-0.png</em>、<em>page-1.png</em> 等的PNG图像文件。图片的尺寸与其页面相同，宽度和高度四舍五入为整数，例如A4纵向页面为595 x 842像素。它们的分辨率为96 dpi，且没有透明度。你可以更改这些设置——如何做到这一点，请阅读下一节内容。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This little script will take a document filename and generate a PNG file from each of its pages.</p>
+<p>The document can be any <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">supported type</span></a>.</p>
+<p>The script works as a command line tool which expects the filename being supplied as a parameter. The generated image files (1 per page) are stored in the directory of the script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span><span class="o">,</span><span class="w"> </span><span class="nn">pymupdf</span>  <span class="c1"># import the bindings</span>
+<span class="n">fname</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># get filename from command line</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>  <span class="c1"># open document</span>
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>  <span class="c1"># iterate through the pages</span>
+    <span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">()</span>  <span class="c1"># render page to an image</span>
+    <span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;page-</span><span class="si">%i</span><span class="s2">.png&quot;</span> <span class="o">%</span> <span class="n">page</span><span class="o">.</span><span class="n">number</span><span class="p">)</span>  <span class="c1"># store image as a PNG</span>
+</pre></div>
+</div>
+<p>The script directory will now contain PNG image files named <em>page-0.png</em>, <em>page-1.png</em>, etc. Pictures have the dimension of their pages with width and height rounded to integers, e.g. 595 x 842 pixels for an A4 portrait sized page. They will have a resolution of 96 dpi in x and y dimension and have no transparency. You can change all that – for how to do this, read the next sections.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-b">
+<span id="id3"></span><h2>如何提高 <span class="target" id="index-0"></span>图像分辨率<a class="headerlink" href="#recipesimages-b" title="此标题的永久链接">#</a></h2>
+<p>How to Increase <span class="target" id="index-1"></span>Image Resolution</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>文档页面的图像由 <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a> 表示，创建pixmap的最简单方法是通过方法 <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a>。</p>
+<p>此方法有许多选项可以影响结果。其中最重要的是 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>，它允许你 <span class="target" id="index-2"></span>zoom (缩放)、旋转、扭曲或镜像输出。</p>
+<p><a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a> 默认使用 <a class="reference internal" href="identity.html#identity"><span class="std std-ref">Identity</span></a> 矩阵，这不会做任何事情。</p>
+<p>接下来，我们将应用一个 <span class="target" id="index-3"></span>zoom factor (缩放因子) 为2，作用于每个维度，这将为我们生成一个分辨率提高四倍的图像（同时图像大小也大约四倍）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zoom_x</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># 水平缩放</span>
+<span class="n">zoom_y</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># 垂直缩放</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom_x</span><span class="p">,</span> <span class="n">zoom_y</span><span class="p">)</span>  <span class="c1"># 每个维度的缩放因子为2</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">)</span>  <span class="c1"># 使用&#39;mat&#39;代替单位矩阵</span>
+</pre></div>
+</div>
+<p>从版本1.19.2开始，有一种更直接的方式来设置分辨率：可以使用参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;dpi&quot;</span></code> （每英寸点数）来代替 <code class="xref any docutils literal notranslate"><span class="pre">&quot;matrix&quot;</span></code> 。要创建一个300 dpi的页面图像，指定 <code class="xref any docutils literal notranslate"><span class="pre">pix</span> <span class="pre">=</span> <span class="pre">page.get_pixmap(dpi=300)</span></code> 。除了简洁的表示法外，这种方法还有一个额外的优点，即 <strong>dpi值会随图像文件一起保存</strong> ——而使用Matrix表示法时，默认情况下并不会自动保存此值。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>The image of a document page is represented by a <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a>, and the simplest way to create a pixmap is via method <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a>.</p>
+<p>This method has many options to influence the result. The most important among them is the <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>, which lets you <span class="target" id="index-4"></span>zoom, rotate, distort or mirror the outcome.</p>
+<p><a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a> by default will use the <a class="reference internal" href="identity.html#identity"><span class="std std-ref">Identity</span></a> matrix, which does nothing.</p>
+<p>In the following, we apply a <span class="target" id="index-5"></span>zoom factor of 2 to each dimension, which will generate an image with a four times better resolution for us (and also about 4 times the size):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">zoom_x</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># horizontal zoom</span>
+<span class="n">zoom_y</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># vertical zoom</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom_x</span><span class="p">,</span> <span class="n">zoom_y</span><span class="p">)</span>  <span class="c1"># zoom factor 2 in each dimension</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">)</span>  <span class="c1"># use &#39;mat&#39; instead of the identity matrix</span>
+</pre></div>
+</div>
+<p>Since version 1.19.2 there is a more direct way to set the resolution: Parameter <code class="xref any docutils literal notranslate"><span class="pre">&quot;dpi&quot;</span></code> (dots per inch) can be used in place of <code class="xref any docutils literal notranslate"><span class="pre">&quot;matrix&quot;</span></code>. To create a 300 dpi image of a page specify <code class="xref any docutils literal notranslate"><span class="pre">pix</span> <span class="pre">=</span> <span class="pre">page.get_pixmap(dpi=300)</span></code>. Apart from notation brevity, this approach has the additional advantage that the <strong>dpi value is saved with the image</strong> file – which does not happen automatically when using the Matrix notation.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="partial-pixmaps">
+<span id="recipesimages-c"></span><h2>如何创建 <span class="target" id="index-6"></span>Partial Pixmaps (部分像素图/剪辑)<a class="headerlink" href="#partial-pixmaps" title="此标题的永久链接">#</a></h2>
+<p>How to Create <span class="target" id="index-7"></span>Partial Pixmaps (Clips)</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>您并不总是需要或想要页面的完整图像。例如，当您在图形用户界面（GUI）中显示图像，并希望用页面的放大部分填满相应窗口时，就是这样。</p>
+<p>假设您的 GUI 窗口有足够的空间来显示一整页文档，但现在您想用页面右下角的四分之一区域填满这个空间，从而实现分辨率提高四倍的效果。</p>
+<p>为了实现这一点，定义一个与您希望在 GUI 中显示的区域相等的矩形，并将其命名为“clip”。在 PyMuPDF 中构建矩形的一种方法是提供两个对角相对的角点，这正是我们在这里所做的。</p>
+<img alt="_images/img-clip.jpg" src="_images/img-clip.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>50%</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># 每个方向上的缩放因子为 2</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span>  <span class="c1"># 页面矩形</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">tl</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">br</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># 其中点，成为 clip 的左上角</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">br</span><span class="p">)</span>  <span class="c1"># 我们想要的区域</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>在上述代码中，我们通过指定两个对角相对的点来构建 <em>clip</em>：页面矩形的中心点 <em>mp</em> 及其右下角 <em>rect.br</em> 。</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>You do not always need or want the full image of a page. This is the case e.g. when you display the image in a GUI and would like to fill the respective window with a zoomed part of the page.</p>
+<p>Let’s assume your GUI window has room to display a full document page, but you now want to fill this room with the bottom right quarter of your page, thus using a four times better resolution.</p>
+<p>To achieve this, define a rectangle equal to the area you want to appear in the GUI and call it “clip”. One way of constructing rectangles in PyMuPDF is by providing two diagonally opposite corners, which is what we are doing here.</p>
+<img alt="_images/img-clip.jpg" src="_images/img-clip.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">width<span class="colon">:</span></dt>
+<dd class="field-odd"><p>50%</p>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># zoom factor 2 in each direction</span>
+<span class="n">rect</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span>  <span class="c1"># the page rectangle</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="p">(</span><span class="n">rect</span><span class="o">.</span><span class="n">tl</span> <span class="o">+</span> <span class="n">rect</span><span class="o">.</span><span class="n">br</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># its middle point, becomes top-left of clip</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">mp</span><span class="p">,</span> <span class="n">rect</span><span class="o">.</span><span class="n">br</span><span class="p">)</span>  <span class="c1"># the area we want</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above we construct <em>clip</em> by specifying two diagonally opposite points: the middle point <em>mp</em> of the page rectangle, and its bottom right, <em>rect.br</em>.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="gui">
+<span id="recipesimages-d"></span><h2>如何将剪辑缩放到 GUI 窗口<a class="headerlink" href="#gui" title="此标题的永久链接">#</a></h2>
+<p>How to Zoom a Clip to a GUI Window</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>请同时阅读上一节内容。这次我们要 <strong>计算裁剪区域的缩放因子</strong> ，以便其图像能最佳适配给定的 GUI 窗口。这意味着，图像的宽度或高度（或两者）将与窗口尺寸相等。对于以下代码片段，您需要提供应接收页面裁剪矩形的 GUI 窗口的宽度和高度。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># WIDTH: GUI 窗口的宽度</span>
+<span class="c1"># HEIGHT: GUI 窗口的高度</span>
+<span class="c1"># clip: 文档页面的一个子矩形</span>
+<span class="c1"># 比较图像和窗口的宽高比</span>
+
+<span class="k">if</span> <span class="n">clip</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">height</span> <span class="o">&lt;</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">HEIGHT</span><span class="p">:</span>
+    <span class="c1"># 裁剪区域较窄：缩放至窗口高度</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">height</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># 裁剪区域较宽：缩放至窗口宽度</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">width</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom</span><span class="p">,</span> <span class="n">zoom</span><span class="p">)</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>反过来，现在假设您 <strong>已知</strong> 缩放因子，并需要 <strong>计算适配的裁剪区域</strong> 。</p>
+<p>在这种情况下，我们有 <code class="xref any docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">HEIGHT/clip.height</span> <span class="pre">=</span> <span class="pre">WIDTH/clip.width</span></code>，因此我们必须设置 <code class="xref any docutils literal notranslate"><span class="pre">clip.height</span> <span class="pre">=</span> <span class="pre">HEIGHT/zoom</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">clip.width</span> <span class="pre">=</span> <span class="pre">WIDTH/zoom</span></code>。选择页面上裁剪区域的左上角点 <a class="reference internal" href="irect.html#IRect.tl" title="IRect.tl"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tl</span></code></a> 来计算正确的像素图:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">width</span> <span class="o">=</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">zoom</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">/</span> <span class="n">zoom</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">tl</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+<span class="c1"># 确保我们仍在页面范围内</span>
+<span class="n">clip</span> <span class="o">&amp;=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom</span><span class="p">,</span> <span class="n">zoom</span><span class="p">)</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>Please also read the previous section. This time we want to <strong>compute the zoom factor</strong> for a clip, such that its image best fits a given GUI window. This means, that the image’s width or height (or both) will equal the window dimension. For the following code snippet you need to provide the WIDTH and HEIGHT of your GUI’s window that should receive the page’s clip rectangle.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># WIDTH: width of the GUI window</span>
+<span class="c1"># HEIGHT: height of the GUI window</span>
+<span class="c1"># clip: a subrectangle of the document page</span>
+<span class="c1"># compare width/height ratios of image and window</span>
+
+<span class="k">if</span> <span class="n">clip</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">height</span> <span class="o">&lt;</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">HEIGHT</span><span class="p">:</span>
+    <span class="c1"># clip is narrower: zoom to window HEIGHT</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">height</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># clip is broader: zoom to window WIDTH</span>
+    <span class="n">zoom</span> <span class="o">=</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">clip</span><span class="o">.</span><span class="n">width</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom</span><span class="p">,</span> <span class="n">zoom</span><span class="p">)</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For the other way round, now assume you <strong>have</strong> the zoom factor and need to <strong>compute the fitting clip</strong>.</p>
+<p>In this case we have <code class="xref any docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">HEIGHT/clip.height</span> <span class="pre">=</span> <span class="pre">WIDTH/clip.width</span></code>, so we must set <code class="xref any docutils literal notranslate"><span class="pre">clip.height</span> <span class="pre">=</span> <span class="pre">HEIGHT/zoom</span></code> and, <code class="xref any docutils literal notranslate"><span class="pre">clip.width</span> <span class="pre">=</span> <span class="pre">WIDTH/zoom</span></code>. Choose the top-left point <a class="reference internal" href="irect.html#IRect.tl" title="IRect.tl"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">tl</span></code></a> of the clip on the page to compute the right pixmap:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">width</span> <span class="o">=</span> <span class="n">WIDTH</span> <span class="o">/</span> <span class="n">zoom</span>
+<span class="n">height</span> <span class="o">=</span> <span class="n">HEIGHT</span> <span class="o">/</span> <span class="n">zoom</span>
+<span class="n">clip</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">tl</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="p">,</span> <span class="n">tl</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+<span class="c1"># ensure we still are inside the page</span>
+<span class="n">clip</span> <span class="o">&amp;=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">zoom</span><span class="p">,</span> <span class="n">zoom</span><span class="p">)</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">mat</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="n">clip</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-e">
+<span id="id4"></span><h2>如何创建或隐藏注释图像<a class="headerlink" href="#recipesimages-e" title="此标题的永久链接">#</a></h2>
+<p>How to Create or Suppress Annotation Images</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>通常，页面的像素图也会显示页面的注释。有时，这可能并不理想。</p>
+<p>要在渲染的页面上隐藏注释图像，只需在 <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a> 中指定 <code class="xref any docutils literal notranslate"><span class="pre">annots=False</span></code>。</p>
+<p>您也可以单独渲染注释：它们有自己的 <a class="reference internal" href="annot.html#Annot.get_pixmap" title="Annot.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_pixmap()</span></code></a> 方法。生成的像素图与注释矩形的尺寸相同 。</p>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>Normally, the pixmap of a page also shows the page’s annotations. Occasionally, this may not be desirable.</p>
+<p>To suppress the annotation images on a rendered page, just specify <code class="xref any docutils literal notranslate"><span class="pre">annots=False</span></code> in <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a>.</p>
+<p>You can also render annotations separately: they have their own <a class="reference internal" href="annot.html#Annot.get_pixmap" title="Annot.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_pixmap()</span></code></a> method. The resulting pixmap has the same dimensions as the annotation rectangle.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="pdf">
+<span id="recipesimages-f"></span><span id="index-8"></span><h2>如何提取图像：非 PDF 文档<a class="headerlink" href="#pdf" title="此标题的永久链接">#</a></h2>
+<p>How to Extract Images: Non-PDF Documents</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>与前面的章节不同，本节讨论的是 <strong>提取</strong> 文档中 <strong>包含</strong> 的图像，以便将它们作为一页或多页的一部分进行显示。</p>
+<p>如果您想以文件形式或在内存区域中重现原始图像，基本上有两种选择：</p>
+<ol class="arabic">
+<li><p>将您的文档转换为 PDF，然后使用仅适用于 PDF 的提取方法。以下代码片段将文档转换为 PDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pdfbytes</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">convert_to_pdf</span><span class="p">()</span>  <span class="c1"># 这是一个字节对象</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdf</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="n">pdfbytes</span><span class="p">)</span>  <span class="c1"># 将其作为 PDF 文档打开</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 现在像处理任何 PDF 文档一样使用 &#39;pdf&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用带有 “dict” 参数的 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 方法。这对所有文档类型都适用。它将以 Python 字典的形式提取页面上显示的所有文本和图像。每个图像都会出现在一个图像块中，其中包含元信息和 <strong>二进制图像数据</strong> 。有关字典结构的详细信息，请参阅 <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a> 。该方法对 PDF 文件同样有效。以下代码创建了一个列表，包含页面上显示的所有图像:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="s2">&quot;dict&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blocks</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;blocks&quot;</span><span class="p">]</span>  <span class="c1"># 块字典的列表</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgblocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">blocks</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">imgblocks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">{</span>
+<span class="go">    &#39;bbox&#39;: (100.0, 135.8769989013672, 300.0, 364.1230163574219),</span>
+<span class="go">    &#39;bpc&#39;: 8,</span>
+<span class="go">    &#39;colorspace&#39;: 3,</span>
+<span class="go">    &#39;ext&#39;: &#39;jpeg&#39;,</span>
+<span class="go">    &#39;height&#39;: 501,</span>
+<span class="go">    &#39;image&#39;: b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\...&#39;,  # 注意：数据量大！</span>
+<span class="go">    &#39;size&#39;: 80518,</span>
+<span class="go">    &#39;transform&#39;: (200.0, 0.0, -0.0, 228.2460174560547, 100.0, 135.8769989013672),</span>
+<span class="go">    &#39;type&#39;: 1,</span>
+<span class="go">    &#39;width&#39;: 439,</span>
+<span class="go">    &#39;xres&#39;: 96,</span>
+<span class="go">    &#39;yres&#39;: 96</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>In contrast to the previous sections, this section deals with <strong>extracting</strong> images <strong>contained</strong> in documents, so they can be displayed as part of one or more pages.</p>
+<p>If you want to recreate the original image in file form or as a memory area, you have basically two options:</p>
+<ol class="arabic">
+<li><p>Convert your document to a PDF, and then use one of the PDF-only extraction methods. This snippet will convert a document to PDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pdfbytes</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">convert_to_pdf</span><span class="p">()</span>  <span class="c1"># this a bytes object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pdf</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="n">pdfbytes</span><span class="p">)</span>  <span class="c1"># open it as a PDF document</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># now use &#39;pdf&#39; like any PDF document</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> with the “dict” parameter. This works for all document types. It will extract all text and images shown on the page, formatted as a Python dictionary. Every image will occur in an image block, containing meta information and <strong>the binary image data</strong>. For details of the dictionary’s structure, see <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a>. The method works equally well for PDF files. This creates a list of all images shown on a page:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="s2">&quot;dict&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">blocks</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;blocks&quot;</span><span class="p">]</span>  <span class="c1"># the list of block dictionaries</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgblocks</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">blocks</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">imgblocks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">{&#39;bbox&#39;: (100.0, 135.8769989013672, 300.0, 364.1230163574219),</span>
+<span class="go">&#39;bpc&#39;: 8,</span>
+<span class="go">&#39;colorspace&#39;: 3,</span>
+<span class="go">&#39;ext&#39;: &#39;jpeg&#39;,</span>
+<span class="go">&#39;height&#39;: 501,</span>
+<span class="go">&#39;image&#39;: b&#39;\xff\xd8\xff\xe0\x00\x10JFIF\...&#39;,  # CAUTION: LARGE!</span>
+<span class="go">&#39;size&#39;: 80518,</span>
+<span class="go">&#39;transform&#39;: (200.0, 0.0, -0.0, 228.2460174560547, 100.0, 135.8769989013672),</span>
+<span class="go">&#39;type&#39;: 1,</span>
+<span class="go">&#39;width&#39;: 439,</span>
+<span class="go">&#39;xres&#39;: 96,</span>
+<span class="go">&#39;yres&#39;: 96}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-g">
+<span id="index-9"></span><span id="id5"></span><h2>如何提取图像：PDF 文档<a class="headerlink" href="#recipesimages-g" title="此标题的永久链接">#</a></h2>
+<p>How to Extract Images: PDF Documents</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>与 PDF 中的任何其他“对象”一样，图像通过交叉引用编号（<a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>，一个整数）来标识。如果您知道这个编号，有两种方法可以访问图像的数据：</p>
+<ol class="arabic simple">
+<li><p><strong>创建</strong> 图像的 <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a> ，使用指令 <em>pix = pymupdf.Pixmap(doc, xref)</em> 。这种方法 <strong>非常</strong> 快（单数字微秒级）。pixmap 的属性（宽度、高度等）将与图像的实际属性相对应。在这种情况下，无法得知嵌入的原始图像是什么格式。</p></li>
+<li><p><strong>提取</strong> 图像，使用 <em>img = doc.extract_image(xref)</em>。这将返回一个包含二进制图像数据 <em>img[“image”]</em> 的字典。同时提供了许多元数据——大多与图像的 pixmap 中的信息相同。主要区别在于字符串 <em>img[“ext”]</em>，它指定了图像格式：除了 “png” 之外，还可能出现 “jpeg”、”bmp”、”tiff” 等字符串。如果您想将图像存储到磁盘，可以使用这个字符串作为文件扩展名。此方法的执行速度应与 <em>pix = pymupdf.Pixmap(doc, xref); pix.tobytes()</em> 组合语句的速度进行比较。如果嵌入的图像是 PNG 格式，<a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> 的速度大致相同（并且二进制图像数据也相同）。否则，此方法 <strong>快数千倍</strong> ，并且 <strong>图像数据要小得多</strong> 。</p></li>
+</ol>
+<p>问题仍然存在：“<strong>我如何知道这些图像的 ‘xref’ 编号？</strong>” 对此有两个答案：</p>
+<ol class="loweralpha simple">
+<li><p><strong>“检查页面对象”</strong>：遍历 <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 的项。它是一个列表的列表，其项看起来像 <em>[xref, smask, …]</em>，包含图像的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。然后可以使用上述方法之一使用此 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。对于 <strong>有效（未损坏）</strong> 文档使用此方法。不过请注意，同一图像可能被多次引用（由不同页面），因此您可能需要提供一种机制来避免多次提取。</p></li>
+<li><p><strong>“无需知道”</strong>：遍历文档的所有 <strong>xref 列表</strong>，并对每个编号执行 <a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a>。如果返回的字典为空，则继续——此 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 不是图像。如果 PDF <strong>已损坏（页面不可用）</strong>，则使用此方法。请注意，PDF 通常包含用于定义其他某些图像透明度的“伪图像”（“模板蒙版”）。您可能需要提供逻辑来排除这些图像的提取。另请参阅下一节。</p></li>
+</ol>
+<p>对于这两种提取方法，都存在现成的通用脚本：</p>
+<p><a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-pages.py">extract-from-pages.py</a> 按页提取图像：</p>
+<a class="reference internal image-reference" href="_images/img-extract-imga.jpg"><img alt="_images/img-extract-imga.jpg" src="_images/img-extract-imga.jpg" style="width: 263.2px; height: 228.8px;" /></a>
+<p>以及 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-xref.py">extract-from-xref.py</a> 按 xref 表提取图像：</p>
+<a class="reference internal image-reference" href="_images/img-extract-imgb.jpg"><img alt="_images/img-extract-imgb.jpg" src="_images/img-extract-imgb.jpg" style="width: 262.40000000000003px; height: 229.60000000000002px;" /></a>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>Like any other “object” in a PDF, images are identified by a cross reference number (<a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>, an integer). If you know this number, you have two ways to access the image’s data:</p>
+<ol class="arabic simple">
+<li><p><strong>Create</strong> a <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a> of the image with instruction <em>pix = pymupdf.Pixmap(doc, xref)</em>. This method is <strong>very</strong> fast (single digit micro-seconds). The pixmap’s properties (width, height, …) will reflect the ones of the image. In this case there is no way to tell which image format the embedded original has.</p></li>
+<li><p><strong>Extract</strong> the image with <em>img = doc.extract_image(xref)</em>. This is a dictionary containing the binary image data as <em>img[“image”]</em>. A number of meta data are also provided – mostly the same as you would find in the pixmap of the image. The major difference is string <em>img[“ext”]</em>, which specifies the image format: apart from “png”, strings like “jpeg”, “bmp”, “tiff”, etc. can also occur. Use this string as the file extension if you want to store to disk. The execution speed of this method should be compared to the combined speed of the statements <em>pix = pymupdf.Pixmap(doc, xref);pix.tobytes()</em>. If the embedded image is in PNG format, the speed of <a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> is about the same (and the binary image data are identical). Otherwise, this method is <strong>thousands of times faster</strong>, and the <strong>image data is much smaller</strong>.</p></li>
+</ol>
+<p>The question remains: <strong>“How do I know those ‘xref’ numbers of images?”</strong>. There are two answers to this:</p>
+<ol class="loweralpha simple">
+<li><p><strong>“Inspect the page objects:”</strong> Loop through the items of <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a>. It is a list of list, and its items look like <em>[xref, smask, …]</em>, containing the <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> of an image. This <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> can then be used with one of the above methods. Use this method for <strong>valid (undamaged)</strong> documents. Be wary however, that the same image may be referenced multiple times (by different pages), so you might want to provide a mechanism avoiding multiple extracts.</p></li>
+<li><p><strong>“No need to know:”</strong> Loop through the list of <strong>all xrefs</strong> of the document and perform a <a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> for each one. If the returned dictionary is empty, then continue – this <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> is no image. Use this method if the PDF is <strong>damaged (unusable pages)</strong>. Note that a PDF often contains “pseudo-images” (“stencil masks”) with the special purpose of defining the transparency of some other image. You may want to provide logic to exclude those from extraction. Also have a look at the next section.</p></li>
+</ol>
+<p>For both extraction approaches, there exist ready-to-use general purpose scripts:</p>
+<p><a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-pages.py">extract-from-pages.py</a> extracts images page by page:</p>
+<img alt="_images/img-extract-imga.jpg" src="_images/img-extract-imga.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">scale<span class="colon">:</span></dt>
+<dd class="field-odd"><p>80</p>
+</dd>
+</dl>
+<p>and <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-xref.py">extract-from-xref.py</a> extracts images by xref table:</p>
+<img alt="_images/img-extract-imgb.jpg" src="_images/img-extract-imgb.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">scale<span class="colon">:</span></dt>
+<dd class="field-odd"><p>80</p>
+</dd>
+</dl>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-h">
+<span id="id8"></span><h2>如何处理图像蒙版<a class="headerlink" href="#recipesimages-h" title="此标题的永久链接">#</a></h2>
+<p>How to Handle Image Masks</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p>PDF 中的一些图像会配有 <strong>图像蒙版</strong> 。在最简单的形式下，蒙版以单独的图像形式存储表示透明度（alpha）的字节。为了重建带有蒙版的图像的原始图像，必须用从其蒙版中提取的透明度字节“丰富”该图像。</p>
+<p>在 PyMuPDF 中，可以通过以下两种方式之一识别图像是否有这样的蒙版：</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="document.html#Document.get_page_images" title="Document.get_page_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_page_images()</span></code></a> 的项具有通用格式 <code class="xref any docutils literal notranslate"><span class="pre">(xref,</span> <span class="pre">smask,</span> <span class="pre">...)</span></code>，其中 <em>xref</em> 是图像的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>，如果 <em>smask</em> 为正数，则它是蒙版的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。</p></li>
+<li><p><a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> 的（字典）结果有一个键 <em>“smask”</em> ，如果为正数，也包含任何蒙版的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。</p></li>
+</ol>
+<p>如果 <em>smask == 0</em>，则通过 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 遇到的图像可以按原样处理。</p>
+<p>要使用 PyMuPDF 恢复原始图像，必须执行如下所示的过程：</p>
+<a class="reference internal image-reference" href="_images/img-stencil.jpg"><img alt="_images/img-stencil.jpg" src="_images/img-stencil.jpg" style="width: 394.8px; height: 203.4px;" /></a>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pix1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">extract_image</span><span class="p">(</span><span class="n">xref</span><span class="p">)[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>    <span class="c1"># (1) 不带 alpha 的图像的 pixmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">extract_image</span><span class="p">(</span><span class="n">smask</span><span class="p">)[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>   <span class="c1"># (2) 蒙版的 pixmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pix1</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>                           <span class="c1"># (3) 添加了图像蒙版的 pix1 副本</span>
+</pre></div>
+</div>
+<p>步骤 (1) 创建基本图像的 pixmap。步骤 (2) 对图像蒙版执行相同的操作。步骤 (3) 添加一个 alpha 通道并用透明度信息填充它。</p>
+<p>上述脚本 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-pages.py">extract-from-pages.py</a> 和 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-xref.py">extract-from-xref.py</a> 也包含此逻辑 。</p>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<p>Some images in PDFs are accompanied by <strong>image masks</strong>. In their simplest form, masks represent alpha (transparency) bytes stored as separate images. In order to reconstruct the original of an image, which has a mask, it must be “enriched” with transparency bytes taken from its mask.</p>
+<p>Whether an image does have such a mask can be recognized in one of two ways in PyMuPDF:</p>
+<ol class="arabic simple">
+<li><p>An item of <a class="reference internal" href="document.html#Document.get_page_images" title="Document.get_page_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_page_images()</span></code></a> has the general format <code class="xref any docutils literal notranslate"><span class="pre">(xref,</span> <span class="pre">smask,</span> <span class="pre">...)</span></code>, where <em>xref</em> is the image’s <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> and <em>smask</em>, if positive, then it is the <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> of a mask.</p></li>
+<li><p>The (dictionary) results of <a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> have a key <em>“smask”</em>, which also contains any mask’s <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> if positive.</p></li>
+</ol>
+<p>If <em>smask == 0</em> then the image encountered via <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> can be processed as it is.</p>
+<p>To recover the original image using PyMuPDF, the procedure depicted as follows must be executed:</p>
+<a class="reference internal image-reference" href="_images/img-stencil.jpg"><img alt="_images/img-stencil.jpg" src="_images/img-stencil.jpg" style="width: 394.8px; height: 203.4px;" /></a>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pix1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">extract_image</span><span class="p">(</span><span class="n">xref</span><span class="p">)[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>    <span class="c1"># (1) pixmap of image w/o alpha</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">extract_image</span><span class="p">(</span><span class="n">smask</span><span class="p">)[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>   <span class="c1"># (2) mask pixmap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pix1</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>                           <span class="c1"># (3) copy of pix1, image mask added</span>
+</pre></div>
+</div>
+<p>Step (1) creates a pixmap of the basic image. Step (2) does the same with the image mask. Step (3) adds an alpha channel and fills it with transparency information.</p>
+<p>The scripts <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-pages.py">extract-from-pages.py</a>, and <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/extract-images/extract-from-xref.py">extract-from-xref.py</a> above also contain this logic.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-i">
+<span id="index-10"></span><span id="id13"></span><h2>如何将所有图片（或文件）制作成一个 PDF<a class="headerlink" href="#recipesimages-i" title="此标题的永久链接">#</a></h2>
+<p>How to Make one PDF of all your Pictures (or Files)</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--8-input--1" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--1">中文</label><div class="tab-content docutils container">
+<p>我们在此展示 <strong>三个脚本</strong> ，它们可以将一系列（图像和其他类型的）文件合并到一个 PDF 文件中。</p>
+<p><strong>方法 1：将图像作为页面插入</strong></p>
+<p>第一个脚本将每张图像转换为一个具有相同尺寸的 PDF 页面。最终生成的 PDF 文件将每页显示一张图像。此方法仅适用于 <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">支持的图像</span></a> 文件格式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PySimpleGUI</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">psg</span>  <span class="c1"># 用于显示进度条</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># 创建一个新的 PDF 文档来存放图片</span>
+<span class="n">imgdir</span> <span class="o">=</span> <span class="s2">&quot;D:/2012_10_05&quot;</span>  <span class="c1"># 图片所在的目录</span>
+<span class="n">imglist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">imgdir</span><span class="p">)</span>  <span class="c1"># 获取图片文件列表</span>
+<span class="n">imgcount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">imglist</span><span class="p">)</span>  <span class="c1"># 图片数量</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imglist</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span>  <span class="c1"># 将图片作为文档打开</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rect</span>  <span class="c1"># 获取图片的尺寸</span>
+    <span class="n">pdfbytes</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert_to_pdf</span><span class="p">()</span>  <span class="c1"># 将图片转换为 PDF 流</span>
+    <span class="n">img</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># 不再需要原始图片文档</span>
+    <span class="n">imgPDF</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="n">pdfbytes</span><span class="p">)</span>  <span class="c1"># 将 PDF 流作为 PDF 文档打开</span>
+    <span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>  <span class="c1"># 创建一个新页面，尺寸与图片相同</span>
+                        <span class="n">height</span><span class="o">=</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">page</span><span class="o">.</span><span class="n">show_pdf_page</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">imgPDF</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 将图片页面填充到新页面上</span>
+    <span class="n">psg</span><span class="o">.</span><span class="n">EasyProgressMeter</span><span class="p">(</span><span class="s2">&quot;导入图片&quot;</span><span class="p">,</span>  <span class="c1"># 显示进度条</span>
+                        <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">imgcount</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;all-my-pics.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这样生成的 PDF 文件大小仅比所有图片的总大小略大一些。以下是性能相关的一些数据：</p>
+<p>在我的机器上，上述脚本处理 149 张总大小为 514 MB 的图片（生成的 PDF 大小也大致相同）大约需要 1 分钟。</p>
+<a class="reference internal image-reference" href="_images/img-import-progress.jpg"><img alt="_images/img-import-progress.jpg" src="_images/img-import-progress.jpg" style="width: 264.0px; height: 217.60000000000002px;" /></a>
+<p>更完整的源代码可以 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/insert-images/insert.py">在这里查看</a> ：它提供了一个目录选择对话框，并会跳过不受支持的文件和非文件条目。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>我们本可以使用 <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> 方法代替 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> 方法，最终生成的文件看起来也会类似。然而，根据图像类型的不同，这种方法可能会 <strong>以未压缩的形式存储图像</strong> 。因此，必须使用 <em>deflate = True</em> 保存选项才能获得合理的文件大小，但这会大幅增加处理大量图片时的运行时间。所以在此 <strong>不建议使用这种方法</strong> 。</p>
+</div>
+<p><strong>方法 2：嵌入文件</strong></p>
+<p>第二个脚本可以 <strong>嵌入</strong> 任意文件 —— 不仅仅是图像。生成的 PDF 文件出于技术原因将只包含一个（空白）页面。若要之后再次访问这些嵌入的文件，您需要一个能够显示和/或提取嵌入文件的合适的 PDF 查看器:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PySimpleGUI</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">psg</span>  <span class="c1"># 用于显示进度条</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># 创建一个新的 PDF 文档</span>
+<span class="n">imgdir</span> <span class="o">=</span> <span class="s2">&quot;D:/2012_10_05&quot;</span>  <span class="c1"># 文件所在的目录</span>
+
+<span class="n">imglist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">imgdir</span><span class="p">)</span>  <span class="c1"># 获取文件列表</span>
+<span class="n">imgcount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">imglist</span><span class="p">)</span>  <span class="c1"># 文件数量</span>
+<span class="n">imglist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>  <span class="c1"># 对文件进行排序</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imglist</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># 读取文件内容形成字节流</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">embfile_add</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>  <span class="c1"># 嵌入文件</span>
+                    <span class="n">ufilename</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">psg</span><span class="o">.</span><span class="n">EasyProgressMeter</span><span class="p">(</span><span class="s2">&quot;嵌入文件&quot;</span><span class="p">,</span>  <span class="c1"># 显示进度条</span>
+                        <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">imgcount</span><span class="p">)</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">()</span>  <span class="c1"># 至少需要一个页面</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;all-my-pics-embedded.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/img-embed-progress.jpg"><img alt="_images/img-embed-progress.jpg" src="_images/img-embed-progress.jpg" style="width: 265.6px; height: 219.20000000000002px;" /></a>
+<p>这是迄今为止最快的方法，并且生成的输出文件大小也是最小的。上述图片在我的机器上处理耗时 20 秒，生成的 PDF 文件大小为 510 MB。更完整的源代码可以 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/tree/master/examples/embed-images/embed.py">在这里查看</a> ：它提供了一个目录选择对话框，并会跳过非文件条目 。</p>
+<p><strong>方法 3：附加文件</strong></p>
+<p>实现此任务的第三种方式是通过页面注释来 <strong>附加文件</strong> ，完整的源代码可参考 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/attach-images/attach.py">这里</a> 。</p>
+<p>此方法的性能与上一个脚本相似，并且生成的文件大小也相近。它会生成带有 PDF 页面，每个附加文件对应一个“文件附件”图标。</p>
+<img alt="_images/img-attach-result.jpg" src="_images/img-attach-result.jpg" />
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>嵌入</strong> 和 <strong>附加</strong> 这两种方法都可用于 <strong>任意文件</strong> —— 不仅仅局限于图像。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>对于可能需要较长时间运行的任务，我们强烈推荐使用出色的 <a class="reference external" href="https://pypi.org/project/PySimpleGUI/">PySimpleGUI</a> 包来显示进度条。它是纯 Python 实现的，使用 Tkinter（无需额外的 GUI 包），并且只需多写一行代码！</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--8-input--2" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--2">英文</label><div class="tab-content docutils container">
+<p>We show here <strong>three scripts</strong> that take a list of (image and other) files and put them all in one PDF.</p>
+<p><strong>Method 1: Inserting Images as Pages</strong></p>
+<p>The first one converts each image to a PDF page with the same dimensions. The result will be a PDF with one page per image. It will only work for <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">supported image</span></a> file formats:</p>
+<p>import os, pymupdf
+import PySimpleGUI as psg  # for showing a progress bar
+doc = pymupdf.open()  # PDF with the pictures
+imgdir = “D:/2012_10_05”  # where the pics are
+imglist = os.listdir(imgdir)  # list of them
+imgcount = len(imglist)  # pic count</p>
+<dl>
+<dt>for i, f in enumerate(imglist):</dt><dd><p>img = pymupdf.open(os.path.join(imgdir, f))  # open pic as document
+rect = img[0].rect  # pic dimension
+pdfbytes = img.convert_to_pdf()  # make a PDF stream
+img.close()  # no longer needed
+imgPDF = pymupdf.open(“pdf”, pdfbytes)  # open stream as PDF
+page = doc.new_page(width = rect.width,  # new page with …</p>
+<blockquote>
+<div><p>height = rect.height)  # pic dimension</p>
+</div></blockquote>
+<p>page.show_pdf_page(rect, imgPDF, 0)  # image fills the page
+psg.EasyProgressMeter(“Import Images”,  # show our progress</p>
+<blockquote>
+<div><p>i+1, imgcount)</p>
+</div></blockquote>
+</dd>
+</dl>
+<p>doc.save(“all-my-pics.pdf”)</p>
+<p>This will generate a PDF only marginally larger than the combined pictures’ size. Some numbers on performance:</p>
+<p>The above script needed about 1 minute on my machine for 149 pictures with a total size of 514 MB (and about the same resulting PDF size).</p>
+<a class="reference internal image-reference" href="_images/img-import-progress.jpg"><img alt="_images/img-import-progress.jpg" src="_images/img-import-progress.jpg" style="width: 264.0px; height: 217.60000000000002px;" /></a>
+<p>Look <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/insert-images/insert.py">here</a> for a more complete source code: it offers a directory selection dialog and skips unsupported files and non-file entries.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>We might have used <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> instead of <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>, and the result would have been a similar looking file. However, depending on the image type, it may store <strong>images uncompressed</strong>. Therefore, the save option <em>deflate = True</em> must be used to achieve a reasonable file size, which hugely increases the runtime for large numbers of images. So this alternative <strong>cannot be recommended</strong> here.</p>
+</div>
+<p><strong>Method 2: Embedding Files</strong></p>
+<p>The second script <strong>embeds</strong> arbitrary files – not only images. The resulting PDF will have just one (empty) page, required for technical reasons. To later access the embedded files again, you would need a suitable PDF viewer that can display and / or extract embedded files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PySimpleGUI</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">psg</span>  <span class="c1"># for showing progress bar</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>  <span class="c1"># PDF with the pictures</span>
+<span class="n">imgdir</span> <span class="o">=</span> <span class="s2">&quot;D:/2012_10_05&quot;</span>  <span class="c1"># where my files are</span>
+
+<span class="n">imglist</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">imgdir</span><span class="p">)</span>  <span class="c1"># list of pictures</span>
+<span class="n">imgcount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">imglist</span><span class="p">)</span>  <span class="c1"># pic count</span>
+<span class="n">imglist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>  <span class="c1"># nicely sort them</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imglist</span><span class="p">):</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span><span class="n">f</span><span class="p">),</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># make pic stream</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">embfile_add</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">f</span><span class="p">,</span>  <span class="c1"># and embed it</span>
+                        <span class="n">ufilename</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">psg</span><span class="o">.</span><span class="n">EasyProgressMeter</span><span class="p">(</span><span class="s2">&quot;Embedding Files&quot;</span><span class="p">,</span>  <span class="c1"># show our progress</span>
+        <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">imgcount</span><span class="p">)</span>
+
+<span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">()</span>  <span class="c1"># at least 1 page is needed</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;all-my-pics-embedded.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/img-embed-progress.jpg" src="_images/img-embed-progress.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">scale<span class="colon">:</span></dt>
+<dd class="field-odd"><p>80</p>
+</dd>
+</dl>
+<p>This is by far the fastest method, and it also produces the smallest possible output file size. The above pictures needed 20 seconds on my machine and yielded a PDF size of 510 MB. Look <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/tree/master/examples/embed-images/embed.py">here</a> for a more complete source code: it offers a directory selection dialog and skips non-file entries.</p>
+<p><strong>Method 3: Attaching Files</strong></p>
+<p>A third way to achieve this task is <strong>attaching files</strong> via page annotations see <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/attach-images/attach.py">here</a> for the complete source code.</p>
+<p>This has a similar performance as the previous script and it also produces a similar file size. It will produce PDF pages which show a ‘FileAttachment’ icon for each attached file.</p>
+<img alt="_images/img-attach-result.jpg" src="_images/img-attach-result.jpg" />
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Both, the <strong>embed</strong> and the <strong>attach</strong> methods can be used for <strong>arbitrary files</strong> – not just images.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>We strongly recommend using the awesome package <a class="reference external" href="https://pypi.org/project/PySimpleGUI/">PySimpleGUI</a> to display a progress meter for tasks that may run for an extended time span. It’s pure Python, uses Tkinter (no additional GUI package) and requires just one more line of code!</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-j">
+<span id="index-11"></span><span id="id20"></span><h2>如何创建矢量图片<a class="headerlink" href="#recipesimages-j" title="此标题的永久链接">#</a></h2>
+<p>How to Create Vector Images</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--9-input--1" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--1">中文</label><div class="tab-content docutils container">
+<p>通常，从文档页面创建图像的方法是使用 <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a>。像素图（pixmap）表示光栅图像，因此在创建时必须确定其质量（即分辨率），之后无法更改。</p>
+<p>PyMuPDF 还提供了一种以 SVG 格式（可缩放矢量图形，采用 XML 语法定义）创建页面 <strong>矢量图像</strong> 的方法。SVG 图像在不同缩放级别下都能保持精确（当然，其中嵌入的任何光栅图形元素除外）。</p>
+<p>指令 <em>svg = page.get_svg_image(matrix=pymupdf.Identity)</em> 会返回一个 UTF-8 字符串 <em>svg</em>，可以将其以“.svg”作为扩展名进行存储 。</p>
+</div>
+<input class="tab-input" id="tab-set--9-input--2" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--2">英文</label><div class="tab-content docutils container">
+<p>The usual way to create an image from a document page is <a class="reference internal" href="page.html#Page.get_pixmap" title="Page.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_pixmap()</span></code></a>. A pixmap represents a raster image, so you must decide on its quality (i.e. resolution) at creation time. It cannot be changed later.</p>
+<p>PyMuPDF also offers a way to create a <strong>vector image</strong> of a page in SVG format (scalable vector graphics, defined in XML syntax). SVG images remain precise across zooming levels (of course with the exception of any raster graphic elements embedded therein).</p>
+<p>Instruction <em>svg = page.get_svg_image(matrix=pymupdf.Identity)</em> delivers a UTF-8 string <em>svg</em> which can be stored with extension “.svg”.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-k">
+<span id="index-12"></span><span id="id21"></span><h2>如何转换图像<a class="headerlink" href="#recipesimages-k" title="此标题的永久链接">#</a></h2>
+<p>How to Convert Images</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--10-input--1" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--1">中文</label><div class="tab-content docutils container">
+<p>就像众多功能中的一个，PyMuPDF 的图像转换非常简便。在很多情况下，它可以避免使用其他图形处理包，如 PIL/Pillow。</p>
+<p>不过，与 Pillow 进行接口交互也几乎轻而易举。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>输入格式</strong></p></th>
+<th class="head"><p><strong>输出格式</strong></p></th>
+<th class="head"><p><strong>描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BMP</p></td>
+<td><p>.</p></td>
+<td><p>Windows 位图</p></td>
+</tr>
+<tr class="row-odd"><td><p>JPEG</p></td>
+<td><p>JPEG</p></td>
+<td><p>联合图像专家组</p></td>
+</tr>
+<tr class="row-even"><td><p>JXR</p></td>
+<td><p>.</p></td>
+<td><p>JPEG 扩展范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>JPX/JP2</p></td>
+<td><p>.</p></td>
+<td><p>JPEG 2000</p></td>
+</tr>
+<tr class="row-even"><td><p>GIF</p></td>
+<td><p>.</p></td>
+<td><p>图形交换格式</p></td>
+</tr>
+<tr class="row-odd"><td><p>TIFF</p></td>
+<td><p>.</p></td>
+<td><p>可移植网络图形</p></td>
+</tr>
+<tr class="row-even"><td><p>PNG</p></td>
+<td><p>PNG</p></td>
+<td><p>可移植网络图形</p></td>
+</tr>
+<tr class="row-odd"><td><p>PNM</p></td>
+<td><p>PNM</p></td>
+<td><p>可移植任意位图</p></td>
+</tr>
+<tr class="row-even"><td><p>PGM</p></td>
+<td><p>PGM</p></td>
+<td><p>可移植灰度图</p></td>
+</tr>
+<tr class="row-odd"><td><p>PBM</p></td>
+<td><p>PBM</p></td>
+<td><p>可移植位图</p></td>
+</tr>
+<tr class="row-even"><td><p>PPM</p></td>
+<td><p>PPM</p></td>
+<td><p>可移植像素图</p></td>
+</tr>
+<tr class="row-odd"><td><p>PAM</p></td>
+<td><p>PAM</p></td>
+<td><p>可移植任意映射</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>PSD</p></td>
+<td><p>Adobe Photoshop 文档</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>PS</p></td>
+<td><p>Adobe Postscript</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>一般的操作流程仅如下两行代码所示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.xxx&quot;</span><span class="p">)</span>  <span class="c1"># 任意支持的输入格式</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output.yyy&quot;</span><span class="p">)</span>  <span class="c1"># 任意支持的输出格式</span>
+</pre></div>
+</div>
+<p><strong>备注</strong></p>
+<ol class="arabic simple">
+<li><p><em>pymupdf.Pixmap(arg)</em> 的 <strong>输入</strong> 参数可以是一个文件，也可以是一个包含图像的 bytes / io.BytesIO 对象。</p></li>
+<li><p>除了输出 <strong>文件</strong>，您还可以通过 <em>pix.tobytes(“yyy”)</em> 创建一个 bytes 对象并进行传递。</p></li>
+<li><p>当然，输入和输出格式在色彩空间和透明度方面必须兼容。如果需要调整，<em>Pixmap</em> 类已内置了相关功能。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>将 JPEG 转换为 Photoshop 格式</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;myfamily.jpg&quot;</span><span class="p">)</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;myfamily.psd&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>将 <strong>JPEG 转换为 Tkinter PhotoImage</strong>。任何 <strong>RGB / 无 alpha 通道</strong> 的图像处理方式完全相同。转换为 <strong>可移植任意位图</strong> 格式（PPM、PGM 等）即可实现，因为所有 Tkinter 版本都支持这些格式:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.jpg&quot;</span><span class="p">)</span>  <span class="c1"># 或者任意 RGB / 无 alpha 通道图像</span>
+<span class="n">tkimg</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pix</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s2">&quot;ppm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>将 <strong>带 alpha 通道的 PNG 转换为 Tkinter PhotoImage</strong>。这需要在转换为 PPM 格式之前 <strong>移除 alpha 通道字节</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.png&quot;</span><span class="p">)</span>  <span class="c1"># 可能包含 alpha 通道</span>
+<span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">alpha</span><span class="p">:</span>  <span class="c1"># 如果存在 alpha 通道！</span>
+    <span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pix</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 移除 alpha 通道</span>
+<span class="n">tkimg</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pix</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s2">&quot;ppm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--10-input--2" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--2">英文</label><div class="tab-content docutils container">
+<p>Just as a feature among others, PyMuPDF’s image conversion is easy. It may avoid using other graphics packages like PIL/Pillow in many cases.</p>
+<p>Notwithstanding that interfacing with Pillow is almost trivial.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Input Formats</strong></p></th>
+<th class="head"><p><strong>Output Formats</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BMP</p></td>
+<td><p>.</p></td>
+<td><p>Windows Bitmap</p></td>
+</tr>
+<tr class="row-odd"><td><p>JPEG</p></td>
+<td><p>JPEG</p></td>
+<td><p>Joint Photographic Experts Group</p></td>
+</tr>
+<tr class="row-even"><td><p>JXR</p></td>
+<td><p>.</p></td>
+<td><p>JPEG Extended Range</p></td>
+</tr>
+<tr class="row-odd"><td><p>JPX/JP2</p></td>
+<td><p>.</p></td>
+<td><p>JPEG 2000</p></td>
+</tr>
+<tr class="row-even"><td><p>GIF</p></td>
+<td><p>.</p></td>
+<td><p>Graphics Interchange Format</p></td>
+</tr>
+<tr class="row-odd"><td><p>TIFF</p></td>
+<td><p>.</p></td>
+<td><p>Tagged Image File Format</p></td>
+</tr>
+<tr class="row-even"><td><p>PNG</p></td>
+<td><p>PNG</p></td>
+<td><p>Portable Network Graphics</p></td>
+</tr>
+<tr class="row-odd"><td><p>PNM</p></td>
+<td><p>PNM</p></td>
+<td><p>Portable Anymap</p></td>
+</tr>
+<tr class="row-even"><td><p>PGM</p></td>
+<td><p>PGM</p></td>
+<td><p>Portable Graymap</p></td>
+</tr>
+<tr class="row-odd"><td><p>PBM</p></td>
+<td><p>PBM</p></td>
+<td><p>Portable Bitmap</p></td>
+</tr>
+<tr class="row-even"><td><p>PPM</p></td>
+<td><p>PPM</p></td>
+<td><p>Portable Pixmap</p></td>
+</tr>
+<tr class="row-odd"><td><p>PAM</p></td>
+<td><p>PAM</p></td>
+<td><p>Portable Arbitrary Map</p></td>
+</tr>
+<tr class="row-even"><td><p>.</p></td>
+<td><p>PSD</p></td>
+<td><p>Adobe Photoshop Document</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>PS</p></td>
+<td><p>Adobe Postscript</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The general scheme is just the following two lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.xxx&quot;</span><span class="p">)</span>  <span class="c1"># any supported input format</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;output.yyy&quot;</span><span class="p">)</span>  <span class="c1"># any supported output format</span>
+</pre></div>
+</div>
+<p><strong>Remarks</strong></p>
+<ol class="arabic simple">
+<li><p>The <strong>input</strong> argument of <em>pymupdf.Pixmap(arg)</em> can be a file or a bytes / io.BytesIO object containing an image.</p></li>
+<li><p>Instead of an output <strong>file</strong>, you can also create a bytes object via <em>pix.tobytes(“yyy”)</em> and pass this around.</p></li>
+<li><p>As a matter of course, input and output formats must be compatible in terms of colorspace and transparency. The <em>Pixmap</em> class has batteries included if adjustments are needed.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>Convert JPEG to Photoshop</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;myfamily.jpg&quot;</span><span class="p">)</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;myfamily.psd&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Convert <strong>JPEG to Tkinter PhotoImage</strong>. Any <strong>RGB / no-alpha</strong> image works exactly the same. Conversion to one of the <strong>Portable Anymap</strong> formats (PPM, PGM, etc.) does the trick, because they are supported by all Tkinter versions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.jpg&quot;</span><span class="p">)</span>  <span class="c1"># or any RGB / no-alpha image</span>
+<span class="n">tkimg</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pix</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s2">&quot;ppm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Convert <strong>PNG with alpha</strong> to Tkinter PhotoImage. This requires <strong>removing the alpha bytes</strong>, before we can do the PPM conversion:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tkinter</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tk</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;input.png&quot;</span><span class="p">)</span>  <span class="c1"># may have an alpha channel</span>
+<span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">alpha</span><span class="p">:</span>  <span class="c1"># we have an alpha channel!</span>
+    <span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pix</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># remove it</span>
+<span class="n">tkimg</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pix</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(</span><span class="s2">&quot;ppm&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-l">
+<span id="index-13"></span><span id="id22"></span><h2>如何使用像素图：粘贴图像<a class="headerlink" href="#recipesimages-l" title="此标题的永久链接">#</a></h2>
+<p>How to Use Pixmaps: Gluing Images</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--11-input--1" name="tab-set--11" type="radio"><label class="tab-label" for="tab-set--11-input--1">中文</label><div class="tab-content docutils container">
+<p>这展示了如何将像素图用于纯图形、非文档相关的用途。该脚本读取一幅图像文件，并创建一幅新图像，新图像由原始图像的 3×4 块拼贴组成:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="n">src</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;img-7edges.png&quot;</span><span class="p">)</span>      <span class="c1"># 从图片创建像素图</span>
+<span class="n">col</span> <span class="o">=</span> <span class="mi">3</span>                                  <span class="c1"># 每行的块数</span>
+<span class="n">lin</span> <span class="o">=</span> <span class="mi">4</span>                                  <span class="c1"># 每列的块数</span>
+<span class="n">tar_w</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">col</span>                  <span class="c1"># 目标图像的宽度</span>
+<span class="n">tar_h</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">lin</span>                 <span class="c1"># 目标图像的高度</span>
+
+<span class="c1"># 创建目标像素图</span>
+<span class="n">tar_pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">colorspace</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tar_w</span><span class="p">,</span> <span class="n">tar_h</span><span class="p">),</span> <span class="n">src</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># 现在用块填充目标图像</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lin</span><span class="p">):</span>
+        <span class="n">src</span><span class="o">.</span><span class="n">set_origin</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">tar_pix</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">irect</span><span class="p">)</span> <span class="c1"># 将输入图像复制到新位置</span>
+
+<span class="n">tar_pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;tar.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这是输入图片：</p>
+<a class="reference internal image-reference" href="_images/img-7edges.png"><img alt="_images/img-7edges.png" src="_images/img-7edges.png" style="width: 66.0px; height: 60.06px;" /></a>
+<p>这是输出图片：</p>
+<a class="reference internal image-reference" href="_images/img-target.png"><img alt="_images/img-target.png" src="_images/img-target.png" style="width: 198.0px; height: 240.24px;" /></a>
+</div>
+<input class="tab-input" id="tab-set--11-input--2" name="tab-set--11" type="radio"><label class="tab-label" for="tab-set--11-input--2">英文</label><div class="tab-content docutils container">
+<p>This shows how pixmaps can be used for purely graphical, non-document purposes. The script reads an image file and creates a new image which consist of 3 * 4 tiles of the original:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="n">src</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="s2">&quot;img-7edges.png&quot;</span><span class="p">)</span>      <span class="c1"># create pixmap from a picture</span>
+<span class="n">col</span> <span class="o">=</span> <span class="mi">3</span>                                  <span class="c1"># tiles per row</span>
+<span class="n">lin</span> <span class="o">=</span> <span class="mi">4</span>                                  <span class="c1"># tiles per column</span>
+<span class="n">tar_w</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">col</span>                  <span class="c1"># width of target</span>
+<span class="n">tar_h</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">lin</span>                 <span class="c1"># height of target</span>
+
+<span class="c1"># create target pixmap</span>
+<span class="n">tar_pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">colorspace</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tar_w</span><span class="p">,</span> <span class="n">tar_h</span><span class="p">),</span> <span class="n">src</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># now fill target with the tiles</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">lin</span><span class="p">):</span>
+        <span class="n">src</span><span class="o">.</span><span class="n">set_origin</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">tar_pix</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">irect</span><span class="p">)</span> <span class="c1"># copy input to new loc</span>
+
+<span class="n">tar_pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;tar.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the input picture:</p>
+<a class="reference internal image-reference" href="_images/img-7edges.png"><img alt="_images/img-7edges.png" src="_images/img-7edges.png" style="width: 66.0px; height: 60.06px;" /></a>
+<p>Here is the output:</p>
+<a class="reference internal image-reference" href="_images/img-target.png"><img alt="_images/img-target.png" src="_images/img-target.png" style="width: 198.0px; height: 240.24px;" /></a>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-m">
+<span id="index-14"></span><span id="id23"></span><h2>如何使用像素图：制作分形<a class="headerlink" href="#recipesimages-m" title="此标题的永久链接">#</a></h2>
+<p>How to Use Pixmaps: Making a Fractal</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--12-input--1" name="tab-set--12" type="radio"><label class="tab-label" for="tab-set--12-input--1">中文</label><div class="tab-content docutils container">
+<p>这是另一个像素图（Pixmap）示例，用于创建 <strong>谢尔宾斯基地毯</strong> ——一种将 <strong>康托集</strong> 推广到二维的分形图形。给定一个正方形地毯，在其上标记 9 个子正方形（3×3），然后移除正中间的那个。对剩下的八个子正方形重复同样的操作，并且无限循环下去。最终得到的图形面积为零，分形维数为 1.8928……</p>
+<p>此脚本将其近似地创建为一个 PNG 图像，精度达到单个像素级别。若要提高图像精度，可以更改 n（精度）的值:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">VersionBind</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)))</span> <span class="o">&gt;=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s2">&quot;需要 PyMuPDF v1.14.8 来运行此脚本&quot;</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>                             <span class="c1"># 深度（精度）</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">**</span><span class="n">n</span>                          <span class="c1"># 边长</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">ir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>                 <span class="c1"># 像素图的矩形区域</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">set_rect</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">irect</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># 用某种背景色填充</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>               <span class="c1"># 用于填充“挖空”部分的颜色</span>
+
+<span class="c1"># 或者，为“挖空”部分定义一个填充用的像素图</span>
+<span class="c1"># 这可以是任何内容，例如某张照片图像……</span>
+<span class="n">fill</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># 与 &#39;pm&#39; 大小相同</span>
+<span class="n">fill</span><span class="o">.</span><span class="n">set_rect</span><span class="p">(</span><span class="n">fill</span><span class="o">.</span><span class="n">irect</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>   <span class="c1"># 填充某种颜色</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">punch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;递归地在像素图的中心正方形中“挖洞”。</span>
+
+<span class="sd">    参数为左上角坐标和步长。</span>
+
+<span class="sd">    注释掉了一些其他的挖洞方法。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">step</span> <span class="o">//</span> <span class="mi">3</span>                 <span class="c1"># 新的步长</span>
+    <span class="c1"># 遍历 9 个子正方形</span>
+    <span class="c1"># 正中间的那个将用指定颜色填充</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span><span class="o">!=</span> <span class="n">j</span> <span class="ow">or</span> <span class="n">i</span><span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># 不是中心正方形</span>
+                <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>        <span class="c1"># 是否需要递归？</span>
+                    <span class="n">punch</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>       <span class="c1"># 递归调用</span>
+            <span class="k">else</span><span class="p">:</span>                 <span class="c1"># 挖洞的替代方法：</span>
+                <span class="n">pm</span><span class="o">.</span><span class="n">set_rect</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>     <span class="c1"># 用某种颜色填充</span>
+                <span class="c1">#pm.copy(fill, (x+s, y+s, x+2*s, y+2*s))  # 从 fill 复制内容</span>
+                <span class="c1">#pm.invert_irect((x+s, y+s, x+2*s, y+2*s))       # 反转颜色</span>
+
+    <span class="k">return</span>
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># 主程序</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># 现在开始在像素图中挖洞</span>
+<span class="n">punch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sierpinski-punch.png&quot;</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> 秒用于创建 / 填充像素图&quot;</span> <span class="o">%</span> <span class="nb">round</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> 秒用于保存图像&quot;</span> <span class="o">%</span> <span class="nb">round</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>结果应该类似于这样：</p>
+</div>
+<input class="tab-input" id="tab-set--12-input--2" name="tab-set--12" type="radio"><label class="tab-label" for="tab-set--12-input--2">英文</label><div class="tab-content docutils container">
+<p>Here is another Pixmap example that creates <strong>Sierpinski’s Carpet</strong> – a fractal generalizing the <strong>Cantor Set</strong> to two dimensions. Given a square carpet, mark its 9 sub-suqares (3 times 3) and cut out the one in the center. Treat each of the remaining eight sub-squares in the same way, and continue <em>ad infinitum</em>. The end result is a set with area zero and fractal dimension 1.8928…</p>
+<p>This script creates an approximate image of it as a PNG, by going down to one-pixel granularity. To increase the image precision, change the value of n (precision):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span><span class="o">,</span><span class="w"> </span><span class="nn">time</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">VersionBind</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)))</span> <span class="o">&gt;=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">]:</span>
+    <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s2">&quot;need PyMuPDF v1.14.8 for this script&quot;</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>                             <span class="c1"># depth (precision)</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">**</span><span class="n">n</span>                          <span class="c1"># edge length</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">ir</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>                 <span class="c1"># the pixmap rectangle</span>
+
+<span class="n">pm</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">set_rect</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">irect</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># fill it with some background color</span>
+
+<span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span>               <span class="c1"># color to fill the punch holes</span>
+
+<span class="c1"># alternatively, define a &#39;fill&#39; pixmap for the punch holes</span>
+<span class="c1"># this could be anything, e.g. some photo image ...</span>
+<span class="n">fill</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">ir</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="c1"># same size as &#39;pm&#39;</span>
+<span class="n">fill</span><span class="o">.</span><span class="n">set_rect</span><span class="p">(</span><span class="n">fill</span><span class="o">.</span><span class="n">irect</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>   <span class="c1"># put some color in</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">punch</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Recursively &quot;punch a hole&quot; in the central square of a pixmap.</span>
+
+<span class="sd">    Arguments are top-left coords and the step width.</span>
+
+<span class="sd">    Some alternative punching methods are commented out.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">step</span> <span class="o">//</span> <span class="mi">3</span>                 <span class="c1"># the new step</span>
+    <span class="c1"># iterate through the 9 sub-squares</span>
+    <span class="c1"># the central one will be filled with the color</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># this is not the central cube</span>
+                <span class="k">if</span> <span class="n">s</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">:</span>        <span class="c1"># recursing needed?</span>
+                    <span class="n">punch</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">i</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">j</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>       <span class="c1"># recurse</span>
+            <span class="k">else</span><span class="p">:</span>                 <span class="c1"># punching alternatives are:</span>
+                <span class="n">pm</span><span class="o">.</span><span class="n">set_rect</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">),</span> <span class="n">color</span><span class="p">)</span>     <span class="c1"># fill with a color</span>
+                <span class="c1">#pm.copy(fill, (x+s, y+s, x+2*s, y+2*s))  # copy from fill</span>
+                <span class="c1">#pm.invert_irect((x+s, y+s, x+2*s, y+2*s))       # invert colors</span>
+
+    <span class="k">return</span>
+
+<span class="c1">#==============================================================================</span>
+<span class="c1"># main program</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># now start punching holes into the pixmap</span>
+<span class="n">punch</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;sierpinski-punch.png&quot;</span><span class="p">)</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> sec to create / fill the pixmap&quot;</span> <span class="o">%</span> <span class="nb">round</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%g</span><span class="s2"> sec to save the image&quot;</span> <span class="o">%</span> <span class="nb">round</span><span class="p">(</span><span class="n">t2</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The result should look something like this:</p>
+</div>
+</div>
+<a class="reference internal image-reference" href="_images/img-sierpinski.png"><img alt="_images/img-sierpinski.png" src="_images/img-sierpinski.png" style="width: 240.57000000000002px; height: 240.57000000000002px;" /></a>
+<hr class="docutils" />
+</section>
+<section id="numpy">
+<span id="recipesimages-n"></span><h2>如何与 NumPy 交互<a class="headerlink" href="#numpy" title="此标题的永久链接">#</a></h2>
+<p>How to Interface with NumPy</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--13-input--1" name="tab-set--13" type="radio"><label class="tab-label" for="tab-set--13-input--1">中文</label><div class="tab-content docutils container">
+<p>这展示了如何从 NumPy 数组创建一个 PNG 文件（比大多数其他方法快几倍）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1"># 使用 PyMuPDF 和 NumPy 创建一个具有趣味颜色的 width * height 大小的 PNG 图像</span>
+<span class="c1"># =============================================================================</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">width</span>  <span class="o">=</span> <span class="mi">100</span>
+<span class="n">bild</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+        <span class="c1"># 为每个像素设置一种有趣的颜色</span>
+        <span class="n">bild</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="mi">256</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">256</span><span class="p">,</span> <span class="n">j</span> <span class="o">%</span> <span class="mi">256</span><span class="p">]</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">bild</span><span class="o">.</span><span class="n">tobytes</span><span class="p">())</span>    <span class="c1"># 从 NumPy 数组获取原始像素数据</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;test.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--13-input--2" name="tab-set--13" type="radio"><label class="tab-label" for="tab-set--13-input--2">英文</label><div class="tab-content docutils container">
+<p>This shows how to create a PNG file from a numpy array (several times faster than most other methods):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="c1">#==============================================================================</span>
+<span class="c1"># create a fun-colored width * height PNG with pymupdf and numpy</span>
+<span class="c1">#==============================================================================</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">width</span>  <span class="o">=</span> <span class="mi">100</span>
+<span class="n">bild</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">((</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+        <span class="c1"># one pixel (some fun coloring)</span>
+        <span class="n">bild</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">%</span><span class="mi">256</span><span class="p">,</span> <span class="n">i</span><span class="o">%</span><span class="mi">256</span><span class="p">,</span> <span class="n">j</span><span class="o">%</span><span class="mi">256</span><span class="p">]</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="n">bild</span><span class="o">.</span><span class="n">tostring</span><span class="p">())</span>    <span class="c1"># get plain pixel data from numpy array</span>
+<span class="n">pix</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">csRGB</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pix</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;test.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="recipesimages-o">
+<span id="id24"></span><h2>如何将图像添加到 PDF 页面<a class="headerlink" href="#recipesimages-o" title="此标题的永久链接">#</a></h2>
+<p>How to Add Images to a PDF Page</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--14-input--1" name="tab-set--14" type="radio"><label class="tab-label" for="tab-set--14-input--1">中文</label><div class="tab-content docutils container">
+<p>有两种方法可以将图像添加到 PDF 页面：<a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> 和 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>。这两种方法有一些共同点，但也存在差异。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>标准</strong></p></th>
+<th class="head"><p><a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a></p></th>
+<th class="head"><p><a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>可显示内容</p></td>
+<td><p>图像文件、内存中的图像、像素图</p></td>
+<td><p>PDF 页面</p></td>
+</tr>
+<tr class="row-odd"><td><p>显示分辨率</p></td>
+<td><p>图像分辨率</p></td>
+<td><p>矢量化（除了栅格页面内容）</p></td>
+</tr>
+<tr class="row-even"><td><p>旋转角度</p></td>
+<td><p>0、90、180 或 270 度</p></td>
+<td><p>任意角度</p></td>
+</tr>
+<tr class="row-odd"><td><p>裁剪</p></td>
+<td><p>不支持(仅显示完整图像)</p></td>
+<td><p>支持</p></td>
+</tr>
+<tr class="row-even"><td><p>保持纵横比</p></td>
+<td><p>是(默认选项)</p></td>
+<td><p>是(默认选项)</p></td>
+</tr>
+<tr class="row-odd"><td><p>透明度(水印)</p></td>
+<td><p>取决于图像</p></td>
+<td><p>取决于页面</p></td>
+</tr>
+<tr class="row-even"><td><p>位置/放置</p></td>
+<td><p>缩放以适应目标矩形</p></td>
+<td><p>缩放以适应目标矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p>性能</p></td>
+<td><p>自动防止重复；支持多页图像</p></td>
+<td><p>自动防止重复；支持多页图像</p></td>
+</tr>
+<tr class="row-even"><td><p>支持多页图片</p></td>
+<td><p>不支持</p></td>
+<td><p>支持</p></td>
+</tr>
+<tr class="row-odd"><td><p>易用性</p></td>
+<td><p>简单直观;</p></td>
+<td><p>简单直观； <strong>在通过</strong> <a class="reference internal" href="document.html#Document.convert_to_pdf" title="Document.convert_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.convert_to_pdf()</span></code></a> <strong>转换为 PDF 后，可用于所有文档类型</strong> （包括图像！）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> 的基本代码模式</p>
+<p><strong>必须</strong> 给出参数 <strong>filename / stream / pixmap</strong> 中的 <strong>唯一一个</strong> （如果不是重新插入现有图像）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">insert_image</span><span class="p">(</span>
+    <span class="n">rect</span><span class="p">,</span>                  <span class="c1"># 图像放置的位置（矩形样式）</span>
+    <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>         <span class="c1"># 文件中的图像</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># 内存中的图像（字节）</span>
+    <span class="n">pixmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># 来自像素图的图像</span>
+    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># 单独指定 alpha 通道</span>
+    <span class="n">rotate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>              <span class="c1"># 旋转角度（整数，90 的倍数）</span>
+    <span class="n">xref</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                <span class="c1"># 重用现有图像</span>
+    <span class="n">oc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                  <span class="c1"># 通过 OCG / OCMD 控制可见性</span>
+    <span class="n">keep_proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 保持纵横比</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># 置于前景</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> 的基本代码模式</p>
+<p>源 PDF 和目标 PDF 必须是不同的 <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a> 对象（但可以从同一个文件打开）:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">show_pdf_page</span><span class="p">(</span>
+    <span class="n">rect</span><span class="p">,</span>                  <span class="c1"># 图像放置的位置（矩形样式）</span>
+    <span class="n">src</span><span class="p">,</span>                   <span class="c1"># 源 PDF</span>
+    <span class="n">pno</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                 <span class="c1"># 源 PDF 中的页码</span>
+    <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># 仅显示此区域（矩形样式）</span>
+    <span class="n">rotate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>              <span class="c1"># 旋转角度（浮点数，任意值）</span>
+    <span class="n">oc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                  <span class="c1"># 通过 OCG / OCMD 控制可见性</span>
+    <span class="n">keep_proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 保持纵横比</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># 置于前景</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>总结对比</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a></dt><dd><ul>
+<li><p><strong>灵活性</strong>：支持多种图像来源（文件、内存、像素图），适合直接插入各种格式的图像文件或已在内存中处理好的图像数据。</p></li>
+<li><p><strong>旋转限制</strong>：旋转角度只能是 0、90、180 或 270 度，相对固定。</p></li>
+<li><p><strong>裁剪能力</strong>：不支持裁剪操作，只能完整显示图像。</p></li>
+<li><p><strong>适用场景</strong>：适用于简单地添加独立的图像元素到 PDF 页面，比如在文档中插入标志、照片等。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a></dt><dd><ul>
+<li><p><strong>内容来源</strong>：专门用于将另一个 PDF 页面嵌入到当前 PDF 页面中，这对于整合多个 PDF 文档的内容非常有用。</p></li>
+<li><p><strong>旋转优势</strong>：可以实现任意角度的旋转，提供了更大的布局灵活性。</p></li>
+<li><p><strong>裁剪功能</strong>：支持只显示源 PDF 页面的特定区域，便于精确控制显示内容。</p></li>
+<li><p><strong>通用性</strong>：由于可以处理任何类型的 PDF 页面（包括包含图像的页面），在处理复杂文档结构和需要动态组合多个 PDF 文档内容时非常强大 。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--14-input--2" name="tab-set--14" type="radio"><label class="tab-label" for="tab-set--14-input--2">英文</label><div class="tab-content docutils container">
+<p>There are two methods to add images to a PDF page: <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> and <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>. Both methods have things in common, but there are also differences.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Criterion</strong></p></th>
+<th class="head"><p><a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a></p></th>
+<th class="head"><p><a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>displayable content</p></td>
+<td><p>image file, image in memory, pixmap</p></td>
+<td><p>PDF page</p></td>
+</tr>
+<tr class="row-odd"><td><p>display resolution</p></td>
+<td><p>image resolution</p></td>
+<td><p>vectorized (except raster page content)</p></td>
+</tr>
+<tr class="row-even"><td><p>rotation</p></td>
+<td><p>0, 90, 180 or 270 degrees</p></td>
+<td><p>any angle</p></td>
+</tr>
+<tr class="row-odd"><td><p>clipping</p></td>
+<td><p>no (full image only)</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>keep aspect ratio</p></td>
+<td><p>yes (default option)</p></td>
+<td><p>yes (default option)</p></td>
+</tr>
+<tr class="row-odd"><td><p>transparency (water marking)</p></td>
+<td><p>depends on the image</p></td>
+<td><p>depends on the page</p></td>
+</tr>
+<tr class="row-even"><td><p>location / placement</p></td>
+<td><p>scaled to fit target rectangle</p></td>
+<td><p>scaled to fit target rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p>performance</p></td>
+<td><p>automatic prevention of duplicates;</p></td>
+<td><p>automatic prevention of duplicates;</p></td>
+</tr>
+<tr class="row-even"><td><p>multi-page image support</p></td>
+<td><p>no</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>ease of use</p></td>
+<td><p>simple, intuitive;</p></td>
+<td><p>simple, intuitive;
+<strong>usable for all document types</strong>
+(including images!) after conversion to
+PDF via <a class="reference internal" href="document.html#Document.convert_to_pdf" title="Document.convert_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.convert_to_pdf()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Basic code pattern for <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a>. <strong>Exactly one</strong> of the parameters <strong>filename / stream / pixmap</strong> must be given, if not re-inserting an existing image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">insert_image</span><span class="p">(</span>
+    <span class="n">rect</span><span class="p">,</span>                  <span class="c1"># where to place the image (rect-like)</span>
+    <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>         <span class="c1"># image in a file</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># image in memory (bytes)</span>
+    <span class="n">pixmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>           <span class="c1"># image from pixmap</span>
+    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># specify alpha channel separately</span>
+    <span class="n">rotate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>              <span class="c1"># rotate (int, multiple of 90)</span>
+    <span class="n">xref</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                <span class="c1"># re-use existing image</span>
+    <span class="n">oc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                  <span class="c1"># control visibility via OCG / OCMD</span>
+    <span class="n">keep_proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># keep aspect ratio</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># put in foreground</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Basic code pattern for <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>. Source and target PDF must be different <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a> objects (but may be opened from the same file):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">page</span><span class="o">.</span><span class="n">show_pdf_page</span><span class="p">(</span>
+    <span class="n">rect</span><span class="p">,</span>                  <span class="c1"># where to place the image (rect-like)</span>
+    <span class="n">src</span><span class="p">,</span>                   <span class="c1"># source PDF</span>
+    <span class="n">pno</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                 <span class="c1"># page number in source PDF</span>
+    <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># only display this area (rect-like)</span>
+    <span class="n">rotate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>              <span class="c1"># rotate (float, any value)</span>
+    <span class="n">oc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>                  <span class="c1"># control visibility via OCG / OCMD</span>
+    <span class="n">keep_proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># keep aspect ratio</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>          <span class="c1"># put in foreground</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="recipesimages-p">
+<span id="id25"></span><h2>如何使用像素图：检查文本可见性<a class="headerlink" href="#recipesimages-p" title="此标题的永久链接">#</a></h2>
+<p>How to Use Pixmaps: Checking Text Visibility</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--15-input--1" name="tab-set--15" type="radio"><label class="tab-label" for="tab-set--15-input--1">中文</label><div class="tab-content docutils container">
+<p>给定的某段文本是否实际在页面上可见取决于多个因素：</p>
+<ol class="arabic simple">
+<li><p>文本未被其他对象遮挡，但可能与背景颜色相同，例如白底白字等情况。</p></li>
+<li><p>文本可能被图像或矢量图形覆盖。检测这一点是一项重要功能，例如用于发现匿名化处理不当的法律文件。</p></li>
+<li><p>文本被设置为隐藏状态。这种技术通常被光学字符识别（OCR）工具用来将识别出的文本存储在页面的不可见图层上。</p></li>
+</ol>
+<p>以下展示如何检测上述第 1 种情况，或者如果覆盖对象为单一颜色时检测第 2 种情况:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># 以合适的分辨率生成页面图像</span>
+
+<span class="c1"># 以下矩阵将页面坐标转换为像素图坐标</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">torect</span><span class="p">(</span><span class="n">pix</span><span class="o">.</span><span class="n">irect</span><span class="p">)</span>
+
+<span class="c1"># 查找某个字符串 &quot;needle&quot;</span>
+<span class="n">rlist</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">search_for</span><span class="p">(</span><span class="s2">&quot;needle&quot;</span><span class="p">)</span>
+<span class="c1"># 检查每个命中矩形的可见性</span>
+<span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rlist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">color_topusage</span><span class="p">(</span><span class="n">clip</span><span class="o">=</span><span class="n">rect</span> <span class="o">*</span> <span class="n">mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.95</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;needle&#39; 在此处不可见：&quot;</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>方法 <a class="reference internal" href="pixmap.html#Pixmap.color_topusage" title="Pixmap.color_topusage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.color_topusage()</span></code></a> 返回一个元组 <code class="xref any docutils literal notranslate"><span class="pre">(ratio,</span> <span class="pre">pixel)</span></code>，其中 <code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">ratio</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>，<a class="reference internal" href="pixmap.html#Pixmap.pixel" title="Pixmap.pixel"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">pixel</span></code></a> 是该颜色的像素值。请注意，我们 <strong>仅创建一次像素图</strong> 。如果存在多个命中矩形，这样可以节省大量处理时间。</p>
+<p>上述代码的逻辑是：如果包含 “needle” 的矩形区域内（“几乎” &gt; 95%）为单一颜色，则该文本不可见。对于可见文本的典型结果会返回背景颜色（通常为白色）以及一个比例值在 0.7 到 0.8 左右，例如 <code class="xref any docutils literal notranslate"><span class="pre">(0.685,</span> <span class="pre">b'xffxffxff')</span></code> 。</p>
+</div>
+<input class="tab-input" id="tab-set--15-input--2" name="tab-set--15" type="radio"><label class="tab-label" for="tab-set--15-input--2">英文</label><div class="tab-content docutils container">
+<p>Whether or not a given piece of text is actually visible on a page depends on a number of factors:</p>
+<ol class="arabic simple">
+<li><p>Text is not covered by another object but may have the same color as the background i.e., white-on-white etc.</p></li>
+<li><p>Text may be covered by an image or vector graphics. Detecting this is an important capability, for example to uncover badly anonymized legal documents.</p></li>
+<li><p>Text is created hidden. This technique is usually used by OCR tools to store the recognized text in an invisible layer on the page.</p></li>
+</ol>
+<p>The following shows how to detect situation 1. above, or situation 2. if the covering object is unicolor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># make page image with a decent resolution</span>
+
+<span class="c1"># the following matrix transforms page to pixmap coordinates</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">torect</span><span class="p">(</span><span class="n">pix</span><span class="o">.</span><span class="n">irect</span><span class="p">)</span>
+
+<span class="c1"># search for some string &quot;needle&quot;</span>
+<span class="n">rlist</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">search_for</span><span class="p">(</span><span class="s2">&quot;needle&quot;</span><span class="p">)</span>
+<span class="c1"># check the visibility for each hit rectangle</span>
+<span class="k">for</span> <span class="n">rect</span> <span class="ow">in</span> <span class="n">rlist</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">pix</span><span class="o">.</span><span class="n">color_topusage</span><span class="p">(</span><span class="n">clip</span><span class="o">=</span><span class="n">rect</span> <span class="o">*</span> <span class="n">mat</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.95</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&#39;needle&#39; is invisible here:&quot;</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Method <a class="reference internal" href="pixmap.html#Pixmap.color_topusage" title="Pixmap.color_topusage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.color_topusage()</span></code></a> returns a tuple <code class="xref any docutils literal notranslate"><span class="pre">(ratio,</span> <span class="pre">pixel)</span></code> where 0 &lt; ratio &lt;= 1 and <em>pixel</em> is the pixel value of the color. Please note that we create a <strong>pixmap only once</strong>. This can save a lot of processing time if there are multiple hit rectangles.</p>
+<p>The logic of the above code is: If the needle’s rectangle is (“almost”: &gt; 95%) unicolor, then the text cannot be visible. A typical result for visible text returns the color of the background (mostly white) and a ratio around 0.7 to 0.8, for example <code class="xref any docutils literal notranslate"><span class="pre">(0.685,</span> <span class="pre">b'xffxffxff')</span></code>.</p>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="recipes-annotations.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">注释</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="recipes-text.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">文本</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">图片</a><ul>
+<li><a class="reference internal" href="#recipesimages-a">如何从文档页面制作图像</a></li>
+<li><a class="reference internal" href="#recipesimages-b">如何提高 图像分辨率</a></li>
+<li><a class="reference internal" href="#partial-pixmaps">如何创建 Partial Pixmaps (部分像素图/剪辑)</a></li>
+<li><a class="reference internal" href="#gui">如何将剪辑缩放到 GUI 窗口</a></li>
+<li><a class="reference internal" href="#recipesimages-e">如何创建或隐藏注释图像</a></li>
+<li><a class="reference internal" href="#pdf">如何提取图像：非 PDF 文档</a></li>
+<li><a class="reference internal" href="#recipesimages-g">如何提取图像：PDF 文档</a></li>
+<li><a class="reference internal" href="#recipesimages-h">如何处理图像蒙版</a></li>
+<li><a class="reference internal" href="#recipesimages-i">如何将所有图片（或文件）制作成一个 PDF</a></li>
+<li><a class="reference internal" href="#recipesimages-j">如何创建矢量图片</a></li>
+<li><a class="reference internal" href="#recipesimages-k">如何转换图像</a></li>
+<li><a class="reference internal" href="#recipesimages-l">如何使用像素图：粘贴图像</a></li>
+<li><a class="reference internal" href="#recipesimages-m">如何使用像素图：制作分形</a></li>
+<li><a class="reference internal" href="#numpy">如何与 NumPy 交互</a></li>
+<li><a class="reference internal" href="#recipesimages-o">如何将图像添加到 PDF 页面</a></li>
+<li><a class="reference internal" href="#recipesimages-p">如何使用像素图：检查文本可见性</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

@@ -1,0 +1,553 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="../about.html" /><link rel="index" title="索引" href="../genindex.html" /><link rel="search" title="搜索" href="../search.html" />
+
+    <link rel="shortcut icon" href="../_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>API - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="api">
+<span id="pymupdf4llm-api"></span><h1>API<a class="headerlink" href="#api" title="此标题的永久链接">#</a></h1>
+<section id="id1">
+<h2><cite>PyMuPDF4LLM</cite> API<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h2>
+<p>The <cite>PyMuPDF4LLM</cite> API</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<dl class="py property">
+<dt class="sig sig-object py" id="version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#version" title="永久链接至目标">#</a></dt>
+<dd><p>打印库的版本。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="to_markdown">
+<span class="sig-name descname"><span class="pre">to_markdown</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pymupdf.Document</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pages</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">range</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hdr_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embed_images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_size_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">50,</span> <span class="pre">0,</span> <span class="pre">50)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_chunks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">612</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table_strategy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lines_strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graphics_limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_words</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#to_markdown" title="永久链接至目标">#</a></dt>
+<dd><p>读取文件的页面，并以 <cite>Markdown</cite> 格式输出其文本。此过程的具体行为可以通过多个参数进行调整。请注意，<strong>支持从 |Markdown| 文本构建页面块</strong>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc</strong> (<a class="reference internal" href="../document.html#Document" title="Document"><em>Document</em></a><em>,</em><em>str</em>) – 需要处理的文件，可指定为文件路径字符串，或 <cite>PyMuPDF</cite> Document (通过 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.open</span></code> 创建) 。若要使用 <code class="xref any docutils literal notranslate"><span class="pre">pathlib.Path</span></code> 规范、Python 文件对象、内存中的文档等，<strong>必须</strong> 使用 <cite>PyMuPDF</cite> Document。</p></li>
+<li><p><strong>pages</strong> (<em>list</em>) – 可选参数，指定要输出的页面 (注意：使用 0-based 页码) 。如果省略，则处理所有页面。</p></li>
+<li><p><strong>hdr_info</strong> – 可选参数。如果要提供自定义的标题检测逻辑，可以使用此参数。它可以是一个可调用对象，或者是一个包含 <code class="xref any docutils literal notranslate"><span class="pre">get_header_id</span></code> 方法的对象。该方法必须接受一个文本片段 (即 <a class="reference internal" href="../textpage.html#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code></a> 返回的 span 字典) ，以及一个关键字参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;page&quot;</span></code> (其值为所属的 <a class="reference internal" href="../page.html#page"><span class="std std-ref">Page</span></a> 对象) 。它应返回一个字符串 <code class="xref any docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> 或 1 到 6 个 <code class="xref any docutils literal notranslate"><span class="pre">&quot;#&quot;</span></code> 号后跟一个空格。如果省略，将对整个文档进行扫描，以找到最常见的字体大小，并基于此推导标题级别。若要完全禁用此行为，可指定 <code class="xref any docutils literal notranslate"><span class="pre">hdr_info=lambda</span> <span class="pre">s,</span> <span class="pre">page=None:</span> <span class="pre">&quot;&quot;</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">hdr_info=False</span></code>。</p></li>
+<li><p><strong>write_images</strong> (<em>bool</em>) – 当遇到图片或矢量图形时，将从相应页面区域创建图片，并存储在指定的文件夹中。同时，Markdown 中会生成指向这些图片的引用。此选项会导致该区域的文本不被包含在文本输出中 (但会出现在图片中) 。因此，如果文档中包含整页图片上的文本，请确保此参数设为 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p></li>
+<li><p><strong>embed_images</strong> (<em>bool</em>) – 类似于 <code class="xref any docutils literal notranslate"><span class="pre">write_images</span></code>，但图片会被嵌入到 Markdown 文本中，以 base64 编码字符串的形式存储。如果使用该选项，则会忽略 <code class="xref any docutils literal notranslate"><span class="pre">write_images</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">image_path</span></code>。此选项可能会显著增加 Markdown 文本的大小。</p></li>
+<li><p><strong>image_size_limit</strong> (<em>float</em>) – 该值必须为小于 1 的正数。当 <code class="xref any docutils literal notranslate"><span class="pre">width</span> <span class="pre">/</span> <span class="pre">page.rect.width</span> <span class="pre">&lt;=</span> <span class="pre">image_size_limit</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">height</span> <span class="pre">/</span> <span class="pre">page.rect.height</span> <span class="pre">&lt;=</span> <span class="pre">image_size_limit</span></code> 时，图片将被忽略。例如，默认值 0.05 表示图片的宽度和高度必须大于页面宽度和高度的 5%，才能被考虑纳入。</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – 指定图片的分辨率 (DPI) 。仅当 <code class="xref any docutils literal notranslate"><span class="pre">write_images=True</span></code> 时有效。默认值为 150。</p></li>
+<li><p><strong>image_path</strong> (<em>str</em>) – 指定存储图片的文件夹。仅当 <code class="xref any docutils literal notranslate"><span class="pre">write_images=True</span></code> 时有效。默认值为脚本目录的路径。</p></li>
+<li><p><strong>image_format</strong> (<em>str</em>) – 指定图片的格式 (扩展名) 。默认值为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;png&quot;</span></code>  (便携式网络图形格式) 。常见的替代格式包括 <code class="xref any docutils literal notranslate"><span class="pre">&quot;jpg&quot;</span></code> 。所有可能的值详见 <a class="reference internal" href="../how-to-open-a-file.html#supported-file-types"><span class="std std-ref">支持的文件类型</span></a>。</p></li>
+<li><p><strong>force_text</strong> (<em>bool</em>) – 生成文本输出，即使文本与图片/图形重叠。这些文本会在相应图片之后出现。如果 <code class="xref any docutils literal notranslate"><span class="pre">write_images=True</span></code>，此参数可以设为 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code> 以避免重复输出图片上的文本。</p></li>
+<li><p><strong>margins</strong> (<em>float</em><em>,</em><em>list</em>) – <p>以浮点数或浮点数序列指定页面边距。只有位于边距内的对象才会被输出。</p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">margin=f</span></code> 等价于 <code class="xref any docutils literal notranslate"><span class="pre">(f,</span> <span class="pre">f,</span> <span class="pre">f,</span> <span class="pre">f)</span></code>，表示 <code class="xref any docutils literal notranslate"><span class="pre">(left,</span> <span class="pre">top,</span> <span class="pre">right,</span> <span class="pre">bottom)</span></code>。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">(top,</span> <span class="pre">bottom)</span></code> 等价于 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">top,</span> <span class="pre">0,</span> <span class="pre">bottom)</span></code>。</p></li>
+<li><p>若要读取整个页面，请使用 <code class="xref any docutils literal notranslate"><span class="pre">margins=0</span></code>。</p></li>
+</ul>
+</p></li>
+<li><p><strong>page_chunks</strong> (<em>bool</em>) – <p>若设为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，则输出将是 <a class="reference internal" href="../document.html#Document.page_count" title="Document.page_count"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Document.page_count</span></code></a> 个字典的列表 (每页一个字典) 。每个字典的结构如下：</p>
+<ul>
+<li><p><strong>”metadata”</strong> - 一个字典，包含文档的元数据 <a class="reference internal" href="../document.html#Document.metadata" title="Document.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.metadata</span></code></a>，并附加额外键 <strong>“file_path”</strong> (文件路径) 、<strong>”page_count”</strong> (文档页数) 和 <strong>“page_number”</strong> (基于 1 的页码) 。</p></li>
+<li><p><strong>”toc_items”</strong> - 该页面的目录项列表。每个项的格式为 <code class="xref any docutils literal notranslate"><span class="pre">[lvl,</span> <span class="pre">title,</span> <span class="pre">pagenumber]</span></code>，其中 <code class="xref any docutils literal notranslate"><span class="pre">lvl</span></code> 表示层级，<a class="reference internal" href="../outline.html#Outline.title" title="Outline.title"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">title</span></code></a> 为标题字符串，<code class="xref any docutils literal notranslate"><span class="pre">pagenumber</span></code> 为基于 1 的页码。</p></li>
+<li><p><strong>”tables”</strong> - 该页面的表格列表。每个项是一个字典，包含键 <code class="xref any docutils literal notranslate"><span class="pre">&quot;bbox&quot;</span></code> (表格在页面上的位置，格式为 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Rect</span></code> 元组) 、<code class="xref any docutils literal notranslate"><span class="pre">&quot;row_count&quot;</span></code> (行数) 和 <code class="xref any docutils literal notranslate"><span class="pre">&quot;col_count&quot;</span></code> (列数) 。</p></li>
+<li><p><strong>”images”</strong> - 该页面的图片列表，与 <a class="reference internal" href="../page.html#Page.get_image_info" title="Page.get_image_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_image_info()</span></code></a> 方法返回值相同。</p></li>
+<li><p><strong>”graphics”</strong> - 该页面的矢量图形矩形列表，包含由 <a class="reference internal" href="../page.html#Page.cluster_drawings" title="Page.cluster_drawings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.cluster_drawings()</span></code></a> 方法返回的矢量图形边界框。</p></li>
+<li><p><strong>”text”</strong> - 以 <cite>Markdown</cite> 格式存储的页面内容。</p></li>
+<li><p><strong>”words”</strong> - 若 <code class="xref any docutils literal notranslate"><span class="pre">extract_words=True</span></code>，则包含 <code class="xref any docutils literal notranslate"><span class="pre">page.get_text(&quot;words&quot;)</span></code> 方法返回的单词列表。格式为 <code class="xref any docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1,</span> <span class="pre">&quot;wordstring&quot;,</span> <span class="pre">bno,</span> <span class="pre">lno,</span> <span class="pre">wno)</span></code>，其顺序与 Markdown 文本中的顺序一致，并且支持多栏文本和表格文本的正确顺序。</p></li>
+</ul>
+</p></li>
+<li><p><strong>page_width</strong> (<em>float</em>) – 指定页面宽度。对于 PDF、XPS 等固定页面宽度的文档，此参数会被忽略。对于 <strong>可重排</strong> 文档 (如电子书、办公文档或纯文本文件) ，默认假设其宽度为信纸宽度 (612) ，高度为“无限大”，即整个文档被视为一页。</p></li>
+<li><p><strong>page_height</strong> (<em>float</em>) – 指定页面高度。仅当 <code class="xref any docutils literal notranslate"><span class="pre">page_width</span></code> 适用时才相关。默认值 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> 表示文档被视为单页，其宽度为 <code class="xref any docutils literal notranslate"><span class="pre">page_width</span></code>，此时不会有 Markdown 页面分隔符 (除最后一页外) ，并且返回的 <code class="xref any docutils literal notranslate"><span class="pre">page_chunks</span></code> 仅包含一个页面。</p></li>
+<li><p><strong>table_strategy</strong> (<em>str</em>) – 表格检测策略。默认值 <code class="xref any docutils literal notranslate"><span class="pre">&quot;lines_strict&quot;</span></code> (忽略背景色) 。某些情况下，其他策略可能更有效，例如 <code class="xref any docutils literal notranslate"><span class="pre">&quot;lines&quot;</span></code> (使用所有矢量图形对象进行检测) 。</p></li>
+<li><p><strong>graphics_limit</strong> (<em>int</em>) – 限制处理矢量图形元素的数量。某些科学文档或使用图形命令模拟文本的页面可能包含成千上万个矢量对象。矢量图形主要用于表格检测，分析此类页面可能导致运行时间过长。可通过 <code class="xref any docutils literal notranslate"><span class="pre">graphics_limit=5000</span></code> 或更小的值排除问题页面。被忽略的页面将在输出文本中显示一条消息。</p></li>
+<li><p><strong>ignore_code</strong> (<em>bool</em>) – 若设为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，则等宽字体文本不会被特殊处理，不会生成代码块。当 <code class="xref any docutils literal notranslate"><span class="pre">extract_words=True</span></code> 时，该值默认为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>。</p></li>
+<li><p><strong>extract_words</strong> (<em>bool</em>) – 若设为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，则 <code class="xref any docutils literal notranslate"><span class="pre">page_chunks=True</span></code>，并为每个页面字典添加 <code class="xref any docutils literal notranslate"><span class="pre">&quot;words&quot;</span></code> 键，其值为 <code class="xref any docutils literal notranslate"><span class="pre">Page.get_text(&quot;words&quot;)</span></code> 返回的单词列表。</p></li>
+<li><p><strong>show_progress</strong> (<em>bool</em>) – <p>若设为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> (默认) ，则在转换为 Markdown 期间显示进度条，例如:</p>
+<p>处理 input.pdf…
+[====================                    ] (148/291)</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>返回选定页面文本的合并字符串，或包含页面信息的字典列表。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="LlamaMarkdownReader">
+<span class="sig-name descname"><span class="pre">LlamaMarkdownReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LlamaMarkdownReader" title="永久链接至目标">#</a></dt>
+<dd><p>使用 <a class="reference external" href="https://pypi.org/project/llama-index/">LlamaIndex</a> 包创建一个 <a class="reference internal" href="#pdf_markdown_reader.PDFMarkdownReader" title="pdf_markdown_reader.PDFMarkdownReader"><code class="xref any py py-class docutils literal notranslate"><span class="pre">pdf_markdown_reader.PDFMarkdownReader</span></code></a>。请注意，安装 <strong>pymupdf4llm</strong> 时 <strong>不会自动安装</strong> 此包。</p>
+<p>有关可能的参数详情，请参考 LlamaIndex 文档 <a class="footnote-reference brackets" href="#f2" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref any docutils literal notranslate"><span class="pre">NotImplementedError</span></code>: 请安装所需的 <a class="reference external" href="https://pypi.org/project/llama-index/">LlamaIndex</a> 包。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个 <a class="reference internal" href="#pdf_markdown_reader.PDFMarkdownReader" title="pdf_markdown_reader.PDFMarkdownReader"><code class="xref any py py-class docutils literal notranslate"><span class="pre">pdf_markdown_reader.PDFMarkdownReader</span></code></a>，并输出消息 “Successfully imported LlamaIndex”。请注意，此方法执行需要几秒钟。有关 Markdown 读取器的使用详情，请参见下文。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pdf_markdown_reader.PDFMarkdownReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pdf_markdown_reader.</span></span><span class="sig-name descname"><span class="pre">PDFMarkdownReader</span></span><a class="headerlink" href="#pdf_markdown_reader.PDFMarkdownReader" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="pdf_markdown_reader.PDFMarkdownReader.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">load_kwargs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">LlamaIndexDocument</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pdf_markdown_reader.PDFMarkdownReader.load_data" title="永久链接至目标">#</a></dt>
+<dd><p>这是当前提取 Markdown 数据时应使用的唯一方法。请务必忽略 <code class="xref any docutils literal notranslate"><span class="pre">aload_data()</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">lazy_load_data()</span></code> 方法。其他方法（如 <code class="xref any docutils literal notranslate"><span class="pre">use_doc_meta()</span></code> ）可能有意义，也可能没有。有关更多信息，请参考 LlamaIndex 文档 <a class="footnote-reference brackets" href="#f2" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>。</p>
+<p>在内部，该方法会执行 <a class="reference internal" href="#to_markdown" title="to_markdown"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">to_markdown()</span></code></a> 。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>一个 <code class="xref any docutils literal notranslate"><span class="pre">LlamaIndexDocument</span></code> 文档列表——每个页面对应一个文档。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://docs.llamaindex.ai/en/stable/">LlamaIndex documentation</a></p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p><a class="reference external" href="https://docs.llamaindex.ai/en/stable/">LlamaIndex 文档</a></p>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">API</a><ul>
+<li><a class="reference internal" href="#id1"><cite>PyMuPDF4LLM</cite> API</a><ul>
+<li><a class="reference internal" href="#version"><code class="docutils literal notranslate"><span class="pre">version</span></code></a></li>
+<li><a class="reference internal" href="#to_markdown"><code class="docutils literal notranslate"><span class="pre">to_markdown()</span></code></a></li>
+<li><a class="reference internal" href="#LlamaMarkdownReader"><code class="docutils literal notranslate"><span class="pre">LlamaMarkdownReader()</span></code></a></li>
+<li><a class="reference internal" href="#pdf_markdown_reader.PDFMarkdownReader"><code class="docutils literal notranslate"><span class="pre">pdf_markdown_reader.PDFMarkdownReader</span></code></a><ul>
+<li><a class="reference internal" href="#pdf_markdown_reader.PDFMarkdownReader.load_data"><code class="docutils literal notranslate"><span class="pre">pdf_markdown_reader.PDFMarkdownReader.load_data()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="../_static/translations.js"></script>
+    </body>
+</html>

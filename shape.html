@@ -1,0 +1,1550 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Story" href="story-class.html" /><link rel="prev" title="Rect" href="rect.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Shape - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="shape">
+<span id="id1"></span><h1>Shape<a class="headerlink" href="#shape" title="此标题的永久链接">#</a></h1>
+<p><div style="width:100%; text-align:right"><b>This class is for PDF only.</b></div></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>该类允许在 PDF 页面上创建相互连接的图形元素。其方法的名称和含义与相应的 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 方法相同。</p>
+<p>实际上，每个 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 的绘图方法只是以下操作的便利封装：
+1. 调用一个 <a class="reference internal" href="#shape"><span class="std std-ref">Shape</span></a> 类的绘图方法，
+2. 调用 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a> 方法，
+3. 调用 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> 方法。</p>
+<p>对于页面文本插入，仅调用 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> 方法即可。如果在页面上执行多个绘图和文本操作，应优先考虑使用 <a class="reference internal" href="#shape"><span class="std std-ref">Shape</span></a> 对象。</p>
+<p>可以连续执行多个绘图方法，每个方法都会为同一个绘图贡献元素。一旦绘图完成，必须调用 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a> 方法，以应用颜色、虚线、线宽、变形等属性。</p>
+<p>该类的 <strong>绘图</strong> 方法（包括 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>）会记录它们覆盖的区域，并存储在一个矩形框中（<a class="reference internal" href="#Shape.rect" title="Shape.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.rect</span></code></a>）。例如，该属性可以用于设置 <a class="reference internal" href="page.html#Page.cropbox_position" title="Page.cropbox_position"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.cropbox_position</span></code></a>。</p>
+<p><strong>文本插入</strong> 方法 <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> 和 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a> 会隐式执行 “finish” 操作，因此只需调用 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> 使其生效。因此，这些方法包含控制颜色等属性的参数。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a></p></td>
+<td><p>更新页面内容</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_bezier" title="Shape.draw_bezier"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_bezier()</span></code></a></p></td>
+<td><p>绘制三次贝塞尔曲线</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_circle" title="Shape.draw_circle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_circle()</span></code></a></p></td>
+<td><p>绘制一个以点为中心的圆</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_curve" title="Shape.draw_curve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_curve()</span></code></a></p></td>
+<td><p>使用一个辅助点绘制三次贝塞尔曲线</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_line" title="Shape.draw_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_line()</span></code></a></p></td>
+<td><p>绘制一条直线</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_oval" title="Shape.draw_oval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_oval()</span></code></a></p></td>
+<td><p>绘制椭圆</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_polyline" title="Shape.draw_polyline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_polyline()</span></code></a></p></td>
+<td><p>连接一系列点，绘制折线</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a></p></td>
+<td><p>绘制四边形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_rect" title="Shape.draw_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_rect()</span></code></a></p></td>
+<td><p>绘制矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_sector" title="Shape.draw_sector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_sector()</span></code></a></p></td>
+<td><p>绘制圆扇形或饼状区域</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_squiggle" title="Shape.draw_squiggle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_squiggle()</span></code></a></p></td>
+<td><p>绘制波浪线</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_zigzag" title="Shape.draw_zigzag"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_zigzag()</span></code></a></p></td>
+<td><p>绘制锯齿线</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a></p></td>
+<td><p>结束一组绘图命令</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a></p></td>
+<td><p>插入文本行</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a></p></td>
+<td><p>将文本适配到矩形区域内</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.doc" title="Shape.doc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.doc</span></code></a></p></td>
+<td><p>存储当前页面所属的文档</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_cont" title="Shape.draw_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.draw_cont</span></code></a></p></td>
+<td><p>记录自上次 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a> 以来的绘图命令</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.height" title="Shape.height"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.height</span></code></a></p></td>
+<td><p>存储页面高度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.lastPoint" title="Shape.lastPoint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.lastPoint</span></code></a></p></td>
+<td><p>记录当前绘图点</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.page" title="Shape.page"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.page</span></code></a></p></td>
+<td><p>存储当前 <a class="reference internal" href="#shape"><span class="std std-ref">Shape</span></a> 所属的页面</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.rect" title="Shape.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.rect</span></code></a></p></td>
+<td><p>记录围绕所有绘图元素的矩形区域</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.text_cont" title="Shape.text_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.text_cont</span></code></a></p></td>
+<td><p>记录所有已插入的文本内容</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.totalcont</span></code></a></p></td>
+<td><p>记录所有待存储到 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 的字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.width" title="Shape.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.width</span></code></a></p></td>
+<td><p>存储页面宽度</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Shape">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Shape</span></span><a class="headerlink" href="#Shape" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Shape.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.__init__" title="永久链接至目标">#</a></dt>
+<dd><p>创建一个新的绘图。在导入 PyMuPDF 时，<em>pymupdf.Page</em> 对象会被赋予一个便捷方法 <em>new_shape()</em>，用于构造 <em>Shape</em> 对象。在实例化过程中，会检查是否为 PDF 页面，否则会引发异常。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>page</strong> (<a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a>) – 一个已存在的 PDF 文档页面。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_line">
+<span class="sig-name descname"><span class="pre">draw_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_line" title="永久链接至目标">#</a></dt>
+<dd><p>从 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象 <em>p1</em> 到 <em>p2</em> 画一条直线。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<em>point_like</em>) – 起点</p></li>
+<li><p><strong>p2</strong> (<em>point_like</em>) – 终点</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>终点 <em>p2</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="index-0"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_squiggle">
+<span class="sig-name descname"><span class="pre">draw_squiggle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">breadth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_squiggle" title="永久链接至目标">#</a></dt>
+<dd><p>从 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象 <em>p1</em> 到 <em>p2</em> 画一条波浪线（起伏的、波状的）。始终会绘制整数个完整波浪周期，每个周期的长度为 <em>4 * breadth</em>。<em>breadth</em> 参数将根据需要进行调整，以满足此条件。绘制的波浪线在离开 <em>p1</em> 时始终向“左”转，并在连接 <em>p2</em> 时始终从“右”侧进入。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<em>point_like</em>) – 起点</p></li>
+<li><p><strong>p2</strong> (<em>point_like</em>) – 终点</p></li>
+<li><p><strong>breadth</strong> (<em>float</em>) – 每个波的振幅。条件 <em>2 * breadth &lt; abs(p2 - p1)</em> 必须成立，以确保至少能容纳一个完整的波形。请参阅下图，该图显示了两个点通过一个完整周期连接的情况。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>终点 <em>p2</em>。</p>
+</dd>
+</dl>
+<img alt="_images/img-breadth.png" src="_images/img-breadth.png" />
+<p>下面是一个示例，绘制了三条相连的波浪线，形成一个封闭的填充三角形。小箭头指示了绘制方向。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw_squiggle</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">tl</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">tr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw_squiggle</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">tr</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">br</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw_squiggle</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">br</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">tl</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;x.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/img-squiggly.png" src="_images/img-squiggly.png" />
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>绘制的波浪线 <strong>不是</strong> 三角函数（正弦/余弦）曲线。如果需要这样的曲线，请查看 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/draw-sines/draw.py">draw.py</a>。</p>
+</div>
+</dd></dl>
+
+<span class="target" id="index-1"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_zigzag">
+<span class="sig-name descname"><span class="pre">draw_zigzag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">breadth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_zigzag" title="永久链接至目标">#</a></dt>
+<dd><p>从 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象 <em>p1</em> 到 <em>p2</em> 画一条锯齿线。除此之外，该方法的工作方式与 <a class="reference internal" href="#Shape.draw_squiggle" title="Shape.draw_squiggle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_squiggle()</span></code></a> 完全相同。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<em>point_like</em>) – 起点</p></li>
+<li><p><strong>p2</strong> (<em>point_like</em>) – 终点</p></li>
+<li><p><strong>breadth</strong> (<em>float</em>) – 运动的振幅。条件 <em>2 * breadth &lt; abs(p2 - p1)</em> 必须成立，以确保至少能容纳一个完整周期。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>终点 <em>p2</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_polyline">
+<span class="sig-name descname"><span class="pre">draw_polyline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_polyline" title="永久链接至目标">#</a></dt>
+<dd><p>在序列 <em>points</em> 中的点之间绘制多条相连的直线。通过使最后一个点与第一个点相等，可以用于创建任意多边形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>points</strong> (<em>sequence</em>) – 一个包含 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象的序列。其长度必须至少为 2（如果仅有 2 个点，则等同于 <em>draw_line()</em>）。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>points[-1]</em> —— 传入序列中的最后一个点。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_bezier">
+<span class="sig-name descname"><span class="pre">draw_bezier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_bezier" title="永久链接至目标">#</a></dt>
+<dd><p>从 <em>p1</em> 到 <em>p4</em> 绘制一条标准的三次贝塞尔曲线，使用 <em>p2</em> 和 <em>p3</em> 作为控制点。</p>
+<p>所有参数均为 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>终点 <em>p4</em>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这些点不一定要不同 —— 试着让其中一些点相等，看看会发生什么！</p>
+</div>
+<p>示例：</p>
+<img alt="_images/img-drawBezier.png" src="_images/img-drawBezier.png" />
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_oval">
+<span class="sig-name descname"><span class="pre">draw_oval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tetra</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_oval" title="永久链接至目标">#</a></dt>
+<dd><p>在指定的四边形（四边形区域）内绘制一个“椭圆”。如果该区域是正方形，则绘制一个标准圆形；如果是矩形，则绘制椭圆。而对于一般的四边形，则可能得到各种不同的形状。</p>
+<p>该绘制过程从 <code class="xref any docutils literal notranslate"><span class="pre">bottom-left</span> <span class="pre">-&gt;</span> <span class="pre">top-left</span></code> 线段的中点开始，并沿逆时针方向完成。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tetra</strong> (<em>rect_like</em><em>,</em><em>quad_like</em>) – <p><a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 或 <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a>。</p>
+<p><em>自版本 1.14.5 变更:</em>  现在支持四边形（quad）。</p>
+</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>线段 <code class="xref any docutils literal notranslate"><span class="pre">rect.bl</span> <span class="pre">-&gt;</span> <span class="pre">rect.tl</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">quad.ll</span> <span class="pre">-&gt;</span> <span class="pre">quad.ul</span></code> 的中点。请查看以下示例，或查阅 PyMuPDF-Utilities 仓库中的 <em>quad-show?.py</em> 脚本。</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/img-drawquad.jpg"><img alt="_images/img-drawquad.jpg" src="_images/img-drawquad.jpg" style="width: 787.0px; height: 281.5px;" /></a>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_circle">
+<span class="sig-name descname"><span class="pre">draw_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_circle" title="永久链接至目标">#</a></dt>
+<dd><p>根据给定的圆心和半径绘制一个圆。绘制从 <code class="xref any docutils literal notranslate"><span class="pre">center</span> <span class="pre">-</span> <span class="pre">(radius,</span> <span class="pre">0)</span></code> 这一点开始，并沿 <strong>逆时针</strong> 方向完成。该点位于包围正方形左侧边的中点。</p>
+<p>这是 <code class="xref any docutils literal notranslate"><span class="pre">draw_sector(center,</span> <span class="pre">start,</span> <span class="pre">360,</span> <span class="pre">fullSector=False)</span></code> 的简写形式。要以 <strong>顺时针</strong> 方向绘制相同的圆，请使用 <code class="xref any docutils literal notranslate"><span class="pre">-360</span></code> 作为角度参数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>point_like</em>) – 圆心。</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – 圆的半径，必须为正数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p><code class="xref any docutils literal notranslate"><span class="pre">Point(center.x</span> <span class="pre">-</span> <span class="pre">radius,</span> <span class="pre">center.y)</span></code>。</p>
+<a class="reference internal" href="_images/img-drawcircle.jpg"><img alt="_images/img-drawcircle.jpg" src="_images/img-drawcircle.jpg" style="width: 236.39999999999998px; height: 232.2px;" /></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_curve">
+<span class="sig-name descname"><span class="pre">draw_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_curve" title="永久链接至目标">#</a></dt>
+<dd><p>该方法是 <em>draw_bezier()</em> 的特例：从 <em>p1</em> 到 <em>p3</em> 绘制一条三次贝塞尔曲线。在 <code class="xref any docutils literal notranslate"><span class="pre">p1</span> <span class="pre">-&gt;</span> <span class="pre">p2</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">p3</span> <span class="pre">-&gt;</span> <span class="pre">p2</span></code> 这两条线上分别生成一个控制点，因此两个控制点始终位于 <code class="xref any docutils literal notranslate"><span class="pre">p1</span> <span class="pre">-&gt;</span> <span class="pre">p3</span></code> 线的同一侧。这保证了曲线的曲率不会改变符号。如果两条线与 <em>p2</em> 交叉的角度为 90 度，则所得曲线是一个四分之一椭圆（如果两段长度相等，则是四分之一圆）。</p>
+<p>所有参数均为 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>终点 <em>p3</em>。下图展示了一个填充的四分之一椭圆区域，黄色部分的方向为 <strong>顺时针</strong>：</p>
+<img alt="_images/img-drawCurve.png" class="align-center" src="_images/img-drawCurve.png" /></p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="index-2"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_sector">
+<span class="sig-name descname"><span class="pre">draw_sector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fullSector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_sector" title="永久链接至目标">#</a></dt>
+<dd><p>绘制一个扇形（圆弧部分可以选择是否连接到圆心，使其成为“饼状”）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>point_like</em>) – 圆心。</p></li>
+<li><p><strong>point</strong> (<em>point_like</em>) – 扇形弧线段的一个端点，另一个端点由 <em>angle</em> 计算得出。</p></li>
+<li><p><strong>angle</strong> (<em>float</em>) – 扇形的角度（以度为单位）。用于计算弧线的另一端点。根据符号，弧线将以逆时针（正值）或顺时针（负值）方向绘制。</p></li>
+<li><p><strong>fullSector</strong> (<em>bool</em>) – 是否将弧线的两端连接到圆心。如果指定了填充颜色，则整个“饼状”区域将被填充颜色，否则仅填充弧形区域。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>弧线的另一端点。此返回值可用作后续调用的起点，以创建逻辑上相连的饼状图。例如：</p>
+<img alt="_images/img-drawSector1.png" src="_images/img-drawSector1.png" /><img alt="_images/img-drawSector2.png" src="_images/img-drawSector2.png" /></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_rect">
+<span class="sig-name descname"><span class="pre">draw_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_rect" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>v1.22.0 版本变更: 添加了 <em>radius</em> 参数。</p></li>
+</ul>
+<p>绘制一个矩形。绘制从左上角开始，并沿 <strong>逆时针</strong> 方向完成。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rect</strong> (<em>rect_like</em>) – 矩形在页面上的位置。</p></li>
+<li><p><strong>radius</strong> (<em>multiple</em>) – 绘制圆角矩形。如果不为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，则指定曲率半径，作为矩形边长的百分比。该值必须是一个浮点数，或者包含两个浮点数的元组，满足 <code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;</span> <span class="pre">radius</span> <span class="pre">&lt;=</span> <span class="pre">0.5</span></code>，其中 <code class="xref any docutils literal notranslate"><span class="pre">0.5</span></code> 表示相应边长的 50%。如果为单个浮点数，则曲率半径计算为 <code class="xref any docutils literal notranslate"><span class="pre">radius</span> <span class="pre">*</span> <span class="pre">min(width,</span> <span class="pre">height)</span></code>，角的轮廓将绘制为四分之一圆。如果提供 <code class="xref any docutils literal notranslate"><span class="pre">(rx,</span> <span class="pre">ry)</span></code> 形式的元组，则水平和垂直方向的曲率将不同。值 <code class="xref any docutils literal notranslate"><span class="pre">radius=(0.5,</span> <span class="pre">0.5)</span></code> 将绘制一个椭圆。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>矩形的左上角。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Shape.draw_quad">
+<span class="sig-name descname"><span class="pre">draw_quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.draw_quad" title="永久链接至目标">#</a></dt>
+<dd><p>绘制一个四边形。绘制从左上角 (<a class="reference internal" href="quad.html#Quad.ul" title="Quad.ul"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ul</span></code></a>) 开始，并沿 <strong>逆时针</strong> 方向完成。该方法是 <a class="reference internal" href="#Shape.draw_polyline" title="Shape.draw_polyline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_polyline()</span></code></a> 的简写，参数为 <code class="xref any docutils literal notranslate"><span class="pre">(ul,</span> <span class="pre">ll,</span> <span class="pre">lr,</span> <span class="pre">ur,</span> <span class="pre">ul)</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>quad</strong> (<em>quad_like</em>) – 四边形在页面上的位置。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="quad.html#Quad.ul" title="Quad.ul"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ul</span></code></a>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="index-3"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineCap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineJoin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dashes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closePath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">even_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">morph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(fixpoint,</span> <span class="pre">matrix)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.finish" title="永久链接至目标">#</a></dt>
+<dd><p>结束一组 <a href="#id2"><span class="problematic" id="id3">*</span></a>draw*() 方法的绘制，并对其应用 <a class="reference internal" href="#commonparms"><span class="std std-ref">公共参数</span></a>。</p>
+<p><strong>该方法不会影响</strong> <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> 和 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>。</p>
+<p>该方法还支持 <strong>对组合绘图进行形变 (morphing)</strong>，使用 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> <em>fixpoint</em> 作为固定点，并应用 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> <em>matrix</em> 进行变换。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>morph</strong> (<em>sequence</em>) – 通过对某个任意 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> <em>fixpoint</em> 应用 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> <em>matrix</em> 来变换文本或组合图形。此操作会保持 <em>fixpoint</em> 位置不变。默认情况下不进行变换 (<em>None</em>)。矩阵的前四个分量可以包含任意值，但必须满足 <em>matrix.e == matrix.f == 0</em>。这意味着可以进行缩放、剪切、旋转、翻转等操作，但不能进行平移。</p></li>
+<li><p><strong>stroke_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设置描边颜色的透明度。值范围 &lt; 0 或 &gt; 1 的数值将被忽略，默认值为 1（不透明）。</p></li>
+<li><p><strong>fill_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设置填充颜色的透明度，默认值为 1（不透明）。</p></li>
+<li><p><strong>even_odd</strong> (<em>bool</em>) – 请求填充时使用 <strong>“奇偶规则”</strong>。默认值为 <em>False</em>，即使用 <strong>“非零环绕数规则”</strong>。这些规则用于确定填充颜色在重叠区域的应用方式。只有在复杂形状中，这些规则才会产生不同的填充效果。详细说明请参考 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 137 页及后续部分。以下示例演示了两种规则的不同效果：</p></li>
+<li><p><strong>oc</strong> (<em>int</em>) – <em>(v1.18.4 新增)</em> 指定此绘图的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号，使其可按条件显示，适用于 <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> 或 <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a>。</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="_images/img-even-odd.png" src="_images/img-even-odd.png" />
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>对于形状中的每个像素，系统会执行以下步骤：</p>
+<ol class="arabic simple">
+<li><p><strong>“奇偶规则”</strong> 计算包含该像素的区域数量。如果该数量为 <strong>奇数</strong>，则像素被视为 <strong>形状内部</strong>，如果为 <strong>偶数</strong>，则像素被视为 <strong>形状外部</strong>。</p></li>
+<li><p><strong>默认规则 “非零环绕数”</strong> 还会检查每个区域的 <em>“方向”</em>：如果区域是 <strong>逆时针</strong> 绘制的，则计数 <strong>加 1</strong>；如果是 <strong>顺时针</strong> 绘制的，则计数 <strong>减 1</strong>。如果最终结果为零，则像素被视为 <strong>外部</strong>，否则为 <strong>形状内部</strong>。</p></li>
+</ol>
+<p>上图中的四个形状中，上面两行的三个圆形均采用标准方式（逆时针）绘制（可参考箭头方向）。下面两行的形状中，左上角的圆形是 <strong>顺时针</strong> 绘制的。可以看到，在右列（奇偶规则）中，区域的方向不影响填充结果。</p>
+</div>
+</dd></dl>
+
+<span class="target" id="index-4"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.insert_text">
+<span class="sig-name descname"><span class="pre">insert_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'helv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TEXT_ENCODING_LATIN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineheight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miter_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">morph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.insert_text" title="永久链接至目标">#</a></dt>
+<dd><p>在 <code class="docutils literal notranslate"><span class="pre">point</span></code> 位置插入文本行。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point</strong> (<em>point_like</em>) – <p>文本首字符的 <strong>左下角</strong> 位置（像素）。需要注意该参数如何与 <em>rotate</em> 参数协同工作。请参考下图，红色小点表示在四种不同旋转角度下 <em>point</em> 的位置：</p>
+<a class="reference internal" href="_images/img-inserttext.jpg"><img alt="_images/img-inserttext.jpg" src="_images/img-inserttext.jpg" style="width: 221.76000000000002px; height: 260.7px;" /></a></p></li>
+<li><p><strong>text</strong> (<em>str/sequence</em>) – 要插入的文本，可以是字符串或序列类型。如果字符串包含换行符 <code class="docutils literal notranslate"><span class="pre">\n</span></code>，或提供了序列类型，则会插入多行文本。不会自动处理超出页面宽度的文本，但插入的行数会受页面的 <strong>“垂直”</strong> 空间限制（根据 <em>rotate</em> 参数确定的阅读方向）。多余的文本将被丢弃，但返回值会包含实际插入的行数。</p></li>
+<li><p><strong>lineheight</strong> (<em>float</em>) – 设定行高的调整系数，覆盖字体默认的行高计算方式。如果不为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，则行高将设定为 <code class="xref any docutils literal notranslate"><span class="pre">fontsize</span> <span class="pre">*</span> <span class="pre">lineheight</span></code>。</p></li>
+<li><p><strong>stroke_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设定描边颜色（字符 <strong>边框</strong>）的透明度，仅支持 <code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">value</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>。默认值为 1（完全不透明）。</p></li>
+<li><p><strong>fill_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设定填充颜色（文本颜色）的透明度。默认值为 1（完全不透明）。此参数控制文本颜色的透明度，而 <em>stroke_opacity</em> 仅影响字符边框。</p></li>
+<li><p><strong>rotate</strong> (<em>int</em>) – <p>设定文本的旋转角度。仅支持 90° 的整数倍：</p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">0</span></code> （默认）：文本从 <strong>左到右</strong> 水平显示。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">90</span></code>：逆时针旋转，文本 <strong>向上</strong> 显示。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">180</span></code>：文本上下颠倒，从 <strong>右到左</strong> 显示。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">270</span></code> （或 <code class="xref any docutils literal notranslate"><span class="pre">-90</span></code>）：顺时针旋转，文本 <strong>向下</strong> 显示。</p></li>
+</ul>
+<p>在所有情况下，<em>point</em> 都表示首字符矩形的 <strong>左下角</strong> 坐标。如果存在多行文本，则它们按照 <em>rotate</em> 参数确定的阅读方向排列。例如，在 <code class="xref any docutils literal notranslate"><span class="pre">rotate</span> <span class="pre">=</span> <span class="pre">180</span></code> 时，第 2 行将出现在 <strong>第 1 行的上方</strong>。</p>
+</p></li>
+<li><p><strong>oc</strong> (<em>int</em>) – <em>(v1.18.4 新增)</em> 指定文本的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号，以使其可按条件显示，适用于 <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> 或 <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a>。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>实际插入的行数。</p>
+</dd>
+</dl>
+<p>其他参数的详细说明请参见 <a class="reference internal" href="#commonparms"><span class="std std-ref">公共参数</span></a>。</p>
+</dd></dl>
+
+<span class="target" id="index-5"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.insert_textbox">
+<span class="sig-name descname"><span class="pre">insert_textbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'helv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_simple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TEXT_ENCODING_LATIN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">render_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">miter_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expandtabs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TEXT_ALIGN_LEFT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineheight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">morph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.insert_textbox" title="永久链接至目标">#</a></dt>
+<dd><p><strong>仅适用于 PDF</strong>：在指定矩形区域内插入文本。文本将被分割为单词和行，并填充到可用空间中。文本填充的起始角由 <code class="xref any docutils literal notranslate"><span class="pre">rotate</span></code> 参数决定。换行符和多个空格会被保留。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rect</strong> (<em>rect_like</em>) – 指定文本框的矩形区域。必须是有限且非空的区域。</p></li>
+<li><p><strong>buffer</strong> (<em>str/sequence</em>) – 要插入的文本，必须是字符串或字符串序列。字符串序列中的换行符也会被保留。</p></li>
+<li><p><strong>align</strong> (<em>int</em>) – 设置文本的对齐方式。默认值为 <code class="xref any docutils literal notranslate"><span class="pre">0</span></code> （左对齐）。还支持居中、右对齐和两端对齐（<a class="reference internal" href="vars.html#TEXT_ALIGN_JUSTIFY" title="TEXT_ALIGN_JUSTIFY"><code class="xref any py py-data docutils literal notranslate"><span class="pre">TEXT_ALIGN_JUSTIFY</span></code></a>）。需要注意，两端对齐仅适用于 “简单”（单字节）字体，包括 <a class="reference internal" href="app3.html#base-14-fonts"><span class="std std-ref">PDF Base 14 字体</span></a>。</p></li>
+<li><p><strong>lineheight</strong> (<em>float</em>) – 设定行高调整系数，覆盖字体默认的行高计算方式。如果不为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，行高将设定为 <code class="xref any docutils literal notranslate"><span class="pre">fontsize</span> <span class="pre">*</span> <span class="pre">lineheight</span></code>。</p></li>
+<li><p><strong>expandtabs</strong> (<em>int</em>) – 控制制表符 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 的处理方式。每一行都会使用 <code class="xref any docutils literal notranslate"><span class="pre">string.expandtabs()</span></code> 方法进行转换。</p></li>
+<li><p><strong>stroke_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设置描边颜色（字符 <strong>边框</strong>）的透明度，仅接受 <code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">value</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code> 的值。默认值为 <code class="xref any docutils literal notranslate"><span class="pre">1</span></code> （完全不透明）。</p></li>
+<li><p><strong>fill_opacity</strong> (<em>float</em>) – <em>(v1.18.1 新增)</em> 设置填充颜色（文本颜色）的透明度，默认值为 <code class="xref any docutils literal notranslate"><span class="pre">1</span></code> （完全不透明）。此参数控制文本颜色的透明度，而 <code class="xref any docutils literal notranslate"><span class="pre">stroke_opacity</span></code> 仅影响字符边框。</p></li>
+<li><p><strong>rotate</strong> (<em>int</em>) – <p>设置文本在矩形区域内的旋转角度。该值必须是 <code class="xref any docutils literal notranslate"><span class="pre">90</span></code> 的整数倍，支持 <code class="xref any docutils literal notranslate"><span class="pre">0</span></code>、 <code class="xref any docutils literal notranslate"><span class="pre">90</span></code>、 <code class="xref any docutils literal notranslate"><span class="pre">180</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">270</span></code> （或 <code class="xref any docutils literal notranslate"><span class="pre">-90</span></code> ）：</p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">0</span></code> （默认）：从左上角开始填充文本。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">90</span></code>：从 <strong>左下角</strong> 开始填充文本。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">180</span></code>：从 <strong>右下角</strong> 开始填充文本。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">270</span></code> （或 <code class="xref any docutils literal notranslate"><span class="pre">-90</span></code> ）：从 <strong>右上角</strong> 开始填充文本。</p></li>
+</ul>
+<p>旋转参数会覆盖 <a class="reference internal" href="irect.html#IRect.morph" title="IRect.morph"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">morph</span></code></a> 变换效果。请参考以下示例，其中一个示例展示了文本先向左旋转 <code class="xref any docutils literal notranslate"><span class="pre">90</span></code> 度，之后整个矩形围绕左下角顺时针旋转。</p>
+</p></li>
+<li><p><strong>oc</strong> (<em>int</em>) – <em>(v1.18.4 新增)</em> 指定文本的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号，以使其可按条件显示，适用于 <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> 或 <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a>。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p><strong>如果返回值为正或零</strong>：执行成功，返回未使用的矩形行高（单位：像素）。该值可用于优化矩形、调整后续元素位置等。</p>
+<p><strong>如果返回值为负</strong>：未能执行，返回值表示插入文本所需的额外空间。建议增大矩形区域、减少字体大小或减少文本量。</p>
+</p>
+</dd>
+</dl>
+<img alt="_images/img-rotate.png" src="_images/img-rotate.png" />
+<img alt="_images/img-rot%2Bmorph.png" src="_images/img-rot%2Bmorph.png" />
+<p>其他参数的详细说明请参见 <a class="reference internal" href="#commonparms"><span class="std std-ref">公共参数</span></a>。</p>
+</dd></dl>
+
+<span class="target" id="index-6"></span><dl class="py method">
+<dt class="sig sig-object py" id="Shape.commit">
+<span class="sig-name descname"><span class="pre">commit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">overlay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Shape.commit" title="永久链接至目标">#</a></dt>
+<dd><p>将累积的绘图和文本插入更新到页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a>。如果文本与绘图重叠，文本将覆盖在绘图之上。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p><strong>请勿忘记执行此方法：</strong></p>
+<p>如果未提交 (<a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">commit</span></code></a>) 形状，它将被忽略，页面内容不会发生变化！</p>
+</div>
+<p>该方法会重置以下属性：<a class="reference internal" href="#Shape.rect" title="Shape.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.rect</span></code></a> 、<a class="reference internal" href="#Shape.lastPoint" title="Shape.lastPoint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lastPoint</span></code></a> 、<a class="reference internal" href="#Shape.draw_cont" title="Shape.draw_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">draw_cont</span></code></a> 、<a class="reference internal" href="#Shape.text_cont" title="Shape.text_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">text_cont</span></code></a> 和 <a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">totalcont</span></code></a>。之后，该形状对象仍可用于 <strong>同一页面</strong>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>overlay</strong> (<em>bool</em>) – 是否将内容放置在前景（默认）或背景中。仅当页面已有非空的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 时才相关。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>———- 属性 ———-</strong></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.doc">
+<span class="sig-name descname"><span class="pre">doc</span></span><a class="headerlink" href="#Shape.doc" title="永久链接至目标">#</a></dt>
+<dd><p><strong>仅供参考</strong>：所属文档对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.page">
+<span class="sig-name descname"><span class="pre">page</span></span><a class="headerlink" href="#Shape.page" title="永久链接至目标">#</a></dt>
+<dd><p><strong>仅供参考</strong>：所属页面对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.height">
+<span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#Shape.height" title="永久链接至目标">#</a></dt>
+<dd><p>页面高度的副本。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.width">
+<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#Shape.width" title="永久链接至目标">#</a></dt>
+<dd><p>页面宽度的副本。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.draw_cont">
+<span class="sig-name descname"><span class="pre">draw_cont</span></span><a class="headerlink" href="#Shape.draw_cont" title="永久链接至目标">#</a></dt>
+<dd><p><strong>绘图方法</strong> 的累积命令缓冲区。每次执行 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finish</span></code></a> 方法后，该缓冲区的内容会追加到 <a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.totalcont</span></code></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.text_cont">
+<span class="sig-name descname"><span class="pre">text_cont</span></span><a class="headerlink" href="#Shape.text_cont" title="永久链接至目标">#</a></dt>
+<dd><p><strong>文本插入</strong> 的累积缓冲区。所有文本插入都会存储在此缓冲区中，并在执行 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> 时追加到 <a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">totalcont</span></code></a>，确保文本不会被同一 <a class="reference internal" href="#shape"><span class="std std-ref">Shape</span></a> 内的绘图覆盖。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#Shape.rect" title="永久链接至目标">#</a></dt>
+<dd><p>包围绘图的矩形。此属性供您使用，可以随时更改。当创建或提交形状时，默认值为 <em>None</em>。每次调用 <em>draw</em> 方法和 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a> 时，都会更新该属性（即 <strong>根据需要扩大</strong> 矩形）。然而，<strong>变换（Morphing）</strong> 操作（如 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a>、<a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>）会被忽略。</p>
+<p>该属性的典型用法是在创建形状时，将 <a class="reference internal" href="page.html#Page.cropbox_position" title="Page.cropbox_position"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.cropbox_position</span></code></a> 设置为该值，尤其是当您为后续或外部使用创建形状时。如果您没有手动操作该属性，它应反映包含所有绘图的矩形。</p>
+<p>如果您使用了变换并需要包含变换对象的矩形，可以使用以下代码：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 假设 ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">morph</span> <span class="o">=</span> <span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">matrix</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># ... 重新计算形状矩形如下：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">rect</span> <span class="o">=</span> <span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">rect</span> <span class="o">-</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">point</span><span class="p">))</span> <span class="o">*</span> <span class="o">~</span><span class="n">matrix</span> <span class="o">+</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.totalcont">
+<span class="sig-name descname"><span class="pre">totalcont</span></span><a class="headerlink" href="#Shape.totalcont" title="永久链接至目标">#</a></dt>
+<dd><p>累积的绘图和文本插入命令缓冲区。此缓冲区将在 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> 中使用。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Shape.lastPoint">
+<span class="sig-name descname"><span class="pre">lastPoint</span></span><a class="headerlink" href="#Shape.lastPoint" title="永久链接至目标">#</a></dt>
+<dd><p><strong>仅供参考</strong>：当前绘图路径的点。它在 <em>Shape</em> 创建时以及每次执行 <em>finish()</em> 和 <em>commit()</em> 后为 <em>None</em>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This class allows creating interconnected graphical elements on a PDF page. Its methods have the same meaning and name as the corresponding <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> methods.</p>
+<p>In fact, each <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> draw method is just a convenience wrapper for (1) one shape draw method, (2) the <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a> method, and (3) the <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> method. For page text insertion, only the <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> method is invoked. If many draw and text operations are executed for a page, you should always consider using a Shape object.</p>
+<p>Several draw methods can be executed in a row and each one of them will contribute to one drawing. Once the drawing is complete, the <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a> method must be invoked to apply color, dashing, width, morphing and other attributes.</p>
+<p><strong>Draw</strong> methods of this class (and <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>) are logging the area they are covering in a rectangle (<a class="reference internal" href="#Shape.rect" title="Shape.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.rect</span></code></a>). This property can for instance be used to set <a class="reference internal" href="page.html#Page.cropbox_position" title="Page.cropbox_position"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.cropbox_position</span></code></a>.</p>
+<p><strong>Text insertions</strong> <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> and <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a> implicitly execute a “finish” and therefore only require <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a> to become effective. As a consequence, both include parameters for controlling properties like colors, etc.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method / Attribute</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a></p></td>
+<td><p>update the page’s contents</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_bezier" title="Shape.draw_bezier"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_bezier()</span></code></a></p></td>
+<td><p>draw a cubic Bezier curve</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_circle" title="Shape.draw_circle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_circle()</span></code></a></p></td>
+<td><p>draw a circle around a point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_curve" title="Shape.draw_curve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_curve()</span></code></a></p></td>
+<td><p>draw a cubic Bezier using one helper point</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_line" title="Shape.draw_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_line()</span></code></a></p></td>
+<td><p>draw a line</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_oval" title="Shape.draw_oval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_oval()</span></code></a></p></td>
+<td><p>draw an ellipse</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_polyline" title="Shape.draw_polyline"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_polyline()</span></code></a></p></td>
+<td><p>connect a sequence of points</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a></p></td>
+<td><p>draw a quadrilateral</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_rect" title="Shape.draw_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_rect()</span></code></a></p></td>
+<td><p>draw a rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_sector" title="Shape.draw_sector"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_sector()</span></code></a></p></td>
+<td><p>draw a circular sector or piece of pie</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_squiggle" title="Shape.draw_squiggle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_squiggle()</span></code></a></p></td>
+<td><p>draw a squiggly line</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.draw_zigzag" title="Shape.draw_zigzag"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_zigzag()</span></code></a></p></td>
+<td><p>draw a zigzag line</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a></p></td>
+<td><p>finish a set of draw commands</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a></p></td>
+<td><p>insert text lines</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a></p></td>
+<td><p>fit text into a rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.doc" title="Shape.doc"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.doc</span></code></a></p></td>
+<td><p>stores the page’s document</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.draw_cont" title="Shape.draw_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.draw_cont</span></code></a></p></td>
+<td><p>draw commands since last <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.height" title="Shape.height"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.height</span></code></a></p></td>
+<td><p>stores the page’s height</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.lastPoint" title="Shape.lastPoint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.lastPoint</span></code></a></p></td>
+<td><p>stores the current point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.page" title="Shape.page"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.page</span></code></a></p></td>
+<td><p>stores the owning page</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.rect" title="Shape.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.rect</span></code></a></p></td>
+<td><p>rectangle surrounding drawings</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.text_cont" title="Shape.text_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.text_cont</span></code></a></p></td>
+<td><p>accumulated text insertions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.totalcont</span></code></a></p></td>
+<td><p>accumulated string to be stored in <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Shape.width" title="Shape.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.width</span></code></a></p></td>
+<td><p>stores the page’s width</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="id4">
+<h2>用法<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Usage</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>图形对象的构造方式是通过 <code class="xref any docutils literal notranslate"><span class="pre">shape</span> <span class="pre">=</span> <span class="pre">page.new_shape()</span></code>。在此之后，可以根据需要进行任意数量的绘制、完成和文本插入方法调用。每个绘制序列必须在提交之前完成。整体的代码模式如下所示：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw1</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw2</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">width</span><span class="o">=...</span><span class="p">,</span> <span class="n">color</span><span class="o">=...</span><span class="p">,</span> <span class="n">fill</span><span class="o">=...</span><span class="p">,</span> <span class="n">morph</span><span class="o">=...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw3</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw4</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">width</span><span class="o">=...</span><span class="p">,</span> <span class="n">color</span><span class="o">=...</span><span class="p">,</span> <span class="n">fill</span><span class="o">=...</span><span class="p">,</span> <span class="n">morph</span><span class="o">=...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">insert_text</span><span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">....</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ol class="arabic simple">
+<li><p>每个 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finish()</span></code></a> 方法会将之前的绘制操作合并为一个逻辑图形，赋予它统一的颜色、线宽、形态等。如果指定了 <code class="xref any docutils literal notranslate"><span class="pre">closePath</span></code>，它还会将最后一个绘制的终点与第一个绘制的起点连接起来。</p></li>
+<li><p>为了成功创建复合图形，确保每个 <a class="reference internal" href="story-class.html#Story.draw" title="Story.draw"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">draw</span></code></a> 方法的起点是上一个绘制的终点。在上面的伪代码中，<code class="xref any docutils literal notranslate"><span class="pre">draw2</span></code> 方法应该使用 <code class="xref any docutils literal notranslate"><span class="pre">draw1</span></code> 返回的 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> 作为起点。如果没有这样做，将自动开始一个新的路径，并且 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">finish()</span></code></a> 方法可能无法按预期工作（但不会报错）。</p></li>
+<li><p>文本插入可以在 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">commit</span></code></a> 之前的任何位置进行，它们不会影响 <a class="reference internal" href="#Shape.draw_cont" title="Shape.draw_cont"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Shape.draw_cont</span></code></a> 或 <a class="reference internal" href="#Shape.lastPoint" title="Shape.lastPoint"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Shape.lastPoint</span></code></a>。文本将直接追加到 <a class="reference internal" href="#Shape.totalcont" title="Shape.totalcont"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Shape.totalcont</span></code></a> 中，而绘制操作则由 <a class="reference internal" href="#Shape.finish" title="Shape.finish"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Shape.finish</span></code></a> 方法追加。</p></li>
+<li><p>每个 <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">commit</span></code></a> 方法会将所有文本插入和图形放置在页面的前景或背景中，从而提供对图形层次的控制。</p></li>
+<li><p><strong>只有</strong> <a class="reference internal" href="#Shape.commit" title="Shape.commit"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">commit</span></code></a> <strong>会更新</strong> 页面内容，其他方法基本上是字符串操作。</p></li>
+</ol>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>A drawing object is constructed by <em>shape = page.new_shape()</em>. After this, as many draw, finish and text insertions methods as required may follow. Each sequence of draws must be finished before the drawing is committed. The overall coding pattern looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw1</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw2</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">width</span><span class="o">=...</span><span class="p">,</span> <span class="n">color</span><span class="o">=...</span><span class="p">,</span> <span class="n">fill</span><span class="o">=...</span><span class="p">,</span> <span class="n">morph</span><span class="o">=...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw3</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">draw4</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">width</span><span class="o">=...</span><span class="p">,</span> <span class="n">color</span><span class="o">=...</span><span class="p">,</span> <span class="n">fill</span><span class="o">=...</span><span class="p">,</span> <span class="n">morph</span><span class="o">=...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">insert_text</span><span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">....</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ol class="arabic simple">
+<li><p>Each <em>finish()</em> combines the preceding draws into one logical shape, giving it common colors, line width, morphing, etc. If <em>closePath</em> is specified, it will also connect the end point of the last draw with the starting point of the first one.</p></li>
+<li><p>To successfully create compound graphics, let each draw method use the end point of the previous one as its starting point. In the above pseudo code, <em>draw2</em> should hence use the returned <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> of <em>draw1</em> as its starting point. Failing to do so, would automatically start a new path and <em>finish()</em> may not work as expected (but it won’t complain either).</p></li>
+<li><p>Text insertions may occur anywhere before the commit (they neither touch <a class="reference internal" href="#Shape.draw_cont" title="Shape.draw_cont"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.draw_cont</span></code></a> nor <a class="reference internal" href="#Shape.lastPoint" title="Shape.lastPoint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Shape.lastPoint</span></code></a>). They are appended to <em>Shape.totalcont</em> directly, whereas draws will be appended by <em>Shape.finish</em>.</p></li>
+<li><p>Each <em>commit</em> takes all text insertions and shapes and places them in foreground or background on the page – thus providing a way to control graphical layers.</p></li>
+<li><p><strong>Only</strong> <em>commit</em> <strong>will update</strong> the page’s contents, the other methods are basically string manipulations.</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>例子<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Examples</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<ol class="arabic">
+<li><p>创建一个由不同颜色的饼状图构成的完整圆形</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>  <span class="c1"># 开始一个新形状</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># 一个RGB颜色三元组的序列</span>
+<span class="n">pieces</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>  <span class="c1"># 需要绘制的部分数量</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">360.</span> <span class="o">/</span> <span class="n">pieces</span>  <span class="c1"># 每个饼块的角度</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># 饼的中心</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># 起始点</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+   <span class="n">p0</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">draw_sector</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span>
+                           <span class="n">fullSector</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 绘制饼块</span>
+   <span class="c1"># 现在填充它，但不要连接弧的端点</span>
+   <span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">closePath</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># 更新页面</span>
+</pre></div>
+</div>
+<p>这是五种颜色的示例：</p>
+<img alt="_images/img-cake.png" src="_images/img-cake.png" />
+</li>
+<li><p>创建一个规则的n边多边形（黄色填充，红色边框）。我们仅使用 <em>draw_sector()</em> 来计算圆周上的点，并在绘制多边形之前清空绘图命令缓冲区</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>  <span class="c1"># 开始一个新形状</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="mf">360.0</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># 角度，顺时针绘制</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># 圆心</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># 从这里开始（第一个边）</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">p0</span><span class="p">]</span>  <span class="c1"># 存储多边形的边</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># 计算边</span>
+   <span class="n">p0</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">draw_sector</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+   <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p0</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">draw_cont</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># 不绘制圆的扇形</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">draw_polyline</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>  <span class="c1"># 绘制多边形</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">closePath</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>这是 n = 7 时的多边形：</p>
+<img alt="_images/img-7edges.png" src="_images/img-7edges.png" />
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<ol class="arabic">
+<li><p>Create a full circle of pieces of pie in different colors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span>  <span class="c1"># start a new shape</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># a sequence of RGB color triples</span>
+<span class="n">pieces</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>  <span class="c1"># number of pieces to draw</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">360.</span> <span class="o">/</span> <span class="n">pieces</span>  <span class="c1"># angle of each piece of pie</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># center of the pie</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># starting point</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pieces</span><span class="p">):</span>
+   <span class="n">p0</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">draw_sector</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span>
+                        <span class="n">fullSector</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># draw piece</span>
+   <span class="c1"># now fill it but do not connect ends of the arc</span>
+   <span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">cols</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">closePath</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>  <span class="c1"># update the page</span>
+</pre></div>
+</div>
+<p>Here is an example for 5 colors:</p>
+<img alt="_images/img-cake.png" src="_images/img-cake.png" />
+</li>
+<li><p>Create a regular n-edged polygon (fill yellow, red border). We use <em>draw_sector()</em> only to calculate the points on the circumference, and empty the draw command buffer again before drawing the polygon:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">new_shape</span><span class="p">()</span> <span class="c1"># start a new shape</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="mf">360.0</span> <span class="o">/</span> <span class="n">n</span>  <span class="c1"># our angle, drawn clockwise</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># center of circle</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># start here (1st edge)</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">p0</span><span class="p">]</span>  <span class="c1"># store polygon edges</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># calculate the edges</span>
+   <span class="n">p0</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">draw_sector</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+   <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p0</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">draw_cont</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>  <span class="c1"># do not draw the circle sectors</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">draw_polyline</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>  <span class="c1"># draw the polygon</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">finish</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">closePath</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is the polygon for n = 7:</p>
+<img alt="_images/img-7edges.png" src="_images/img-7edges.png" />
+</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="commonparms">
+<span id="id6"></span><h2>公共参数<a class="headerlink" href="#commonparms" title="此标题的永久链接">#</a></h2>
+<p>Common Parameters</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p><strong>fontname</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>通常有三种选择：</p>
+<ol class="arabic simple">
+<li><p>使用标准的 <a class="reference internal" href="app3.html#base-14-fonts"><span class="std std-ref">PDF Base 14 字体</span></a> 中的一种字体。在这种情况下， <strong>必须不</strong> 指定 <em>fontfile</em>，如果省略该参数，则使用 <em>“Helvetica”</em>。</p></li>
+<li><p>选择页面中已使用的字体。然后指定其 <strong>引用</strong> 名称，并在前面加上斜杠 “/”，例如下面的示例。</p></li>
+<li><p>指定计算机系统中存在的字体文件。在这种情况下，为此参数选择一个任意但新的名称（不带 “/” 前缀）。</p></li>
+</ol>
+<p>如果插入的文本应该重用页面中的某个字体，可以使用 <a class="reference internal" href="page.html#Page.get_fonts" title="Page.get_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_fonts()</span></code></a> 中显示的引用名称，如下所示：</p>
+<p>假设字体列表中有项 <em>[1024, 0, ‘Type1’, ‘NimbusMonL-Bold’, ‘R366’]</em>，那么指定 <em>fontname = “/R366”, fontfile = None</em> 来使用字体 <em>NimbusMonL-Bold</em>。</p>
+</div></blockquote>
+<p><strong>fontfile</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>计算机上现有字体的文件路径。如果指定了 <em>fontfile</em> ，确保使用的 <em>fontname</em> <strong>不出现在</strong> 上述列表中。这个新字体将在 <em>doc.save()</em> 时嵌入到 PDF 中。与新图像类似，字体文件只会嵌入一次。使用一个 MD5 码表来确保这一点。</p>
+</div></blockquote>
+<p><strong>set_simple</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>从文件安装的字体默认为 <strong>Type0</strong> 字体。如果只想使用 1 字节字符，将此设置为 true。此设置无法恢复。后续的更改将被忽略。</p>
+</div></blockquote>
+<p><strong>fontsize</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>文本的字体大小，参见： <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a>。</p>
+</div></blockquote>
+<p><strong>dashes</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>使线条以虚线方式绘制。一般格式是 <code class="xref any docutils literal notranslate"><span class="pre">&quot;[n</span> <span class="pre">m]</span> <span class="pre">p&quot;</span></code>，由最多 3 个浮动值组成，表示像素长度。 <code class="docutils literal notranslate"><span class="pre">n</span></code> 是虚线的长度， <code class="docutils literal notranslate"><span class="pre">m</span></code> （可选）是随后的间隙长度， <code class="docutils literal notranslate"><span class="pre">p</span></code> （“相位” - <strong>必需</strong>，即使是 0！）指定在开始绘制虚线之前应跳过多少像素。如果省略 <code class="docutils literal notranslate"><span class="pre">m</span></code>，它默认为 <code class="docutils literal notranslate"><span class="pre">n</span></code>。</p>
+<p>使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;[]</span> <span class="pre">0&quot;</span></code> 或 <em>None</em> 或 <code class="xref any docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> 绘制连续的线条（无虚线）。示例如下：</p>
+<ul class="simple">
+<li><p>指定 <code class="xref any docutils literal notranslate"><span class="pre">&quot;[3</span> <span class="pre">4]</span> <span class="pre">0&quot;</span></code> 意味着虚线长度为 3，间隙长度为 4 像素，依次排列。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;[3</span> <span class="pre">3]</span> <span class="pre">0&quot;</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">&quot;[3]</span> <span class="pre">0&quot;</span></code> 的效果相同。</p></li>
+</ul>
+<p>有关如何实现复杂虚线效果的详细信息，请参见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>，第 217 页。</p>
+</div></blockquote>
+<p><strong>color / fill</strong> (<em>list, tuple</em>)</p>
+<blockquote>
+<div><p>描边和填充颜色可以用 0 到 1 之间的浮点数元组或列表指定。这些序列的长度必须为 1（灰度 GRAY）、3（RGB）或 4（CMYK）。对于灰度色彩空间，除了 <em>(float,)</em> 或 <em>[float]</em> 这种较繁琐的格式外，也可以直接使用单个浮点数。可以使用默认值（Accept），或者使用 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> 以忽略该参数。</p>
+<p>为了简化颜色指定，可以使用 <em>pymupdf.utils</em> 中的 <em>getColor()</em> 方法，通过颜色名称获取预定义的 RGB 颜色三元组。它接受一个字符串作为颜色名称，并返回相应的 RGB 颜色三元组。该方法支持 540 多种颜色名称，详见 <a class="reference internal" href="colors.html#colordatabase"><span class="std std-ref">颜色数据库</span></a>。</p>
+<p>请注意，术语 <em>color</em> 在与填充颜色一起使用时通常指的是“描边”颜色。</p>
+<p>如果将颜色参数默认设为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，那么不会生成相应的颜色选择命令。如果 <em>fill</em> 和 <em>color</em> 都为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，那么绘制内容将不包含任何颜色指定。但仍然会被“描边”，导致 PDF 默认颜色“黑色”被 Adobe Acrobat 及其他查看器使用。</p>
+</div></blockquote>
+<p><strong>width</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>形状元素（如果适用）的描边（“边框”）宽度，默认值为 1。参数 <em>width</em>、<em>color</em> 和 <em>fill</em> 之间的关系如下：</p>
+<ul class="simple">
+<li><p>如果 <code class="xref any docutils literal notranslate"><span class="pre">fill=None</span></code>，形状元素始终会带有边框，即使 <code class="xref any docutils literal notranslate"><span class="pre">color=None</span></code> （此时默认使用黑色）或 <code class="xref any docutils literal notranslate"><span class="pre">width=0</span></code> （此时默认使用 1）。</p></li>
+<li><p>只有在指定填充颜色（可以是白色）时，才可以绘制无边框的形状。要实现这一点，需要指定 <code class="xref any docutils literal notranslate"><span class="pre">width=0</span></code>，此时 <code class="docutils literal notranslate"><span class="pre">color</span></code> 参数会被忽略。</p></li>
+</ul>
+</div></blockquote>
+<p><strong>stroke_opacity / fill_opacity</strong> (<em>floats</em>)</p>
+<blockquote>
+<div><p>这两个值的取值范围均为 [0, 1]。负值或大于 1 的值在大多数情况下会被忽略。这两个参数用于设置透明度，其中 0.5 代表 50% 透明度，0 代表完全透明，1 代表不透明。例如，对于矩形，<em>stroke_opacity</em> 适用于边框，<em>fill_opacity</em> 适用于内部填充。</p>
+<p>对于文本插入（<a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> 和 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>），使用 <em>fill_opacity</em> 控制文本透明度。乍看之下这可能令人困惑，但结合 <code class="xref any docutils literal notranslate"><span class="pre">render_mode</span></code> 可以理解：<code class="xref any docutils literal notranslate"><span class="pre">fill_opacity</span></code> 适用于黄色部分，<code class="xref any docutils literal notranslate"><span class="pre">stroke_opacity</span></code> 适用于蓝色部分。</p>
+</div></blockquote>
+<p><strong>border_width</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>设置文本插入的边框宽度。新增于 v1.14.9，仅在 <em>render_mode</em> 取值大于 0 时有效。</p>
+</div></blockquote>
+<p><strong>render_mode</strong> (<em>int</em>)</p>
+<blockquote>
+<div><p><em>自 v1.14.9 版本新增</em>：取值范围 <code class="xref any docutils literal notranslate"><span class="pre">range(8)</span></code>，用于控制文本外观（适用于 <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> 和 <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>）。详见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 246 页。本版本新增了填充色与描边色的区分。</p>
+<ul class="simple">
+<li><p>默认值 0：仅使用填充颜色绘制文本。为保持向后兼容性，也可以使用 <em>color</em> 参数代替。</p></li>
+<li><p>渲染模式 1：仅绘制字符（字形）的边框，边框厚度由 <em>border_width</em> 参数指定。颜色使用 <em>color</em> 参数指定，<em>fill</em> 参数被忽略。</p></li>
+<li><p>渲染模式 2：字形既填充又描边，使用 <em>fill</em> 和 <em>color</em> 参数，以及指定的边框宽度。可以使用该模式模拟 <strong>加粗文本</strong>，方法是为 <em>fill</em> 和 <em>color</em> 选择相同的颜色，并设置适当的 <em>border_width</em>。</p></li>
+<li><p>渲染模式 3：字形既不填充也不描边，即文本不可见。</p></li>
+</ul>
+<p>下列示例使用 <code class="xref any docutils literal notranslate"><span class="pre">border_width=0.3</span></code>，字体大小 <code class="xref any docutils literal notranslate"><span class="pre">fontsize=15</span></code>，描边颜色为蓝色，填充颜色为黄色。</p>
+<img alt="_images/img-rendermode.jpg" src="_images/img-rendermode.jpg" />
+</div></blockquote>
+<p><strong>miter_limit</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>一个浮点数，指定可接受的最大“斜接比”（miter quotient），计算方式为 <code class="xref any docutils literal notranslate"><span class="pre">miter-length</span> <span class="pre">/</span> <span class="pre">line-width</span></code>。该参数用于文本输出方法，仅在非零渲染模式下相关 —— 也就是说，当字符带有描边（stroked）时才生效。</p>
+<p>当某个字符的描边线在一个锐角（≤ 90°）处相交，并且线宽较大时，可能会出现“尖刺”现象，导致不美观的视觉效果，如下所示。更多背景信息可参考 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 126 页。</p>
+<p>例如，当连接点以 90° 角度相交时，斜接长度（miter length）为 <code class="docutils literal notranslate"><span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">line-width</span></code>，斜接比（miter quotient）为 <code class="docutils literal notranslate"><span class="pre">sqrt(2)</span></code>。</p>
+<p>如果 <code class="docutils literal notranslate"><span class="pre">miter_limit</span></code> 被超过，则所有超过该比值的连接处都会被截断，呈现为斜切（“butt”）的外观。</p>
+<ul class="simple">
+<li><p>默认值为 1（以及任何更小的值），这会确保所有连接点都呈现为斜切（butt）。</p></li>
+<li><p>设为 <code class="docutils literal notranslate"><span class="pre">None</span></code> 时，则使用 PDF 的默认值。</p></li>
+</ul>
+<p><strong>示例：</strong></p>
+<p>出现尖刺的文本（<code class="docutils literal notranslate"><span class="pre">miter_limit=None</span></code>）：</p>
+<img alt="_images/spikes-yes.png" src="_images/spikes-yes.png" />
+<p>抑制尖刺的文本（<code class="docutils literal notranslate"><span class="pre">miter_limit=1</span></code>）：</p>
+<img alt="_images/spikes-no.png" src="_images/spikes-no.png" />
+</div></blockquote>
+<p><strong>overlay</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>控制元素是出现在前景（默认）还是背景。</p>
+</div></blockquote>
+<p><strong>morph</strong> (<em>sequence</em>)</p>
+<blockquote>
+<div><p>使形状（由 <em>draw()</em> 方法创建）或文本（由 <em>insert_textbox()</em> / <em>insert_text()</em> 方法插入）发生“变形”（morphing）。如果不为 <em>None</em>，则必须是一个 <em>(fixpoint, matrix)</em> 对，其中：</p>
+<ul class="simple">
+<li><p><em>fixpoint</em> 是一个 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a>，作为变换的固定点。</p></li>
+<li><p><em>matrix</em> 是一个 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>，可以是任意变换矩阵，但不能是平移变换，即必须满足 <em>matrix.e == matrix.f == 0</em>。</p></li>
+</ul>
+<p>例如：</p>
+<ul class="simple">
+<li><p>如果 <em>matrix</em> 是旋转或缩放变换，则 <em>fixpoint</em> 是变换的中心。</p></li>
+<li><p>如果 <em>matrix</em> 是左右或上下翻转变换，则镜像轴分别是经过 <em>fixpoint</em> 的垂直线或水平线。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>一些方法（如 <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> 或 <a class="reference internal" href="#Shape.draw_rect" title="Shape.draw_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_rect()</span></code></a>）会检查插入的元素是否能够完全适应页面。但是对于变形操作的结果，系统不会进行此类检查，因此完全由开发者自行负责。</p>
+</div>
+</div></blockquote>
+<p><strong>lineCap</strong> (<em>int</em>) <em>(已弃用: “roundCap”)</em></p>
+<blockquote>
+<div><p>控制线条端点的外观。默认值为 0，表示线条在指定坐标处以锐角结束。其他选项包括：</p>
+<ul class="simple">
+<li><p>0：线条在端点处直接终止，形成锐角。</p></li>
+<li><p>1：在线条端点处添加一个半圆，半圆的中心为端点，直径等于线宽。</p></li>
+<li><p>2：在线条端点处添加一个半方形，边长等于线宽，中心为端点。</p></li>
+</ul>
+<p><em>在 v1.14.15 版本修改</em></p>
+</div></blockquote>
+<p><strong>lineJoin</strong> (<em>int</em>)</p>
+<blockquote>
+<div><p><em>自 v1.14.15 版本新增</em>：控制线条连接处的外观：</p>
+<ul class="simple">
+<li><p>0：尖角连接（sharp edge）。</p></li>
+<li><p>1：圆角连接（rounded join）。</p></li>
+<li><p>2：斜切连接（cut-off edge，”butt”）。</p></li>
+</ul>
+</div></blockquote>
+<p><strong>closePath</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>使绘制的终点自动与起点相连（使用一条直线闭合路径）。</p>
+</div></blockquote>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p><strong>fontname</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>In general, there are three options:</p>
+<ol class="arabic simple">
+<li><p>Use one of the standard <a class="reference internal" href="app3.html#base-14-fonts"><span class="std std-ref">PDF Base 14 字体</span></a>. In this case, <em>fontfile</em> <strong>must not</strong> be specified and <em>“Helvetica”</em> is used if this parameter is omitted, too.</p></li>
+<li><p>Choose a font already in use by the page. Then specify its <strong>reference</strong> name prefixed with a slash “/”, see example below.</p></li>
+<li><p>Specify a font file present on your system. In this case choose an arbitrary, but new name for this parameter (without “/” prefix).</p></li>
+</ol>
+<p>If inserted text should re-use one of the page’s fonts, use its reference name appearing in <a class="reference internal" href="page.html#Page.get_fonts" title="Page.get_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_fonts()</span></code></a> like so:</p>
+<p>Suppose the font list has the item <em>[1024, 0, ‘Type1’, ‘NimbusMonL-Bold’, ‘R366’]</em>, then specify <em>fontname = “/R366”, fontfile = None</em> to use font <em>NimbusMonL-Bold</em>.</p>
+</div></blockquote>
+<p><strong>fontfile</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>File path of a font existing on your computer. If you specify <em>fontfile</em>, make sure you use a <em>fontname</em> <strong>not occurring</strong> in the above list. This new font will be embedded in the PDF upon <em>doc.save()</em>. Similar to new images, a font file will be embedded only once. A table of MD5 codes for the binary font contents is used to ensure this.</p>
+</div></blockquote>
+<p><strong>set_simple</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>Fonts installed from files are installed as <strong>Type0</strong> fonts by default. If you want to use 1-byte characters only, set this to true. This setting cannot be reverted. Subsequent changes are ignored.</p>
+</div></blockquote>
+<p><strong>fontsize</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>Font size of text, see: <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a>.</p>
+</div></blockquote>
+<p><strong>dashes</strong> (<em>str</em>)</p>
+<blockquote>
+<div><p>Causes lines to be drawn dashed. The general format is <code class="xref any docutils literal notranslate"><span class="pre">&quot;[n</span> <span class="pre">m]</span> <span class="pre">p&quot;</span></code> of (up to) 3 floats denoting pixel lengths. <code class="docutils literal notranslate"><span class="pre">n</span></code> is the dash length, <code class="docutils literal notranslate"><span class="pre">m</span></code> (optional) is the subsequent gap length, and <code class="docutils literal notranslate"><span class="pre">p</span></code> (the “phase” - <strong>required</strong>, even if 0!) specifies how many pixels should be skipped before the dashing starts. If <code class="docutils literal notranslate"><span class="pre">m</span></code> is omitted, it defaults to <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+<p>A continuous line (no dashes) is drawn with <code class="xref any docutils literal notranslate"><span class="pre">&quot;[]</span> <span class="pre">0&quot;</span></code> or <em>None</em> or <code class="xref any docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>. Examples:</p>
+<ul class="simple">
+<li><p>Specifying <code class="xref any docutils literal notranslate"><span class="pre">&quot;[3</span> <span class="pre">4]</span> <span class="pre">0&quot;</span></code> means dashes of 3 and gaps of 4 pixels following each other.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;[3</span> <span class="pre">3]</span> <span class="pre">0&quot;</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">&quot;[3]</span> <span class="pre">0&quot;</span></code> do the same thing.</p></li>
+</ul>
+<p>For (the rather complex) details on how to achieve sophisticated dashing effects, see <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>, page 217.</p>
+</div></blockquote>
+<p><strong>color / fill</strong> (<em>list, tuple</em>)</p>
+<blockquote>
+<div><p>Stroke and fill colors can be specified as tuples or list of of floats from 0 to 1. These sequences must have a length of 1 (GRAY), 3 (RGB) or 4 (CMYK). For GRAY colorspace, a single float instead of the unwieldy <em>(float,)</em> or <em>[float]</em> is also accepted. Accept (default) or use <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> to not use the parameter.</p>
+<p>To simplify color specification, method <em>getColor()</em> in <em>pymupdf.utils</em> may be used to get predefined RGB color triples by name. It accepts a string as the name of the color and returns the corresponding triple. The method knows over 540 color names – see section <a class="reference internal" href="colors.html#colordatabase"><span class="std std-ref">颜色数据库</span></a>.</p>
+<p>Please note that the term <em>color</em> usually means “stroke” color when used in conjunction with fill color.</p>
+<p>If letting default a color parameter to <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>, then no resp. color selection command will be generated. If <em>fill</em> and <em>color</em> are both <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>, then the drawing will contain no color specification. But it will still be “stroked”, which causes PDF’s default color “black” be used by Adobe Acrobat and all other viewers.</p>
+</div></blockquote>
+<p><strong>width</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>The stroke (“border”) width of the elements in a shape (if applicable). The default value is 1. The values width, color and fill have the following relationship / dependency:</p>
+<ul class="simple">
+<li><p>If <code class="xref any docutils literal notranslate"><span class="pre">fill=None</span></code> shape elements will always be drawn with a border - even if <code class="xref any docutils literal notranslate"><span class="pre">color=None</span></code> (in which case black is taken) or <code class="xref any docutils literal notranslate"><span class="pre">width=0</span></code> (in which case 1 is taken).</p></li>
+<li><p>Shapes without border can only be achieved if a fill color is specified (which may be white of course). To achieve this, specify <code class="xref any docutils literal notranslate"><span class="pre">width=0</span></code>. In this case, the <code class="docutils literal notranslate"><span class="pre">color</span></code> parameter is ignored.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>stroke_opacity / fill_opacity</strong> (<em>floats</em>)</p>
+<blockquote>
+<div><p>Both values are floats in range [0, 1]. Negative values or values &gt; 1 will ignored (in most cases). Both set the transparency such that a value 0.5 corresponds to 50% transparency, 0 means invisible and 1 means intransparent. For e.g. a rectangle the stroke opacity applies to its border and fill opacity to its interior.</p>
+<p>For text insertions (<a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> and <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>), use <em>fill_opacity</em> for the text. At first sight this seems surprising, but it becomes obvious when you look further down to <code class="xref any docutils literal notranslate"><span class="pre">render_mode</span></code>: <code class="xref any docutils literal notranslate"><span class="pre">fill_opacity</span></code> applies to the yellow and <code class="xref any docutils literal notranslate"><span class="pre">stroke_opacity</span></code> applies to the blue color.</p>
+</div></blockquote>
+<p><strong>border_width</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>Set the border width for text insertions. New in v1.14.9. Relevant only if the render mode argument is used with a value greater zero.</p>
+</div></blockquote>
+<p><strong>render_mode</strong> (<em>int</em>)</p>
+<blockquote>
+<div><p><em>New in version 1.14.9:</em> Integer in <code class="xref any docutils literal notranslate"><span class="pre">range(8)</span></code> which controls the text appearance (<a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a> and <a class="reference internal" href="#Shape.insert_textbox" title="Shape.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a>). See page 246 in <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>. New in v1.14.9. These methods now also differentiate between fill and stroke colors.</p>
+<ul class="simple">
+<li><p>For default 0, only the text fill color is used to paint the text. For backward compatibility, using the <em>color</em> parameter instead also works.</p></li>
+<li><p>For render mode 1, only the border of each glyph (i.e. text character) is drawn with a thickness as set in argument <em>border_width</em>. The color chosen in the <em>color</em> argument is taken for this, the <em>fill</em> parameter is ignored.</p></li>
+<li><p>For render mode 2, the glyphs are filled and stroked, using both color parameters and the specified border width. You can use this value to simulate <strong>bold text</strong> without using another font: choose the same value for <em>fill</em> and <em>color</em> and an appropriate value for <em>border_width</em>.</p></li>
+<li><p>For render mode 3, the glyphs are neither stroked nor filled: the text becomes invisible.</p></li>
+</ul>
+<p>The following examples use border_width=0.3, together with a fontsize of 15. Stroke color is blue and fill color is some yellow.</p>
+<img alt="_images/img-rendermode.jpg" src="_images/img-rendermode.jpg" />
+</div></blockquote>
+<p><strong>miter_limit</strong> (<em>float</em>)</p>
+<blockquote>
+<div><p>A float specifying the maximum acceptable value of the quotient <code class="xref any docutils literal notranslate"><span class="pre">miter-length</span> <span class="pre">/</span> <span class="pre">line-width</span></code> (“miter quotient”). Used in text output methods. This is only relevant for non-zero render mode values – then, characters are written with border lines (i.e. “stroked”).</p>
+<p>If two lines stroking some character meet at a sharp (&lt;= 90°) angle and the line width is large enough, then “spikes” may become visible – causing an ugly appearance as shown below. For more background, see page 126 of the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>.</p>
+<p>For instance, when joins meet at 90°, then the miter length is <code class="docutils literal notranslate"><span class="pre">sqrt(2)</span> <span class="pre">*</span> <span class="pre">line-width</span></code>, so the miter quotient is <code class="docutils literal notranslate"><span class="pre">sqrt(2)</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">miter_limit</span></code> is exceeded, then all joins with a larger qotient will appear as beveled (“butt” appearance).</p>
+<p>The default value 1 (and any smaller value) will ensure that all joins are rendered as a butt. A value of <code class="docutils literal notranslate"><span class="pre">None</span></code> will use the PDF default value.</p>
+<p>Example text showing spikes (<code class="docutils literal notranslate"><span class="pre">miter_limit=None</span></code>):</p>
+<img alt="_images/spikes-yes.png" src="_images/spikes-yes.png" />
+<p>Example text suppressing spikes (<code class="docutils literal notranslate"><span class="pre">miter_limit=1</span></code>):</p>
+<img alt="_images/spikes-no.png" src="_images/spikes-no.png" />
+</div></blockquote>
+<p><strong>overlay</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>Causes the item to appear in foreground (default) or background.</p>
+</div></blockquote>
+<p><strong>morph</strong> (<em>sequence</em>)</p>
+<blockquote>
+<div><p>Causes “morphing” of either a shape, created by the <em>draw*()</em> methods, or the text inserted by page methods <em>insert_textbox()</em> / <em>insert_text()</em>. If not <em>None</em>, it must be a pair <em>(fixpoint, matrix)</em>, where <em>fixpoint</em> is a <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> and <em>matrix</em> is a <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>. The matrix can be anything except translations, i.e. <em>matrix.e == matrix.f == 0</em> must be true. The point is used as a fixed point for the matrix operation. For example, if <em>matrix</em> is a rotation or scaling, then <em>fixpoint</em> is its center. Similarly, if <em>matrix</em> is a left-right or up-down flip, then the mirroring axis will be the vertical, respectively horizontal line going through <em>fixpoint</em>, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Several methods contain checks whether the to be inserted items will actually fit into the page (like <a class="reference internal" href="#Shape.insert_text" title="Shape.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a>, or <a class="reference internal" href="#Shape.draw_rect" title="Shape.draw_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_rect()</span></code></a>). For the result of a morphing operation there is however no such guaranty: this is entirely the programmer’s responsibility.</p>
+</div>
+</div></blockquote>
+<p><strong>lineCap (deprecated: “roundCap”)</strong> (<em>int</em>)</p>
+<blockquote>
+<div><p>Controls the look of line ends. The default value 0 lets each line end at exactly the given coordinate in a sharp edge. A value of 1 adds a semi-circle to the ends, whose center is the end point and whose diameter is the line width. Value 2 adds a semi-square with an edge length of line width and a center of the line end.</p>
+<p><em>Changed in version 1.14.15</em></p>
+</div></blockquote>
+<p><strong>lineJoin</strong> (<em>int</em>)</p>
+<blockquote>
+<div><p><em>New in version 1.14.15:</em> Controls the way how line connections look like. This may be either as a sharp edge (0), a rounded join (1), or a cut-off edge (2, “butt”).</p>
+</div></blockquote>
+<p><strong>closePath</strong> (<em>bool</em>)</p>
+<blockquote>
+<div><p>Causes the end point of a drawing to be automatically connected with the starting point (by a straight line).</p>
+</div></blockquote>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="story-class.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Story</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="rect.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Rect</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Shape</a><ul>
+<li><a class="reference internal" href="#Shape"><code class="docutils literal notranslate"><span class="pre">Shape</span></code></a><ul>
+<li><a class="reference internal" href="#Shape.__init__"><code class="docutils literal notranslate"><span class="pre">Shape.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_line"><code class="docutils literal notranslate"><span class="pre">Shape.draw_line()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_squiggle"><code class="docutils literal notranslate"><span class="pre">Shape.draw_squiggle()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_zigzag"><code class="docutils literal notranslate"><span class="pre">Shape.draw_zigzag()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_polyline"><code class="docutils literal notranslate"><span class="pre">Shape.draw_polyline()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_bezier"><code class="docutils literal notranslate"><span class="pre">Shape.draw_bezier()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_oval"><code class="docutils literal notranslate"><span class="pre">Shape.draw_oval()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_circle"><code class="docutils literal notranslate"><span class="pre">Shape.draw_circle()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_curve"><code class="docutils literal notranslate"><span class="pre">Shape.draw_curve()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_sector"><code class="docutils literal notranslate"><span class="pre">Shape.draw_sector()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_rect"><code class="docutils literal notranslate"><span class="pre">Shape.draw_rect()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_quad"><code class="docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.finish"><code class="docutils literal notranslate"><span class="pre">Shape.finish()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.insert_text"><code class="docutils literal notranslate"><span class="pre">Shape.insert_text()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.insert_textbox"><code class="docutils literal notranslate"><span class="pre">Shape.insert_textbox()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.commit"><code class="docutils literal notranslate"><span class="pre">Shape.commit()</span></code></a></li>
+<li><a class="reference internal" href="#Shape.doc"><code class="docutils literal notranslate"><span class="pre">Shape.doc</span></code></a></li>
+<li><a class="reference internal" href="#Shape.page"><code class="docutils literal notranslate"><span class="pre">Shape.page</span></code></a></li>
+<li><a class="reference internal" href="#Shape.height"><code class="docutils literal notranslate"><span class="pre">Shape.height</span></code></a></li>
+<li><a class="reference internal" href="#Shape.width"><code class="docutils literal notranslate"><span class="pre">Shape.width</span></code></a></li>
+<li><a class="reference internal" href="#Shape.draw_cont"><code class="docutils literal notranslate"><span class="pre">Shape.draw_cont</span></code></a></li>
+<li><a class="reference internal" href="#Shape.text_cont"><code class="docutils literal notranslate"><span class="pre">Shape.text_cont</span></code></a></li>
+<li><a class="reference internal" href="#Shape.rect"><code class="docutils literal notranslate"><span class="pre">Shape.rect</span></code></a></li>
+<li><a class="reference internal" href="#Shape.totalcont"><code class="docutils literal notranslate"><span class="pre">Shape.totalcont</span></code></a></li>
+<li><a class="reference internal" href="#Shape.lastPoint"><code class="docutils literal notranslate"><span class="pre">Shape.lastPoint</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">用法</a></li>
+<li><a class="reference internal" href="#id5">例子</a></li>
+<li><a class="reference internal" href="#commonparms">公共参数</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

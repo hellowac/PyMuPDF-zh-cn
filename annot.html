@@ -1,0 +1,1618 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Archive" href="archive-class.html" /><link rel="prev" title="类" href="classes.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Annot - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="annot">
+<span id="id1"></span><h1>Annot<a class="headerlink" href="#annot" title="此标题的永久链接">#</a></h1>
+<p><div style="width:100%; text-align:right"><b>This class is for PDF only.</b></div></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>引用自 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>：“注释将如笔记、声音或电影等对象与 PDF 文档中页面的某个位置关联，或通过鼠标和键盘提供与用户交互的方式。”</p>
+<p>注释与其页面之间存在父子关系。如果页面对象变得不可用（如关闭文档或任何文档结构更改等），则其所有现有的注释对象也会失效——每当访问注释属性或方法时，都会抛出一个异常，提示对象是“孤立的”。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>属性</strong></p></th>
+<th class="head"><p><strong>简短描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.delete_responses" title="Annot.delete_responses"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.delete_responses()</span></code></a></p></td>
+<td><p>删除所有响应注释</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_file" title="Annot.get_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_file()</span></code></a></p></td>
+<td><p>获取附加文件内容</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_oc" title="Annot.get_oc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_oc()</span></code></a></p></td>
+<td><p>获取 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 的 <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> / <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_pixmap" title="Annot.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_pixmap()</span></code></a></p></td>
+<td><p>作为位图返回注释图像</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_sound" title="Annot.get_sound"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_sound()</span></code></a></p></td>
+<td><p>获取音频注释的声音</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_text" title="Annot.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_text()</span></code></a></p></td>
+<td><p>提取注释文本</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_textbox" title="Annot.get_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_textbox()</span></code></a></p></td>
+<td><p>提取注释文本</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_textpage" title="Annot.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_textpage()</span></code></a></p></td>
+<td><p>为注释创建一个 <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_border" title="Annot.set_border"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_border()</span></code></a></p></td>
+<td><p>设置注释边框属性</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_blendmode" title="Annot.set_blendmode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_blendmode()</span></code></a></p></td>
+<td><p>设置注释的混合模式</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_colors" title="Annot.set_colors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_colors()</span></code></a></p></td>
+<td><p>设置注释颜色</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_flags" title="Annot.set_flags"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_flags()</span></code></a></p></td>
+<td><p>设置注释标志字段</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_irt_xref" title="Annot.set_irt_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_irt_xref()</span></code></a></p></td>
+<td><p>定义注释为“响应于”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_name" title="Annot.set_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_name()</span></code></a></p></td>
+<td><p>设置注释名称字段</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_oc" title="Annot.set_oc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_oc()</span></code></a></p></td>
+<td><p>设置 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 到 <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> / <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_opacity" title="Annot.set_opacity"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_opacity()</span></code></a></p></td>
+<td><p>改变透明度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_open" title="Annot.set_open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_open()</span></code></a></p></td>
+<td><p>打开/关闭注释或其弹出窗口</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_popup" title="Annot.set_popup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_popup()</span></code></a></p></td>
+<td><p>为注释创建弹出窗口</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_rect" title="Annot.set_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a></p></td>
+<td><p>更改注释矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_rotation" title="Annot.set_rotation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rotation()</span></code></a></p></td>
+<td><p>改变旋转</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.update_file" title="Annot.update_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update_file()</span></code></a></p></td>
+<td><p>更新附加文件内容</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a></p></td>
+<td><p>应用累积的注释更改</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.blendmode" title="Annot.blendmode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.blendmode</span></code></a></p></td>
+<td><p>注释的混合模式</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.border" title="Annot.border"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.border</span></code></a></p></td>
+<td><p>边框详细信息</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.colors" title="Annot.colors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.colors</span></code></a></p></td>
+<td><p>边框/背景和填充颜色</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.file_info" title="Annot.file_info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.file_info</span></code></a></p></td>
+<td><p>获取附加文件信息</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.flags" title="Annot.flags"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.flags</span></code></a></p></td>
+<td><p>注释标志</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.has_popup" title="Annot.has_popup"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.has_popup</span></code></a></p></td>
+<td><p>注释是否有弹出窗口</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.irt_xref" title="Annot.irt_xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.irt_xref</span></code></a></p></td>
+<td><p>注释所响应的注释</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.info" title="Annot.info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.info</span></code></a></p></td>
+<td><p>各种信息</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.is_open" title="Annot.is_open"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.is_open</span></code></a></p></td>
+<td><p>注释或其弹出窗口是否打开</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.line_ends" title="Annot.line_ends"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.line_ends</span></code></a></p></td>
+<td><p>线型注释的开始/结束外观</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.next" title="Annot.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.next</span></code></a></p></td>
+<td><p>链接到下一个注释</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.opacity" title="Annot.opacity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.opacity</span></code></a></p></td>
+<td><p>注释的透明度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.parent" title="Annot.parent"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.parent</span></code></a></p></td>
+<td><p>注释的页面对象</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.popup_rect" title="Annot.popup_rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.popup_rect</span></code></a></p></td>
+<td><p>注释弹出窗口的矩形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.popup_xref" title="Annot.popup_xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.popup_xref</span></code></a></p></td>
+<td><p>注释弹出窗口的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 编号</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.rect" title="Annot.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.rect</span></code></a></p></td>
+<td><p>包含注释的矩形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.type" title="Annot.type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.type</span></code></a></p></td>
+<td><p>注释类型</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.vertices" title="Annot.vertices"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.vertices</span></code></a></p></td>
+<td><p>多边形、折线等的点坐标</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.xref" title="Annot.xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.xref</span></code></a></p></td>
+<td><p>注释的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 编号</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Quote from the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>: “An annotation associates an object such as a note, sound, or movie with a location on a page of a PDF document, or provides a way to interact with the user by means of the mouse and keyboard.”</p>
+<p>There is a parent-child relationship between an annotation and its page. If the page object becomes unusable (closed document, any document structure change, etc.), then so does every of its existing annotation objects – an exception is raised saying that the object is “orphaned”, whenever an annotation property or method is accessed.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Attribute</strong></p></th>
+<th class="head"><p><strong>Short Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.delete_responses" title="Annot.delete_responses"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.delete_responses()</span></code></a></p></td>
+<td><p>delete all responding annotations</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_file" title="Annot.get_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_file()</span></code></a></p></td>
+<td><p>get attached file content</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_oc" title="Annot.get_oc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_oc()</span></code></a></p></td>
+<td><p>get <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> of an <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> / <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_pixmap" title="Annot.get_pixmap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_pixmap()</span></code></a></p></td>
+<td><p>image of the annotation as a pixmap</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_sound" title="Annot.get_sound"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_sound()</span></code></a></p></td>
+<td><p>get the sound of an audio annotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_text" title="Annot.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_text()</span></code></a></p></td>
+<td><p>extract annotation text</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.get_textbox" title="Annot.get_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_textbox()</span></code></a></p></td>
+<td><p>extract annotation text</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.get_textpage" title="Annot.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_textpage()</span></code></a></p></td>
+<td><p>create a TextPage for the annotation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_border" title="Annot.set_border"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_border()</span></code></a></p></td>
+<td><p>set annotation’s border properties</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_blendmode" title="Annot.set_blendmode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_blendmode()</span></code></a></p></td>
+<td><p>set annotation’s blend mode</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_colors" title="Annot.set_colors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_colors()</span></code></a></p></td>
+<td><p>set annotation’s colors</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_flags" title="Annot.set_flags"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_flags()</span></code></a></p></td>
+<td><p>set annotation’s flags field</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_irt_xref" title="Annot.set_irt_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_irt_xref()</span></code></a></p></td>
+<td><p>define the annotation to being “In Response To”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_name" title="Annot.set_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_name()</span></code></a></p></td>
+<td><p>set annotation’s name field</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_oc" title="Annot.set_oc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_oc()</span></code></a></p></td>
+<td><p>set <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> to an <a class="reference internal" href="glossary.html#OCG" title="OCG"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCG</span></code></a> / <a class="reference internal" href="glossary.html#OCMD" title="OCMD"><code class="xref py py-data docutils literal notranslate"><span class="pre">OCMD</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_opacity" title="Annot.set_opacity"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_opacity()</span></code></a></p></td>
+<td><p>change transparency</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_open" title="Annot.set_open"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_open()</span></code></a></p></td>
+<td><p>open / close annotation or its Popup</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_popup" title="Annot.set_popup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_popup()</span></code></a></p></td>
+<td><p>create a Popup for the annotation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.set_rect" title="Annot.set_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a></p></td>
+<td><p>change annotation rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.set_rotation" title="Annot.set_rotation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rotation()</span></code></a></p></td>
+<td><p>change rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.update_file" title="Annot.update_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update_file()</span></code></a></p></td>
+<td><p>update attached file content</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a></p></td>
+<td><p>apply accumulated annot changes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.blendmode" title="Annot.blendmode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.blendmode</span></code></a></p></td>
+<td><p>annotation BlendMode</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.border" title="Annot.border"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.border</span></code></a></p></td>
+<td><p>border details</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.colors" title="Annot.colors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.colors</span></code></a></p></td>
+<td><p>border / background and fill colors</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.file_info" title="Annot.file_info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.file_info</span></code></a></p></td>
+<td><p>get attached file information</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.flags" title="Annot.flags"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.flags</span></code></a></p></td>
+<td><p>annotation flags</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.has_popup" title="Annot.has_popup"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.has_popup</span></code></a></p></td>
+<td><p>whether annotation has a Popup</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.irt_xref" title="Annot.irt_xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.irt_xref</span></code></a></p></td>
+<td><p>annotation to which this one responds</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.info" title="Annot.info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.info</span></code></a></p></td>
+<td><p>various information</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.is_open" title="Annot.is_open"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.is_open</span></code></a></p></td>
+<td><p>whether annotation or its Popup is open</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.line_ends" title="Annot.line_ends"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.line_ends</span></code></a></p></td>
+<td><p>start / end appearance of line-type annotations</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.next" title="Annot.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.next</span></code></a></p></td>
+<td><p>link to the next annotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.opacity" title="Annot.opacity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.opacity</span></code></a></p></td>
+<td><p>the annot’s transparency</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.parent" title="Annot.parent"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.parent</span></code></a></p></td>
+<td><p>page object of the annotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.popup_rect" title="Annot.popup_rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.popup_rect</span></code></a></p></td>
+<td><p>rectangle of the annotation’s Popup</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.popup_xref" title="Annot.popup_xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.popup_xref</span></code></a></p></td>
+<td><p>the PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number of the annotation’s Popup</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.rect" title="Annot.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.rect</span></code></a></p></td>
+<td><p>rectangle containing the annotation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.type" title="Annot.type"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.type</span></code></a></p></td>
+<td><p>type of the annotation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.vertices" title="Annot.vertices"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.vertices</span></code></a></p></td>
+<td><p>point coordinates of Polygons, PolyLines, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Annot.xref" title="Annot.xref"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.xref</span></code></a></p></td>
+<td><p>the PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Class API</strong></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<dl class="py class">
+<dt class="sig sig-object py" id="Annot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Annot</span></span><a class="headerlink" href="#Annot" title="永久链接至目标">#</a></dt>
+<dd><span class="target" id="index-0"></span><dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_pixmap">
+<span class="sig-name descname"><span class="pre">get_pixmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pymupdf.Identity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorspace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">pymupdf.csRGB</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_pixmap" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>变更于 v1.19.2: 添加了对 dpi 参数的支持。</p></li>
+</ul>
+<p>从注释创建一个像素图，按照页面上的未变换坐标显示。像素图的 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> 等于 <em>Annot.rect.irect</em> （见下文）。<strong>所有参数仅支持关键字传递。</strong></p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> (<em>matrix_like</em>) – 用于图像创建的矩阵。默认值为 <a class="reference internal" href="identity.html#identity"><span class="std std-ref">Identity</span></a>。</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – （v1.19.2 新增） 期望的分辨率（每英寸点数）。如果不为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，则忽略 matrix 参数。</p></li>
+<li><p><strong>colorspace</strong> (<a class="reference internal" href="colorspace.html#colorspace"><span class="std std-ref">Colorspace</span></a>) – 用于图像创建的颜色空间。默认值为 <em>pymupdf.csRGB</em>。</p></li>
+<li><p><strong>alpha</strong> (<em>bool</em>) – 是否包含透明度信息。默认值为 <em>False</em>。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a></p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>如果注释刚刚被创建或修改，建议先使用 <a class="reference internal" href="document.html#Document.reload_page" title="Document.reload_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.reload_page()</span></code></a> 重新加载页面，例如：<code class="xref any docutils literal notranslate"><span class="pre">page</span> <span class="pre">=</span> <span class="pre">doc.reload_page(page)</span></code>。</p></li>
+<li><p>当 <code class="xref any docutils literal notranslate"><span class="pre">alpha=True</span></code> 时，生成的像素图将具有 <em>“预乘”</em> 像素。要了解更多相关背景信息，可参考 “Premultiplied alpha” 术语，例如查看 <a class="reference external" href="https://en.wikipedia.org/wiki/Glossary_of_computer_graphics#P">此处</a>。</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<span class="target" id="index-1"></span><dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_text">
+<span class="sig-name descname"><span class="pre">get_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_text" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 1.18.0</p></li>
+</ul>
+<p>以多种格式获取注释内容 —— 类似于 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 的同名方法。目前仅对 ‘FreeText’ 和 ‘Stamp’ 类型的注释返回相关数据，其他类型返回空字符串（或等效对象）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>opt</strong> (<em>str</em>) – <p>（仅限位置参数）所需的文本格式，必须是以下值之一。请注意，此方法的行为与 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 的同名方法完全相同。</p>
+<ul>
+<li><p>”text” – <a class="reference internal" href="textpage.html#TextPage.extractTEXT" title="TextPage.extractTEXT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractTEXT()</span></code></a>，默认选项</p></li>
+<li><p>”blocks” – <a class="reference internal" href="textpage.html#TextPage.extractBLOCKS" title="TextPage.extractBLOCKS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractBLOCKS()</span></code></a></p></li>
+<li><p>”words” – <a class="reference internal" href="textpage.html#TextPage.extractWORDS" title="TextPage.extractWORDS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractWORDS()</span></code></a></p></li>
+<li><p>”html” – <a class="reference internal" href="textpage.html#TextPage.extractHTML" title="TextPage.extractHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractHTML()</span></code></a></p></li>
+<li><p>”xhtml” – <a class="reference internal" href="textpage.html#TextPage.extractXHTML" title="TextPage.extractXHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractXHTML()</span></code></a></p></li>
+<li><p>”xml” – <a class="reference internal" href="textpage.html#TextPage.extractXML" title="TextPage.extractXML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractXML()</span></code></a></p></li>
+<li><p>”dict” – <a class="reference internal" href="textpage.html#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractDICT()</span></code></a></p></li>
+<li><p>”json” – <a class="reference internal" href="textpage.html#TextPage.extractJSON" title="TextPage.extractJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractJSON()</span></code></a></p></li>
+<li><p>”rawdict” – <a class="reference internal" href="textpage.html#TextPage.extractRAWDICT" title="TextPage.extractRAWDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractRAWDICT()</span></code></a></p></li>
+</ul>
+</p></li>
+<li><p><strong>clip</strong> (<em>rect-like</em>) – （仅限关键字参数）限制提取区域。通常无需使用，默认为 <a class="reference internal" href="#Annot.rect" title="Annot.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.rect</span></code></a>。</p></li>
+<li><p><strong>flags</strong> (<em>int</em>) – （仅限关键字参数）控制返回数据的详细程度。默认为简单文本提取。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_textbox">
+<span class="sig-name descname"><span class="pre">get_textbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_textbox" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 1.18.0</p></li>
+</ul>
+<p>返回注释的文本内容。与 <a class="reference internal" href="#Annot.get_text" title="Annot.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_text()</span></code></a> 的 “text” 选项类似（但不包含换行符）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rect</strong> (<em>rect-like</em>) – 指定区域，默认为 <a class="reference internal" href="#Annot.rect" title="Annot.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.rect</span></code></a>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_textpage">
+<span class="sig-name descname"><span class="pre">get_textpage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_textpage" title="永久链接至目标">#</a></dt>
+<dd><p>为该注释创建一个 <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>flags</strong> (<em>int</em>) – 指示位，控制后续文本提取和搜索的内容可用性 – 参见 <a class="reference internal" href="#Annot.get_text" title="Annot.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.get_text()</span></code></a> 方法的参数。</p></li>
+<li><p><strong>clip</strong> (<em>rect-like</em>) – 限制提取文本的区域。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a></p>
+</dd>
+</dl>
+<p><details>
+<summary><small style="cursor:pointer;">Show/hide history</small></summary><small></p>
+<ul class="simple">
+<li><p>v1.25.5: 修复了 <code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> 参数。</p></li>
+</ul>
+<p></small></details></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_info">
+<span class="sig-name descname"><span class="pre">set_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creationDate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modDate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_info" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>变更于 1.16.10</p></li>
+</ul>
+<p>更改注释的属性，包括日期、内容、主题和作者（标题）。<em>name</em> 和 <em>id</em> 的变更将被忽略。更新是选择性的：要保持某个属性不变，请将其设置为 <em>None</em>；要删除现有数据，请使用空字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> (<em>dict</em>) – 与 <em>info</em> 属性兼容的字典（见下文）。所有条目必须为字符串。如果此参数不是字典，则使用其他参数，否则它们将被忽略。</p></li>
+<li><p><strong>content</strong> (<em>str</em>) – <em>(v1.16.10 新增)</em> 参见 <a class="reference internal" href="#Annot.info" title="Annot.info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">info</span></code></a> 的描述。</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – <em>(v1.16.10 新增)</em> 参见 <a class="reference internal" href="#Annot.info" title="Annot.info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">info</span></code></a> 的描述。</p></li>
+<li><p><strong>creationDate</strong> (<em>str</em>) – <em>(v1.16.10 新增)</em> 注释的创建日期。应使用 PDF 日期时间格式。</p></li>
+<li><p><strong>modDate</strong> (<em>str</em>) – <em>(v1.16.10 新增)</em> 最后修改日期。应使用 PDF 日期时间格式。</p></li>
+<li><p><strong>subject</strong> (<em>str</em>) – <em>(v1.16.10 新增)</em> 参见 <a class="reference internal" href="#Annot.info" title="Annot.info"><code class="xref py py-attr docutils literal notranslate"><span class="pre">info</span></code></a> 的描述。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_line_ends">
+<span class="sig-name descname"><span class="pre">set_line_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_line_ends" title="永久链接至目标">#</a></dt>
+<dd><p>设置注释的线端样式。这些注释类型由一系列点定义，这些点由线段连接。<em>start</em> 符号附加到第一点，<em>end</em> 符号附加到最后一点。如果注释类型不支持该功能，则不会执行任何操作，并会发出警告信息。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>虽然 ‘FreeText’、’Line’、’PolyLine’ 和 ‘Polygon’ 注释支持线端样式，但（Py-) MuPDF <strong>不支持</strong> ‘FreeText’ 的线端样式，因为它不支持该类型的标注。</p></li>
+<li><p><em>(变更于 v1.16.16)</em> 一些符号（如菱形、圆形、方形等）具有内部区域。默认情况下，这些区域填充为注释的填充颜色。如果该颜色为 <em>None</em>，则默认为白色。现在，可以使用 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 的 <em>fill_color</em> 参数覆盖默认颜色，为线端符号指定独立的填充颜色。</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>int</em>) – 第一个点的符号编号。</p></li>
+<li><p><strong>end</strong> (<em>int</em>) – 最后一个点的符号编号。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_oc">
+<span class="sig-name descname"><span class="pre">set_oc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_oc" title="永久链接至目标">#</a></dt>
+<dd><p>使用 PDF 可选内容机制设置注释的可见性。可见性由支持的 PDF 查看器的用户界面控制，独立于 <a class="reference internal" href="#Annot.flags" title="Annot.flags"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.flags</span></code></a> 等其他属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>xref</strong> (<em>int</em>) – 可选内容组（OCG 或 OCMD）的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。任何之前的 xref 都会被覆盖。如果设为零，则删除先前的条目。如果 xref 既不为零又不是有效的 PDF 对象，则会引发异常。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这 <strong>不需要执行</strong> <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 即可生效。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_oc">
+<span class="sig-name descname"><span class="pre">get_oc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_oc" title="永久链接至目标">#</a></dt>
+<dd><p>返回可选内容对象的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>，如果没有则返回零。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>零或 OCG（或 OCMD）的 xref。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_irt_xref">
+<span class="sig-name descname"><span class="pre">set_irt_xref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_irt_xref" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.19.3</p></li>
+</ul>
+<p>将注释设置为“响应于”另一个注释。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>xref</strong> (<em>int</em>) – <p>另一个注释的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>必须引用该页面上的现有注释。设置此属性不需要后续调用 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">update()</span></code></a>。</p>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_open">
+<span class="sig-name descname"><span class="pre">set_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_open" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.18.4</p></li>
+</ul>
+<p>设置注释的弹出注释（Popup）是否打开或关闭 —— <strong>或者</strong> 如果其类型为 ‘Text’（“便签”），则直接控制该注释的状态。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>bool</em>) – 期望的打开状态。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_popup">
+<span class="sig-name descname"><span class="pre">set_popup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_popup" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.18.4</p></li>
+</ul>
+<p>为该注释创建一个弹出注释（Popup）并指定其矩形区域。如果 Popup 已存在，则仅更新其矩形区域。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rect</strong> (<em>rect_like</em>) – 期望的矩形区域。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_opacity">
+<span class="sig-name descname"><span class="pre">set_opacity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_opacity" title="永久链接至目标">#</a></dt>
+<dd><p>设置注释的透明度。透明度也可以在 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 方法中设置。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – 取值范围为 <em>[0, 1]</em> 的浮点数。超出此范围的值将被视为 1。例如，值 0.5 表示透明度为 50%。</p>
+</dd>
+</dl>
+<p>下面是三个重叠的 ‘Circle’ 注释，每个的透明度均设置为 0.5：</p>
+<img alt="_images/img-opacity.jpg" src="_images/img-opacity.jpg" />
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.blendmode">
+<span class="sig-name descname"><span class="pre">blendmode</span></span><a class="headerlink" href="#Annot.blendmode" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.18.4</p></li>
+</ul>
+<p>注释的混合模式。详细说明请参阅 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 324 页。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>混合模式或 <em>None</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_blendmode">
+<span class="sig-name descname"><span class="pre">set_blendmode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">blendmode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_blendmode" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.16.14</p></li>
+</ul>
+<p>设置注释的混合模式。详细说明请参阅 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 324 页。混合模式也可以在 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 方法中设置。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>blendmode</strong> (<em>str</em>) – 设定混合模式。使用 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 以在视觉外观上生效。可用的预定义值请参阅 <a class="reference internal" href="vars.html#blendmodes"><span class="std std-ref">PDF 标准混合模式</span></a>。使用 <code class="xref any docutils literal notranslate"><span class="pre">PDF_BM_Normal</span></code> <strong>移除</strong> 混合模式。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_name">
+<span class="sig-name descname"><span class="pre">set_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_name" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.16.0</p></li>
+</ul>
+<p>更改任何类型注释的名称字段。对于 ‘FileAttachment’ 和 ‘Text’ 注释，该字段表示图标名称；对于 ‘Stamp’ 注释，该字段表示印章上的文本。具体的视觉效果取决于 PDF 查看器。请参阅 <a class="reference internal" href="#mupdficons"><span class="std std-ref">MuPDF 中的注释图标</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – 新的名称。</p>
+</dd>
+</dl>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>如果为 ‘Stamp’ 注释设置名称，该操作 <strong>不会更改</strong> 其矩形区域，也不会自动调整文本布局。如果名称是 <a class="reference internal" href="vars.html#stampicons"><span class="std std-ref">图章注释图标</span></a> 中的标准文本（即 <code class="xref any docutils literal notranslate"><span class="pre">&quot;STAMP_&quot;</span></code> 之后的 <strong>确切</strong> 名称），那么应当保留原始布局。若使用 <strong>任意文本</strong>，则不会自动转换为大写，而是会以 “Times-Bold” 字体显示，<strong>水平居中</strong>，<strong>单行显示</strong>，并被截断以适应尺寸。要确保文本完整显示，其在字号 <code class="xref any docutils literal notranslate"><span class="pre">fontsize=20</span></code> 下的长度不得超过 190 点。因此，请确保以下不等式成立：</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.get_text_length(text,</span> <span class="pre">fontname=&quot;tibo&quot;,</span> <span class="pre">fontsize=20)</span> <span class="pre">&lt;=</span> <span class="pre">190</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_rect">
+<span class="sig-name descname"><span class="pre">set_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_rect" title="永久链接至目标">#</a></dt>
+<dd><p>更改注释的矩形区域。可以移动注释，并且矩形的两侧可以独立缩放。但注释的外观不会被旋转、翻转或倾斜。此方法仅影响某些注释类型 <a class="footnote-reference brackets" href="#f4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>，对于其他类型会在 Python 的 <code class="xref any docutils literal notranslate"><span class="pre">sys.stderr</span></code> 产生消息，但不会引发异常，而是返回 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rect</strong> (<em>rect_like</em>) – 注释的新矩形区域（必须是有限且非空的）。例如，使用 <em>annot.rect + (5, 5, 5, 5)</em> 将注释位置向右和向下移动 5 个像素。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>无需</strong> 调用 <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 以使更改生效。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_rotation">
+<span class="sig-name descname"><span class="pre">set_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_rotation" title="永久链接至目标">#</a></dt>
+<dd><p>设置注释的旋转角度。旋转操作围绕矩形的中心点进行，然后计算一个 <strong>新的注释矩形</strong> 来适应旋转后的形状。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<em>int</em>) – 旋转角度（以度为单位）。可以使用任意值，但实际值会被限制在 <code class="xref any docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">360)</span></code> 范围内。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p><strong>必须调用</strong> <a class="reference internal" href="#Annot.update" title="Annot.update"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update()</span></code></a> 以使更改生效。</p></li>
+<li><p>对于 <code class="xref any docutils literal notranslate"><span class="pre">PDF_ANNOT_FREE_TEXT</span></code>，仅支持 0、90、180 和 270 度，这些值将 <strong>旋转文本</strong>，但矩形区域保持不变。其他值会被忽略并自动替换为 0。</p></li>
+<li><p>仅支持以下 <a class="reference internal" href="vars.html#annotationtypes"><span class="std std-ref">注释类型</span></a> 旋转：’Square’、’Circle’、’Caret’、’Text’、’FileAttachment’、’Ink’、’Line’、’Polyline’、’Polygon’ 和 ‘Stamp’。其他类型的注释不会受影响。</p></li>
+</ul>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_border">
+<span class="sig-name descname"><span class="pre">set_border</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">border</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dashes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clouds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_border" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.9 变更: 允许直接指定参数，而不使用字典。</p></li>
+<li><p>版本 1.22.5 变更: 支持“云状”边框效果。</p></li>
+</ul>
+<p>仅适用于 PDF：更改边框的宽度、虚线样式、边框风格和云状效果。详细信息请参阅 <a class="reference internal" href="#Annot.border" title="Annot.border"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.border</span></code></a> 属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>border</strong> (<em>dict</em>) – 一个字典，键包括 <em>“width”</em> (<em>float</em>)、<em>”style”</em> (<em>str</em>)、<em>”dashes”</em> (<em>sequence</em>) 和 <em>“clouds”</em> (<em>int</em>)。省略的键不会被更改。若 <code class="xref any docutils literal notranslate"><span class="pre">border=None</span></code> （默认值），则使用其他参数。</p></li>
+<li><p><strong>width</strong> (<em>float</em>) – 非负值将更改边框线的宽度。</p></li>
+<li><p><strong>style</strong> (<em>str</em>) – 若提供非 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> 值，则修改边框样式。</p></li>
+<li><p><strong>dashes</strong> (<em>sequence</em>) – 序列中的所有元素必须是整数，否则该参数会被忽略。要移除虚线样式，使用 <code class="xref any docutils literal notranslate"><span class="pre">dashes=[]</span></code>。如果 <code class="xref any docutils literal notranslate"><span class="pre">dashes</span></code> 是非空序列，则 <code class="xref any docutils literal notranslate"><span class="pre">style</span></code> 会自动设为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code> （虚线）。</p></li>
+<li><p><strong>clouds</strong> (<em>int</em>) – 若值大于等于 0，则更改该属性。使用 <code class="xref any docutils literal notranslate"><span class="pre">clouds=0</span></code> 可完全移除云状效果。仅 ‘Square’、’Circle’ 和 ‘Polygon’ 类型的注释支持该属性。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_flags">
+<span class="sig-name descname"><span class="pre">set_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_flags" title="永久链接至目标">#</a></dt>
+<dd><p>更改注释的标志。可以使用 <code class="xref any docutils literal notranslate"><span class="pre">|</span></code> 运算符组合多个标志。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>flags</strong> (<em>int</em>) – 指定所需标志的整数值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.set_colors">
+<span class="sig-name descname"><span class="pre">set_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.set_colors" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>版本 1.16.9 变更: 允许直接设置颜色，而不仅仅是字典方式。</p></li>
+</ul>
+<p>更改可用注释类型的“描边”和“填充”颜色（并非所有注释都接受这两种颜色）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colors</strong> (<em>dict</em>) – 包含颜色信息的字典。最便捷的方法是先复制 <em>colors</em> 属性的内容，再进行修改。</p></li>
+<li><p><strong>stroke</strong> (<em>sequence</em>) – 见上文说明。</p></li>
+<li><p><strong>fill</strong> (<em>sequence</em>) – 见上文说明。</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>版本 1.18.5 变更: 若要完全移除颜色配置，请使用空序列 <code class="xref any docutils literal notranslate"><span class="pre">[]</span></code>。如果指定 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，则现有配置不会被更改。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.delete_responses">
+<span class="sig-name descname"><span class="pre">delete_responses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Annot.delete_responses" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于 v1.16.12</p></li>
+</ul>
+<p>删除所有引用当前注释的其他注释。这包括所有 ‘Popup’（弹出）注释以及所有对其作出响应的注释。</p>
+</dd></dl>
+
+<span class="target" id="index-2"></span><dl class="py method">
+<dt class="sig sig-object py" id="Annot.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blend_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cross_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.update" title="永久链接至目标">#</a></dt>
+<dd><p>在更改相关属性后，使注释的外观与其属性同步。</p>
+<p>仅在以下更改中可以 <strong>安全地省略</strong> 此方法：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#Annot.set_rect" title="Annot.set_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#Annot.set_flags" title="Annot.set_flags"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_flags()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#Annot.set_oc" title="Annot.set_oc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_oc()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#Annot.update_file" title="Annot.update_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.update_file()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#Annot.set_info" title="Annot.set_info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_info()</span></code></a> （除非更改 <em>“content”</em>）</p></li>
+</ul>
+</div></blockquote>
+<p>所有参数都是可选的。 <em>(v1.16.14 变更)</em> 混合模式和透明度适用于 <strong>所有注释类型</strong>，其他参数主要用于特定用途，如下所述。</p>
+<p>颜色规范应采用 PuMuPDF 通常使用的格式，即 0.0 到 1.0 之间的浮点数序列（包含 0.0 和 1.0）。序列长度必须为 1、3 或 4（分别支持 GRAY、RGB 和 CMYK 颜色空间）。对于 GRAY 颜色，也可以只使用一个浮点数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>opacity</strong> (<em>float</em>) – <em>(v1.16.14 新增)</em> <strong>适用于所有注释类型</strong>：更改或设置注释的透明度。有效值范围为 <em>0 &lt;= opacity &lt; 1</em>。</p></li>
+<li><p><strong>blend_mode</strong> (<em>str</em>) – <em>(v1.16.14 新增)</em> <strong>适用于所有注释类型</strong>：更改或设置注释的混合模式。有效值请参阅 <a class="reference internal" href="vars.html#blendmodes"><span class="std std-ref">PDF 标准混合模式</span></a>。</p></li>
+<li><p><strong>fontsize</strong> (<em>float</em>) – 更改文本的 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a>，仅适用于 ‘FreeText’ 注释。</p></li>
+<li><p><strong>text_color</strong> (<em>sequence</em><em>,</em><em>float</em>) – 更改文本颜色，仅适用于 ‘FreeText’ 注释。</p></li>
+<li><p><strong>border_color</strong> (<em>sequence</em><em>,</em><em>float</em>) – 更改边框颜色，仅适用于 ‘FreeText’ 注释。</p></li>
+<li><p><strong>fill_color</strong> (<em>sequence</em><em>,</em><em>float</em>) – <p>设置填充颜色。</p>
+<ul>
+<li><p>’Line’、’Polyline’、’Polygon’ 注释：用于为适用的线端符号指定不同于注释的填充颜色 <em>(v1.16.16 变更)</em>。</p></li>
+</ul>
+</p></li>
+<li><p><strong>cross_out</strong> (<em>bool</em>) – <em>(v1.17.2 新增)</em> 在注释矩形上添加两条对角线，仅适用于 ‘Redact’ 注释。如果不需要，应显式指定 <em>False</em>，即使该注释创建时默认值为 <em>False</em>。</p></li>
+<li><p><strong>rotate</strong> (<em>int</em>) – 设置新的旋转角度。默认值 (-1) 表示不更改。支持 ‘FreeText’ 和其他几种注释类型（参见 <a class="reference internal" href="#Annot.set_rotation" title="Annot.set_rotation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rotation()</span></code></a>） <a class="footnote-reference brackets" href="#f3" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>。对于 ‘FreeText’，仅可选 0、90、180 或 270 度，否则任何整数都是可接受的。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>不建议</strong> 在 <a class="reference internal" href="page.html#Page.annots" title="Page.annots"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.annots()</span></code></a> 循环中使用此方法！因为大多数注释更新都需要重新加载所属页面，而这无法在该循环内完成。请参考该生成器文档中的示例代码模式。</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.file_info">
+<span class="sig-name descname"><span class="pre">file_info</span></span><a class="headerlink" href="#Annot.file_info" title="永久链接至目标">#</a></dt>
+<dd><p>附加文件的基本信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个包含以下键的字典： <em>filename</em> （文件名）、 <em>ufilename</em> （Unicode 文件名）、 <em>desc</em> （描述）、 <em>size</em> （未压缩文件大小）、 <em>length</em> （压缩长度）。仅适用于 ‘FileAttachment’ 注释类型，否则返回 <em>None</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_file">
+<span class="sig-name descname"><span class="pre">get_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_file" title="永久链接至目标">#</a></dt>
+<dd><p>返回附加文件的内容。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bytes</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>附加文件的二进制内容。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="index-3"></span><dl class="py method">
+<dt class="sig sig-object py" id="Annot.update_file">
+<span class="sig-name descname"><span class="pre">update_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ufilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.update_file" title="永久链接至目标">#</a></dt>
+<dd><p>更新附加文件的内容。所有参数都是可选的。如果不提供任何参数，则此方法不会执行任何操作。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>buffer</strong> (<em>bytes</em><em>|</em><em>bytearray</em><em>|</em><em>BytesIO</em>) – <p>新的文件内容。如果省略，则只修改元信息。</p>
+<p><em>(v1.14.13 变更)</em> 现在支持 <em>io.BytesIO</em>。</p>
+</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – 关联的文件名。</p></li>
+<li><p><strong>ufilename</strong> (<em>str</em>) – 关联的 Unicode 文件名。</p></li>
+<li><p><strong>desc</strong> (<em>str</em>) – 文件内容的新描述。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.get_sound">
+<span class="sig-name descname"><span class="pre">get_sound</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Annot.get_sound" title="永久链接至目标">#</a></dt>
+<dd><p>返回音频注释中嵌入的声音。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>包含音频文件及其相关属性的字典。其中，只有 “rate” 和 “stream” 始终存在，其余键可能会缺失。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>键名</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rate</p></td>
+<td><p>(float, 必需) 采样率（每秒样本数）</p></td>
+</tr>
+<tr class="row-odd"><td><p>channels</p></td>
+<td><p>(int, 可选) 声道数</p></td>
+</tr>
+<tr class="row-even"><td><p>bps</p></td>
+<td><p>(int, 可选) 每通道每个样本的比特数</p></td>
+</tr>
+<tr class="row-odd"><td><p>encoding</p></td>
+<td><p>(str, 可选) 编码格式：Raw, Signed, muLaw, ALaw</p></td>
+</tr>
+<tr class="row-even"><td><p>compression</p></td>
+<td><p>(str, 可选) 压缩过滤器名称</p></td>
+</tr>
+<tr class="row-odd"><td><p>stream</p></td>
+<td><p>(bytes, 必需) 声音文件内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.opacity">
+<span class="sig-name descname"><span class="pre">opacity</span></span><a class="headerlink" href="#Annot.opacity" title="永久链接至目标">#</a></dt>
+<dd><p>注释的透明度。如果设置了该值，它的范围为 <em>[0, 1]</em>。PDF 的默认值是 1。然而，为了区分未设置的情况，当透明度未定义时，返回 <em>-1.0</em>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.parent">
+<span class="sig-name descname"><span class="pre">parent</span></span><a class="headerlink" href="#Annot.parent" title="永久链接至目标">#</a></dt>
+<dd><p>注释所属的页面对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.rotation">
+<span class="sig-name descname"><span class="pre">rotation</span></span><a class="headerlink" href="#Annot.rotation" title="永久链接至目标">#</a></dt>
+<dd><p>注释的旋转角度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>范围在 [-1, 359] 之间的整数。如果没有旋转，则返回 -1（意味着旋转角度为 0）。其他可能的值将被归一化到 <em>0 &lt;= angle &lt; 360</em> 的范围内。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#Annot.rect" title="永久链接至目标">#</a></dt>
+<dd><p>包含注释的矩形区域。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.next">
+<span class="sig-name descname"><span class="pre">next</span></span><a class="headerlink" href="#Annot.next" title="永久链接至目标">#</a></dt>
+<dd><p>该页面上的下一个注释，如果没有则返回 None。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Annot</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.type">
+<span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#Annot.type" title="永久链接至目标">#</a></dt>
+<dd><p>一个列表，包含一个数字和一个或两个字符串，用于描述注释类型，例如 <strong>[2, ‘FreeText’, ‘FreeTextCallout’]</strong>。第二个字符串项是可选的，可能为空。完整的可能值及其含义请参见附录 <a class="reference internal" href="vars.html#annotationtypes"><span class="std std-ref">注释类型</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.info">
+<span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#Annot.info" title="永久链接至目标">#</a></dt>
+<dd><p>一个包含各种信息的字典。所有字段都是可选的字符串。对于未提供的信息项，返回空字符串。</p>
+<ul class="simple">
+<li><p><em>name</em> —— 例如，对于 ‘Stamp’ 注释，该字段将包含印章文本，如 “Sold” 或 “Experimental”；对于其他注释类型，此字段将显示注释图标的名称（例如 “PushPin” 适用于 FileAttachment）。</p></li>
+<li><p><em>content</em> —— 包含 <em>Text</em> 和 <em>FreeText</em> 类型注释的文本。通常用于填充注释弹出窗口的文本字段。</p></li>
+<li><p><em>title</em> —— 包含注释弹出窗口标题的字符串。按照惯例，该字段用于存储 <strong>注释作者</strong> 的信息。</p></li>
+<li><p><em>creationDate</em> —— 创建时间戳。</p></li>
+<li><p><em>modDate</em> —— 最后修改时间戳。</p></li>
+<li><p><em>subject</em> —— 主题。</p></li>
+<li><p><em>id</em> —— <em>(v1.16.10 新增)</em> 注释的唯一标识符。该值取自 PDF 关键字 <em>/NM</em>。PyMuPDF 添加的注释都会有唯一的名称，该名称将显示在此字段中。</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.flags">
+<span class="sig-name descname"><span class="pre">flags</span></span><a class="headerlink" href="#Annot.flags" title="永久链接至目标">#</a></dt>
+<dd><p>一个整数，其低位包含注释的显示方式标志。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.line_ends">
+<span class="sig-name descname"><span class="pre">line_ends</span></span><a class="headerlink" href="#Annot.line_ends" title="永久链接至目标">#</a></dt>
+<dd><p>指定 ‘FreeText’、’Line’、’PolyLine’ 和 ‘Polygon’ 类型注释的起始和结束符号的整数对。如果不适用，则为 <em>None</em>。可能的值及其描述请参考 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>，第 400 页的表 1.76。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.vertices">
+<span class="sig-name descname"><span class="pre">vertices</span></span><a class="headerlink" href="#Annot.vertices" title="永久链接至目标">#</a></dt>
+<dd><p>一个列表，包含各种注释类型的多个点（“顶点”）坐标，每个点由一对浮点数表示：</p>
+<ul class="simple">
+<li><p>‘Line’ —— 起点和终点坐标（2 组浮点数）。</p></li>
+<li><p>‘FreeText’ —— 2 组或 3 组浮点数，分别表示起点、（可选）折点和终点坐标。</p></li>
+<li><p>‘PolyLine’ / ‘Polygon’ —— 由线段连接的各个边的坐标（n 组浮点数代表 n 个点）。</p></li>
+<li><p>文本标注注释 —— 4 组浮点数，指定标注文本范围的 <em>QuadPoints</em> （见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>，第 403 页）。</p></li>
+<li><p>‘Ink’ —— 一个或多个子列表，每个子列表包含一系列顶点坐标，每个子列表代表绘图中的一条独立的线。</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.colors">
+<span class="sig-name descname"><span class="pre">colors</span></span><a class="headerlink" href="#Annot.colors" title="永久链接至目标">#</a></dt>
+<dd><p>一个字典，包含两个浮点数列表（取值范围 <em>0 &lt;= float &lt;= 1</em>），分别指定“描边”颜色（stroke）和内部填充颜色（fill）。描边颜色用于边框及所有需要描绘或书写的部分。填充颜色用于对象内部，如线端、圆形和方形。列表长度决定所使用的颜色空间：1 = GRAY，3 = RGB，4 = CMYK。例如，”[1.0, 0.0, 0.0]” 代表 RGB 颜色红色。如果没有颜色指定，这两个列表可能为空。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.xref">
+<span class="sig-name descname"><span class="pre">xref</span></span><a class="headerlink" href="#Annot.xref" title="永久链接至目标">#</a></dt>
+<dd><p>该注释的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.irt_xref">
+<span class="sig-name descname"><span class="pre">irt_xref</span></span><a class="headerlink" href="#Annot.irt_xref" title="永久链接至目标">#</a></dt>
+<dd><p>该注释所响应的另一个注释的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号。如果该注释不是响应注释，则返回 0。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.popup_xref">
+<span class="sig-name descname"><span class="pre">popup_xref</span></span><a class="headerlink" href="#Annot.popup_xref" title="永久链接至目标">#</a></dt>
+<dd><p>关联的弹出式注释（Popup）的 PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号。如果不存在，则返回 0。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.has_popup">
+<span class="sig-name descname"><span class="pre">has_popup</span></span><a class="headerlink" href="#Annot.has_popup" title="永久链接至目标">#</a></dt>
+<dd><p>该注释是否具有弹出式注释（Popup）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.is_open">
+<span class="sig-name descname"><span class="pre">is_open</span></span><a class="headerlink" href="#Annot.is_open" title="永久链接至目标">#</a></dt>
+<dd><p>该注释的弹出式窗口是否打开 —— <strong>或</strong> 该注释本身是否打开（仅适用于 ‘Text’ 类型注释）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.popup_rect">
+<span class="sig-name descname"><span class="pre">popup_rect</span></span><a class="headerlink" href="#Annot.popup_rect" title="永久链接至目标">#</a></dt>
+<dd><p>关联弹出式注释（Popup）的矩形区域。如果不存在，则返回一个无限大矩形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.rect_delta">
+<span class="sig-name descname"><span class="pre">rect_delta</span></span><a class="headerlink" href="#Annot.rect_delta" title="永久链接至目标">#</a></dt>
+<dd><p>一个包含四个浮点数的元组，表示注释的 <code class="xref any docutils literal notranslate"><span class="pre">/RD</span></code> 条目。这四个数值描述了两个矩形的数值差异（左、上、-右、-下）：分别对应注释的 <a class="reference internal" href="#Annot.rect" title="Annot.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rect</span></code></a> 和该矩形内部的另一个矩形。如果此条目缺失，则该属性为 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0)</span></code>。</p>
+<p>如果注释的边框是普通直线，则这些数值通常是边框宽度的一半。如果边框是“云状”（cloudy），那么这些数值会表示云形半圆的宽度。一般来说，这些数值可以不相等。要计算内部矩形，可以使用 <code class="xref any docutils literal notranslate"><span class="pre">a.rect</span> <span class="pre">+</span> <span class="pre">a.rect_delta</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Annot.border">
+<span class="sig-name descname"><span class="pre">border</span></span><a class="headerlink" href="#Annot.border" title="永久链接至目标">#</a></dt>
+<dd><p>一个包含边框特性的字典。如果没有边框信息，则为空字典。可能包含以下键：</p>
+<ul class="simple">
+<li><p><em>width</em> —— 一个浮点数，表示边框厚度（单位：点）。如果未指定宽度，则值为 -1.0。</p></li>
+<li><p><em>dashes</em> —— 一个整数序列，指定线条的虚线模式。<code class="xref any docutils literal notranslate"><span class="pre">[]</span></code> 表示实线（无虚线），<code class="xref any docutils literal notranslate"><span class="pre">[n]</span></code> 表示等长的虚实交替模式（每段长度为 <em>n</em> 点），更长的列表表示交替的虚实长度值。详细信息请参考 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 126 页。</p></li>
+<li><p><em>style</em> —— 一个 1 字节的字符串，表示边框样式：</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>“S”</strong> (Solid) —— 实线边框，围绕注释。</p></li>
+<li><p><strong>“D”</strong> (Dashed) —— 虚线边框，围绕注释，虚线模式由 <em>dashes</em> 指定。</p></li>
+<li><p><strong>“B”</strong> (Beveled) —— 模拟的浮雕矩形，使边框看起来高于页面表面。</p></li>
+<li><p><strong>“I”</strong> (Inset) —— 模拟的雕刻矩形，使边框看起来低于页面表面。</p></li>
+<li><p><strong>“U”</strong> (Underline) —— 仅在注释矩形的底部绘制一条实线。</p></li>
+</ul>
+<ul class="simple">
+<li><p><em>clouds</em> —— 一个整数，表示“云状”边框的类型，范围 <code class="xref any docutils literal notranslate"><span class="pre">-1</span> <span class="pre">&lt;=</span> <span class="pre">n</span> <span class="pre">&lt;=</span> <span class="pre">2</span></code>。 <code class="xref any docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0</span></code> 表示直线（无云状效果），1 表示小型云状半圆，2 表示大型云状半圆。如果值为 -1，则未指定云状边框。</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+</div>
+</div>
+<section id="mupdf">
+<span id="mupdficons"></span><h2>MuPDF 中的注释图标<a class="headerlink" href="#mupdf" title="此标题的永久链接">#</a></h2>
+<p>Annotation Icons in MuPDF</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>这是注释类型“文本”和“文件附件”的可按名称引用的图标列表。您可以在添加注释时通过 <em>icon</em> 参数使用它们，或者在 <a class="reference internal" href="#Annot.set_name" title="Annot.set_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_name()</span></code></a> 中使用 as 参数。您可以自行决定何时选择哪个项目 - 没有任何机制可以阻止您使用例如“文件附件”的“扬声器”图标。</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>This is a list of icons referenceable by name for annotation types ‘Text’ and ‘FileAttachment’. You can use them via the <em>icon</em> parameter when adding an annotation, or use the as argument in <a class="reference internal" href="#Annot.set_name" title="Annot.set_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_name()</span></code></a>. It is left to your discretion which item to choose when – no mechanism will keep you from using e.g. the “Speaker” icon for a ‘FileAttachment’.</p>
+</div>
+</div>
+<img alt="_images/mupdf-icons.jpg" src="_images/mupdf-icons.jpg" />
+</section>
+<section id="id5">
+<h2>例子<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Example</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>更改注释的图形图像。还可以更新“作者”和要显示在弹出窗口中的文本:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;circle-in.pdf&quot;</span><span class="p">)</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                          <span class="c1"># 页面 0</span>
+<span class="n">annot</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">first_annot</span>                <span class="c1"># 获取注释</span>
+<span class="n">annot</span><span class="o">.</span><span class="n">set_border</span><span class="p">(</span><span class="n">dashes</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>           <span class="c1"># 设置虚线为 &quot;3 on, 3 off ...&quot;</span>
+
+<span class="c1"># 设置边框和填充颜色为蓝色</span>
+<span class="n">annot</span><span class="o">.</span><span class="n">set_colors</span><span class="p">({</span><span class="s2">&quot;stroke&quot;</span><span class="p">:(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;fill&quot;</span><span class="p">:(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">)})</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">annot</span><span class="o">.</span><span class="n">info</span>                      <span class="c1"># 获取信息字典</span>
+<span class="n">info</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Jorj X. McKie&quot;</span>        <span class="c1"># 设置作者</span>
+
+<span class="c1"># 弹出窗口中的文本...</span>
+<span class="n">info</span><span class="p">[</span><span class="s2">&quot;content&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;我更改了边框和颜色，并将图像放大了 20%。&quot;</span>
+<span class="n">info</span><span class="p">[</span><span class="s2">&quot;subject&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;PyMuPDF 演示&quot;</span>     <span class="c1"># 一些 PDF 查看器也会显示此内容</span>
+<span class="n">annot</span><span class="o">.</span><span class="n">set_info</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>                   <span class="c1"># 更新信息字典</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">annot</span><span class="o">.</span><span class="n">rect</span>                         <span class="c1"># 获取注释矩形</span>
+<span class="n">r</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">x0</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">width</span>  <span class="o">*</span> <span class="mf">1.2</span>           <span class="c1"># 新位置与左上角相同</span>
+<span class="n">r</span><span class="o">.</span><span class="n">y1</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">y0</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">1.2</span>           <span class="c1"># 但边长延长了 20%</span>
+<span class="n">annot</span><span class="o">.</span><span class="n">set_rect</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>                      <span class="c1"># 更新矩形</span>
+<span class="n">annot</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>                         <span class="c1"># 更新注释外观</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;circle-out.pdf&quot;</span><span class="p">)</span>             <span class="c1"># 保存</span>
+</pre></div>
+</div>
+<p>这就是圆形注释在更改前后的样子（使用 Nitro PDF 查看器显示的弹出窗口）：</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>Change the graphical image of an annotation. Also update the “author” and the text to be shown in the popup window:</p>
+<p>doc = pymupdf.open(“circle-in.pdf”)
+page = doc[0]                          # page 0
+annot = page.first_annot                # get the annotation
+annot.set_border(dashes=[3])           # set dashes to “3 on, 3 off …”</p>
+<p># set stroke and fill color to some blue
+annot.set_colors({“stroke”:(0, 0, 1), “fill”:(0.75, 0.8, 0.95)})
+info = annot.info                      # get info dict
+info[“title”] = “Jorj X. McKie”        # set author</p>
+<p># text in popup window …
+info[“content”] = “I changed border and colors and enlarged the image by 20%.”
+info[“subject”] = “Demonstration of PyMuPDF”     # some PDF viewers also show this
+annot.set_info(info)                   # update info dict
+r = annot.rect                         # take annot rect
+r.x1 = r.x0 + r.width  * 1.2           # new location has same top-left
+r.y1 = r.y0 + r.height * 1.2           # but 20% longer sides
+annot.set_rect(r)                      # update rectangle
+annot.update()                         # update the annot’s appearance
+doc.save(“circle-out.pdf”)             # save</p>
+<p>This is how the circle annotation looks like before and after the change (pop-up windows displayed using Nitro PDF viewer):</p>
+</div>
+</div>
+<p><img alt="circle" src="_images/img-circle.png" /></p>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Rotating an annotation also changes its rectangle. Depending on how the annotation was defined, the original rectangle is <strong>cannot be reconstructed</strong> by setting the rotation value to zero again and will be lost.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Only the following annotation types support method <a class="reference internal" href="#Annot.set_rect" title="Annot.set_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a>: Text, FreeText, Square, Circle, Redact, Stamp, Caret, FileAttachment, Sound, and Movie.</p>
+</aside>
+<aside class="footnote brackets" id="f3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>旋转注释会同时改变其矩形区域。根据注释的定义方式，原始矩形 <strong>无法通过将旋转值重置为零来恢复</strong> ，并且会永久丢失。</p>
+</aside>
+<aside class="footnote brackets" id="f4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
+<p>仅以下类型的注释支持方法 <a class="reference internal" href="#Annot.set_rect" title="Annot.set_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a>：Text、FreeText、Square、Circle、Redact、Stamp、Caret、FileAttachment、Sound 和 Movie。</p>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="archive-class.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Archive</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="classes.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">类</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Annot</a><ul>
+<li><a class="reference internal" href="#Annot"><code class="docutils literal notranslate"><span class="pre">Annot</span></code></a><ul>
+<li><a class="reference internal" href="#Annot.get_pixmap"><code class="docutils literal notranslate"><span class="pre">Annot.get_pixmap()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_text"><code class="docutils literal notranslate"><span class="pre">Annot.get_text()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_textbox"><code class="docutils literal notranslate"><span class="pre">Annot.get_textbox()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_textpage"><code class="docutils literal notranslate"><span class="pre">Annot.get_textpage()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_info"><code class="docutils literal notranslate"><span class="pre">Annot.set_info()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_line_ends"><code class="docutils literal notranslate"><span class="pre">Annot.set_line_ends()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_oc"><code class="docutils literal notranslate"><span class="pre">Annot.set_oc()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_oc"><code class="docutils literal notranslate"><span class="pre">Annot.get_oc()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_irt_xref"><code class="docutils literal notranslate"><span class="pre">Annot.set_irt_xref()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_open"><code class="docutils literal notranslate"><span class="pre">Annot.set_open()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_popup"><code class="docutils literal notranslate"><span class="pre">Annot.set_popup()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_opacity"><code class="docutils literal notranslate"><span class="pre">Annot.set_opacity()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.blendmode"><code class="docutils literal notranslate"><span class="pre">Annot.blendmode</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_blendmode"><code class="docutils literal notranslate"><span class="pre">Annot.set_blendmode()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_name"><code class="docutils literal notranslate"><span class="pre">Annot.set_name()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_rect"><code class="docutils literal notranslate"><span class="pre">Annot.set_rect()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_rotation"><code class="docutils literal notranslate"><span class="pre">Annot.set_rotation()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_border"><code class="docutils literal notranslate"><span class="pre">Annot.set_border()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_flags"><code class="docutils literal notranslate"><span class="pre">Annot.set_flags()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.set_colors"><code class="docutils literal notranslate"><span class="pre">Annot.set_colors()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.delete_responses"><code class="docutils literal notranslate"><span class="pre">Annot.delete_responses()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.update"><code class="docutils literal notranslate"><span class="pre">Annot.update()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.file_info"><code class="docutils literal notranslate"><span class="pre">Annot.file_info</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_file"><code class="docutils literal notranslate"><span class="pre">Annot.get_file()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.update_file"><code class="docutils literal notranslate"><span class="pre">Annot.update_file()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.get_sound"><code class="docutils literal notranslate"><span class="pre">Annot.get_sound()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.opacity"><code class="docutils literal notranslate"><span class="pre">Annot.opacity</span></code></a></li>
+<li><a class="reference internal" href="#Annot.parent"><code class="docutils literal notranslate"><span class="pre">Annot.parent</span></code></a></li>
+<li><a class="reference internal" href="#Annot.rotation"><code class="docutils literal notranslate"><span class="pre">Annot.rotation</span></code></a></li>
+<li><a class="reference internal" href="#Annot.rect"><code class="docutils literal notranslate"><span class="pre">Annot.rect</span></code></a></li>
+<li><a class="reference internal" href="#Annot.next"><code class="docutils literal notranslate"><span class="pre">Annot.next</span></code></a></li>
+<li><a class="reference internal" href="#Annot.type"><code class="docutils literal notranslate"><span class="pre">Annot.type</span></code></a></li>
+<li><a class="reference internal" href="#Annot.info"><code class="docutils literal notranslate"><span class="pre">Annot.info</span></code></a></li>
+<li><a class="reference internal" href="#Annot.flags"><code class="docutils literal notranslate"><span class="pre">Annot.flags</span></code></a></li>
+<li><a class="reference internal" href="#Annot.line_ends"><code class="docutils literal notranslate"><span class="pre">Annot.line_ends</span></code></a></li>
+<li><a class="reference internal" href="#Annot.vertices"><code class="docutils literal notranslate"><span class="pre">Annot.vertices</span></code></a></li>
+<li><a class="reference internal" href="#Annot.colors"><code class="docutils literal notranslate"><span class="pre">Annot.colors</span></code></a></li>
+<li><a class="reference internal" href="#Annot.xref"><code class="docutils literal notranslate"><span class="pre">Annot.xref</span></code></a></li>
+<li><a class="reference internal" href="#Annot.irt_xref"><code class="docutils literal notranslate"><span class="pre">Annot.irt_xref</span></code></a></li>
+<li><a class="reference internal" href="#Annot.popup_xref"><code class="docutils literal notranslate"><span class="pre">Annot.popup_xref</span></code></a></li>
+<li><a class="reference internal" href="#Annot.has_popup"><code class="docutils literal notranslate"><span class="pre">Annot.has_popup</span></code></a></li>
+<li><a class="reference internal" href="#Annot.is_open"><code class="docutils literal notranslate"><span class="pre">Annot.is_open</span></code></a></li>
+<li><a class="reference internal" href="#Annot.popup_rect"><code class="docutils literal notranslate"><span class="pre">Annot.popup_rect</span></code></a></li>
+<li><a class="reference internal" href="#Annot.rect_delta"><code class="docutils literal notranslate"><span class="pre">Annot.rect_delta</span></code></a></li>
+<li><a class="reference internal" href="#Annot.border"><code class="docutils literal notranslate"><span class="pre">Annot.border</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#mupdf">MuPDF 中的注释图标</a></li>
+<li><a class="reference internal" href="#id5">例子</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

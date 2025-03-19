@@ -1,0 +1,1283 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="附录 4：性能比较方法" href="app4.html" /><link rel="prev" title="附录 2：嵌入式文件的注意事项" href="app2.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>附录 3：各类技术信息 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="appendix3">
+<span id="id1"></span><h1>附录 3：各类技术信息<a class="headerlink" href="#appendix3" title="此标题的永久链接">#</a></h1>
+<p>Appendix 3: Assorted Technical Information</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>本节涉及各种技术主题，这些主题不一定彼此相关。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This section deals with various technical topics, that are not necessarily related to each other.</p>
+</div>
+</div>
+<hr class="docutils" />
+<section id="imagetransformation">
+<span id="id2"></span><h2>图像转换矩阵<a class="headerlink" href="#imagetransformation" title="此标题的永久链接">#</a></h2>
+<p>Image Transformation Matrix</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>从版本 1.18.11 开始，一些文本和图像提取方法会返回图像变换矩阵： <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 和： <a class="reference internal" href="page.html#Page.get_image_bbox" title="Page.get_image_bbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_image_bbox()</span></code></a>。</p>
+<p>变换矩阵包含有关图像如何转换以适应某个文档页面上的矩形（其“边界框” = “bbox”）的信息。通过检查图像在页面上的 bbox 和此矩阵，可以确定图像是否以及如何在页面上进行缩放或旋转。</p>
+<p>图像尺寸与页面上 bbox 之间的关系如下：</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>使用原始图像的宽度和高度，</dt><dd><ul class="simple">
+<li><p>定义图像矩形 <code class="xref any docutils literal notranslate"><span class="pre">imgrect</span> <span class="pre">=</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">width,</span> <span class="pre">height)</span></code></p></li>
+<li><p>定义“缩放矩阵” <code class="xref any docutils literal notranslate"><span class="pre">shrink</span> <span class="pre">=</span> <span class="pre">pymupdf.Matrix(1/width,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1/height,</span> <span class="pre">0,</span> <span class="pre">0)</span></code>。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>使用缩放矩阵转换图像矩形，将得到单位矩形： <code class="xref any docutils literal notranslate"><span class="pre">imgrect</span> <span class="pre">*</span> <span class="pre">shrink</span> <span class="pre">=</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">1)</span></code> 。</p></li>
+<li><p>使用图像 <strong>变换矩阵</strong> “transform”，以下步骤将计算 bbox:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">imgrect</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="n">shrink</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="n">imgrect</span> <span class="o">*</span> <span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+</pre></div>
+</div>
+</li>
+<li><p>检查矩阵乘积 <code class="xref any docutils literal notranslate"><span class="pre">shrink</span> <span class="pre">*</span> <span class="pre">transform</span></code> 将揭示所有有关图像矩形发生了什么变化的信息，以使其适应页面上的 bbox：旋转、缩放其边和原点的平移。让我们来看一个例子：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">imginfo</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_images</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 获取页面上的图像项</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imginfo</span>
+<span class="go">(5, 0, 439, 501, 8, &#39;DeviceRGB&#39;, &#39;&#39;, &#39;fzImg0&#39;, &#39;DCTDecode&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 定义图像缩放矩阵和矩形</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shrink</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">439</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">501</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgrect</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">439</span><span class="p">,</span> <span class="mi">501</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 确定图像的 bbox 和变换矩阵：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span><span class="p">,</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_image_bbox</span><span class="p">(</span><span class="s2">&quot;fzImg0&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 确认相等性 - 允许舍入误差</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span>
+<span class="go">Rect(100.0, 112.37525939941406, 300.0, 287.624755859375)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgrect</span> <span class="o">*</span> <span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+<span class="go">Rect(100.0, 112.375244140625, 300.0, 287.6247253417969)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 缩放矩阵与变换矩阵的乘积</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+<span class="go">Matrix(0.0, -0.39920157194137573, 0.3992016017436981, 0.0, 100.0, 287.6247253417969)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 上述结果说明：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 图像的边是按约 0.4 的因子缩放的，</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 并且图像顺时针旋转了 90 度</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 比较这与 pymupdf.Matrix(-90) * 0.4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>Starting with version 1.18.11, the image transformation matrix is returned by some methods for text and image extraction: <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> and <a class="reference internal" href="page.html#Page.get_image_bbox" title="Page.get_image_bbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_image_bbox()</span></code></a>.</p>
+<p>The transformation matrix contains information about how an image was transformed to fit into the rectangle (its “boundary box” = “bbox”) on some document page. By inspecting the image’s bbox on the page and this matrix, one can determine for example, whether and how the image is displayed scaled or rotated on a page.</p>
+<p>The relationship between image dimension and its bbox on a page is the following:</p>
+<ol class="arabic">
+<li><dl class="simple">
+<dt>Using the original image’s width and height,</dt><dd><ul class="simple">
+<li><p>define the image rectangle <code class="xref any docutils literal notranslate"><span class="pre">imgrect</span> <span class="pre">=</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">width,</span> <span class="pre">height)</span></code></p></li>
+<li><p>define the “shrink matrix” <code class="xref any docutils literal notranslate"><span class="pre">shrink</span> <span class="pre">=</span> <span class="pre">pymupdf.Matrix(1/width,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1/height,</span> <span class="pre">0,</span> <span class="pre">0)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Transforming the image rectangle with its shrink matrix, will result in the unit rectangle: <code class="xref any docutils literal notranslate"><span class="pre">imgrect</span> <span class="pre">*</span> <span class="pre">shrink</span> <span class="pre">=</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">1)</span></code>.</p></li>
+<li><p>Using the image <strong>transformation matrix</strong> “transform”, the following steps will compute the bbox:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">imgrect</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+<span class="n">shrink</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">bbox</span> <span class="o">=</span> <span class="n">imgrect</span> <span class="o">*</span> <span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inspecting the matrix product <code class="xref any docutils literal notranslate"><span class="pre">shrink</span> <span class="pre">*</span> <span class="pre">transform</span></code> will reveal all information about what happened to the image rectangle to make it fit into the bbox on the page: rotation, scaling of its sides and translation of its origin. Let us look at an example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">imginfo</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_images</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># get an image item on a page</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imginfo</span>
+<span class="go">(5, 0, 439, 501, 8, &#39;DeviceRGB&#39;, &#39;&#39;, &#39;fzImg0&#39;, &#39;DCTDecode&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># define image shrink matrix and rectangle</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shrink</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">439</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">501</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgrect</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">439</span><span class="p">,</span> <span class="mi">501</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># determine image bbox and transformation matrix:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span><span class="p">,</span> <span class="n">transform</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_image_bbox</span><span class="p">(</span><span class="s2">&quot;fzImg0&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># confirm equality - permitting rounding errors</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bbox</span>
+<span class="go">Rect(100.0, 112.37525939941406, 300.0, 287.624755859375)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">imgrect</span> <span class="o">*</span> <span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+<span class="go">Rect(100.0, 112.375244140625, 300.0, 287.6247253417969)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shrink</span> <span class="o">*</span> <span class="n">transform</span>
+<span class="go">Matrix(0.0, -0.39920157194137573, 0.3992016017436981, 0.0, 100.0, 287.6247253417969)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the above shows:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># image sides are scaled by same factor ~0.4,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and the image is rotated by 90 degrees clockwise</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># compare this with pymupdf.Matrix(-90) * 0.4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1">#------------------------------------------------</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="pdf-base-14">
+<span id="base-14-fonts"></span><h2>PDF Base 14 字体<a class="headerlink" href="#pdf-base-14" title="此标题的永久链接">#</a></h2>
+<p>PDF Base 14 Fonts</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>以下 14 种内建字体名称 <strong>必须</strong> 被每个 PDF 查看器应用程序支持。它们作为字典提供，该字典将它们的全名和小写的缩写映射到完整的字体基本名称。每当在 PyMuPDF 中需要提供 <strong>fontname</strong> 时，可以使用字典中的任何 <strong>键或值</strong>：</p>
+<blockquote>
+<div><p>In [2]: pymupdf.Base14_fontdict
+Out[2]:
+{‘courier’: ‘Courier’,
+‘courier-oblique’: ‘Courier-Oblique’,
+‘courier-bold’: ‘Courier-Bold’,
+‘courier-boldoblique’: ‘Courier-BoldOblique’,
+‘helvetica’: ‘Helvetica’,
+‘helvetica-oblique’: ‘Helvetica-Oblique’,
+‘helvetica-bold’: ‘Helvetica-Bold’,
+‘helvetica-boldoblique’: ‘Helvetica-BoldOblique’,
+‘times-roman’: ‘Times-Roman’,
+‘times-italic’: ‘Times-Italic’,
+‘times-bold’: ‘Times-Bold’,
+‘times-bolditalic’: ‘Times-BoldItalic’,
+‘symbol’: ‘Symbol’,
+‘zapfdingbats’: ‘ZapfDingbats’,
+‘helv’: ‘Helvetica’,
+‘heit’: ‘Helvetica-Oblique’,
+‘hebo’: ‘Helvetica-Bold’,
+‘hebi’: ‘Helvetica-BoldOblique’,
+‘cour’: ‘Courier’,
+‘coit’: ‘Courier-Oblique’,
+‘cobo’: ‘Courier-Bold’,
+‘cobi’: ‘Courier-BoldOblique’,
+‘tiro’: ‘Times-Roman’,
+‘tibo’: ‘Times-Bold’,
+‘tiit’: ‘Times-Italic’,
+‘tibi’: ‘Times-BoldItalic’,
+‘symb’: ‘Symbol’,
+‘zadb’: ‘ZapfDingbats’}</p>
+</div></blockquote>
+<p>与其强制要求不同，并非所有 PDF 查看器都能正确和完全地支持这些字体——尤其是 <strong>Symbol</strong> 和 <strong>ZapfDingbats</strong>。此外，字形（视觉效果）图像将根据每个查看器的不同而有所不同。</p>
+<p>要查看如何使用这些字体——包括 <strong>CJK 内建</strong> 字体——请参见： <a class="reference internal" href="page.html#Page.insert_font" title="Page.insert_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_font()</span></code></a> 中的表格。</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>The following 14 builtin font names <strong>must be supported by every PDF viewer</strong> application. They are available as a dictionary, which maps their full names amd their abbreviations in lower case to the full font basename. Wherever a <strong>fontname</strong> must be provided in PyMuPDF, any <strong>key or value</strong> from the dictionary may be used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Base14_fontdict</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+<span class="p">{</span><span class="s1">&#39;courier&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier&#39;</span><span class="p">,</span>
+<span class="s1">&#39;courier-oblique&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-Oblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;courier-bold&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;courier-boldoblique&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-BoldOblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;helvetica&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span>
+<span class="s1">&#39;helvetica-oblique&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-Oblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;helvetica-bold&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;helvetica-boldoblique&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-BoldOblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;times-roman&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Roman&#39;</span><span class="p">,</span>
+<span class="s1">&#39;times-italic&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Italic&#39;</span><span class="p">,</span>
+<span class="s1">&#39;times-bold&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;times-bolditalic&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-BoldItalic&#39;</span><span class="p">,</span>
+<span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;Symbol&#39;</span><span class="p">,</span>
+<span class="s1">&#39;zapfdingbats&#39;</span><span class="p">:</span> <span class="s1">&#39;ZapfDingbats&#39;</span><span class="p">,</span>
+<span class="s1">&#39;helv&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span>
+<span class="s1">&#39;heit&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-Oblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;hebo&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;hebi&#39;</span><span class="p">:</span> <span class="s1">&#39;Helvetica-BoldOblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;cour&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier&#39;</span><span class="p">,</span>
+<span class="s1">&#39;coit&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-Oblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;cobo&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;cobi&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier-BoldOblique&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tiro&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Roman&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tibo&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Bold&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tiit&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-Italic&#39;</span><span class="p">,</span>
+<span class="s1">&#39;tibi&#39;</span><span class="p">:</span> <span class="s1">&#39;Times-BoldItalic&#39;</span><span class="p">,</span>
+<span class="s1">&#39;symb&#39;</span><span class="p">:</span> <span class="s1">&#39;Symbol&#39;</span><span class="p">,</span>
+<span class="s1">&#39;zadb&#39;</span><span class="p">:</span> <span class="s1">&#39;ZapfDingbats&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>In contrast to their obligation, not all PDF viewers support these fonts correctly and completely – this is especially true for Symbol and ZapfDingbats. Also, the glyph (visual) images will be specific to every reader.</p>
+<p>To see how these fonts can be used – including the <strong>CJK built-in</strong> fonts – look at the table in <a class="reference internal" href="page.html#Page.insert_font" title="Page.insert_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_font()</span></code></a>.</p>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="adobe-pdf">
+<span id="adobemanual"></span><h2>Adobe PDF 参考<a class="headerlink" href="#adobe-pdf" title="此标题的永久链接">#</a></h2>
+<p>Adobe PDF References</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>本 PDF 参考手册由 Adobe 发布，在本文档中经常被引用。它可以通过以下链接查看和下载： <a class="reference external" href="https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf">here</a> 。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>长时间以来，较旧版本的 PDF 参考手册也可以通过 <a class="reference external" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">this</a> 链接访问。该链接似乎在 2021 年 10 月被从网站上移除。在 PyMuPDF 文档的早期版本（1.19.* 之前）中，曾引用过此文档。我们已经着手替换这些引用，指向当前的规范链接。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>This PDF Reference manual published by Adobe is frequently quoted throughout this documentation. It can be viewed and downloaded from <a class="reference external" href="https://opensource.adobe.com/dc-acrobat-sdk-docs/standards/pdfstandards/pdf/PDF32000_2008.pdf">here</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>For a long time, an older version was also available under <a class="reference external" href="http://www.adobe.com/content/dam/Adobe/en/devnet/acrobat/pdfs/pdf_reference_1-7.pdf">this</a> link. It seems to be taken off of the web site in October 2021. Earlier (pre 1.19.*) versions of the PyMuPDF documentation used to refer to this document. We have undertaken an effort to replace referrals to the current specification above.</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="pymupdf-python">
+<span id="sequencetypes"></span><h2>在 PyMuPDF 中使用 Python 序列作为参数<a class="headerlink" href="#pymupdf-python" title="此标题的永久链接">#</a></h2>
+<p>Using Python Sequences as Arguments in PyMuPDF</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>当 PyMuPDF 对象和方法要求使用 Python <strong>列表</strong> 形式的数值时，其他 Python <strong>序列类型</strong> 也可以使用。Python 类被认为实现了 <strong>序列协议</strong>，如果它们具有 <code class="xref any docutils literal notranslate"><span class="pre">__getitem__()</span></code> 方法。</p>
+<p>这基本上意味着，您可以在这些情况下互换使用 Python 的 <em>list</em>、 <em>tuple</em> ，甚至是 <em>array.array</em> 、 <em>numpy.array</em> 和 <em>bytearray</em> 类型。</p>
+<p>例如，以以下任何方式指定一个序列 <code class="xref any docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code>：</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2]</span></code> – 一个列表</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2)</span></code> – 一个元组</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">array.array(&quot;i&quot;,</span> <span class="pre">(1,</span> <span class="pre">2))</span></code> – 一个 array.array</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">numpy.array((1,</span> <span class="pre">2))</span></code> – 一个 numpy 数组</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">bytearray((1,</span> <span class="pre">2))</span></code> – 一个字节数组</p></li>
+</ul>
+<p>都可以在以下表达式中使用：</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Point(s)</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Point(x,</span> <span class="pre">y)</span> <span class="pre">+</span> <span class="pre">s</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">doc.select(s)</span></code></p></li>
+</ul>
+<p>同样，所有几何对象如 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>、<a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a>、<a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> 和 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> 也可以如此使用。</p>
+<p>因为所有 PyMuPDF 几何类本身是序列的特例，所以它们（除了 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> – 见下文）可以自由地在需要数值序列的地方使用，例如作为 <em>list()</em>、<em>tuple()</em>、<em>array.array()</em> 或 <em>numpy.array()</em> 等函数的参数。请查看以下代码片段了解其工作原理。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span><span class="o">,</span><span class="w"> </span><span class="nn">array</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">[1.0, 2.0, 3.0, 4.0, 5.0, 6.0]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">tuple</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="go">array(&#39;f&#39;, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0])</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">array([1., 2., 3., 4., 5., 6.])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> 也是一个 Python 序列对象，长度为 4。它的项是 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> – 而非数字。因此，以上内容不适用于 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a>。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>When PyMuPDF objects and methods require a Python <strong>list</strong> of numerical values, other Python <strong>sequence types</strong> are also allowed. Python classes are said to implement the <strong>sequence protocol</strong>, if they have a <code class="xref any docutils literal notranslate"><span class="pre">__getitem__()</span></code> method.</p>
+<p>This basically means, you can interchangeably use Python <em>list</em> or <em>tuple</em> or even <em>array.array</em>, <em>numpy.array</em> and <em>bytearray</em> types in these cases.</p>
+<p>For example, specifying a sequence <code class="xref any docutils literal notranslate"><span class="pre">&quot;s&quot;</span></code> in any of the following ways</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">[1,</span> <span class="pre">2]</span></code> – a list</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">2)</span></code> – a tuple</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">array.array(&quot;i&quot;,</span> <span class="pre">(1,</span> <span class="pre">2))</span></code> – an array.array</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">numpy.array((1,</span> <span class="pre">2))</span></code> – a numpy array</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">bytearray((1,</span> <span class="pre">2))</span></code> – a bytearray</p></li>
+</ul>
+<p>will make it usable in the following example expressions:</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Point(s)</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.Point(x,</span> <span class="pre">y)</span> <span class="pre">+</span> <span class="pre">s</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">doc.select(s)</span></code></p></li>
+</ul>
+<p>Similarly with all geometry objects <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>, <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a>, <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> and <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a>.</p>
+<p>Because all PyMuPDF geometry classes themselves are special cases of sequences, they (with the exception of <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> – see below) can be freely used where numerical sequences can be used, e.g. as arguments for functions like <em>list()</em>, <em>tuple()</em>, <em>array.array()</em> or <em>numpy.array()</em>. Look at the following snippet to see this work.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span><span class="o">,</span><span class="w"> </span><span class="nn">array</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">[1.0, 2.0, 3.0, 4.0, 5.0, 6.0]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">tuple</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="go">array(&#39;f&#39;, [1.0, 2.0, 3.0, 4.0, 5.0, 6.0])</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="go">array([1., 2., 3., 4., 5., 6.])</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> is a Python sequence object as well and has a length of 4. Its items however are <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> – not numbers. Therefore, the above remarks do not apply.</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="pymupdf">
+<span id="referenialintegrity"></span><h2>确保 PyMuPDF 中重要对象的一致性<a class="headerlink" href="#pymupdf" title="此标题的永久链接">#</a></h2>
+<p>Ensuring Consistency of Important Objects in PyMuPDF</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>PyMuPDF 是 C 库 MuPDF 的 Python 绑定。虽然 MuPDF 的创建者投入了大量的努力来逼近某种面向对象的行为，但他们肯定无法克服 C 语言在这方面的基本缺陷。</p>
+<p>另一方面，Python 在实现面向对象模型时非常干净。PyMuPDF 和 MuPDF 之间的接口代码由两个基本文件组成：<em>pymupdf.py</em> 和 <em>fitz_wrap.c</em>。这些文件由出色的 SWIG 工具为每个新版本生成。</p>
+<p>当你使用 PyMuPDF 的对象或方法时，会执行 <em>pymupdf.py</em> 中的一些代码，进而调用用 <em>fitz_wrap.c</em> 编译的 C 代码。</p>
+<p>由于 SWIG 会尽量保持 Python 和 C 级别的同步，因此，只要严格遵循一定的规则，一切就会正常工作。例如：<strong>永远不要访问</strong> 已关闭（或删除或设置为 <em>None</em>）的文档的 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 对象。或者，更不明显的规则：<strong>永远不要访问</strong> 页面或其子对象（链接或注释），如果你执行了文档方法如 <em>select()</em>、<em>delete_page()</em>、<em>insert_page()</em> 等等。</p>
+<p>但仅仅不再访问失效的对象是不够的：它们应该被主动删除，以完全释放 C 级资源（即分配的内存）。</p>
+<p>这些规则的原因在于，文档与其页面之间，以及页面与其链接/注释之间存在着一种层次化的 2 级一对多关系。为了维持一致的状态，上述任何操作必须导致 <strong>Python 和 C</strong> 中的完全重置。</p>
+<p>SWIG 并不知道这一点，因此不会自动执行此操作。</p>
+<p>因此，所需的逻辑已经内建于 PyMuPDF 中，具体方式如下。</p>
+<ol class="arabic simple">
+<li><p>如果页面“失去”了其拥有的文档或被删除，那么它当前存在的所有注释和链接将在 Python 中变得不可用，并且它们在 C 级的对应项将被删除并释放。</p></li>
+<li><p>如果文档被关闭（或删除或设置为 <em>None</em>），或者其结构发生变化，那么同样地，所有当前存在的页面及其子项将变得不可用，并将进行相应的 C 级删除。“结构变化”包括像 <em>select()</em>、<em>delete_page()</em>、<em>insert_page()</em>、<em>insert_pdf()</em> 等方法：所有这些都会导致对象删除的级联效应。</p></li>
+</ol>
+<p>程序员通常不会意识到这一点。但如果他尝试访问失效的对象，将会引发异常。</p>
+<p>失效的对象不能像使用 Python 语句 <em>del page</em> 或 <em>page = None</em> 等直接删除。相反，必须调用它们的 <em>__del__</em> 方法。</p>
+<p>所有页面、链接和注释都有 <em>parent</em> 属性，指向拥有它们的对象。这是可以在应用层检查的属性：如果 <em>obj.parent == None</em>，则该对象的父对象已不存在，任何对其属性或方法的引用将引发异常，提示“孤立”状态。</p>
+<p>示例会话：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">first_annot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>                    <span class="c1"># 一切正常</span>
+<span class="go">[5, &#39;Circle&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="kc">None</span>                   <span class="c1"># 这会将 &#39;annot&#39; 变成孤立对象</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">&lt;...省略行...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 如果你这样做，也会发生相同的情况：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">first_annot</span>     <span class="c1"># 立即删除该页面！</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>                    <span class="c1"># 因此，&#39;annot&#39; 是“孤立出生的”</span>
+<span class="go">&lt;...省略行...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+</pre></div>
+</div>
+<p>这展示了级联效应：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">first_annot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">pymupdf.Rect(0.0, 0.0, 595.0, 842.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">[5, &#39;Circle&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">doc</span>                       <span class="c1"># 或 doc = None 或 doc.close()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">&lt;...省略行...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">&lt;...省略行...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>上述关系之外的对象不包含在此机制中。如果你例如通过 <em>toc = doc.get_toc()</em> 创建了目录，然后关闭或更改文档，那么这不会以任何方式更改变量 <em>toc</em>。刷新这些变量的责任由你自己承担。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>PyMuPDF is a Python binding for the C library MuPDF. While a lot of effort has been invested by MuPDF’s creators to approximate some sort of an object-oriented behavior, they certainly could not overcome basic shortcomings of the C language in that respect.</p>
+<p>Python on the other hand implements the OO-model in a very clean way. The interface code between PyMuPDF and MuPDF consists of two basic files: <em>pymupdf.py</em> and <em>fitz_wrap.c</em>. They are created by the excellent SWIG tool for each new version.</p>
+<p>When you use one of PyMuPDF’s objects or methods, this will result in execution of some code in <em>pymupdf.py</em>, which in turn will call some C code compiled with <em>fitz_wrap.c</em>.</p>
+<p>Because SWIG goes a long way to keep the Python and the C level in sync, everything works fine, if a certain set of rules is being strictly followed. For example: <strong>never access</strong> a <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> object, after you have closed (or deleted or set to <em>None</em>) the owning <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a>. Or, less obvious: <strong>never access</strong> a page or any of its children (links or annotations) after you have executed one of the document methods <em>select()</em>, <em>delete_page()</em>, <em>insert_page()</em> … and more.</p>
+<p>But just no longer accessing invalidated objects is actually not enough: They should rather be actively deleted entirely, to also free C-level resources (meaning allocated memory).</p>
+<p>The reason for these rules lies in the fact that there is a hierarchical 2-level one-to-many relationship between a document and its pages and also between a page and its links / annotations. To maintain a consistent situation, any of the above actions must lead to a complete reset – in <strong>Python and, synchronously, in C</strong>.</p>
+<p>SWIG cannot know about this and consequently does not do it.</p>
+<p>The required logic has therefore been built into PyMuPDF itself in the following way.</p>
+<ol class="arabic simple">
+<li><p>If a page “loses” its owning document or is being deleted itself, all of its currently existing annotations and links will be made unusable in Python, and their C-level counterparts will be deleted and deallocated.</p></li>
+<li><p>If a document is closed (or deleted or set to <em>None</em>) or if its structure has changed, then similarly all currently existing pages and their children will be made unusable, and corresponding C-level deletions will take place. “Structure changes” include methods like <em>select()</em>, <em>delePage()</em>, <em>insert_page()</em>, <em>insert_pdf()</em> and so on: all of these will result in a cascade of object deletions.</p></li>
+</ol>
+<p>The programmer will normally not realize any of this. If he, however, tries to access invalidated objects, exceptions will be raised.</p>
+<p>Invalidated objects cannot be directly deleted as with Python statements like <em>del page</em> or <em>page = None</em>, etc. Instead, their <em>__del__</em> method must be invoked.</p>
+<p>All pages, links and annotations have the property <em>parent</em>, which points to the owning object. This is the property that can be checked on the application level: if <em>obj.parent == None</em> then the object’s parent is gone, and any reference to its properties or methods will raise an exception informing about this “orphaned” state.</p>
+<p>A sample session:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">first_annot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>                    <span class="c1"># everything works fine</span>
+<span class="go">[5, &#39;Circle&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="kc">None</span>                   <span class="c1"># this turns &#39;annot&#39; into an orphan</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">&lt;... omitted lines ...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># same happens, if you do this:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">first_annot</span>     <span class="c1"># deletes the page again immediately!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>                    <span class="c1"># so, &#39;annot&#39; is &#39;born&#39; orphaned</span>
+<span class="go">&lt;... omitted lines ...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+</pre></div>
+</div>
+<p>This shows the cascading effect:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">first_annot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">pymupdf.Rect(0.0, 0.0, 595.0, 842.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">[5, &#39;Circle&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">del</span> <span class="n">doc</span>                       <span class="c1"># or doc = None or doc.close()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">rect</span>
+<span class="go">&lt;... omitted lines ...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">annot</span><span class="o">.</span><span class="n">type</span>
+<span class="go">&lt;... omitted lines ...&gt;</span>
+<span class="go">RuntimeError: orphaned object: parent is None</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Objects outside the above relationship are not included in this mechanism. If you e.g. created a table of contents by <em>toc = doc.get_toc()</em>, and later close or change the document, then this cannot and does not change variable <em>toc</em> in any way. It is your responsibility to refresh such variables as required.</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="page-show-pdf-page">
+<span id="formxobject"></span><h2>方法设计 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a><a class="headerlink" href="#page-show-pdf-page" title="此标题的永久链接">#</a></h2>
+<p>Design of Method <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a></p>
+<section id="id5">
+<h3>目的和功能<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>Purpose and Capabilities</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>该方法在当前（“包含”或“目标”）页面的指定矩形区域内显示另一个 PDF 文档的页面（“源”页面）图像。</p>
+<ul class="simple">
+<li><p><strong>与</strong> <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> <strong>不同</strong> ，这种显示是基于矢量的，因此在缩放时保持精确度。</p></li>
+<li><p><strong>与</strong> <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a> <strong>一样</strong> ，显示的大小会根据给定的矩形调整。</p></li>
+</ul>
+<p>当前支持以下几种显示变体：</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>布尔参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;keep_proportion&quot;</span></code> 控制是否保持宽高比（默认保持）。</dt><dd><ul>
+<li><p>矩形参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;clip&quot;</span></code> 限制源页面矩形可见的部分。默认显示整个页面。</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>浮动参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;rotation&quot;</span></code> 以任意角度（度数）旋转显示。如果角度不是 90 的整数倍且 <code class="xref any docutils literal notranslate"><span class="pre">&quot;keep_proportion&quot;</span></code> 为真，则只能将目标边框的 4 个角中的 2 个角定位。</p></li>
+<li><p>布尔参数 <code class="xref any docutils literal notranslate"><span class="pre">&quot;overlay&quot;</span></code> 控制是否将图像放在当前页面内容的顶部（前景，默认），或不放置（背景）。</p></li>
+</ul>
+<p>使用场景包括（但不限于）以下几种：</p>
+<ol class="arabic simple">
+<li><p>在当前文档的一系列页面上“盖章”，例如公司标志或水印。</p></li>
+<li><p>将任意输入页面组合到一页输出页面中，支持“双面”或小册子打印（称为“4-up”，“n-up”）。</p></li>
+<li><p>将（大）输入页面拆分为多个任意部分。这也叫做“海报化”，例如你可以水平和垂直拆分 A4 页面，将 4 个拆分部分放大打印到单独的 A4 页面上，最终得到原始页面的 A2 版本。</p></li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>The method displays an image of a (“source”) page of another PDF document within a specified rectangle of the current (“containing”, “target”) page.</p>
+<ul class="simple">
+<li><p><strong>In contrast</strong> to <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a>, this display is vector-based and hence remains accurate across zooming levels.</p></li>
+<li><p><strong>Just like</strong> <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a>, the size of the display is adjusted to the given rectangle.</p></li>
+</ul>
+<p>The following variations of the display are currently supported:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Bool parameter <code class="xref any docutils literal notranslate"><span class="pre">&quot;keep_proportion&quot;</span></code> controls whether to maintain the aspect ratio (default) or not.</dt><dd><ul>
+<li><p>Rectangle parameter <code class="xref any docutils literal notranslate"><span class="pre">&quot;clip&quot;</span></code> restricts the visible part of the source page rectangle. Default is the full page.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>float <code class="xref any docutils literal notranslate"><span class="pre">&quot;rotation&quot;</span></code> rotates the display by an arbitrary angle (degrees). If the angle is not an integer multiple of 90, only 2 of the 4 corners may be positioned on the target border if also <code class="xref any docutils literal notranslate"><span class="pre">&quot;keep_proportion&quot;</span></code> is true.</p></li>
+<li><p>Bool parameter <code class="xref any docutils literal notranslate"><span class="pre">&quot;overlay&quot;</span></code> controls whether to put the image on top (foreground, default) of current page content or not (background).</p></li>
+</ul>
+<p>Use cases include (but are not limited to) the following:</p>
+<ol class="arabic simple">
+<li><p>“Stamp” a series of pages of the current document with the same image, like a company logo or a watermark.</p></li>
+<li><p>Combine arbitrary input pages into one output page to support “booklet” or double-sided printing (known as “4-up”, “n-up”).</p></li>
+<li><p>Split up (large) input pages into several arbitrary pieces. This is also called “posterization”, because you e.g. can split an A4 page horizontally and vertically, print the 4 pieces enlarged to separate A4 pages, and end up with an A2 version of your original page.</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>技术实施<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>Technical Implementation</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p>这使用了 PDF <strong>“Form XObjects”</strong>，请参见 <a class="reference internal" href="#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 217 页的第 8.10 节。在执行 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> 时，发生以下几件事：</p>
+<ol class="arabic">
+<li><p>将源文档中源页面的 <a class="reference internal" href="glossary.html#resources" title="resources"><code class="xref py py-data docutils literal notranslate"><span class="pre">resources</span></code></a> 和 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象复制到目标文档中，共同创建一个新的 <strong>Form XObject</strong>，该对象具有以下属性。PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 编号由方法返回。</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> 等于源页面的 <code class="xref any docutils literal notranslate"><span class="pre">/Mediabox</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Matrix</span></code> 等于单位矩阵。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> 等于源页面的资源。这涉及到对其他嵌套对象（包括字体、图像等）的“深拷贝”。此处的复杂性由 MuPDF 的 grafting <a class="footnote-reference brackets" href="#f2" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> 技术函数覆盖。</p></li>
+<li><p>这是一个流对象类型，其流是源页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象的组合数据的精确拷贝。</p></li>
+</ol>
+<p>该 Form XObject 只会在显示源页面时执行一次。随后的相同源页面显示将跳过此步骤，并仅创建指向该对象的“指针” Form XObjects（在下一步中完成）。</p>
+</div></blockquote>
+</li>
+<li><p>然后创建第二个 <strong>Form XObject</strong>，目标页面使用它来调用显示。该对象具有以下属性：</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> 等于源页面的 <code class="xref any docutils literal notranslate"><span class="pre">/CropBox</span></code> （或 <code class="xref any docutils literal notranslate"><span class="pre">&quot;clip&quot;</span></code>）。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Matrix</span></code> 表示将 <code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> 映射到目标矩形。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/XObject</span></code> 通过固定名称 <code class="xref any docutils literal notranslate"><span class="pre">fullpage</span></code> 引用先前的 Form XObject。</p></li>
+<li><p>该对象的流包含一个固定语句：<code class="xref any docutils literal notranslate"><span class="pre">/fullpage</span> <span class="pre">Do</span></code>。</p></li>
+<li><p>如果方法的 <code class="xref any docutils literal notranslate"><span class="pre">&quot;oc&quot;</span></code> 参数给出，则其值被分配给此 Form XObject 的 <code class="xref any docutils literal notranslate"><span class="pre">/OC</span></code>。</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>现在，目标页面的 <a class="reference internal" href="glossary.html#resources" title="resources"><code class="xref py py-data docutils literal notranslate"><span class="pre">resources</span></code></a> 和 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象被修改如下：</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>在目标页面的 <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> 中的 <code class="xref any docutils literal notranslate"><span class="pre">/XObject</span></code> 字典中添加一个条目，名称为 <a class="reference internal" href="colorspace.html#Colorspace.n" title="Colorspace.n"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">fzFrm</span></code></a> （其中 n 选择使该条目在页面中唯一）。</p></li>
+<li><p>根据 <code class="xref any docutils literal notranslate"><span class="pre">&quot;overlay&quot;</span></code> 的值，向页面的 <code class="xref any docutils literal notranslate"><span class="pre">/Contents</span></code> 数组中添加一个新对象，包含语句 <code class="xref any docutils literal notranslate"><span class="pre">q</span> <span class="pre">/fzFrm&lt;n&gt;</span> <span class="pre">Do</span> <span class="pre">Q</span></code>。</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<p>这种设计方法确保：</p>
+<ol class="arabic simple">
+<li><p>（可能很大的）源页面只会复制一次到目标 PDF。每个目标页面仅创建小的“指针” Form XObject 对象来显示源页面。</p></li>
+<li><p>每个引用的目标页面可以有自己的 <code class="xref any docutils literal notranslate"><span class="pre">&quot;oc&quot;</span></code> 参数，单独控制源页面的可见性。</p></li>
+</ol>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<p>This is done using PDF <strong>“Form XObjects”</strong>, see section 8.10 on page 217 of <a class="reference internal" href="#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>. On execution of a <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>, the following things happen:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>The <a class="reference internal" href="glossary.html#resources" title="resources"><code class="xref py py-data docutils literal notranslate"><span class="pre">resources</span></code></a> and <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects of source page in source document are copied over to the target document, jointly creating a new <strong>Form XObject</strong> with the following properties. The PDF <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number of this object is returned by the method.</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> equals <code class="xref any docutils literal notranslate"><span class="pre">/Mediabox</span></code> of the source page</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Matrix</span></code> equals the identity matrix.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> equals that of the source page. This involves a “deep-copy” of hierarchically nested other objects (including fonts, images, etc.). The complexity involved here is covered by MuPDF’s grafting <a class="footnote-reference brackets" href="#f1" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> technique functions.</p></li>
+<li><p>This is a stream object type, and its stream is an exact copy of the combined data of the source page’s <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects.</p></li>
+</ol>
+<p>This Form XObject is only executed once per shown source page. Subsequent displays of the same source page will skip this step and only create “pointer” Form XObjects (done in next step) to this object.</p>
+</div></blockquote>
+</li>
+<li><p>A second <strong>Form XObject</strong> is then created which the target page uses to invoke the display. This object has the following properties:</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> equals the <code class="xref any docutils literal notranslate"><span class="pre">/CropBox</span></code> of the source page (or <code class="xref any docutils literal notranslate"><span class="pre">&quot;clip&quot;</span></code>).</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/Matrix</span></code> represents the mapping of <code class="xref any docutils literal notranslate"><span class="pre">/BBox</span></code> to the target rectangle.</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">/XObject</span></code> references the previous Form XObject via the fixed name <code class="xref any docutils literal notranslate"><span class="pre">fullpage</span></code>.</p></li>
+<li><p>The stream of this object contains exactly one fixed statement: <code class="xref any docutils literal notranslate"><span class="pre">/fullpage</span> <span class="pre">Do</span></code>.</p></li>
+<li><p>If the method’s <code class="xref any docutils literal notranslate"><span class="pre">&quot;oc&quot;</span></code> argument is given, its value is assigned to this Form XObject as <code class="xref any docutils literal notranslate"><span class="pre">/OC</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>The <a class="reference internal" href="glossary.html#resources" title="resources"><code class="xref py py-data docutils literal notranslate"><span class="pre">resources</span></code></a> and <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects of the target page are now modified as follows.</p>
+<blockquote>
+<div><ol class="loweralpha simple">
+<li><p>Add an entry to the <code class="xref any docutils literal notranslate"><span class="pre">/XObject</span></code> dictionary of <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> with the name <a class="reference internal" href="colorspace.html#Colorspace.n" title="Colorspace.n"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">fzFrm</span></code></a> (with n chosen such that this entry is unique on the page).</p></li>
+<li><p>Depending on <code class="xref any docutils literal notranslate"><span class="pre">&quot;overlay&quot;</span></code>, prepend or append a new object to the page’s <code class="xref any docutils literal notranslate"><span class="pre">/Contents</span></code> array, containing the statement <code class="xref any docutils literal notranslate"><span class="pre">q</span> <span class="pre">/fzFrm&lt;n&gt;</span> <span class="pre">Do</span> <span class="pre">Q</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p>This design approach ensures that:</p>
+<ol class="arabic simple">
+<li><p>The (potentially large) source page is only copied once to the target PDF. Only small “pointer” Form XObjects objects are created per each target page to show the source page.</p></li>
+<li><p>Each referring target page can have its own <code class="xref any docutils literal notranslate"><span class="pre">&quot;oc&quot;</span></code> parameter to control the source page’s visibility individually.</p></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="redirectmessages">
+<span id="id9"></span><h2>诊断<a class="headerlink" href="#redirectmessages" title="此标题的永久链接">#</a></h2>
+<p>Diagnostics</p>
+<section id="messages">
+<span id="id10"></span><h3><cite>PyMuPDF</cite> 消息<a class="headerlink" href="#messages" title="此标题的永久链接">#</a></h3>
+<p><cite>PyMuPDF</cite> messages</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--8-input--1" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--1">中文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> 有一个消息系统用于显示文本诊断信息。</p>
+<p>默认情况下，消息会写入 <code class="xref any docutils literal notranslate"><span class="pre">sys.stdout</span></code> 。可以通过以下两种方式进行控制：</p>
+<ul class="simple">
+<li><p>在 <cite>PyMuPDF</cite> 导入之前设置环境变量 <a class="reference internal" href="functions.html#PYMUPDF_MESSAGE" title="PYMUPDF_MESSAGE"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a>。</p></li>
+<li><p>调用 <a class="reference internal" href="functions.html#set_messages" title="set_messages"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">set_messages()</span></code></a>：</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--8-input--2" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--2">英文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> has a Message system for showing text diagnostics.</p>
+<p>By default messages are written to <code class="xref any docutils literal notranslate"><span class="pre">sys.stdout</span></code>. This can be controlled in
+two ways:</p>
+<ul class="simple">
+<li><p>Set environment variable <a class="reference internal" href="functions.html#PYMUPDF_MESSAGE" title="PYMUPDF_MESSAGE"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a> before <cite>PyMuPDF</cite> is imported.</p></li>
+<li><p>Call <a class="reference internal" href="functions.html#set_messages" title="set_messages"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">set_messages()</span></code></a>:</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="mupdf">
+<h3>MuPDF 错误和警告<a class="headerlink" href="#mupdf" title="此标题的永久链接">#</a></h3>
+<p>MuPDF errors and warnings</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--9-input--1" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--1">中文</label><div class="tab-content docutils container">
+<p>MuPDF 会生成文本错误和警告信息。</p>
+<ul>
+<li><p>这些错误和警告会附加到一个内部列表中，可以通过 <a class="reference internal" href="tools.html#Tools.mupdf_warnings" title="Tools.mupdf_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_warnings()</span></code></a> 访问。还可以参考 <a class="reference internal" href="tools.html#Tools.reset_mupdf_warnings" title="Tools.reset_mupdf_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Tools.reset_mupdf_warnings()</span></code></a>。</p></li>
+<li><p>默认情况下，这些错误和警告也会发送到 <cite>PyMuPDF</cite> 的消息系统。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>可以通过 <a class="reference internal" href="tools.html#Tools.mupdf_display_errors" title="Tools.mupdf_display_errors"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">mupdf_display_errors()</span></code></a> 和 <a class="reference internal" href="tools.html#Tools.mupdf_display_warnings" title="Tools.mupdf_display_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">mupdf_display_warnings()</span></code></a> 控制。</p></li>
+<li><p>这些消息会分别以 <code class="xref any docutils literal notranslate"><span class="pre">MuPDF</span> <span class="pre">error:</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">MuPDF</span> <span class="pre">warning:</span></code> 为前缀。</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>一些 MuPDF 错误可能会导致 Python 异常。</p>
+<p><strong>可恢复错误</strong> 的示例输出。我们正在打开一个损坏的 PDF，但 MuPDF 能够修复它并提供一些关于发生了什么的信息。接着我们演示如何查看文档是否可以稍后增量保存。此时检查 <a class="reference internal" href="document.html#Document.is_dirty" title="Document.is_dirty"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">Document.is_dirty</span></code></a> 属性也表明在 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.open</span></code> 时文档需要修复：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;damaged-file.pdf&quot;</span><span class="p">)</span>  <span class="c1"># 会导致 sys.stderr 输出：</span>
+<span class="go">mupdf: cannot find startxref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">mupdf_warnings</span><span class="p">())</span>  <span class="c1"># 检查是否有更多信息：</span>
+<span class="go">cannot find startxref</span>
+<span class="go">trying to repair broken xref</span>
+<span class="go">repairing PDF document</span>
+<span class="go">object missing &#39;endobj&#39; token</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">can_save_incrementally</span><span class="p">()</span>  <span class="c1"># 这是预期的：</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 以下表示是否有更新</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 因为修复操作，当前文档已更改：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">is_dirty</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 尽管如此，文档已经被创建：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span>
+<span class="go">pymupdf.Document(&#39;damaged-file.pdf&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 现在知道任何保存操作都必须发生在新文件中</span>
+</pre></div>
+</div>
+<p><strong>不可恢复错误</strong> 的示例输出：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;does-not-exist.pdf&quot;</span><span class="p">)</span>
+<span class="go">mupdf: cannot open does-not-exist.pdf: No such file or directory</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#1&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="w">    </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;does-not-exist.pdf&quot;</span><span class="p">)</span>
+  File <span class="nb">&quot;C:\Users\Jorj\AppData\Local\Programs\Python\Python37\lib\site-packages\fitz\pymupdf.py&quot;</span>, line <span class="m">2200</span>, in <span class="n">__init__</span>
+<span class="w">    </span><span class="n">_pymupdf</span><span class="o">.</span><span class="n">Document_swiginit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_pymupdf</span><span class="o">.</span><span class="n">new_Document</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span> <span class="n">rect</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">))</span>
+<span class="gr">RuntimeError</span>: <span class="n">cannot open does-not-exist.pdf: No such file or directory</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--9-input--2" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--2">英文</label><div class="tab-content docutils container">
+<p>MuPDF generates text errors and warnings.</p>
+<ul class="simple">
+<li><p>These errors and warnings are appended to an internal list, accessible with <a class="reference internal" href="tools.html#Tools.mupdf_warnings" title="Tools.mupdf_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_warnings()</span></code></a>. Also see <a class="reference internal" href="tools.html#Tools.reset_mupdf_warnings" title="Tools.reset_mupdf_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Tools.reset_mupdf_warnings()</span></code></a>.</p></li>
+<li><p>By default these errors and warnings are also sent to the <cite>PyMuPDF</cite> message system.</p>
+<ul>
+<li><p>This can be controlled with <a class="reference internal" href="tools.html#Tools.mupdf_display_errors" title="Tools.mupdf_display_errors"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">mupdf_display_errors()</span></code></a> and <a class="reference internal" href="tools.html#Tools.mupdf_display_warnings" title="Tools.mupdf_display_warnings"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">mupdf_display_warnings()</span></code></a>.</p></li>
+<li><p>These messages are prefixed with <code class="xref any docutils literal notranslate"><span class="pre">MuPDF</span> <span class="pre">error:</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">MuPDF</span> <span class="pre">warning:</span></code> respectively.</p></li>
+</ul>
+</li>
+</ul>
+<p>Some MuPDF errors may lead to Python exceptions.</p>
+<p>Example output for a <strong>recoverable error</strong>. We are opening a damaged PDF, but MuPDF is able to repair it and gives us a little information on what happened. Then we illustrate how to find out whether the document can later be saved incrementally. Checking the <a class="reference internal" href="document.html#Document.is_dirty" title="Document.is_dirty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.is_dirty</span></code></a> attribute at this point also indicates that during <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.open</span></code> the document had to be repaired:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;damaged-file.pdf&quot;</span><span class="p">)</span>  <span class="c1"># leads to a sys.stderr message:</span>
+<span class="go">mupdf: cannot find startxref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">mupdf_warnings</span><span class="p">())</span>  <span class="c1"># check if there is more info:</span>
+<span class="go">cannot find startxref</span>
+<span class="go">trying to repair broken xref</span>
+<span class="go">repairing PDF document</span>
+<span class="go">object missing &#39;endobj&#39; token</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">can_save_incrementally</span><span class="p">()</span>  <span class="c1"># this is to be expected:</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the following indicates whether there are updates so far</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># this is the case because of the repair actions:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">is_dirty</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the document has nevertheless been created:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span>
+<span class="go">pymupdf.Document(&#39;damaged-file.pdf&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># we now know that any save must occur to a new file</span>
+</pre></div>
+</div>
+<p>Example output for an <strong>unrecoverable error</strong>:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;does-not-exist.pdf&quot;</span><span class="p">)</span>
+<span class="go">mupdf: cannot open does-not-exist.pdf: No such file or directory</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;pyshell#1&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="w">    </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;does-not-exist.pdf&quot;</span><span class="p">)</span>
+  File <span class="nb">&quot;C:\Users\Jorj\AppData\Local\Programs\Python\Python37\lib\site-packages\fitz\pymupdf.py&quot;</span>, line <span class="m">2200</span>, in <span class="n">__init__</span>
+<span class="w">    </span><span class="n">_pymupdf</span><span class="o">.</span><span class="n">Document_swiginit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_pymupdf</span><span class="o">.</span><span class="n">new_Document</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">filetype</span><span class="p">,</span> <span class="n">rect</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">))</span>
+<span class="gr">RuntimeError</span>: <span class="n">cannot open does-not-exist.pdf: No such file or directory</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="coordinates">
+<span id="id11"></span><h2>坐标<a class="headerlink" href="#coordinates" title="此标题的永久链接">#</a></h2>
+<p>Coordinates</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--10-input--1" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--1">中文</label><div class="tab-content docutils container">
+<p>这是本文件中最常用的术语之一。 <strong>坐标</strong> 通常指一对数字 <code class="xref any docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>，表示某个位置，比如矩形的角落 (<a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>)、一个 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> 等等。这两个值通常是浮动数值，但也有一些对象（比如图像）只允许它们为整数。</p>
+<p>为了 <em>找到</em> 一个坐标的位置，我们还需要知道 <strong>参考点</strong>，即 <code class="docutils literal notranslate"><span class="pre">x</span></code> 和 <code class="docutils literal notranslate"><span class="pre">y</span></code> 的位置 —— 换句话说，我们必须知道位置 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> 的位置。一旦知道了 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> （原点）的定位，我们就可以谈论“坐标系”。</p>
+<p>在文档处理过程中，存在多种坐标系。例如，PDF 页面和由此创建的图像的坐标系是 <strong>不同</strong> 的。因此，我们需要某些方法来 <em>转换</em> 坐标系统（偶尔也需要反向转换）。这正是 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> 的任务。它是一个数学函数，类似于一个因子，可以与一个点或矩形相乘，从而得到另一个坐标系中的对应点/矩形。转换矩阵的逆矩阵可以用来恢复转换。就像乘以某个因子，比如 3，可以通过将结果除以 3（或者乘以 1/3）来恢复。</p>
+</div>
+<input class="tab-input" id="tab-set--10-input--2" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--2">英文</label><div class="tab-content docutils container">
+<p>This is one of the most frequently used terms in this documentation. A <strong>coordinate</strong> generally means a pair of numbers <code class="xref any docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> referring to some location, like a corner of a rectangle (<a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>), a <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> and so forth. The two values usually are floats, but there a objects like images which only allow them to be integers.</p>
+<p>To actually <em>find</em> a coordinate’s location, we also need to know the <em>reference</em> point for <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> - in other words, we must know where location <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> is positioned. Once <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> (the “origin”) is known, we speak of a “coordinate system”.</p>
+<p>Several coordinate systems exist in document processing. For instance, the coordinate systems of a PDF page and the image created from it are <strong>different</strong>. We therefore need ways to <em>transform</em> coordinates from one system to another (and also back occasionally). This is the task of a <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>. It is a mathematical function which works much like a factor that can be “multiplied” with a point or rectangle to give us the corresponding point / rectangle in another coordinate system. The inverse of a transformation matrix can be used to revert the transformation. Much like multiplying by some factor, say 3, can be reverted by dividing the result by 3 (or multiplying it with 1/3).</p>
+</div>
+</div>
+<section id="id12">
+<h3>坐标和图像<a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
+<p>Coordinates and Images</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--11-input--1" name="tab-set--11" type="radio"><label class="tab-label" for="tab-set--11-input--1">中文</label><div class="tab-content docutils container">
+<p>图像有一个整数坐标系。原点 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> 位于左上角。 <code class="docutils literal notranslate"><span class="pre">x</span></code> 值必须在 <code class="xref any docutils literal notranslate"><span class="pre">range(width)</span></code> 范围内，<code class="docutils literal notranslate"><span class="pre">y</span></code> 值必须在 <code class="xref any docutils literal notranslate"><span class="pre">range(height)</span></code> 范围内。因此， <code class="docutils literal notranslate"><span class="pre">y</span></code> 值 <em>向下</em> 增加。对于每个图像，只有一个 <strong>有限数量</strong> 的坐标，即 <code class="xref any docutils literal notranslate"><span class="pre">width</span> <span class="pre">*</span> <span class="pre">height</span></code>。图像中的位置也被称为“像素”。</p>
+<ul class="simple">
+<li><p>图像的 <strong>实际大小</strong> （例如打印时的厘米或英寸尺寸）取决于额外的信息：即“分辨率”。分辨率通常以 <strong>DPI</strong> （每英寸点数，或每英寸像素）来衡量。为了找到某个图像的打印尺寸，我们必须将其宽度和高度分别除以相应的 DPI 值（宽度和高度可能有不同的 DPI 值），从而得到相应的英寸数。</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--11-input--2" name="tab-set--11" type="radio"><label class="tab-label" for="tab-set--11-input--2">英文</label><div class="tab-content docutils container">
+<p>Images have a coordinate system with integer coordinates. Origin <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> is the top-left point. <code class="docutils literal notranslate"><span class="pre">x</span></code> values must be in <code class="xref any docutils literal notranslate"><span class="pre">range(width)</span></code>, and <code class="docutils literal notranslate"><span class="pre">y</span></code> values in <code class="xref any docutils literal notranslate"><span class="pre">range(height)</span></code>. Therefore, <code class="docutils literal notranslate"><span class="pre">y</span></code> values <em>increase</em> if we go <em>downwards</em>. For every image, there is only a <strong>finite number</strong> of coordinates, namely <code class="xref any docutils literal notranslate"><span class="pre">width</span> <span class="pre">*</span> <span class="pre">height</span></code>. A location in an image is also called a “pixel”.</p>
+<ul class="simple">
+<li><p>How <strong>large</strong> an image will be (in centimeters or inches) when e.g. printed, depends on additional information: the “resolution”. This is measured in <strong>DPI</strong> (dots per inch, or pixels per inch). To find the printed size of some image, we therefore must divide its width and its height by the corresponding DPI values (there may separate ones for width and for height) and will get the respective number of inches.</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="y">
+<h3>原点、点大小和 Y 轴<a class="headerlink" href="#y" title="此标题的永久链接">#</a></h3>
+<p>Origin Point, Point Size and Y-Axis</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--12-input--1" name="tab-set--12" type="radio"><label class="tab-label" for="tab-set--12-input--1">中文</label><div class="tab-content docutils container">
+<p>在 <strong>PDF</strong> 中，页面的原点 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> 位于其 <strong>底部左侧</strong> 。在 <strong>MuPDF</strong> 中，页面的原点 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> 位于其 <strong>顶部左侧</strong> 。</p>
+<img alt="_images/img-coordinate-space.png" src="_images/img-coordinate-space.png" />
+<p>坐标是浮动数，单位为 <strong>点</strong> ，其中：</p>
+<ul class="simple">
+<li><p><strong>1 点等于 1/72 英寸</strong>。</p></li>
+</ul>
+<p>典型的文档页面尺寸包括 <strong>ISO A4</strong> 和 <strong>Letter</strong>。一个 <strong>Letter</strong> 页面尺寸为 <strong>8.5 x 11 英寸</strong>，对应 <strong>612 x 792 点</strong>。在 <strong>PDF</strong> 坐标系统中， <strong>Letter</strong> 页面的左上角坐标是 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">792)</span></code>，因为 <strong>y 轴向上</strong>。因此我们知道，在 <strong>MuPDF</strong> 坐标系统中，右下角的坐标是 <code class="xref any docutils literal notranslate"><span class="pre">(612,</span> <span class="pre">792)</span></code> （而在 <strong>PDF</strong> 中，此坐标则为 <code class="xref any docutils literal notranslate"><span class="pre">(612,</span> <span class="pre">0)</span></code>）。</p>
+<ul>
+<li><p>理论上， <strong>PDF</strong> 页面上有 <strong>无数个</strong> 坐标位置。然而，实际中最多只需精确到小数点后五位即可获得合理的精度。</p></li>
+<li><p>在 <strong>MuPDF</strong> 中，支持多种文档格式—— <strong>PDF</strong> 只是其中的 <strong>一个</strong>。图像也被视为文档格式（通常只包含一个页面）。这也是 <strong>MuPDF</strong> 使用坐标系统，其中原点 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> 是任何文档页面的 <strong>顶部左侧</strong> 的原因之一。 <strong>y 轴向下</strong> ，这和图像一样。无论如何， <strong>MuPDF</strong> 中的坐标都是浮动数，与 <strong>PDF</strong> 中一致。</p></li>
+<li><p>例如，在 <strong>MuPDF</strong> （因此也是 <strong>PyMuPDF</strong>）中， <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">0,</span> <span class="pre">100,</span> <span class="pre">100)</span></code> 是一个边长为 100 点的正方形（即 1.39 英寸或 3.53 厘米）。其左上角是原点。为了在 <strong>PDF</strong> 和 <strong>MuPDF</strong> 之间转换坐标系统，每个 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 对象都有一个 <a class="reference internal" href="page.html#Page.transformation_matrix" title="Page.transformation_matrix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.transformation_matrix</span></code></a>。它的逆矩阵可以用来计算矩形的 PDF 坐标。通过这种方式，我们可以方便地发现， <strong>MuPDF</strong> 中的 <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">0,</span> <span class="pre">100,</span> <span class="pre">100)</span></code> 与 <strong>PDF</strong> 中的 <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">692,</span> <span class="pre">100,</span> <span class="pre">792)</span></code> 是相同的。以下是代码示例：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">612</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">792</span><span class="p">)</span>  <span class="c1"># 创建新的 Letter 页面</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ptm</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">transformation_matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># ptm 的逆矩阵是 ~ptm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="o">~</span><span class="n">ptm</span>
+<span class="go">Rect(0.0, 692.0, 100.0, 792.0)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--12-input--2" name="tab-set--12" type="radio"><label class="tab-label" for="tab-set--12-input--2">英文</label><div class="tab-content docutils container">
+<p>In <strong>PDF</strong>, the origin <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> of a page is located at its <strong>bottom-left point</strong>. In <strong>MuPDF</strong>, the origin <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> of a page is located at its <strong>top-left point</strong>.</p>
+<img alt="_images/img-coordinate-space.png" src="_images/img-coordinate-space.png" />
+<p>Coordinates are float numbers and measured in <strong>points</strong>, where:</p>
+<ul class="simple">
+<li><p><strong>one point equals 1/72 inches</strong>.</p></li>
+</ul>
+<p>Typical document page sizes are <strong>ISO A4</strong> and <strong>Letter</strong>. A <strong>Letter</strong> page has a size of <strong>8.5 x 11 inches</strong>, corresponding to <strong>612 x 792 points</strong>. In the <strong>PDF</strong> coordinate system, the top-left point of a <strong>Letter</strong> page hence has the coordinate <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">792)</span></code> as <strong>the y-axis points upwards</strong>. Now we know our document size the <strong>MuPDF</strong> coordinate system for the bottom right would be coordinate <code class="xref any docutils literal notranslate"><span class="pre">(612,</span> <span class="pre">792)</span></code> (and for <strong>PDF</strong> this coordinate would then be <code class="xref any docutils literal notranslate"><span class="pre">(612,0)</span></code>).</p>
+<ul>
+<li><p>Theoretically, there are <strong>infinitely many</strong> coordinate positions on a <strong>PDF</strong> page. In practice however, at most the first 5 decimal places are sufficient for a reasonable precision.</p></li>
+<li><p>In <strong>MuPDF</strong>, multiple document formats are supported - <strong>PDF</strong> just being one among <strong>over a dozen others</strong>. Images are also supported as documents in <strong>MuPDF</strong> (therefore having one page usually). This is one of the reasons why <strong>MuPDF</strong> uses a coordinate system with the origin <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> being the <strong>top-left</strong> point of any document page. <strong>The y-axis points downwards</strong>, like with images. Coordinates in <strong>MuPDF</strong> in any case are floats, like in <strong>PDF</strong>.</p></li>
+<li><p>A rectangle <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">0,</span> <span class="pre">100,</span> <span class="pre">100)</span></code> for instance in <strong>MuPDF</strong> (and thus <strong>PyMuPDF</strong>) therefore is a square with edges of length 100 points (= 1.39 inches or 3.53 centimeters). Its top-left corner is the origin. To switch between the two coordinate systems <strong>PDF</strong> to <strong>MuPDF</strong>, every <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> object has a <a class="reference internal" href="page.html#Page.transformation_matrix" title="Page.transformation_matrix"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.transformation_matrix</span></code></a>. Its inverse can be used to compute a rectangle’s PDF coordinates. In this way we can conveniently find that <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">0,</span> <span class="pre">100,</span> <span class="pre">100)</span></code> in <strong>MuPDF</strong> is the same as <code class="xref any docutils literal notranslate"><span class="pre">Rect(0,</span> <span class="pre">692,</span> <span class="pre">100,</span> <span class="pre">792)</span></code> in <strong>PDF</strong>. See this code snippet:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">new_page</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">612</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">792</span><span class="p">)</span>  <span class="c1"># make new Letter page</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ptm</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">transformation_matrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the inverse matrix of ptm is ~ptm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="o">~</span><span class="n">ptm</span>
+<span class="go">Rect(0.0, 692.0, 100.0, 792.0)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">1</a><span class="fn-bracket">]</span></span>
+<p>MuPDF supports “deep-copying” objects between PDF documents. To avoid duplicate data in the target, it uses so-called “graftmaps”, like a form of scratchpad: for each object to be copied, its <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number is looked up in the graftmap. If found, copying is skipped. Otherwise, the new <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> is recorded and the copy takes place. PyMuPDF makes use of this technique in two places so far: <a class="reference internal" href="document.html#Document.insert_pdf" title="Document.insert_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.insert_pdf()</span></code></a> and <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>. This process is fast and very efficient, because it prevents multiple copies of typically large and frequently referenced data, like images and fonts. However, you may still want to consider using garbage collection (option 4) in any of the following cases:</p>
+<ol class="arabic simple">
+<li><p>The target PDF is not new / empty: grafting does not check for resources that already existed (e.g. images, fonts) in the target document before opening it.</p></li>
+<li><p>Using <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> for more than one source document: each grafting occurs <strong>within one source</strong> PDF only, not across multiple. So if e.g. the same image exists in pages from different source PDFs, then this will not be detected until garbage collection.</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">2</a><span class="fn-bracket">]</span></span>
+<p>MuPDF 支持在 PDF 文档之间“深度复制”对象。为了避免在目标文档中重复数据，它使用所谓的“嫁接图”（graftmaps），类似于一种便签本：对于每个要复制的对象，会在嫁接图中查找其 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 编号。如果找到，则跳过复制。否则，会记录新的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 并进行复制。PyMuPDF 到目前为止在两个地方使用了这种技术： <a class="reference internal" href="document.html#Document.insert_pdf" title="Document.insert_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.insert_pdf()</span></code></a> 和 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>。这一过程快速且高效，因为它可以防止对通常较大且经常引用的数据（如图像和字体）进行多次复制。然而，您仍然可能需要考虑在以下情况下使用垃圾回收（选项 4）：</p>
+<ol class="arabic simple">
+<li><p>目标 PDF 不是新建的/空的：嫁接不会检查目标文档中在打开之前已经存在的资源（如图像、字体）。</p></li>
+<li><p>对于多个源文档使用 <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a>：每次嫁接仅在 <strong>单个源</strong> PDF 中进行，而不是跨多个源文档。所以如果相同的图像出现在来自不同源 PDF 的页面中，则直到垃圾回收时才会检测到这一点。</p></li>
+</ol>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="app4.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">附录 4：性能比较方法</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="app2.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">附录 2：嵌入式文件的注意事项</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">附录 3：各类技术信息</a><ul>
+<li><a class="reference internal" href="#imagetransformation">图像转换矩阵</a></li>
+<li><a class="reference internal" href="#pdf-base-14">PDF Base 14 字体</a></li>
+<li><a class="reference internal" href="#adobe-pdf">Adobe PDF 参考</a></li>
+<li><a class="reference internal" href="#pymupdf-python">在 PyMuPDF 中使用 Python 序列作为参数</a></li>
+<li><a class="reference internal" href="#pymupdf">确保 PyMuPDF 中重要对象的一致性</a></li>
+<li><a class="reference internal" href="#page-show-pdf-page">方法设计 <code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a><ul>
+<li><a class="reference internal" href="#id5">目的和功能</a></li>
+<li><a class="reference internal" href="#id6">技术实施</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#redirectmessages">诊断</a><ul>
+<li><a class="reference internal" href="#messages"><cite>PyMuPDF</cite> 消息</a></li>
+<li><a class="reference internal" href="#mupdf">MuPDF 错误和警告</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coordinates">坐标</a><ul>
+<li><a class="reference internal" href="#id12">坐标和图像</a></li>
+<li><a class="reference internal" href="#y">原点、点大小和 Y 轴</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

@@ -1,0 +1,808 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Rect" href="rect.html" /><link rel="prev" title="Point" href="point.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Quad - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="quad">
+<span id="id1"></span><h1>Quad<a class="headerlink" href="#quad" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>表示平面中的四边形（也叫“矩形”或“四边形”），由四个 <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> 对象组成，分别是 ul、ur、ll、lr（分别称为左上角、右上角、左下角、右下角）。</p>
+<p>四边形可以 <strong>通过</strong> 文本搜索方法获得（如： <a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a>），并且 <strong>用于</strong> 定义文本标记注释（参见例如： <a class="reference internal" href="page.html#Page.add_squiggly_annot" title="Page.add_squiggly_annot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.add_squiggly_annot()</span></code></a> 等），以及在多个绘图方法中使用（如： <a class="reference internal" href="page.html#Page.draw_quad" title="Page.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.draw_quad()</span></code></a> / <a class="reference internal" href="shape.html#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a> ， <a class="reference internal" href="page.html#Page.draw_oval" title="Page.draw_oval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.draw_oval()</span></code></a> / <a class="reference internal" href="shape.html#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a>）。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>如果矩形的角点经过 <strong>旋转</strong> 、 <strong>缩放</strong> 或 <strong>平移</strong> 的 <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a> 变换，则结果四边形是 <strong>矩形</strong> （即与矩形全等），即所有角点仍然形成 90 度角。属性 <a class="reference internal" href="#Quad.is_rectangular" title="Quad.is_rectangular"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_rectangular</span></code></a> 用于检查四边形是否可以视为这种变换的结果。</p></li>
+<li><p>不是所有矩阵都适用：例如，剪切矩阵会产生平行四边形，而不可逆矩阵则会生成“退化”四边形，如三角形或直线。</p></li>
+<li><p>属性 <a class="reference internal" href="#Quad.rect" title="Quad.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.rect</span></code></a> 获取最小的包含矩形。反之，矩形现在具有属性 <code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.quad</span></code>，即 <a class="reference internal" href="irect.html#IRect.quad" title="IRect.quad"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IRect.quad</span></code></a>，用于获取其相应的四边形版本。</p></li>
+</ul>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>简短描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.transform" title="Quad.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Quad.transform()</span></code></a></p></td>
+<td><p>使用矩阵进行变换</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.morph" title="Quad.morph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Quad.morph()</span></code></a></p></td>
+<td><p>使用点和矩阵进行变换</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.ul" title="Quad.ul"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ul</span></code></a></p></td>
+<td><p>左上点</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.ur" title="Quad.ur"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ur</span></code></a></p></td>
+<td><p>右上点</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.ll" title="Quad.ll"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ll</span></code></a></p></td>
+<td><p>左下点</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.lr" title="Quad.lr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.lr</span></code></a></p></td>
+<td><p>右下点</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.is_convex" title="Quad.is_convex"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_convex</span></code></a></p></td>
+<td><p>如果四边形是凸集，则为真</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.is_empty" title="Quad.is_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_empty</span></code></a></p></td>
+<td><p>如果四边形为空集，则为真</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.is_rectangular" title="Quad.is_rectangular"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_rectangular</span></code></a></p></td>
+<td><p>如果四边形全等于矩形，则为真</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.rect" title="Quad.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.rect</span></code></a></p></td>
+<td><p>包含四边形的最小 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.width" title="Quad.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.width</span></code></a></p></td>
+<td><p>最长宽度值</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.height" title="Quad.height"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.height</span></code></a></p></td>
+<td><p>最长高度值</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类 API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Quad">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Quad</span></span><a class="headerlink" href="#Quad" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Quad.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quad.__init__" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ur</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="永久链接至目标">#</a></dt>
+<dd><p>重载构造函数：”ul”、”ur”、”ll”、”lr” 代表 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象（四个角点），”sequence” 是包含四个 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象的 Python 序列。</p>
+<p>如果指定了 “quad”，构造函数会创建一个 <strong>新的副本</strong>。</p>
+<p>如果没有参数，则会创建一个由 4 个 <em>Point(0, 0)</em> 组成的四边形。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quad.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quad.transform" title="永久链接至目标">#</a></dt>
+<dd><p>通过矩阵变换修改四边形，变换其每个角点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>matrix</strong> (<em>matrix_like</em>) – 要应用的矩阵。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Quad.morph">
+<span class="sig-name descname"><span class="pre">morph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fixpoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Quad.morph" title="永久链接至目标">#</a></dt>
+<dd><p><em>(新版本 1.17.0 引入)</em> 使用类似矩阵的对象，通过指定固定点对四边形进行变换。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fixpoint</strong> (<em>point_like</em>) – 固定点。</p></li>
+<li><p><strong>matrix</strong> (<em>matrix_like</em>) – 要应用的矩阵。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个新的四边形（如果是无限四边形则不进行操作）。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#Quad.rect" title="永久链接至目标">#</a></dt>
+<dd><p>包含四边形的最小矩形，由下图中的蓝色区域表示。</p>
+<img alt="_images/img-quads.jpg" src="_images/img-quads.jpg" />
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.ul">
+<span class="sig-name descname"><span class="pre">ul</span></span><a class="headerlink" href="#Quad.ul" title="永久链接至目标">#</a></dt>
+<dd><p>左上点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.ur">
+<span class="sig-name descname"><span class="pre">ur</span></span><a class="headerlink" href="#Quad.ur" title="永久链接至目标">#</a></dt>
+<dd><p>右上点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.ll">
+<span class="sig-name descname"><span class="pre">ll</span></span><a class="headerlink" href="#Quad.ll" title="永久链接至目标">#</a></dt>
+<dd><p>左下点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.lr">
+<span class="sig-name descname"><span class="pre">lr</span></span><a class="headerlink" href="#Quad.lr" title="永久链接至目标">#</a></dt>
+<dd><p>右下点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.is_convex">
+<span class="sig-name descname"><span class="pre">is_convex</span></span><a class="headerlink" href="#Quad.is_convex" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新版本 1.16.1 引入</p></li>
+</ul>
+<p>检查四边形的任意两点之间的连接线上的所有点是否也属于四边形。</p>
+<blockquote>
+<div><a class="reference internal image-reference" href="_images/img-convexity.png"><img alt="_images/img-convexity.png" src="_images/img-convexity.png" style="width: 762.0px; height: 185.4px;" /></a>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><a class="headerlink" href="#Quad.is_empty" title="永久链接至目标">#</a></dt>
+<dd><p>如果包围的区域为零，则为真，这意味着至少三个角点在同一条线上。如果为假，四边形可能仍然是退化的，或者根本不像四边形（如三角形、平行四边形、梯形等）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.is_rectangular">
+<span class="sig-name descname"><span class="pre">is_rectangular</span></span><a class="headerlink" href="#Quad.is_rectangular" title="永久链接至目标">#</a></dt>
+<dd><p>如果所有角度为 90 度，则为真。这意味着四边形是 <strong>凸的且不为空</strong>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.width">
+<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#Quad.width" title="永久链接至目标">#</a></dt>
+<dd><p>上边和下边的最大长度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Quad.height">
+<span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#Quad.height" title="永久链接至目标">#</a></dt>
+<dd><p>左边和右边的最大长度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Represents a four-sided mathematical shape (also called “quadrilateral” or “tetragon”) in the plane, defined as a sequence of four <a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a> objects ul, ur, ll, lr (conveniently called upper left, upper right, lower left, lower right).</p>
+<p>Quads can <strong>be obtained</strong> as results of text search methods (<a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a>), and they <strong>are used</strong> to define text marker annotations (see e.g. <a class="reference internal" href="page.html#Page.add_squiggly_annot" title="Page.add_squiggly_annot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.add_squiggly_annot()</span></code></a> and friends), and in several draw methods (like <a class="reference internal" href="page.html#Page.draw_quad" title="Page.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.draw_quad()</span></code></a> / <a class="reference internal" href="shape.html#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a>, <a class="reference internal" href="page.html#Page.draw_oval" title="Page.draw_oval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.draw_oval()</span></code></a>/ <a class="reference internal" href="shape.html#Shape.draw_quad" title="Shape.draw_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Shape.draw_quad()</span></code></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>If the corners of a rectangle are transformed with a <strong>rotation</strong>, <strong>scale</strong> or <strong>translation</strong> <a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>, then the resulting quad is <strong>rectangular</strong> (= congruent to a rectangle), i.e. all of its corners again enclose angles of 90 degrees. Property <a class="reference internal" href="#Quad.is_rectangular" title="Quad.is_rectangular"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_rectangular</span></code></a> checks whether a quad can be thought of being the result of such an operation.</p></li>
+<li><p>This is not true for all matrices: e.g. shear matrices produce parallelograms, and non-invertible matrices deliver “degenerate” tetragons like triangles or lines.</p></li>
+<li><p>Attribute <a class="reference internal" href="#Quad.rect" title="Quad.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.rect</span></code></a> obtains the enveloping rectangle. Vice versa, rectangles now have attributes <code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.quad</span></code>, resp. <a class="reference internal" href="irect.html#IRect.quad" title="IRect.quad"><code class="xref py py-attr docutils literal notranslate"><span class="pre">IRect.quad</span></code></a> to obtain their respective tetragon versions.</p></li>
+</ul>
+</div>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Methods / Attributes</strong></p></th>
+<th class="head"><p><strong>Short Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.transform" title="Quad.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Quad.transform()</span></code></a></p></td>
+<td><p>transform with a matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.morph" title="Quad.morph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Quad.morph()</span></code></a></p></td>
+<td><p>transform with a point and matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.ul" title="Quad.ul"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ul</span></code></a></p></td>
+<td><p>upper left point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.ur" title="Quad.ur"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ur</span></code></a></p></td>
+<td><p>upper right point</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.ll" title="Quad.ll"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.ll</span></code></a></p></td>
+<td><p>lower left point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.lr" title="Quad.lr"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.lr</span></code></a></p></td>
+<td><p>lower right point</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.is_convex" title="Quad.is_convex"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_convex</span></code></a></p></td>
+<td><p>true if quad is a convex set</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.is_empty" title="Quad.is_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_empty</span></code></a></p></td>
+<td><p>true if quad is an empty set</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.is_rectangular" title="Quad.is_rectangular"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.is_rectangular</span></code></a></p></td>
+<td><p>true if quad is congruent to a rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.rect" title="Quad.rect"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.rect</span></code></a></p></td>
+<td><p>smallest containing <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Quad.width" title="Quad.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.width</span></code></a></p></td>
+<td><p>the longest width value</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Quad.height" title="Quad.height"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Quad.height</span></code></a></p></td>
+<td><p>the longest height value</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="id4">
+<h2>评论<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>Remark</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>此类遵循序列协议，因此也可以通过其索引来处理组件。另请参阅 <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a>。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>This class adheres to the sequence protocol, so components can be dealt with via their indices, too. Also refer to <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a>.</p>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>代数和包含检查<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Algebra and Containment Checks</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>从 v1.19.6 开始，四边形（quads）可以像其他几何对象一样用于代数表达式 – 相关的限制已被取消。特别地，现在所有以下的包含关系检查组合都可以使用：</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">{Point</span> <span class="pre">|</span> <span class="pre">IRect</span> <span class="pre">|</span> <span class="pre">Rect</span> <span class="pre">|</span> <span class="pre">Quad}</span> <span class="pre">in</span> <span class="pre">{IRect</span> <span class="pre">|</span> <span class="pre">Rect</span> <span class="pre">|</span> <span class="pre">Quad}</span></code></p>
+<p>请注意以下有趣的细节：</p>
+<p>对于矩形，只有其左上角的点属于它。自 v1.19.0 起，矩形被定义为“开区间”，即其底边和右边不属于矩形 — 包括相应的角点。但对于四边形，概念中没有类似于“开区间”的定义，因此我们有以下令人惊讶的结论：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">br</span> <span class="ow">in</span> <span class="n">rect</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 但：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">br</span> <span class="ow">in</span> <span class="n">rect</span><span class="o">.</span><span class="n">quad</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>Starting with v1.19.6, quads can be used in algebraic expressions like the other geometry object – the respective restrictions have been lifted. In particular, all the following combinations of containment checking are now possible:</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">{Point</span> <span class="pre">|</span> <span class="pre">IRect</span> <span class="pre">|</span> <span class="pre">Rect</span> <span class="pre">|</span> <span class="pre">Quad}</span> <span class="pre">in</span> <span class="pre">{IRect</span> <span class="pre">|</span> <span class="pre">Rect</span> <span class="pre">|</span> <span class="pre">Quad}</span></code></p>
+<p>Please note the following interesting detail:</p>
+<p>For a rectangle, only its top-left point belongs to it. Since v1.19.0, rectangles are defined to be “open”, such that its bottom and its right edge do not belong to it – including the respective corners. But for quads there exists no such notion like “openness”, so we have the following somewhat surprising implication:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">br</span> <span class="ow">in</span> <span class="n">rect</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># but:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rect</span><span class="o">.</span><span class="n">br</span> <span class="ow">in</span> <span class="n">rect</span><span class="o">.</span><span class="n">quad</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="rect.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Rect</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="point.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Point</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Quad</a><ul>
+<li><a class="reference internal" href="#Quad"><code class="docutils literal notranslate"><span class="pre">Quad</span></code></a><ul>
+<li><a class="reference internal" href="#Quad.__init__"><code class="docutils literal notranslate"><span class="pre">Quad.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Quad.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Quad.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Quad.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#Quad.transform"><code class="docutils literal notranslate"><span class="pre">Quad.transform()</span></code></a></li>
+<li><a class="reference internal" href="#Quad.morph"><code class="docutils literal notranslate"><span class="pre">Quad.morph()</span></code></a></li>
+<li><a class="reference internal" href="#Quad.rect"><code class="docutils literal notranslate"><span class="pre">Quad.rect</span></code></a></li>
+<li><a class="reference internal" href="#Quad.ul"><code class="docutils literal notranslate"><span class="pre">Quad.ul</span></code></a></li>
+<li><a class="reference internal" href="#Quad.ur"><code class="docutils literal notranslate"><span class="pre">Quad.ur</span></code></a></li>
+<li><a class="reference internal" href="#Quad.ll"><code class="docutils literal notranslate"><span class="pre">Quad.ll</span></code></a></li>
+<li><a class="reference internal" href="#Quad.lr"><code class="docutils literal notranslate"><span class="pre">Quad.lr</span></code></a></li>
+<li><a class="reference internal" href="#Quad.is_convex"><code class="docutils literal notranslate"><span class="pre">Quad.is_convex</span></code></a></li>
+<li><a class="reference internal" href="#Quad.is_empty"><code class="docutils literal notranslate"><span class="pre">Quad.is_empty</span></code></a></li>
+<li><a class="reference internal" href="#Quad.is_rectangular"><code class="docutils literal notranslate"><span class="pre">Quad.is_rectangular</span></code></a></li>
+<li><a class="reference internal" href="#Quad.width"><code class="docutils literal notranslate"><span class="pre">Quad.width</span></code></a></li>
+<li><a class="reference internal" href="#Quad.height"><code class="docutils literal notranslate"><span class="pre">Quad.height</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">评论</a></li>
+<li><a class="reference internal" href="#id5">代数和包含检查</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

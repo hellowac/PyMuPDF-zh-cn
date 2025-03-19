@@ -1,0 +1,989 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Shape" href="shape.html" /><link rel="prev" title="Quad" href="quad.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Rect - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="rect">
+<span id="id1"></span><h1>Rect<a class="headerlink" href="#rect" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p><em>Rect</em> 表示由四个浮动点数 x0, y0, x1, y1 定义的矩形。它们被视为两个对角线上的点的坐标。前两个数字被视为“左上”角 P<sub>(x0,y0)</sub>，而 P<sub>(x1,y1)</sub> 为“右下”角。然而，这两个属性不一定与它们直观的含义相符 —— 请继续阅读。</p>
+<p>以下说明对于 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> 对象同样适用：</p>
+<ul class="simple">
+<li><p>在 (Py-) MuPDF <strong>(和 PDF)</strong> 的意义上，矩形总是具有与 x 轴和 y 轴平行的边界。一般的正交四边形 <strong>不是矩形</strong> —— 这与数学定义不同。</p></li>
+<li><p>构造点可以（几乎！——见下文）位于平面中的任何位置 —— 它们不必不同，例如“左上”角也不一定是几何学上的“西北”点。</p></li>
+<li><p>单位为点，其中 72 个点等于 1 英寸。</p></li>
+<li><dl class="simple">
+<dt>对于任何给定的四个数字，可以通过四种不同的方式定义几何上“相同”的矩形：</dt><dd><ol class="arabic simple">
+<li><p>Rect(P<sub>(x0,y0)</sub>, P<sub>(x1,y1)</sub>)</p></li>
+<li><p>Rect(P<sub>(x1,y1)</sub>, P<sub>(x0,y0)</sub>)</p></li>
+<li><p>Rect(P<sub>(x0,y1)</sub>, P<sub>(x1,y0)</sub>)</p></li>
+<li><p>Rect(P<sub>(x1,y0)</sub>, P<sub>(x0,y1)</sub>)</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>(在 v1.19.0 版本中更改)</strong> 因此，做出如下分类：</p>
+<ul class="simple">
+<li><p>如果 <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&lt;=</span> <span class="pre">x1</span></code> 且 <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&lt;=</span> <span class="pre">y1</span></code>，则矩形称为 <strong>有效</strong> （即右下角点位于左上角点的“东南”方向），否则为 <strong>无效</strong> 。在上述四种方式中， <strong>仅第一种</strong> 是有效的。请注意，在 MuPDF 的坐标系统中，y 轴是从 <strong>上到下</strong> 定向的。无效矩形在早期版本中称为无限矩形。</p></li>
+<li><p>如果 <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&gt;=</span> <span class="pre">x1</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&gt;=</span> <span class="pre">y1</span></code>，则矩形称为 <strong>空矩形</strong>。这意味着 <strong>无效矩形始终为空矩形</strong>。并且，如果 <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&gt;</span> <span class="pre">x1</span></code> （或 <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&gt;</span> <span class="pre">y1</span></code> ），则 <a class="reference internal" href="irect.html#IRect.width" title="IRect.width"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> （或 <a class="reference internal" href="irect.html#IRect.height" title="IRect.height"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">height</span></code></a> ） <strong>设置为零</strong>。在早期版本中，矩形仅在宽度或高度为零时才为空。</p></li>
+<li><p>矩形坐标 <strong>不能超出</strong> 数值范围 <code class="xref any docutils literal notranslate"><span class="pre">FZ_MIN_INF_RECT</span> <span class="pre">=</span> <span class="pre">-2147483648</span></code> 至 <code class="xref any docutils literal notranslate"><span class="pre">FZ_MAX_INF_RECT</span> <span class="pre">=</span> <span class="pre">2147483520</span></code>。这两个值被选择是因为它们是能够通过 C 浮动转换来存活的最小/最大的 32 位整数。在早期版本中，坐标值没有限制。</p></li>
+<li><p>有 <strong>唯一的一个“无限”矩形</strong>，由 <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">=</span> <span class="pre">y0</span> <span class="pre">=</span> <span class="pre">FZ_MIN_INF_RECT</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">x1</span> <span class="pre">=</span> <span class="pre">y1</span> <span class="pre">=</span> <span class="pre">FZ_MAX_INF_RECT</span></code> 定义。它包含所有其他矩形。它主要用于技术目的 —— 例如，当一个函数调用应忽略一个形式上要求的矩形参数时。这个矩形不是空的。</p></li>
+<li><p><strong>矩形是（半）开区间的</strong>：右边和底边（包括相应的角点）不被认为是矩形的一部分。这意味着，只有左上角 <code class="xref any docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">y0)</span></code> 能属于矩形 —— 其他三个角点永远不会属于矩形。空矩形根本不包含任何角点。</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/img-rect-contains.png"><img alt="_images/img-rect-contains.png" class="align-center" src="_images/img-rect-contains.png" style="width: 357.9px; height: 290.09999999999997px;" /></a>
+<ul class="simple">
+<li><p>以下是更改概览。</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>概念</p></th>
+<th class="head"><p>版本 &lt; 1.19.0</p></th>
+<th class="head"><p>版本 1.19.*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>空矩形</p></td>
+<td><p>x0 = x1 或 y0 = y1</p></td>
+<td><p>x0 &gt;= x1 或 y0 &gt;= y1 – 包括无效矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p>有效矩形</p></td>
+<td><p>不适用</p></td>
+<td><p>x0 &lt;= x1 且 y0 &lt;= y1</p></td>
+</tr>
+<tr class="row-even"><td><p>无限矩形</p></td>
+<td><p>所有 x0 &gt; x1 或 y1 &gt; y0 的矩形</p></td>
+<td><p><strong>仅有一个无限矩形 / irect!</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>坐标值</p></td>
+<td><p>所有数字</p></td>
+<td><p><code class="xref any docutils literal notranslate"><span class="pre">FZ_MIN_INF_RECT</span> <span class="pre">&lt;=</span> <span class="pre">number</span> <span class="pre">&lt;=</span> <span class="pre">FZ_MAX_INF_RECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>边界, 角点</p></td>
+<td><p>是矩形的一部分</p></td>
+<td><p>右边和底边的角点和边界 <strong>不在矩形内</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>有新的顶级函数定义了无限矩形和标准空矩形以及四边形，请参见 <a class="reference internal" href="functions.html#INFINITE_RECT" title="INFINITE_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_RECT()</span></code></a> 及其相关函数。</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>简要描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.contains" title="Rect.contains"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.contains()</span></code></a></p></td>
+<td><p>检查点或矩形是否包含在矩形内</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.get_area()</span></code></p></td>
+<td><p>计算矩形面积</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.include_point()</span></code></p></td>
+<td><p>扩展矩形以包含一个点</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.include_rect" title="Rect.include_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.include_rect()</span></code></a></p></td>
+<td><p>扩展矩形以包含另一个矩形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.intersect" title="Rect.intersect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.intersect()</span></code></a></p></td>
+<td><p>计算与另一个矩形的公共部分</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.intersects()</span></code></p></td>
+<td><p>检查是否存在非空交集</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.morph()</span></code></p></td>
+<td><p>使用点和矩阵变换矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.torect()</span></code></p></td>
+<td><p>转换为另一个矩形的矩阵</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.norm" title="Rect.norm"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.norm()</span></code></a></p></td>
+<td><p>欧几里得范数</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.normalize()</span></code></p></td>
+<td><p>使矩形有效</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.round" title="Rect.round"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.round()</span></code></a></p></td>
+<td><p>创建最小的 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> 包含矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.transform" title="Rect.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.transform()</span></code></a></p></td>
+<td><p>使用矩阵变换矩形</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.bottom_left</span></code></p></td>
+<td><p>左下角点，别名 <em>bl</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.bottom_right</span></code></p></td>
+<td><p>右下角点，别名 <em>br</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.height</span></code></p></td>
+<td><p>矩形高度</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.irect</span></code></p></td>
+<td><p>等于方法 <em>round()</em> 的结果</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.is_empty" title="Rect.is_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_empty</span></code></a></p></td>
+<td><p>矩形是否为空</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.is_valid" title="Rect.is_valid"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_valid</span></code></a></p></td>
+<td><p>矩形是否有效</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.is_infinite" title="Rect.is_infinite"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_infinite</span></code></a></p></td>
+<td><p>矩形是否是无限矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.top_left</span></code></p></td>
+<td><p>左上角点，别名 <em>tl</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.top_right</span></code></p></td>
+<td><p>右上角点，别名 <em>tr</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.quad</span></code></p></td>
+<td><p>由矩形角点构成的 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.width</span></code></p></td>
+<td><p>矩形宽度</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.x0</span></code></p></td>
+<td><p>左角点的 x 坐标</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.x1</span></code></p></td>
+<td><p>右角点的 x 坐标</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.y0</span></code></p></td>
+<td><p>上角点的 y 坐标</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.y1</span></code></p></td>
+<td><p>下角点的 y 坐标</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类 API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Rect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Rect</span></span><a class="headerlink" href="#Rect" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Rect.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Rect.__init__" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bottom_right</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rect</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id6" title="永久链接至目标">#</a></dt>
+<dd><p>重载构造函数：<em>top_left</em>、<em>bottom_right</em> 代表 <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a> 对象，”sequence” 是一个包含 4 个数字的 Python 序列类型（见 <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a>），”rect” 表示另一个 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 对象，而其他参数代表坐标。</p>
+<p>如果指定了 “rect”，则构造函数会创建它的 <strong>新副本</strong>。</p>
+<p>如果没有参数，则创建空矩形 <em>Rect(0.0, 0.0, 0.0, 0.0)</em>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Rect.round" title="永久链接至目标">#</a></dt>
+<dd><p>创建最小的包含 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a>。这 <strong>不是</strong> 简单地四舍五入矩形的边：左上角向上和向左四舍五入，而右下角向下和向右四舍五入。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">123.88</span><span class="p">,</span> <span class="mf">455.123456</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="go">IRect(0, -1, 124, 456)</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>如果矩形 <strong>为空</strong>，结果也为空。</p></li>
+<li><p><strong>可能的悖论：</strong> 即使矩形 <strong>不</strong> 为空，结果也可能为空！在这种情况下，结果显然不包含该矩形。因为 MuPDF 的算法允许有一个小的公差（1e-3）。示例：</p></li>
+</ol>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">100.001</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">is_empty</span>  <span class="c1"># 矩形 **不是** 空的</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>  <span class="c1"># 但是它的 irect 是空的！</span>
+<span class="go">pymupdf.IRect(100, 100, 200, 100)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">round</span><span class="p">()</span><span class="o">.</span><span class="n">is_empty</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Rect.transform" title="永久链接至目标">#</a></dt>
+<dd><p>使用矩阵变换矩形并 <strong>替换原始矩形</strong>。如果矩形为空或无限，则不进行任何操作。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>m</strong> (<a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>) – 变换矩阵。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Rect</em></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>包含变换后的矩形的最小矩形。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.intersect">
+<span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Rect.intersect" title="永久链接至目标">#</a></dt>
+<dd><p>计算当前矩形与另一个矩形 <code class="xref any docutils literal notranslate"><span class="pre">r</span></code> 的交集。如果没有交集，则返回空矩形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>r</strong> (<a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>) – 另一个矩形。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Rect</em></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>当前矩形与给定矩形的交集。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.include_rect">
+<span class="sig-name descname"><span class="pre">include_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Rect.include_rect" title="永久链接至目标">#</a></dt>
+<dd><p>扩展矩形以包含给定的矩形 <code class="xref any docutils literal notranslate"><span class="pre">r</span></code>，返回包含两个矩形的最小矩形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>r</strong> (<a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>) – 另一个矩形。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Rect</em></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>扩展后的矩形。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Rect.norm" title="永久链接至目标">#</a></dt>
+<dd><p>计算矩形的欧几里得范数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>float</em></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>欧几里得范数，即矩形的对角线长度。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.contains">
+<span class="sig-name descname"><span class="pre">contains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Rect.contains" title="永久链接至目标">#</a></dt>
+<dd><p>检查点 <code class="xref any docutils literal notranslate"><span class="pre">p</span></code> 是否包含在矩形内。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>p</strong> (<a class="reference internal" href="point.html#point"><span class="std std-ref">Point</span></a>) – 一个点。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>bool</em></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果点在矩形内，则返回 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，否则返回 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.is_infinite">
+<span class="sig-name descname"><span class="pre">is_infinite</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Rect.is_infinite" title="永久链接至目标">#</a></dt>
+<dd><p>检查矩形是否是“无限矩形”。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>bool</em></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果矩形是无限的，则返回 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，否则返回 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.is_empty">
+<span class="sig-name descname"><span class="pre">is_empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Rect.is_empty" title="永久链接至目标">#</a></dt>
+<dd><p>检查矩形是否为空。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>bool</em></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果矩形为空，则返回 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，否则返回 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Rect.is_valid">
+<span class="sig-name descname"><span class="pre">is_valid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Rect.is_valid" title="永久链接至目标">#</a></dt>
+<dd><p>检查矩形是否有效（即其左上角坐标小于右下角坐标）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>bool</em></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果矩形有效，则返回 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，否则返回 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p><em>Rect</em> represents a rectangle defined by four floating point numbers x0, y0, x1, y1. They are treated as being coordinates of two diagonally opposite points. The first two numbers are regarded as the “top left” corner P<sub>(x0,y0)</sub> and P<sub>(x1,y1)</sub> as the “bottom right” one. However, these two properties need not coincide with their intuitive meanings – read on.</p>
+<p>The following remarks are also valid for <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> objects:</p>
+<ul class="simple">
+<li><p>A rectangle in the sense of (Py-) MuPDF <strong>(and PDF)</strong> always has <strong>borders parallel to the x- resp. y-axis</strong>. A general orthogonal tetragon <strong>is not a rectangle</strong> – in contrast to the mathematical definition.</p></li>
+<li><p>The constructing points can be (almost! – see below) anywhere in the plane – they need not even be different, and e.g. “top left” need not be the geometrical “north-western” point.</p></li>
+<li><p>Units are in points, where 72 points is 1 inch.</p></li>
+<li><dl class="simple">
+<dt>For any given quadruple of numbers, the geometrically “same” rectangle can be defined in four different ways:</dt><dd><ol class="arabic simple">
+<li><p>Rect(P<sub>(x0,y0)</sub>, P<sub>(x1,y1)</sub>)</p></li>
+<li><p>Rect(P<sub>(x1,y1)</sub>, P<sub>(x0,y0)</sub>)</p></li>
+<li><p>Rect(P<sub>(x0,y1)</sub>, P<sub>(x1,y0)</sub>)</p></li>
+<li><p>Rect(P<sub>(x1,y0)</sub>, P<sub>(x0,y1)</sub>)</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>(Changed in v1.19.0)</strong> Hence some classification:</p>
+<ul class="simple">
+<li><p>A rectangle is called <strong>valid</strong> if <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&lt;=</span> <span class="pre">x1</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&lt;=</span> <span class="pre">y1</span></code> (i.e. the bottom right point is “south-eastern” to the top left one), otherwise <strong>invalid</strong>. Of the four alternatives above, <strong>only the first</strong> is valid. Please take into account, that in MuPDF’s coordinate system, the y-axis is oriented from <strong>top to bottom</strong>. Invalid rectangles have been called infinite in earlier versions.</p></li>
+<li><p>A rectangle is called <strong>empty</strong> if <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&gt;=</span> <span class="pre">x1</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&gt;=</span> <span class="pre">y1</span></code>. This implies, that <strong>invalid rectangles are also always empty.</strong> And <a class="reference internal" href="irect.html#IRect.width" title="IRect.width"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> (resp. <a class="reference internal" href="irect.html#IRect.height" title="IRect.height"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">height</span></code></a>) is <strong>set to zero</strong> if <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">&gt;</span> <span class="pre">x1</span></code> (resp. <code class="xref any docutils literal notranslate"><span class="pre">y0</span> <span class="pre">&gt;</span> <span class="pre">y1</span></code>). In previous versions, a rectangle was empty only if one of width or height was zero.</p></li>
+<li><p>Rectangle coordinates <strong>cannot be outside</strong> the number range from <code class="xref any docutils literal notranslate"><span class="pre">FZ_MIN_INF_RECT</span> <span class="pre">=</span> <span class="pre">-2147483648</span></code> to <code class="xref any docutils literal notranslate"><span class="pre">FZ_MAX_INF_RECT</span> <span class="pre">=</span> <span class="pre">2147483520</span></code>. Both values have been chosen, because they are the smallest / largest 32bit integers that survive C float conversion roundtrips. In previous versions there was no limit for coordinate values.</p></li>
+<li><p>There is <strong>exactly one “infinite” rectangle</strong>, defined by <code class="xref any docutils literal notranslate"><span class="pre">x0</span> <span class="pre">=</span> <span class="pre">y0</span> <span class="pre">=</span> <span class="pre">FZ_MIN_INF_RECT</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">x1</span> <span class="pre">=</span> <span class="pre">y1</span> <span class="pre">=</span> <span class="pre">FZ_MAX_INF_RECT</span></code>. It contains every other rectangle. It is mainly used for technical purposes – e.g. when a function call should ignore a formally required rectangle argument. This rectangle is not empty.</p></li>
+<li><p><strong>Rectangles are (semi-) open:</strong> The right and the bottom edges (including the resp. corners) are not considered part of the rectangle. This implies, that only the top-left corner <code class="xref any docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">y0)</span></code> can ever belong to the rectangle - the other three corners never do. An empty rectangle contains no corners at all.</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/img-rect-contains.png"><img alt="_images/img-rect-contains.png" class="align-center" src="_images/img-rect-contains.png" style="width: 357.9px; height: 290.09999999999997px;" /></a>
+<ul class="simple">
+<li><p>Here is an overview of the changes.</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Notion</p></th>
+<th class="head"><p>Versions &lt; 1.19.0</p></th>
+<th class="head"><p>Versions 1.19.*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>empty</p></td>
+<td><p>x0 = x1 or y0 = y1</p></td>
+<td><p>x0 &gt;= x1 or y0 &gt;= y1 – includes invalid rects</p></td>
+</tr>
+<tr class="row-odd"><td><p>valid</p></td>
+<td><p>n/a</p></td>
+<td><p>x0 &lt;= x1 and y0 &lt;= y1</p></td>
+</tr>
+<tr class="row-even"><td><p>infinite</p></td>
+<td><p>all rects where x0 &gt; x1 or y1 &gt; y0</p></td>
+<td><p><strong>exactly one infinite rect / irect!</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>coordinate values</p></td>
+<td><p>all numbers</p></td>
+<td><p><code class="xref any docutils literal notranslate"><span class="pre">FZ_MIN_INF_RECT</span> <span class="pre">&lt;=</span> <span class="pre">number</span> <span class="pre">&lt;=</span> <span class="pre">FZ_MAX_INF_RECT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>borders, corners</p></td>
+<td><p>are parts of the rectangle</p></td>
+<td><p>right and bottom corners and edges <strong>are outside</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p>There are new top level functions defining infinite and standard empty rectangles and quads, see <a class="reference internal" href="functions.html#INFINITE_RECT" title="INFINITE_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_RECT()</span></code></a> and friends.</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Methods / Attributes</strong></p></th>
+<th class="head"><p><strong>Short Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.contains" title="Rect.contains"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.contains()</span></code></a></p></td>
+<td><p>checks containment of point_likes and rect_likes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.get_area()</span></code></p></td>
+<td><p>calculate rectangle area</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.include_point()</span></code></p></td>
+<td><p>enlarge rectangle to also contain a point</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.include_rect" title="Rect.include_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.include_rect()</span></code></a></p></td>
+<td><p>enlarge rectangle to also contain another one</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.intersect" title="Rect.intersect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.intersect()</span></code></a></p></td>
+<td><p>common part with another rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.intersects()</span></code></p></td>
+<td><p>checks for non-empty intersections</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.morph()</span></code></p></td>
+<td><p>transform with a point and a matrix</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.torect()</span></code></p></td>
+<td><p>the matrix that transforms to another rectangle</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.norm" title="Rect.norm"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.norm()</span></code></a></p></td>
+<td><p>the Euclidean norm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.normalize()</span></code></p></td>
+<td><p>makes a rectangle valid</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.round" title="Rect.round"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.round()</span></code></a></p></td>
+<td><p>create smallest <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> containing rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.transform" title="Rect.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rect.transform()</span></code></a></p></td>
+<td><p>transform rectangle with a matrix</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.bottom_left</span></code></p></td>
+<td><p>bottom left point, synonym <em>bl</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.bottom_right</span></code></p></td>
+<td><p>bottom right point, synonym <em>br</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.height</span></code></p></td>
+<td><p>rectangle height</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.irect</span></code></p></td>
+<td><p>equals result of method <em>round()</em></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.is_empty" title="Rect.is_empty"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_empty</span></code></a></p></td>
+<td><p>whether rectangle is empty</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Rect.is_valid" title="Rect.is_valid"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_valid</span></code></a></p></td>
+<td><p>whether rectangle is valid</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Rect.is_infinite" title="Rect.is_infinite"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.is_infinite</span></code></a></p></td>
+<td><p>whether rectangle is infinite</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.top_left</span></code></p></td>
+<td><p>top left point, synonym <em>tl</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.top_right</span></code></p></td>
+<td><p>top_right point, synonym <em>tr</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.quad</span></code></p></td>
+<td><p><a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> made from rectangle corners</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.width</span></code></p></td>
+<td><p>rectangle width</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.x0</span></code></p></td>
+<td><p>left corners’ x coordinate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.x1</span></code></p></td>
+<td><p>right corners’ x -coordinate</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.y0</span></code></p></td>
+<td><p>top corners’ y coordinate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Rect.y1</span></code></p></td>
+<td><p>bottom corners’ y coordinate</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>This class adheres to the Python sequence protocol, so components can be accessed via their index, too. Also refer to <a class="reference internal" href="app3.html#sequencetypes"><span class="std std-ref">在 PyMuPDF 中使用 Python 序列作为参数</span></a>.</p></li>
+<li><p>Rectangles can be used with arithmetic operators – see chapter <a class="reference internal" href="algebra.html#algebra"><span class="std std-ref">几何对象的运算符代数</span></a>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="shape.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Shape</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="quad.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Quad</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Rect</a><ul>
+<li><a class="reference internal" href="#Rect"><code class="docutils literal notranslate"><span class="pre">Rect</span></code></a><ul>
+<li><a class="reference internal" href="#Rect.__init__"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">Rect.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.round"><code class="docutils literal notranslate"><span class="pre">Rect.round()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.transform"><code class="docutils literal notranslate"><span class="pre">Rect.transform()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.intersect"><code class="docutils literal notranslate"><span class="pre">Rect.intersect()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.include_rect"><code class="docutils literal notranslate"><span class="pre">Rect.include_rect()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.norm"><code class="docutils literal notranslate"><span class="pre">Rect.norm()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.contains"><code class="docutils literal notranslate"><span class="pre">Rect.contains()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.is_infinite"><code class="docutils literal notranslate"><span class="pre">Rect.is_infinite()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.is_empty"><code class="docutils literal notranslate"><span class="pre">Rect.is_empty()</span></code></a></li>
+<li><a class="reference internal" href="#Rect.is_valid"><code class="docutils literal notranslate"><span class="pre">Rect.is_valid()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

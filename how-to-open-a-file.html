@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="文本" href="recipes-text.html" /><link rel="prev" title="PyMuPDF: How to Guide" href="recipes.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>打开文件 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="howtoopenafile">
+<span id="id1"></span><h1>打开文件<a class="headerlink" href="#howtoopenafile" title="此标题的永久链接">#</a></h1>
+<p>Opening Files</p>
+<section id="supported-file-types">
+<span id="id2"></span><h2>支持的文件类型<a class="headerlink" href="#supported-file-types" title="此标题的永久链接">#</a></h2>
+<p>Supported File Types</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> 可以打开除 <cite>PDF</cite> 之外的其他文件。</p>
+<p>支持以下文件类型：</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> can open files other than just <cite>PDF</cite>.</p>
+<p>The following file types are supported:</p>
+</div>
+</div>
+<style>
+
+    table {
+        border-style: hidden;
+    }
+
+    #feature-matrix th {
+        border: 1px #999 solid;
+        padding: 10px;
+        background-color: #007aff;
+        color: white;
+    }
+
+    #feature-matrix tr {
+
+    }
+
+    #feature-matrix td {
+        border: 1px #999 solid;
+        padding: 10px;
+    }
+
+    #feature-matrix tr td.yes {
+        background-color: #83e57c !important;
+        color: #000;
+    }
+
+    #feature-matrix tr td.yes::before {
+        content: "✔︎ ";
+    }
+
+    #feature-matrix tr td.no {
+        background-color: #e5887c !important;
+        color: #000;
+    }
+
+    #feature-matrix tr td.no::before {
+        content: "✕ ";
+    }
+
+    #feature-matrix tr td.limited {
+        background-color: #e4c07b !important;
+        color: #000;
+    }
+
+    #feature-matrix .icon-holder {
+        line-height: 40px;
+    }
+
+    #feature-matrix .icon {
+        text-indent: 45px;
+        line-height: 40px;
+        width: 100px;
+        height: 40px;
+    }
+
+    #feature-matrix .icon.pdf {
+        background: url("_images/icon-pdf.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.xps {
+        background: url("_images/icon-xps.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.epub {
+        background: url("_images/icon-epub.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.mobi {
+        background: url("_images/icon-mobi.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.fb2 {
+        background: url("_images/icon-fb2.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.cbz {
+        background: url("_images/icon-cbz.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.svg {
+        background: url("_images/icon-svg.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.image {
+        background: url("_images/icon-image.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.txt {
+        background: url("_images/icon-txt.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+</style>
+
+
+
+<table id="feature-matrix" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th style="width:20%;"></th>
+        <th style="width:20%;"><div id="trans1"></div></th>
+    </tr>
+
+    <tr>
+        <td><cite><div id="trans2"></div></cite></td>
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+            <span class="icon xps"><cite>XPS</cite></span>
+            <span class="icon epub"><cite>EPUB</cite></span>
+            <span class="icon mobi"><cite>MOBI</cite></span>
+            <span class="icon fb2"><cite>FB2</cite></span>
+            <span class="icon cbz"><cite>CBZ</cite></span>
+            <span class="icon svg"><cite>SVG</cite></span>
+            <span class="icon txt"><cite>TXT</cite></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td><cite><div id="trans3"></div></cite></td>
+        <td>
+            <span class="icon image"></span>
+            <div><u><div id="trans4"></div></u> <cite>JPG/JPEG, PNG, BMP, GIF, TIFF, PNM, PGM, PBM, PPM, PAM, JXR, JPX/JP2, PSD</cite></div>
+            <div><u><div id="trans5"></div></u> <cite>JPG/JPEG, PNG, PNM, PGM, PBM, PPM, PAM, PSD, PS</cite></div>
+        </td>
+    </tr>
+
+</table>
+
+<script>
+
+    let lang = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+    function getTranslation(str) {
+        if (lang == "ja") {
+            if (str=="File type") {
+                return "ファイルタイプ";
+            } else if (str=="Document Formats") {
+                return "文書のフォーマット";
+            } else if (str=="Image Formats") {
+                return "画像のフォーマット";
+            } else if (str=="Input formats") {
+                return "入力フォーマット";
+            } else if (str=="Output formats") {
+                return "出力フォーマット";
+            }
+
+        }
+
+        return str;
+    }
+
+    document.getElementById("trans1").innerHTML = getTranslation("File type");
+    document.getElementById("trans2").innerHTML = getTranslation("Document Formats");
+    document.getElementById("trans3").innerHTML = getTranslation("Image Formats");
+    document.getElementById("trans4").innerHTML = getTranslation("Input formats");
+    document.getElementById("trans5").innerHTML = getTranslation("Output formats");
+
+</script></section>
+<section id="id3">
+<h2>如何打开文件<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>How to Open a File</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>要打开文件，可以按以下方式操作：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;a.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>上述代码创建了一个 <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a>。指令 <code class="xref any docutils literal notranslate"><span class="pre">doc</span> <span class="pre">=</span> <span class="pre">pymupdf.Document(&quot;a.pdf&quot;)</span></code> 完全相同。因此，<code class="xref any docutils literal notranslate"><span class="pre">open</span></code> 只是一个方便的别名，您可以在相关章节找到其完整的 API 文档。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>To open a file, do the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;a.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The above creates a <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a>. The instruction <code class="xref any docutils literal notranslate"><span class="pre">doc</span> <span class="pre">=</span> <span class="pre">pymupdf.Document(&quot;a.pdf&quot;)</span></code> does exactly the same. So, <code class="xref any docutils literal notranslate"><span class="pre">open</span></code> is just a convenient alias  and you can find its full API documented in that chapter.</p>
+</div>
+</div>
+</div>
+<section id="id4">
+<h3>使用 <span class="target" id="index-0"></span>错误的文件扩展名<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<p>Opening with <span class="target" id="index-1"></span>a Wrong File Extension</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>如果您的文档文件扩展名不正确，您仍然可以正确地打开它。</p>
+<p>假设 <em>“some.file”</em> 实际上是一个 <strong>XPS</strong> 文件。可以按照以下方式打开它：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some.file&quot;</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;xps&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><cite>PyMuPDF</cite> 本身不会尝试从文件内容中确定文件类型。<strong>您</strong> 需要以某种方式提供文件类型信息——可以通过文件扩展名隐式地提供，或者如上所示通过 <code class="xref any docutils literal notranslate"><span class="pre">filetype</span></code> 参数显式提供。有一些纯 <cite>Python</cite> 包，如 <a class="reference external" href="https://pypi.org/project/filetype/">filetype</a>，可以帮助您完成这项工作。有关详细信息，请参考 <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a> 章节。</p>
+<p>如果 <cite>PyMuPDF</cite> 遇到一个未知或缺失扩展名的文件，它将尝试将其作为 <cite>PDF</cite> 打开。因此，在这种情况下无需额外的预防措施。同样，对于内存中的文档，您只需指定 <code class="xref any docutils literal notranslate"><span class="pre">doc=pymupdf.open(stream=mem_area)</span></code> 即可将其作为 <cite>PDF</cite> 文档打开。</p>
+<p>如果您尝试打开一个不受支持的文件， <cite>PyMuPDF</cite> 会抛出文件数据错误。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>If you have a document with a wrong file extension for its type, you can still correctly open it.</p>
+<p>Assume that <em>“some.file”</em> is actually an <strong>XPS</strong>. Open it like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;some.file&quot;</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;xps&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><cite>PyMuPDF</cite> itself does not try to determine the file type from the file contents. <strong>You</strong> are responsible for supplying the file type information in some way – either implicitly, via the file extension, or explicitly as shown with the <code class="xref any docutils literal notranslate"><span class="pre">filetype</span></code> parameter. There are pure <cite>Python</cite> packages like <a class="reference external" href="https://pypi.org/project/filetype/">filetype</a> that help you doing this. Also consult the <a class="reference internal" href="document.html#document"><span class="std std-ref">Document</span></a> chapter for a full description.</p>
+<p>If <cite>PyMuPDF</cite> encounters a file with an unknown / missing extension, it will try to open it as a <cite>PDF</cite>. So in these cases there is no need for additional precautions. Similarly, for memory documents, you can just specify <code class="xref any docutils literal notranslate"><span class="pre">doc=pymupdf.open(stream=mem_area)</span></code> to open it as a <cite>PDF</cite> document.</p>
+<p>If you attempt to open an unsupported file then <cite>PyMuPDF</cite> will throw a file data error.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id6">
+<h2>打开远程文件<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>Opening Remote Files</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>对于服务器上的远程文件（即非本地文件），您需要将文件数据*流式传输*到 <cite>PyMuPDF</cite>。</p>
+<p>例如，按如下方式使用 <a class="reference external" href="https://requests.readthedocs.io/en/latest/">requests</a> 库：</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>For remote files on a server (i.e. non-local files), you will need to <em>stream</em> the file data to <cite>PyMuPDF</cite>.</p>
+<p>For example use the <a class="reference external" href="https://requests.readthedocs.io/en/latest/">requests</a> library as follows:</p>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://mupdf.com/docs/mupdf_explored.pdf&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Document</span><span class="p">(</span><span class="n">stream</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id8">
+<h3>从云服务打开文件<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>Opening Files from Cloud Services</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>有关处理典型云服务上保存的文件的更多示例，请参阅这些 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/tree/master/cloud-interactions">云交互代码片段</a> 。</p>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>For further examples which deal with files held on typical cloud services please see these <a class="reference external" href="https://github.com/pymupdf/PyMuPDF-Utilities/tree/master/cloud-interactions">Cloud Interactions code snippets</a>.</p>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id10">
+<h2>以文本形式打开文件<a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h2>
+<p>Opening Files as Text</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> 具有打开任何纯文本文件作为文档的能力。要实现这一点，您需要在调用 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.open</span></code> 函数时提供 <code class="xref any docutils literal notranslate"><span class="pre">filetype</span></code> 参数，并将其设为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;txt&quot;</span></code>。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;my_program.py&quot;</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>通过这种方式，您可以打开各种文件类型，并执行典型的 <strong>非 PDF</strong> 特定功能，如文本搜索、文本提取和页面渲染。显然，一旦您渲染了 <code class="xref any docutils literal notranslate"><span class="pre">txt</span></code> 内容，就可以轻松地将其保存为 <cite>PDF</cite>，或与其他 <cite>PDF</cite> 文件合并。</p>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p><cite>PyMuPDF</cite> has the capability to open any plain text file as a document. In order to do this you should provide the <code class="xref any docutils literal notranslate"><span class="pre">filetype</span></code> parameter for the <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.open</span></code> function as <code class="xref any docutils literal notranslate"><span class="pre">&quot;txt&quot;</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;my_program.py&quot;</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this way you are able to open a variety of file types and perform the typical <strong>non-PDF</strong> specific features like text searching, text extracting and page rendering. Obviously, once you have rendered your <code class="xref any docutils literal notranslate"><span class="pre">txt</span></code> content, then saving as <cite>PDF</cite> or merging with other <cite>PDF</cite> files is no problem.</p>
+</div>
+</div>
+<section id="id11">
+<h3>例子<a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
+<p>Examples</p>
+<section id="c">
+<h4>打开 <code class="docutils literal notranslate"><span class="pre">C#</span></code> 文件<a class="headerlink" href="#c" title="此标题的永久链接">#</a></h4>
+<p>Opening a <code class="xref any docutils literal notranslate"><span class="pre">C#</span></code> file</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;MyClass.cs&quot;</span><span class="p">,</span> <span class="n">filetype</span><span class="o">=</span><span class="s2">&quot;txt&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="xml">
+<h4>打开 <code class="docutils literal notranslate"><span class="pre">XML</span></code> 文件<a class="headerlink" href="#xml" title="此标题的永久链接">#</a></h4>
+<p>Opening an <code class="docutils literal notranslate"><span class="pre">XML</span></code> file
+.. code-block:: python</p>
+<blockquote>
+<div><p>doc = pymupdf.open(“my_data.xml”, filetype=”txt”)</p>
+</div></blockquote>
+</section>
+<section id="json">
+<h4>打开 <code class="docutils literal notranslate"><span class="pre">JSON</span></code> 文件<a class="headerlink" href="#json" title="此标题的永久链接">#</a></h4>
+<p>Opening a <code class="xref any docutils literal notranslate"><span class="pre">JSON</span></code> file
+.. code-block:: python</p>
+<blockquote>
+<div><p>doc = pymupdf.open(“more_of_my_data.json”, filetype=”txt”)</p>
+</div></blockquote>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>等等！</p>
+<p>正如您所想象的，许多基于文本的文件格式都可以由 <cite>PyMuPDF</cite> <em>非常简单地打开*和 *解释</em>。这可以使对各种以前不可用的文件的数据分析和提取突然成为可能。</p>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>And so on!</p>
+<p>As you can imagine many text based file formats can be <em>very simply opened</em> and <em>interpreted</em> by <cite>PyMuPDF</cite>. This can make data analysis and extraction for a wide range of previously unavailable files suddenly possible.</p>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="recipes-text.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">文本</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="recipes.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">PyMuPDF: How to Guide</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">打开文件</a><ul>
+<li><a class="reference internal" href="#supported-file-types">支持的文件类型</a></li>
+<li><a class="reference internal" href="#id3">如何打开文件</a><ul>
+<li><a class="reference internal" href="#id4">使用 错误的文件扩展名</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">打开远程文件</a><ul>
+<li><a class="reference internal" href="#id8">从云服务打开文件</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">以文本形式打开文件</a><ul>
+<li><a class="reference internal" href="#id11">例子</a><ul>
+<li><a class="reference internal" href="#c">打开 <code class="docutils literal notranslate"><span class="pre">C#</span></code> 文件</a></li>
+<li><a class="reference internal" href="#xml">打开 <code class="docutils literal notranslate"><span class="pre">XML</span></code> 文件</a></li>
+<li><a class="reference internal" href="#json">打开 <code class="docutils literal notranslate"><span class="pre">JSON</span></code> 文件</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

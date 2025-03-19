@@ -1,0 +1,1495 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="TextWriter" href="textwriter.html" /><link rel="prev" title="Story" href="story-class.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>TextPage - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="textpage">
+<span id="id1"></span><h1>TextPage<a class="headerlink" href="#textpage" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>此类表示文档页面上显示的文本和图像。支持所有 <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">MuPDF 文档类型</span></a>。</p>
+<p>创建 TextPage 的常用方法是 <a class="reference internal" href="displaylist.html#DisplayList.get_textpage" title="DisplayList.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DisplayList.get_textpage()</span></code></a> 和 <a class="reference internal" href="page.html#Page.get_textpage" title="Page.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_textpage()</span></code></a>。由于该类中的方法数量有限，因此 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 中有一些更便捷的封装方法可供使用。下表的最后一列展示了这些对应的 <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 方法。</p>
+<p>有关此类的详细描述，请参见附录 2。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法</strong></p></th>
+<th class="head"><p><strong>描述</strong></p></th>
+<th class="head"><p>页面 get_text 或搜索方法</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractText" title="TextPage.extractText"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractText()</span></code></a></p></td>
+<td><p>提取纯文本</p></td>
+<td><p>“text”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractTEXT" title="TextPage.extractTEXT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractTEXT()</span></code></a></p></td>
+<td><p>同上</p></td>
+<td><p>“text”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractBLOCKS" title="TextPage.extractBLOCKS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractBLOCKS()</span></code></a></p></td>
+<td><p>按块分组的纯文本</p></td>
+<td><p>“blocks”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractWORDS" title="TextPage.extractWORDS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractWORDS()</span></code></a></p></td>
+<td><p>包含 bbox 的所有单词</p></td>
+<td><p>“words”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractHTML" title="TextPage.extractHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractHTML()</span></code></a></p></td>
+<td><p>以 HTML 格式呈现页面内容</p></td>
+<td><p>“html”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractXHTML" title="TextPage.extractXHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractXHTML()</span></code></a></p></td>
+<td><p>以 XHTML 格式呈现页面内容</p></td>
+<td><p>“xhtml”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractXML" title="TextPage.extractXML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractXML()</span></code></a></p></td>
+<td><p>以 XML 格式呈现页面文本</p></td>
+<td><p>“xml”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code></a></p></td>
+<td><p>以 <em>dict</em> 格式呈现页面内容</p></td>
+<td><p>“dict”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractJSON" title="TextPage.extractJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractJSON()</span></code></a></p></td>
+<td><p>以 JSON 格式呈现页面内容</p></td>
+<td><p>“json”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractRAWDICT" title="TextPage.extractRAWDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code></a></p></td>
+<td><p>以 <em>dict</em> 格式呈现页面内容</p></td>
+<td><p>“rawdict”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractRAWJSON" title="TextPage.extractRAWJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWJSON()</span></code></a></p></td>
+<td><p>以 JSON 格式呈现页面内容</p></td>
+<td><p>“rawjson”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.search" title="TextPage.search"><code class="xref py py-meth docutils literal notranslate"><span class="pre">search()</span></code></a></p></td>
+<td><p>在页面中搜索字符串</p></td>
+<td><p><a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类 API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="TextPage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TextPage</span></span><a class="headerlink" href="#TextPage" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractText">
+<span class="sig-name descname"><span class="pre">extractText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractText" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractTEXT">
+<span class="sig-name descname"><span class="pre">extractTEXT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractTEXT" title="永久链接至目标">#</a></dt>
+<dd><p>返回页面完整文本的字符串。文本是 UTF-8 编码的 Unicode，顺序与文档创建时指定的一致。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sort</strong> (<em>bool</em>) – （v1.19.1 新增）按垂直和水平坐标排序输出。在许多情况下，这应足以生成“自然”的阅读顺序。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractBLOCKS">
+<span class="sig-name descname"><span class="pre">extractBLOCKS</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractBLOCKS" title="永久链接至目标">#</a></dt>
+<dd><p>以块分组的文本内容，返回一个包含文本行的列表。每个列表项如下所示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s2">&quot;块中的行&quot;</span><span class="p">,</span> <span class="n">block_no</span><span class="p">,</span> <span class="n">block_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>前四个条目是块的 bbox 坐标，<em>block_type</em> 为 1 表示图像块，0 表示文本块。<em>block_no</em> 为块的序列号。多个文本行通过换行符连接。</p>
+<p>对于图像块，包含其 bbox 和带有一些图像元信息的文本行 — <strong>不包含图像内容</strong>。</p>
+<p>这是一个高速方法，提供足够的信息来按所需的阅读顺序输出纯文本。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractWORDS">
+<span class="sig-name descname"><span class="pre">extractWORDS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delimiters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractWORDS" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>在 v1.23.5 中更改：新增 <code class="xref any docutils literal notranslate"><span class="pre">delimiters</span></code> 参数</p></li>
+</ul>
+<p>以单个单词及其 bbox 信息的列表形式呈现页面内容。该列表中的每个项如下所示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s2">&quot;word&quot;</span><span class="p">,</span> <span class="n">block_no</span><span class="p">,</span> <span class="n">line_no</span><span class="p">,</span> <span class="n">word_no</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>delimiters</strong> (<em>str</em>) – （v1.23.5 新增）将这些字符作为 <em>附加</em> 的单词分隔符。默认情况下，所有空格（包括不换行的空格 <code class="xref any docutils literal notranslate"><span class="pre">0xA0</span></code>）表示单词的开始和结束。现在，您可以指定更多的字符作为分隔符。例如，默认情况下，”<a class="reference external" href="mailto:john&#46;doe&#37;&#52;&#48;outlook&#46;com">john<span>&#46;</span>doe<span>&#64;</span>outlook<span>&#46;</span>com</a>” 会作为 <strong>一个</strong> 单词返回。如果指定 <code class="xref any docutils literal notranslate"><span class="pre">delimiters=&quot;&#64;.&quot;</span></code>，则返回 <strong>四个</strong> 单词：”john”、”doe”、”outlook”、”com”。其他常见的用法包括忽略标点符号字符 <code class="xref any docutils literal notranslate"><span class="pre">delimiters=string.punctuation</span></code>。返回的“word”字符串将不包含任何分隔符字符。</p>
+</dd>
+</dl>
+<p>这是一个高速方法，可以从给定区域提取文本或恢复文本的阅读顺序。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractHTML">
+<span class="sig-name descname"><span class="pre">extractHTML</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractHTML" title="永久链接至目标">#</a></dt>
+<dd><p>以 HTML 格式呈现页面内容的字符串。该版本包含完整的格式和定位信息。图像也被包括在内（以 base64 字符串编码）。您需要一个 HTML 包来解析 Python 中的输出，您的浏览器应能够适当显示这些信息，但请参见 <a class="reference internal" href="app1.html#htmlquality"><span class="std std-ref">控制 HTML 输出的质量</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractDICT">
+<span class="sig-name descname"><span class="pre">extractDICT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractDICT" title="永久链接至目标">#</a></dt>
+<dd><p>以 Python 字典格式呈现页面内容。提供与 HTML 相同的信息细节。请参阅下面的结构。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sort</strong> (<em>bool</em>) – （v1.19.1 新增）按垂直和水平坐标排序输出。在许多情况下，这应足以生成“自然”的阅读顺序。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractJSON">
+<span class="sig-name descname"><span class="pre">extractJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractJSON" title="永久链接至目标">#</a></dt>
+<dd><p>以 JSON 字符串格式呈现页面内容。通过 <code class="xref any docutils literal notranslate"><span class="pre">json.dumps(TextPage.extractDICT())</span></code> 创建。该方法用于向后兼容，您可能仅会使用此方法将结果输出到某个文件。该方法检测二进制图像数据并将其转换为 base64 编码的字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sort</strong> (<em>bool</em>) – （v1.19.1 新增）按垂直和水平坐标排序输出。在许多情况下，这应足以生成“自然”的阅读顺序。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractXHTML">
+<span class="sig-name descname"><span class="pre">extractXHTML</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractXHTML" title="永久链接至目标">#</a></dt>
+<dd><p>以 XHTML 格式呈现页面内容的字符串。文本信息的细节与 <a class="reference internal" href="#TextPage.extractTEXT" title="TextPage.extractTEXT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractTEXT()</span></code></a> 相当，但还包括图像（以 base64 编码）。此方法不尝试重建原始视觉外观。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractXML">
+<span class="sig-name descname"><span class="pre">extractXML</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractXML" title="永久链接至目标">#</a></dt>
+<dd><p>以 XML 格式呈现页面内容的字符串。此格式包含每个字符的完整格式信息：字体、大小、行、段落、位置、颜色等。此格式不包含图像。您需要一个 XML 包来解析 Python 中的输出。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractRAWDICT">
+<span class="sig-name descname"><span class="pre">extractRAWDICT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractRAWDICT" title="永久链接至目标">#</a></dt>
+<dd><p>以 Python 字典格式呈现页面内容 — 技术上类似于 <a class="reference internal" href="#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code></a>，它包含该信息的子集（包括任何图像）。它提供更多细节，直到每个字符，许多情况下使得 XML 无需使用。请参阅下面的结构。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sort</strong> (<em>bool</em>) – （v1.19.1 新增）按垂直和水平坐标排序输出。在许多情况下，这应足以生成“自然”的阅读顺序。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.extractRAWJSON">
+<span class="sig-name descname"><span class="pre">extractRAWJSON</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.extractRAWJSON" title="永久链接至目标">#</a></dt>
+<dd><p>以 JSON 字符串格式呈现页面内容。通过 <code class="xref any docutils literal notranslate"><span class="pre">json.dumps(TextPage.extractRAWDICT())</span></code> 创建。您可能仅会使用此方法将结果输出到某个文件。该方法检测二进制图像数据并将其转换为 base64 编码的字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sort</strong> (<em>bool</em>) – （v1.19.1 新增）按垂直和水平坐标排序输出。在许多情况下，这应足以生成“自然”的阅读顺序。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="TextPage.search">
+<span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">needle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#TextPage.search" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>在 v1.18.2 中更改</p></li>
+</ul>
+<p>搜索 <em>字符串</em> 并返回找到的位置列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>needle</strong> (<em>str</em>) – 要搜索的字符串。如果搜索字符串仅包含 ASCII 字母，则大小写都会匹配 — 目前还不支持像 “Ä” 和 “ä” 这样的字符。</p></li>
+<li><p><strong>quads</strong> (<em>bool</em>) – 返回四边形而不是矩形。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>一个包含 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 或 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> 对象的列表，每个对象包围一个找到的 <em>needle</em> 出现位置。由于搜索字符串可能包含空格，它的部分可能会跨越多行，因此可能返回多个矩形（或四边形）。<strong>（在 v1.18.2 中更改）</strong> 该方法 <strong>现在支持断字</strong>，例如它会找到 “method”，即使它被分成两个部分 “meth-” 和 “od” 跨越两行。返回的两个矩形将分别包含 “meth”（无连字符）和 “od”。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><strong>v1.18.2 中的更改概览：</strong></p>
+</div>
+<ol class="arabic simple">
+<li><p>已删除 <code class="xref any docutils literal notranslate"><span class="pre">hit_max</span></code> 参数：现在始终返回所有匹配项。</p></li>
+<li><p><a class="reference internal" href="#textpage"><span class="std std-ref">TextPage</span></a> 的 <a class="reference internal" href="rect.html"><span class="doc">Rect</span></a> 参数现在被尊重：只有该区域内的文本才会被检查。仅考虑完全包含在 bbox 中的字符。相应地，封装方法 <a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a> 支持 <em>clip</em> 参数。</p></li>
+<li><p><strong>断字</strong> 现在可以被识别。</p></li>
+<li><p><strong>同一行中的重叠矩形</strong> 现在会自动合并。我们假设这些分隔是由多个标记的内容组产生的，其中包含同一搜索词的部分。</p></li>
+</ol>
+<p>示例四边形与矩形：搜索字符串 “pymupdf”，返回的条目可能是蓝色矩形，或者如果指定了 <em>quads</em>，则返回四边形 <em>Quad(ul, ur, ll, lr)</em>。</p>
+<img alt="_images/img-quads.jpg" src="_images/img-quads.jpg" />
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="TextPage.rect">
+<span class="sig-name descname"><span class="pre">rect</span></span><a class="headerlink" href="#TextPage.rect" title="永久链接至目标">#</a></dt>
+<dd><p>与文本页面关联的矩形。它等于创建页面的矩形，或者是 <a class="reference internal" href="page.html#Page.get_textpage" title="Page.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_textpage()</span></code></a> 和文本提取/搜索方法中的 <code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> 参数。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>文本搜索和大多数文本提取的输出 <strong>限制在此矩形内</strong>。但是，(X)HTML 和 XML 输出始终会提取整个页面。</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This class represents text and images shown on a document page. All <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">MuPDF document types</span></a> are supported.</p>
+<p>The usual ways to create a textpage are <a class="reference internal" href="displaylist.html#DisplayList.get_textpage" title="DisplayList.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DisplayList.get_textpage()</span></code></a> and <a class="reference internal" href="page.html#Page.get_textpage" title="Page.get_textpage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_textpage()</span></code></a>. Because there is a limited set of methods in this class, there exist wrappers in <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> which are handier to use. The last column of this table shows these corresponding <a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> methods.</p>
+<p>For a description of what this class is all about, see Appendix 2.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p>page get_text or search method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractText" title="TextPage.extractText"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractText()</span></code></a></p></td>
+<td><p>extract plain text</p></td>
+<td><p>“text”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractTEXT" title="TextPage.extractTEXT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractTEXT()</span></code></a></p></td>
+<td><p>synonym of previous</p></td>
+<td><p>“text”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractBLOCKS" title="TextPage.extractBLOCKS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractBLOCKS()</span></code></a></p></td>
+<td><p>plain text grouped in blocks</p></td>
+<td><p>“blocks”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractWORDS" title="TextPage.extractWORDS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractWORDS()</span></code></a></p></td>
+<td><p>all words with their bbox</p></td>
+<td><p>“words”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractHTML" title="TextPage.extractHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractHTML()</span></code></a></p></td>
+<td><p>page content in HTML format</p></td>
+<td><p>“html”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractXHTML" title="TextPage.extractXHTML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractXHTML()</span></code></a></p></td>
+<td><p>page content in XHTML format</p></td>
+<td><p>“xhtml”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractXML" title="TextPage.extractXML"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractXML()</span></code></a></p></td>
+<td><p>page text in XML format</p></td>
+<td><p>“xml”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code></a></p></td>
+<td><p>page content in <em>dict</em> format</p></td>
+<td><p>“dict”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractJSON" title="TextPage.extractJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractJSON()</span></code></a></p></td>
+<td><p>page content in JSON format</p></td>
+<td><p>“json”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.extractRAWDICT" title="TextPage.extractRAWDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code></a></p></td>
+<td><p>page content in <em>dict</em> format</p></td>
+<td><p>“rawdict”</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#TextPage.extractRAWJSON" title="TextPage.extractRAWJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWJSON()</span></code></a></p></td>
+<td><p>page content in JSON format</p></td>
+<td><p>“rawjson”</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#TextPage.search" title="TextPage.search"><code class="xref py py-meth docutils literal notranslate"><span class="pre">search()</span></code></a></p></td>
+<td><p>Search for a string in the page</p></td>
+<td><p><a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="textpagedict">
+<span id="id2"></span><h2>字典输出的结构<a class="headerlink" href="#textpagedict" title="此标题的永久链接">#</a></h2>
+<p>Structure of Dictionary Outputs</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p><a class="reference internal" href="#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractDICT()</span></code></a>、<a class="reference internal" href="#TextPage.extractJSON" title="TextPage.extractJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractJSON()</span></code></a>、<a class="reference internal" href="#TextPage.extractRAWDICT" title="TextPage.extractRAWDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractRAWDICT()</span></code></a> 和 <a class="reference internal" href="#TextPage.extractRAWJSON" title="TextPage.extractRAWJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractRAWJSON()</span></code></a> 方法返回字典，其中包含页面的文本和图像内容。这四种方法的字典结构几乎相同。它们尽可能精确地映射文本页面的信息层次结构，包括块（blocks）、行（lines）、跨度（spans）和字符（characters），并为每个层级提供相应的子字典：</p>
+<ul class="simple">
+<li><p><strong>页面</strong> 由 <strong>块字典</strong> 组成的列表构成。</p></li>
+<li><p><strong>文本块（text block）</strong> 由 <strong>行字典</strong> 组成的列表构成。</p></li>
+<li><p><strong>行（line）</strong> 由 <strong>跨度字典（span dictionaries）</strong> 组成的列表构成。</p></li>
+<li><p><strong>跨度（span）</strong> 直接包含文本内容，或者在 RAW 变体中，包含 <strong>字符字典（character dictionaries）</strong> 的列表。</p></li>
+<li><p>在 RAW 变体中，一个 <strong>字符（character）</strong> 是一个包含其起点、边界框（bbox）和 Unicode 值的字典。</p></li>
+</ul>
+<p>在这些字典中，所有 PyMuPDF 的几何对象（点、矩形、矩阵）均采用 <strong>“like”</strong> 格式表示：例如，使用 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> <em>元组</em> 代替 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 对象。这么做的原因是出于性能和内存的考虑：</p>
+<ul class="simple">
+<li><p>这些代码是用 C 语言编写的，而 Python 元组可以很容易地在 C 代码中生成。然而，几何对象是在 Python 源代码中定义的，因此需要将每个 Python 元组转换为相应的几何对象，这会显著增加执行时间。</p></li>
+<li><p>一个 4 元组需要大约 168 字节，而相应的 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 需要 472 字节，几乎是前者的三倍。对于一个文本密集型页面，”dict” 字典通常包含 300+ 个 bbox 对象，使用 4 元组存储大约需要 50 KB，而使用 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 对象存储则需要 140 KB。对于 “rawdict” 输出，页面可能包含 <strong>4 到 5 千个</strong> bbox，因此，存储需求约为 750 KB（4 元组）对比 2 MB（<a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>）。</p></li>
+</ul>
+<p>请注意，返回的仅仅是 <strong>bboxes</strong> （即 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 形式的 4 元组），而实际上 <a class="reference internal" href="#textpage"><span class="std std-ref">TextPage</span></a> 还包含完整的位置信息，即 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> 格式。选择返回 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 的原因仍然是内存考虑：一个 <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> 需要 488 字节（是 <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 的 3 倍）。考虑到页面生成的 bbox 数量，如果返回 <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> 信息，存储需求将显著增加。</p>
+<p>在绝大多数情况下，我们只需处理 <strong>水平文本</strong>，在这种情况下，bboxes 提供的信息已经足够。</p>
+<p>此外，<strong>完整的四边形（quad）信息并未丢失</strong>，如果需要，可以使用以下函数恢复：</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="functions.html#recover_quad" title="recover_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_quad()</span></code></a> —— 恢复整个跨度的四边形</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_span_quad" title="recover_span_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a> —— 恢复跨度中部分字符的四边形</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_line_quad" title="recover_line_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_line_quad()</span></code></a> —— 恢复行的四边形</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_char_quad" title="recover_char_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a> —— 恢复字符的四边形</p></li>
+</ul>
+<p>如前所述，只有当文本 <strong>非水平</strong> （即 <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;dir&quot;]</span> <span class="pre">!=</span> <span class="pre">(1,</span> <span class="pre">0)</span></code>）且需要用于文本标记注释（例如 <a class="reference internal" href="page.html#Page.add_highlight_annot" title="Page.add_highlight_annot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.add_highlight_annot()</span></code></a> 及相关方法）时，才需要使用这些函数来恢复四边形信息。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>Methods <a class="reference internal" href="#TextPage.extractDICT" title="TextPage.extractDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractDICT()</span></code></a>, <a class="reference internal" href="#TextPage.extractJSON" title="TextPage.extractJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractJSON()</span></code></a>, <a class="reference internal" href="#TextPage.extractRAWDICT" title="TextPage.extractRAWDICT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractRAWDICT()</span></code></a>, and <a class="reference internal" href="#TextPage.extractRAWJSON" title="TextPage.extractRAWJSON"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractRAWJSON()</span></code></a> return dictionaries, containing the page’s text and image content. The dictionary structures of all four methods are almost equal. They strive to map the text page’s information hierarchy of blocks, lines, spans and characters as precisely as possible, by representing each of these by its own sub-dictionary:</p>
+<ul class="simple">
+<li><p>A <strong>page</strong> consists of a list of <strong>block dictionaries</strong>.</p></li>
+<li><p>A (text) <strong>block</strong> consists of a list of <strong>line dictionaries</strong>.</p></li>
+<li><p>A <strong>line</strong> consists of a list of <strong>span dictionaries</strong>.</p></li>
+<li><p>A <strong>span</strong> either consists of the text itself or, for the RAW variants, a list of <strong>character dictionaries</strong>.</p></li>
+<li><p>RAW variants: a <strong>character</strong> is a dictionary of its origin, bbox and unicode.</p></li>
+</ul>
+<p>All PyMuPDF geometry objects herein (points, rectangles, matrices) are represented by there <strong>“like”</strong> formats: a <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> <em>tuple</em> is used instead of a <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>, etc. The reasons for this are performance and memory considerations:</p>
+<ul class="simple">
+<li><p>This code is written in C, where Python tuples can easily be generated. The geometry objects on the other hand are defined in Python source only. A conversion of each Python tuple into its corresponding geometry object would add significant – and largely unnecessary – execution time.</p></li>
+<li><p>A 4-tuple needs about 168 bytes, the corresponding <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 472 bytes - almost three times the size. A “dict” dictionary for a text-heavy page contains 300+ bbox objects – which thus require about 50 KB storage as 4-tuples versus 140 KB as <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> objects. A “rawdict” output for such a page will however contain <strong>4 to 5 thousand</strong> bboxes, so in this case we talk about 750 KB versus 2 MB.</p></li>
+</ul>
+<p>Please also note, that only <strong>bboxes</strong> (= <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a> 4-tuples) are returned, whereas a <a class="reference internal" href="#textpage"><span class="std std-ref">TextPage</span></a> actually has the <strong>full position information</strong> – in <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> format. The reason for this decision is again a memory consideration: a <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> needs 488 bytes (3 times the size of a <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>). Given the mentioned amounts of generated bboxes, returning <a class="reference internal" href="glossary.html#quad_like" title="quad_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">quad_like</span></code></a> information would have a significant impact.</p>
+<p>In the vast majority of cases, we are dealing with <strong>horizontal text only</strong>, where bboxes provide entirely sufficient information.</p>
+<p>In addition, <strong>the full quad information is not lost</strong>: it can be recovered as needed for lines, spans, and characters by using the appropriate function from the following list:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="functions.html#recover_quad" title="recover_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_quad()</span></code></a> – the quad of a complete span</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_span_quad" title="recover_span_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a> – the quad of a character subset of a span</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_line_quad" title="recover_line_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_line_quad()</span></code></a> – the quad of a line</p></li>
+<li><p><a class="reference internal" href="functions.html#recover_char_quad" title="recover_char_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a> – the quad of a character</p></li>
+</ul>
+<p>As mentioned, using these functions is ever only needed, if the text is <strong>not written horizontally</strong> – <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;dir&quot;]</span> <span class="pre">!=</span> <span class="pre">(1,</span> <span class="pre">0)</span></code> – and you need the quad for text marker annotations (<a class="reference internal" href="page.html#Page.add_highlight_annot" title="Page.add_highlight_annot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.add_highlight_annot()</span></code></a> and friends).</p>
+</div>
+</div>
+<img alt="_images/img-textpage.png" src="_images/img-textpage.png" />
+<section id="page">
+<h3>Page 字典<a class="headerlink" href="#page" title="此标题的永久链接">#</a></h3>
+<p>Page Dictionary</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>width</p></td>
+<td><p><code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> 矩形的宽度（<code class="docutils literal notranslate"><span class="pre">float</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p><code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> 矩形的高度（<code class="docutils literal notranslate"><span class="pre">float</span></code>）</p></td>
+</tr>
+<tr class="row-even"><td><p>blocks</p></td>
+<td><p><em>list</em>，包含块字典（block dictionaries）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>width of the <code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> rectangle <em>(float)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>height of the <code class="xref any docutils literal notranslate"><span class="pre">clip</span></code> rectangle <em>(float)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>blocks</p></td>
+<td><p><em>list</em> of block dictionaries</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="block">
+<h3>Block 字典<a class="headerlink" href="#block" title="此标题的永久链接">#</a></h3>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>块字典（Block dictionaries）有两种不同格式，分别用于 <strong>图像块（image blocks）</strong> 和 <strong>文本块（text blocks）</strong>。</p>
+<p><strong>图像块（Image Block）</strong>：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>1 = 图像（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>图像在页面上的边界框（<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>）</p></td>
+</tr>
+<tr class="row-even"><td><p>number</p></td>
+<td><p>块计数（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext</p></td>
+<td><p>图像类型（<code class="docutils literal notranslate"><span class="pre">str</span></code>），作为文件扩展名，见下文</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>原始图像宽度（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>原始图像高度（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-even"><td><p>colorspace</p></td>
+<td><p>颜色空间分量数（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>xres</p></td>
+<td><p>x 方向分辨率（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-even"><td><p>yres</p></td>
+<td><p>y 方向分辨率（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>bpc</p></td>
+<td><p>每个颜色分量的位数（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-even"><td><p>transform</p></td>
+<td><p>将图像矩形变换到 bbox 的矩阵（<a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p>图像大小（字节数）（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-even"><td><p>image</p></td>
+<td><p>图像内容（<code class="docutils literal notranslate"><span class="pre">bytes</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>mask</p></td>
+<td><p>透明图像的掩码内容（<code class="docutils literal notranslate"><span class="pre">bytes</span></code>）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>“ext” 键的可能取值包括：”bmp”、”gif”、”jpeg”、”jpx”（JPEG 2000）、”jxr”（JPEG XR）、”png”、”pnm” 和 “tiff”。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ol class="arabic simple">
+<li><p>页面上的 <strong>每个</strong> 图像实例都会生成一个图像块。因此，如果某个图像在多个位置显示，可能会出现重复。</p></li>
+<li><p><a class="reference internal" href="#textpage"><span class="std std-ref">TextPage</span></a> 及其相关方法 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> <strong>适用于所有文档类型</strong>。仅对于 PDF 文档，方法 <a class="reference internal" href="document.html#Document.get_page_images" title="Document.get_page_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_page_images()</span></code></a> / <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 在图像列表方面有一定重叠功能。但两者的列表 <strong>可能相同，也可能不同</strong>，差异可能由以下因素导致：</p>
+<ul class="simple">
+<li><p>PDF 页面中的 “内嵌” 图像（见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 214 页）会包含在 textpage 中，但 <strong>不会出现在</strong> <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 中。</p></li>
+<li><p>注释（Annotations）可能也包含图像，但这些图像 <strong>不会出现在</strong> <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 中。</p></li>
+<li><p>textpage 生成的图像块包含 <strong>每个</strong> 图像位置，无论是否有重复。这与 <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 不同，后者每个图像仅列出一次（按引用名称）。</p></li>
+<li><p>如果某个图像在页面的 <a class="reference internal" href="glossary.html#object" title="object"><code class="xref py py-data docutils literal notranslate"><span class="pre">object</span></code></a> 定义中被提及，它 <strong>一定</strong> 会出现在 <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 结果中 <a class="footnote-reference brackets" href="#f3" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>。但如果页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 没有显示该图像的命令（可能是错误或有意为之），那么该图像 <strong>不会出现在</strong> textpage 中。</p></li>
+</ul>
+</li>
+<li><p>图像的 “变换矩阵”（transformation matrix）定义如下：使得 <code class="xref any docutils literal notranslate"><span class="pre">bbox</span> <span class="pre">/</span> <span class="pre">transform</span> <span class="pre">==</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">1)</span></code> 成立，详细信息请参见 <a class="reference internal" href="app3.html#imagetransformation"><span class="std std-ref">图像转换矩阵</span></a>。</p></li>
+<li><p>透明图像可能带有一个掩码图像（mask），存储在 <code class="xref any docutils literal notranslate"><span class="pre">&quot;mask&quot;</span></code> 键下，以 <code class="xref any docutils literal notranslate"><span class="pre">DeviceGray</span></code> PNG 图像格式存储。否则，该键的值为 <code class="docutils literal notranslate"><span class="pre">None</span></code>。如果存在，你可以尝试通过创建 <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a> 对象，并将 “image” 和 “mask” 叠加，来恢复（接近）原始的透明图像。但请注意，并非所有掩码图像都符合叠加 Pixmap 的条件，因此该方法不一定总是有效。示例如下：</p></li>
+</ol>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>文本块（Text Block）</strong>：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>0 = 文本（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>块的矩形区域（<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>）</p></td>
+</tr>
+<tr class="row-even"><td><p>number</p></td>
+<td><p>块计数（<code class="docutils literal notranslate"><span class="pre">int</span></code>）</p></td>
+</tr>
+<tr class="row-odd"><td><p>lines</p></td>
+<td><p>文本行字典的 <em>list</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>Block dictionaries come in two different formats for <strong>image blocks</strong> and for <strong>text blocks</strong>.</p>
+<p><strong>Image block:</strong></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>1 = image (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>image bbox on page (<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a>)</p></td>
+</tr>
+<tr class="row-even"><td><p>number</p></td>
+<td><p>block count (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ext</p></td>
+<td><p>image type (<code class="docutils literal notranslate"><span class="pre">str</span></code>), as file extension, see below</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>original image width (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>original image height (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>colorspace</p></td>
+<td><p>colorspace component count (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>xres</p></td>
+<td><p>resolution in x-direction (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>yres</p></td>
+<td><p>resolution in y-direction (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>bpc</p></td>
+<td><p>bits per component (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>transform</p></td>
+<td><p>matrix transforming image rect to bbox (<a class="reference internal" href="glossary.html#matrix_like" title="matrix_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">matrix_like</span></code></a>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p>size of the image in bytes (<code class="docutils literal notranslate"><span class="pre">int</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p>image</p></td>
+<td><p>image content (<code class="docutils literal notranslate"><span class="pre">bytes</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>mask</p></td>
+<td><p>image mask content (<code class="docutils literal notranslate"><span class="pre">bytes</span></code>) for transparent images</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Possible values of the “ext” key are “bmp”, “gif”, “jpeg”, “jpx” (JPEG 2000), “jxr” (JPEG XR), “png”, “pnm”, and “tiff”.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ol class="arabic simple">
+<li><p>An image block is generated for <strong>all and every image occurrence</strong> on the page. Hence there may be duplicates, if an image is shown at different locations.</p></li>
+<li><p><a class="reference internal" href="#textpage"><span class="std std-ref">TextPage</span></a> and corresponding method <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> are <strong>available for all document types</strong>. Only for PDF documents, methods <a class="reference internal" href="document.html#Document.get_page_images" title="Document.get_page_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_page_images()</span></code></a> / <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> offer some overlapping functionality as far as image lists are concerned. But both lists <strong>may or may not</strong> contain the same items. Any differences are most probably caused by one of the following:</p>
+<ul class="simple">
+<li><p>“Inline” images (see page 214 of the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>) of a PDF page are contained in a textpage, but <strong>do not appear</strong> in <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a>.</p></li>
+<li><p>Annotations may also contain images – these will <strong>not appear</strong> in <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a>.</p></li>
+<li><p>Image blocks in a textpage are generated for <strong>every</strong> image location – whether or not there are any duplicates. This is in contrast to <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a>, which will list each image only once (per reference name).</p></li>
+<li><p>Images mentioned in the page’s <a class="reference internal" href="glossary.html#object" title="object"><code class="xref py py-data docutils literal notranslate"><span class="pre">object</span></code></a> definition will <strong>always</strong> appear in <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> <a class="footnote-reference brackets" href="#f1" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. But it may happen, that there is no “display” command in the page’s <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> (erroneously or on purpose). In this case the image will <strong>not appear</strong> in the textpage.</p></li>
+</ul>
+</li>
+<li><p>The image’s “transformation matrix” is defined as the matrix, for which the expression <code class="xref any docutils literal notranslate"><span class="pre">bbox</span> <span class="pre">/</span> <span class="pre">transform</span> <span class="pre">==</span> <span class="pre">pymupdf.Rect(0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">1)</span></code> is true, lookup details here: <a class="reference internal" href="app3.html#imagetransformation"><span class="std std-ref">图像转换矩阵</span></a>.</p></li>
+<li><p>A transparent image may be accompanied by a mask image. This is stored under key <code class="xref any docutils literal notranslate"><span class="pre">&quot;mask&quot;</span></code> and has the format of a <code class="xref any docutils literal notranslate"><span class="pre">DeviceGray</span></code> PNG image. Otherwise the value of this key is <code class="docutils literal notranslate"><span class="pre">None</span></code>. If present, you may be able to recover (an equivalent of) the original image – i.e. with transparency – by creating <a class="reference internal" href="pixmap.html#pixmap"><span class="std std-ref">Pixmap</span></a> objects from the “image”, respectively “mask” values and overlay them. This is not guaranteed to always work because mask images come in multiple formats, of which not all qualify for the conditions under which overlaying Pixmaps are supported. Here is a code snippet:</p></li>
+</ol>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">block</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Pixmap</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Text block:</strong></p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>type</p></td>
+<td><p>0 = text <em>(int)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>block rectangle, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>number</p></td>
+<td><p>block count <em>(int)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>lines</p></td>
+<td><p><em>list</em> of text line dictionaries</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="line">
+<h3>Line 字典<a class="headerlink" href="#line" title="此标题的永久链接">#</a></h3>
+<p>Line Dictionary</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bbox</p></td>
+<td><p>行的矩形区域，<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>wmode</p></td>
+<td><p>书写模式 <em>(int)</em>：0 = 水平，1 = 垂直</p></td>
+</tr>
+<tr class="row-even"><td><p>dir</p></td>
+<td><p>书写方向，<a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>spans</p></td>
+<td><p>span 字典的 <em>list</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>键 <em>“dir”</em> 的值是文本相对于 x 轴的 <strong>单位向量</strong>  <code class="xref any docutils literal notranslate"><span class="pre">dir</span> <span class="pre">=</span> <span class="pre">(cosine,</span> <span class="pre">-sine)</span></code> <a class="footnote-reference brackets" href="#f4" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> 。
+请参见下图：每个象限中的单词（按逆时针方向，从右上到右下）分别旋转了 30、120、210 和 300 度。</p>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bbox</p></td>
+<td><p>line rectangle, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>wmode</p></td>
+<td><p>writing mode <em>(int)</em>: 0 = horizontal, 1 = vertical</p></td>
+</tr>
+<tr class="row-even"><td><p>dir</p></td>
+<td><p>writing direction, <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>spans</p></td>
+<td><p><em>list</em> of span dictionaries</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The value of key <em>“dir”</em> is the <strong>unit vector</strong> <code class="xref any docutils literal notranslate"><span class="pre">dir</span> <span class="pre">=</span> <span class="pre">(cosine,</span> <span class="pre">-sine)</span></code> of the angle, which the text has relative to the x-axis <a class="footnote-reference brackets" href="#f2" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. See the following picture: The word in each quadrant (counter-clockwise from top-right to bottom-right) is rotated by 30, 120, 210 and 300 degrees respectively.</p>
+</div>
+</div>
+<a class="reference internal image-reference" href="_images/img-line-dir.png"><img alt="_images/img-line-dir.png" src="_images/img-line-dir.png" style="width: 400.0px; height: 400.0px;" /></a>
+</section>
+<section id="span">
+<h3>Span 字典<a class="headerlink" href="#span" title="此标题的永久链接">#</a></h3>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>Spans 包含实际的文本。仅当一行中的文本具有不同的字体属性时，该行才会包含 <strong>多个 span</strong>。</p>
+<ul class="simple">
+<li><p>在 1.14.17 版本中更改：Spans 现在再次包含 <em>bbox</em> 键。</p></li>
+<li><p>在 1.17.6 版本中更改：Spans 现在包含 <em>origin</em> 键。</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bbox</p></td>
+<td><p>span 的矩形区域，<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>origin</p></td>
+<td><p>第一个字符的起点，<a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>font</p></td>
+<td><p>字体名称 <em>(str)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ascender</p></td>
+<td><p>字体的上伸部 <em>(float)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>descender</p></td>
+<td><p>字体的下伸部 <em>(float)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p>字号 <em>(float)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>字体特征 <em>(int)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>char_flags</p></td>
+<td><p>字符特征 <em>(int)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>以 sRGB 格式表示的文本颜色 0xRRGGBB <em>(int)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>alpha</p></td>
+<td><p>文字的不透明度 0..255 <em>(int)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>（仅用于 <code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code>）文本 <em>(str)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>chars</p></td>
+<td><p>（仅用于 <code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code>）字符字典的 <em>list</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><details>
+<summary><small style="cursor:pointer;">Show/hide history</small></summary><small></p>
+<p><em>(新功能于 1.25.3.0 版本)：</em> 添加了 <em>“alpha”</em> 项目。</p>
+<p><em>(新功能于 1.16.0 版本)：</em> <em>“color”</em> 现在是以 sRGB 格式（int）编码的文本颜色，例如 0xFF0000 代表红色。
+可使用 <a class="reference internal" href="functions.html#sRGB_to_pdf" title="sRGB_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_pdf()</span></code></a> 将此整数转换为 PDF 格式（r, g, b），值为 0 到 1 的浮点数；
+也可以使用 <a class="reference internal" href="functions.html#sRGB_to_rgb" title="sRGB_to_rgb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_rgb()</span></code></a> 转换为整数 (R, G, B)，值范围 0 到 255。</p>
+<p><em>(新功能于 v1.18.5 版本)：</em> <em>“ascender”</em> 和 <em>“descender”</em> 代表字体属性，按 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 1 相对提供。
+请注意，descender 为负值。下图展示了它们与其他值及属性的关系。</p>
+<p></small></details></p>
+<a class="reference internal image-reference" href="_images/img-asc-desc.png"><img alt="_images/img-asc-desc.png" src="_images/img-asc-desc.png" style="width: 476.4px; height: 232.79999999999998px;" /></a>
+<p>这些数值可用于计算字符（或 span）的最小高度，而标准的 “bbox” 值实际上表示的是 <strong>行高</strong>。
+以下代码重新计算 span 的 bbox 以使其高度恰好等于 <strong>fontsize</strong>，确保文本完全适配：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;ascender&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;descender&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">span</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">span</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">])</span>  <span class="c1"># y 值即为基线</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">y1</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">y1</span> <span class="o">-</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 现在 r 代表一个高度等于 &#39;fontsize&#39; 的矩形</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>上述计算可能会产生 <strong>更大的</strong> 高度！例如，在 OCR 处理的文档中，由于可能存在各种文本伪影，这种情况风险较高。
+MuPDF 会尝试提供合理的 bbox 高度，而不完全依赖于 PDF 中的 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 值。
+因此，请确保 <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;bbox&quot;]</span></code> 的高度 <strong>大于</strong> <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;size&quot;]</span></code>。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>你可以让 PyMuPDF 自动完成上述操作，执行 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.TOOLS.set_small_glyph_heights(True)</span></code>。
+这会设置一个全局参数，使后续所有文本搜索和提取基于较小的字形高度（如果有意义）。</p>
+</div>
+<p>下图展示了原始 span 矩形（红色）与重新计算高度后的矩形（蓝色）。</p>
+<a class="reference internal image-reference" href="_images/img-span-rect.png"><img alt="_images/img-span-rect.png" src="_images/img-span-rect.png" style="width: 186.0px; height: 116.0px;" /></a>
+<p><em>“flags”</em> 是一个整数，表示字体属性（除了第 0 位），其各位的含义如下：</p>
+<ul class="simple">
+<li><p>bit 0: 上标（<a class="reference internal" href="vars.html#TEXT_FONT_SUPERSCRIPT" title="TEXT_FONT_SUPERSCRIPT"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_SUPERSCRIPT</span></code></a>）—— 不是字体属性，而是 MuPDF 代码检测到的。</p></li>
+<li><p>bit 1: 斜体（<a class="reference internal" href="vars.html#TEXT_FONT_ITALIC" title="TEXT_FONT_ITALIC"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_ITALIC</span></code></a>）</p></li>
+<li><p>bit 2: 衬线（<a class="reference internal" href="vars.html#TEXT_FONT_SERIFED" title="TEXT_FONT_SERIFED"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_SERIFED</span></code></a>）</p></li>
+<li><p>bit 3: 等宽（<a class="reference internal" href="vars.html#TEXT_FONT_MONOSPACED" title="TEXT_FONT_MONOSPACED"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_MONOSPACED</span></code></a>）</p></li>
+<li><p>bit 4: 加粗（<a class="reference internal" href="vars.html#TEXT_FONT_BOLD" title="TEXT_FONT_BOLD"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_BOLD</span></code></a>）</p></li>
+</ul>
+<p>可通过以下方式测试这些特性：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">flags</span> <span class="o">&amp;</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">TEXT_FONT_BOLD</span> <span class="o">&amp;</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">TEXT_FONT_ITALIC</span><span class="p">:</span>
+<span class="go">      print(f&quot;{span[&#39;text&#39;]=} 是加粗且斜体&quot;)</span>
+</pre></div>
+</div>
+<p>位 1 到 4 是字体的固有属性，即它们编码在字体程序中。
+但请注意，该信息并不一定是正确或完整的——许多字体文件在这些字段中可能包含错误数据。</p>
+<p><em>“char_flags”</em> 是一个整数，表示额外的字符属性：</p>
+<ul class="simple">
+<li><p>bit 0: 删除线。</p></li>
+<li><p>bit 1: 下划线。</p></li>
+<li><p>bit 2: 伪造（始终为 0，见字符字典）。</p></li>
+<li><p>bit 3: 填充。</p></li>
+<li><p>bit 4: 勾边（stroked）。</p></li>
+<li><p>bit 5: 裁剪。</p></li>
+</ul>
+<p>例如，如果文本既 <strong>未填充</strong> 又 <strong>未勾边</strong> （<code class="xref any docutils literal notranslate"><span class="pre">if</span> <span class="pre">not</span> <span class="pre">(char_flags</span> <span class="pre">&amp;</span> <span class="pre">2**3</span> <span class="pre">&amp;</span> <span class="pre">2**4):</span> <span class="pre">...</span></code>），
+那么该文本将不可见。</p>
+<p>(<code class="xref any docutils literal notranslate"><span class="pre">char_flags</span></code> 在 v1.25.2 版本中新增。)</p>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>Spans contain the actual text. A line contains <strong>more than one span only</strong>, if it contains text with different font properties.</p>
+<ul class="simple">
+<li><p>Changed in version 1.14.17 Spans now also have a <em>bbox</em> key (again).</p></li>
+<li><p>Changed in version 1.17.6 Spans now also have an <em>origin</em> key.</p></li>
+</ul>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bbox</p></td>
+<td><p>span rectangle, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>origin</p></td>
+<td><p>the first character’s origin, <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>font</p></td>
+<td><p>font name <em>(str)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>ascender</p></td>
+<td><p>ascender of the font <em>(float)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>descender</p></td>
+<td><p>descender of the font <em>(float)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>size</p></td>
+<td><p>font size <em>(float)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>flags</p></td>
+<td><p>font characteristics <em>(int)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>char_flags</p></td>
+<td><p>char characteristics <em>(int)</em></p></td>
+</tr>
+<tr class="row-even"><td><p>color</p></td>
+<td><p>text color in sRGB format 0xRRGGBB <em>(int)</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>alpha</p></td>
+<td><p>text opacity 0..255 <em>(int)</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p>text</p></td>
+<td><p>(only for <code class="xref py py-meth docutils literal notranslate"><span class="pre">extractDICT()</span></code>) text <em>(str)</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>chars</p></td>
+<td><p>(only for <code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code>) <em>list</em> of character dictionaries</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><details>
+<summary><small style="cursor:pointer;">Show/hide history</small></summary><small></p>
+<p><em>(New in version 1.25.3.0):</em> Added <em>“alpha”</em> item.</p>
+<p><em>(New in version 1.16.0):</em> <em>“color”</em> is the text color encoded in sRGB (int) format, e.g. 0xFF0000 for red. There are functions for converting this integer back to formats (r, g, b) (PDF with float values from 0 to 1) <a class="reference internal" href="functions.html#sRGB_to_pdf" title="sRGB_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_pdf()</span></code></a>, or (R, G, B), <a class="reference internal" href="functions.html#sRGB_to_rgb" title="sRGB_to_rgb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_rgb()</span></code></a> (with integer values from 0 to 255).</p>
+<p><em>(New in v1.18.5):</em> <em>“ascender”</em> and <em>“descender”</em> are font properties, provided relative to <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 1. Note that descender is a negative value. The following picture shows the relationship to other values and properties.</p>
+<p></small></details></p>
+<a class="reference internal image-reference" href="_images/img-asc-desc.png"><img alt="_images/img-asc-desc.png" src="_images/img-asc-desc.png" style="width: 476.4px; height: 232.79999999999998px;" /></a>
+<p>These numbers may be used to compute the minimum height of a character (or span) – as opposed to the standard height provided in the “bbox” values (which actually represents the <strong>line height</strong>). The following code recalculates the span bbox to have a height of <strong>fontsize</strong> exactly fitting the text inside:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;ascender&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;descender&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">span</span><span class="p">[</span><span class="s2">&quot;bbox&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">span</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">])</span>  <span class="c1"># its y-value is the baseline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">y1</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="n">d</span> <span class="o">/</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">d</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">r</span><span class="o">.</span><span class="n">y0</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">y1</span> <span class="o">-</span> <span class="n">span</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># r now is a rectangle of height &#39;fontsize&#39;</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>The above calculation may deliver a <strong>larger</strong> height! This may e.g. happen for OCRed documents, where the risk of all sorts of text artifacts is high. MuPDF tries to come up with a reasonable bbox height, independently from the <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> found in the PDF. So please ensure that the height of <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;bbox&quot;]</span></code> is <strong>larger</strong> than <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;size&quot;]</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>You may request PyMuPDF to do all of the above automatically by executing <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.TOOLS.set_small_glyph_heights(True)</span></code>. This sets a global parameter so that all subsequent text searches and text extractions are based on reduced glyph heights, where meaningful.</p>
+</div>
+<p>The following shows the original span rectangle in red and the rectangle with re-computed height in blue.</p>
+<a class="reference internal image-reference" href="_images/img-span-rect.png"><img alt="_images/img-span-rect.png" src="_images/img-span-rect.png" style="width: 186.0px; height: 116.0px;" /></a>
+<p><em>“flags”</em> is an integer, which represents font properties except for the first bit 0. They are to be interpreted like this:</p>
+<ul class="simple">
+<li><p>bit 0: superscripted (<a class="reference internal" href="vars.html#TEXT_FONT_SUPERSCRIPT" title="TEXT_FONT_SUPERSCRIPT"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_SUPERSCRIPT</span></code></a>) – not a font property, detected by MuPDF code.</p></li>
+<li><p>bit 1: italic (<a class="reference internal" href="vars.html#TEXT_FONT_ITALIC" title="TEXT_FONT_ITALIC"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_ITALIC</span></code></a>)</p></li>
+<li><p>bit 2: serifed (<a class="reference internal" href="vars.html#TEXT_FONT_SERIFED" title="TEXT_FONT_SERIFED"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_SERIFED</span></code></a>)</p></li>
+<li><p>bit 3: monospaced (<a class="reference internal" href="vars.html#TEXT_FONT_MONOSPACED" title="TEXT_FONT_MONOSPACED"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_MONOSPACED</span></code></a>)</p></li>
+<li><p>bit 4: bold (<a class="reference internal" href="vars.html#TEXT_FONT_BOLD" title="TEXT_FONT_BOLD"><code class="xref py py-data docutils literal notranslate"><span class="pre">TEXT_FONT_BOLD</span></code></a>)</p></li>
+</ul>
+<p>Test these characteristics like so:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">flags</span> <span class="o">&amp;</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">TEXT_FONT_BOLD</span> <span class="o">&amp;</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">TEXT_FONT_ITALIC</span><span class="p">:</span>
+<span class="go">      print(f&quot;{span[&#39;text&#39;]=} is bold and italic&quot;)</span>
+</pre></div>
+</div>
+<p>Bits 1 thru 4 are font properties, i.e. encoded in the font program. Please note, that this information is not necessarily correct or complete: fonts quite often contain wrong data here.</p>
+<p><em>“char_flags”</em> is an integer, which represents extra character properties:</p>
+<ul class="simple">
+<li><p>bit 0: strikeout.</p></li>
+<li><p>bit 1: underline.</p></li>
+<li><p>bit 2: synthetic (always 0, see char dictionary).</p></li>
+<li><p>bit 3: filled.</p></li>
+<li><p>bit 4: stroked.</p></li>
+<li><p>bit 5: clipped.</p></li>
+</ul>
+<p>For example if not filled and not stroked (<code class="xref any docutils literal notranslate"><span class="pre">if</span> <span class="pre">not</span> <span class="pre">(char_flags</span> <span class="pre">&amp;</span> <span class="pre">2**3</span> <span class="pre">&amp;</span> <span class="pre">2**4):</span>
+<span class="pre">...</span></code>) then the text will be invisible.</p>
+<p>(<code class="xref any docutils literal notranslate"><span class="pre">char_flags</span></code> is new in v1.25.2.)</p>
+</div>
+</div>
+</section>
+<section id="extractrawdict">
+<h3><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code> 的字符字典<a class="headerlink" href="#extractrawdict" title="此标题的永久链接">#</a></h3>
+<p>Character Dictionary for <code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code></p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>origin</p></td>
+<td><p>字符的左基线点，<a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>字符矩形区域，<a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>synthetic</p></td>
+<td><p>布尔值。</p></td>
+</tr>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>字符（Unicode）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(<code class="xref any docutils literal notranslate"><span class="pre">synthetic</span></code> 在 v1.25.3 中新增。)</p>
+<p>下图展示了字符的 <a class="reference internal" href="font.html#Font.bbox" title="Font.bbox"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">bbox</span></code></a> 与 <a class="reference internal" href="quad.html"><span class="doc">Quad</span></a> 之间的关系： <a class="reference internal" href="_images/img-textpage-char.png"><img alt="textpagechar" class="align-top" src="_images/img-textpage-char.png" style="width: 173.58px; height: 97.02000000000001px;" /></a></p>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>origin</p></td>
+<td><p>character’s left baseline point, <a class="reference internal" href="glossary.html#point_like" title="point_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">point_like</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>bbox</p></td>
+<td><p>character rectangle, <a class="reference internal" href="glossary.html#rect_like" title="rect_like"><code class="xref py py-data docutils literal notranslate"><span class="pre">rect_like</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p>synthetic</p></td>
+<td><p>bool.</p></td>
+</tr>
+<tr class="row-odd"><td><p>c</p></td>
+<td><p>the character (unicode)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(<code class="xref any docutils literal notranslate"><span class="pre">synthetic</span></code> is new in v1.25.3.)</p>
+<p>This image shows the relationship between a character’s bbox and its quad: <a class="reference internal" href="_images/img-textpage-char.png"><img alt="textpagechar" class="align-top" src="_images/img-textpage-char.png" style="width: 173.58px; height: 97.02000000000001px;" /></a></p>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<p>Image specifications for a PDF page are done in a page’s (sub-) <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a>, called <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code>. Resource dictionaries can be <strong>inherited</strong> from any of the page’s parent objects (usually the <a class="reference internal" href="glossary.html#catalog" title="catalog"><code class="xref py py-data docutils literal notranslate"><span class="pre">catalog</span></code></a> – the top-level parent). The PDF creator may e.g. define one <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> on file level, naming all images and / or all fonts ever used by any page. In these cases, <a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> and <a class="reference internal" href="page.html#Page.get_fonts" title="Page.get_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_fonts()</span></code></a> will consequently return the same lists for all pages. If desired, this situation can be reverted using <a class="reference internal" href="functions.html#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a>. After execution, the page’s object definition will show fonts and images that are actually used.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">2</a><span class="fn-bracket">]</span></span>
+<p>The coordinate systems of MuPDF and PDF are different in that MuPDF uses the page’s top-left point as <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>. In PDF, this is the bottom-left point. Therefore, the positive direction for MuPDF’s y-axis is <strong>from top to bottom</strong>. This causes the sign change for the sine value here: a <strong>negative</strong> value indicates anti-clockwise rotation of the text.</p>
+</aside>
+<aside class="footnote brackets" id="f3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p>PDF 页面图像的规范在页面的（子） <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a> <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code> 中定义。
+资源字典可以从页面的任何父对象（通常是顶层父对象 <a class="reference internal" href="glossary.html#catalog" title="catalog"><code class="xref py py-data docutils literal notranslate"><span class="pre">catalog</span></code></a>） <strong>继承</strong>。
+例如，PDF 生成器可以在文件级别定义一个 <code class="xref any docutils literal notranslate"><span class="pre">/Resources</span></code>，其中列出所有页面可能使用的图像和字体。
+在这些情况下，<a class="reference internal" href="page.html#Page.get_images" title="Page.get_images"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_images()</span></code></a> 和 <a class="reference internal" href="page.html#Page.get_fonts" title="Page.get_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_fonts()</span></code></a> 将返回相同的列表。
+如果需要，可以使用 <a class="reference internal" href="functions.html#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> 进行还原。
+执行后，页面的对象定义将仅包含实际使用的字体和图像。</p>
+</aside>
+<aside class="footnote brackets" id="f4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p>MuPDF 和 PDF 的坐标系统不同，MuPDF 采用页面的左上角作为 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>，
+而 PDF 采用左下角作为 <code class="xref any docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>。因此，MuPDF 的 y 轴正方向 <strong>从上到下</strong> ，
+这导致这里正弦值的符号发生变化： <strong>负值</strong> 表示文本的逆时针旋转。</p>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="textwriter.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">TextWriter</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="story-class.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Story</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">TextPage</a><ul>
+<li><a class="reference internal" href="#TextPage"><code class="docutils literal notranslate"><span class="pre">TextPage</span></code></a><ul>
+<li><a class="reference internal" href="#TextPage.extractText"><code class="docutils literal notranslate"><span class="pre">TextPage.extractText()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractTEXT"><code class="docutils literal notranslate"><span class="pre">TextPage.extractTEXT()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractBLOCKS"><code class="docutils literal notranslate"><span class="pre">TextPage.extractBLOCKS()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractWORDS"><code class="docutils literal notranslate"><span class="pre">TextPage.extractWORDS()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractHTML"><code class="docutils literal notranslate"><span class="pre">TextPage.extractHTML()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractDICT"><code class="docutils literal notranslate"><span class="pre">TextPage.extractDICT()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractJSON"><code class="docutils literal notranslate"><span class="pre">TextPage.extractJSON()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractXHTML"><code class="docutils literal notranslate"><span class="pre">TextPage.extractXHTML()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractXML"><code class="docutils literal notranslate"><span class="pre">TextPage.extractXML()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractRAWDICT"><code class="docutils literal notranslate"><span class="pre">TextPage.extractRAWDICT()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.extractRAWJSON"><code class="docutils literal notranslate"><span class="pre">TextPage.extractRAWJSON()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.search"><code class="docutils literal notranslate"><span class="pre">TextPage.search()</span></code></a></li>
+<li><a class="reference internal" href="#TextPage.rect"><code class="docutils literal notranslate"><span class="pre">TextPage.rect</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#textpagedict">字典输出的结构</a><ul>
+<li><a class="reference internal" href="#page">Page 字典</a></li>
+<li><a class="reference internal" href="#block">Block 字典</a></li>
+<li><a class="reference internal" href="#line">Line 字典</a></li>
+<li><a class="reference internal" href="#span">Span 字典</a></li>
+<li><a class="reference internal" href="#extractrawdict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">extractRAWDICT()</span></code> 的字符字典</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1383 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="常见问题及其解决方案" href="recipes-common-issues-and-their-solutions.html" /><link rel="prev" title="可选内容支持" href="recipes-optional-content.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>低级接口 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="recipeslowlevelinterfaces">
+<span id="id1"></span><h1>低级接口<a class="headerlink" href="#recipeslowlevelinterfaces" title="此标题的永久链接">#</a></h1>
+<p>Low-Level Interfaces</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>有多种方法可用于在相当低的级别上访问和操作 PDF 文件。诚然，“低级”和“正常”功能之间的明确区分并不总是可能的，或者取决于个人喜好。</p>
+<p>也可能发生这种情况，以前被视为低级的功能后来被评估为正常界面的一部分。这在 v1.14.0 中发生在类 <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools</span></a> 中 - 您现在可以在类章节中找到它作为一项。</p>
+<p>只有在文档的哪一章中才能找到您要查找的内容，这只是文档的问题。一切都可用，并且始终通过相同的界面。</p>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>Numerous methods are available to access and manipulate PDF files on a fairly low level. Admittedly, a clear distinction between “low level” and “normal” functionality is not always possible or subject to personal taste.</p>
+<p>It also may happen, that functionality previously deemed low-level is later on assessed as being part of the normal interface. This has happened in v1.14.0 for the class <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools</span></a> - you now find it as an item in the Classes chapter.</p>
+<p>It is a matter of documentation only in which chapter of the documentation you find what you are looking for. Everything is available and always via the same interface.</p>
+</div>
+</div>
+<hr class="docutils" />
+<section id="xref">
+<h2>如何遍历 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表<a class="headerlink" href="#xref" title="此标题的永久链接">#</a></h2>
+<p>How to Iterate through the <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> Table</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>PDF 的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表是文件中所有对象的列表。这个表可能包含成千上万条条目——例如，手册 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 就有 127,000 个对象。表项 “0” 是保留项，不能被修改。
+以下脚本遍历 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表并打印每个对象的定义:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xreflen</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_length</span><span class="p">()</span>  <span class="c1"># 对象表的长度</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">xref</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xreflen</span><span class="p">):</span>  <span class="c1"># 跳过第 0 项！</span>
+<span class="go">        print(&quot;&quot;)</span>
+<span class="go">        print(&quot;object %i (stream: %s)&quot; % (xref, doc.xref_is_stream(xref)))</span>
+<span class="go">        print(doc.xref_object(xref, compressed=False))</span>
+</pre></div>
+</div>
+<p>这将输出如下内容:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>object 1 (stream: False)
+&lt;&lt;
+    /ModDate (D:20170314122233-04&#39;00&#39;)
+    /PXCViewerInfo (PDF-XChange Viewer;2.5.312.1;Feb  9 2015;12:00:06;D:20170314122233-04&#39;00&#39;)
+&gt;&gt;
+
+object 2 (stream: False)
+&lt;&lt;
+    /Type /Catalog
+    /Pages 3 0 R
+&gt;&gt;
+
+object 3 (stream: False)
+&lt;&lt;
+    /Kids [ 4 0 R 5 0 R ]
+    /Type /Pages
+    /Count 2
+&gt;&gt;
+
+object 4 (stream: False)
+&lt;&lt;
+    /Type /Page
+    /Annots [ 6 0 R ]
+    /Parent 3 0 R
+    /Contents 7 0 R
+    /MediaBox [ 0 0 595 842 ]
+    /Resources 8 0 R
+&gt;&gt;
+...
+object 7 (stream: True)
+&lt;&lt;
+    /Length 494
+    /Filter /FlateDecode
+&gt;&gt;
+...
+</pre></div>
+</div>
+<p>PDF 对象定义是一个普通的 ASCII 字符串。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>A PDF’s <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> table is a list of all objects defined in the file. This table may easily contain many thousands of entries – the manual <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> for example has 127,000 objects. Table entry “0” is reserved and must not be touched.
+The following script loops through the <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> table and prints each object’s definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xreflen</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_length</span><span class="p">()</span>  <span class="c1"># length of objects table</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">xref</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xreflen</span><span class="p">):</span>  <span class="c1"># skip item 0!</span>
+<span class="go">        print(&quot;&quot;)</span>
+<span class="go">        print(&quot;object %i (stream: %s)&quot; % (xref, doc.xref_is_stream(xref)))</span>
+<span class="go">        print(doc.xref_object(xref, compressed=False))</span>
+</pre></div>
+</div>
+<p>This produces the following output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>object 1 (stream: False)
+&lt;&lt;
+    /ModDate (D:20170314122233-04&#39;00&#39;)
+    /PXCViewerInfo (PDF-XChange Viewer;2.5.312.1;Feb  9 2015;12:00:06;D:20170314122233-04&#39;00&#39;)
+&gt;&gt;
+
+object 2 (stream: False)
+&lt;&lt;
+    /Type /Catalog
+    /Pages 3 0 R
+&gt;&gt;
+
+object 3 (stream: False)
+&lt;&lt;
+    /Kids [ 4 0 R 5 0 R ]
+    /Type /Pages
+    /Count 2
+&gt;&gt;
+
+object 4 (stream: False)
+&lt;&lt;
+    /Type /Page
+    /Annots [ 6 0 R ]
+    /Parent 3 0 R
+    /Contents 7 0 R
+    /MediaBox [ 0 0 595 842 ]
+    /Resources 8 0 R
+&gt;&gt;
+...
+object 7 (stream: True)
+&lt;&lt;
+    /Length 494
+    /Filter /FlateDecode
+&gt;&gt;
+...
+</pre></div>
+</div>
+<p>A PDF object definition is an ordinary ASCII string.</p>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>如何处理对象流<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>How to Handle Object Streams</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>某些对象类型除了其对象定义外，还包含其他数据。例如，图像、字体、嵌入文件或描述页面外观的命令。</p>
+<p>这些类型的对象被称为“流对象”。PyMuPDF 允许通过方法 <a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> 读取对象的流，方法的参数是对象的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>。也可以使用 <a class="reference internal" href="document.html#Document.update_stream" title="Document.update_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.update_stream()</span></code></a> 写回修改后的流版本。</p>
+<p>假设以下代码片段希望读取 PDF 中的所有流，无论出于何种原因：</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xreflen</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_length</span><span class="p">()</span> <span class="c1"># 文件中的对象数量</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">xref</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xreflen</span><span class="p">):</span> <span class="c1"># 跳过第 0 项！</span>
+<span class="go">        if stream := doc.xref_stream(xref):</span>
+<span class="go">            # 对其进行处理（它是一个字节对象或 None）</span>
+<span class="go">            # 例如，仅写回：</span>
+<span class="go">            doc.update_stream(xref, stream)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> 会自动返回已解压的字节对象流，而 <a class="reference internal" href="document.html#Document.update_stream" title="Document.update_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.update_stream()</span></code></a> 会在有利的情况下自动对其进行压缩。</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>Some object types contain additional data apart from their object definition. Examples are images, fonts, embedded files or commands describing the appearance of a page.</p>
+<p>Objects of these types are called “stream objects”. PyMuPDF allows reading an object’s stream via method <a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> with the object’s <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> as an argument. It is also possible to write back a modified version of a stream using <a class="reference internal" href="document.html#Document.update_stream" title="Document.update_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.update_stream()</span></code></a>.</p>
+<p>Assume that the following snippet wants to read all streams of a PDF for whatever reason:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xreflen</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_length</span><span class="p">()</span> <span class="c1"># number of objects in file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">xref</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">xreflen</span><span class="p">):</span> <span class="c1"># skip item 0!</span>
+<span class="go">        if stream := doc.xref_stream(xref):</span>
+<span class="go">            # do something with it (it is a bytes object or None)</span>
+<span class="go">            # e.g. just write it back:</span>
+<span class="go">            doc.update_stream(xref, stream)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> automatically returns a stream decompressed as a bytes object – and <a class="reference internal" href="document.html#Document.update_stream" title="Document.update_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.update_stream()</span></code></a> automatically compresses it if beneficial.</p>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>如何处理页面内容<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>How to Handle Page Contents</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<p>PDF 页面可以有零个或多个 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象。这些是描述页面上 <strong>什么</strong> 出现在 <strong>哪里</strong> 以及 <strong>如何</strong> 显示的流对象（如文本和图像）。它们使用一种特殊的迷你语言进行编写，例如在 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 643 页的“附录 A - 操作符摘要”章节中描述。</p>
+<p>每个 PDF 阅读器应用程序必须能够解释内容语法，以重现页面的预期外观。</p>
+<p>如果提供了多个 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象，它们必须按指定顺序解释，完全按照将它们连接为一个整体时的方式进行处理。</p>
+<p>拥有多个 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象有一些良好的技术理由：</p>
+<ul class="simple">
+<li><p>添加新的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象比维护一个大的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象要容易得多且更快（后者涉及到读取、解压、修改、重新压缩和每次修改时的重写）。</p></li>
+<li><p>在处理增量更新时，修改过的大型 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象会使更新差异膨胀，因此可能会轻易抵消增量保存的效率。</p></li>
+</ul>
+<p>例如，PyMuPDF 在方法 <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a>、<a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> 和 <a class="reference internal" href="shape.html#shape"><span class="std std-ref">Shape</span></a> 方法中添加新的小型 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象。</p>
+<p>然而，也有一些情况，当只有 <strong>一个</strong> <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象时更为有利：它比多个小的对象更容易解释，且更易于压缩。</p>
+<p>以下是两种合并页面多个内容的方法:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 方法 1: 使用 MuPDF 清理功能</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">clean_contents</span><span class="p">()</span>  <span class="c1"># 清理并合并多个 Contents</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xref</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_contents</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 现在只有一个 /Contents!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cont</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_stream</span><span class="p">(</span><span class="n">xref</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 这也重新格式化了 PDF 命令</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 方法 2: 提取连接的内容</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cont</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read_contents</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># /Contents 源本身未修改</span>
+</pre></div>
+</div>
+<p>清理函数 <a class="reference internal" href="functions.html#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> 做的不仅仅是将 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象拼接起来：它还会修正并优化页面的 PDF 操作符语法，删除与页面对象定义的不一致之处。</p>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<p>A PDF page can have zero or multiple <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects. These are stream objects describing <strong>what</strong> appears <strong>where</strong> and <strong>how</strong> on a page (like text and images). They are written in a special mini-language described e.g. in chapter “APPENDIX A - Operator Summary” on page 643 of the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>.</p>
+<p>Every PDF reader application must be able to interpret the contents syntax to reproduce the intended appearance of the page.</p>
+<p>If multiple <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects are provided, they must be interpreted in the specified sequence in exactly the same way as if they were provided as a concatenation of the several.</p>
+<p>There are good technical arguments for having multiple <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects:</p>
+<ul class="simple">
+<li><p>It is a lot easier and faster to just add new <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects than maintaining a single big one (which entails reading, decompressing, modifying, recompressing, and rewriting it for each change).</p></li>
+<li><p>When working with incremental updates, a modified big <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> object will bloat the update delta and can thus easily negate the efficiency of incremental saves.</p></li>
+</ul>
+<p>For example, PyMuPDF adds new, small <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects in methods <a class="reference internal" href="page.html#Page.insert_image" title="Page.insert_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_image()</span></code></a>, <a class="reference internal" href="page.html#Page.show_pdf_page" title="Page.show_pdf_page"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.show_pdf_page()</span></code></a> and the <a class="reference internal" href="shape.html#shape"><span class="std std-ref">Shape</span></a> methods.</p>
+<p>However, there are also situations when a <strong>single</strong> <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> object is beneficial: it is easier to interpret and more compressible than multiple smaller ones.</p>
+<p>Here are two ways of combining multiple contents of a page:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># method 1: use the MuPDF clean function</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">page</span><span class="o">.</span><span class="n">clean_contents</span><span class="p">()</span>  <span class="c1"># cleans and combines multiple Contents</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xref</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_contents</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># only one /Contents now!</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cont</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_stream</span><span class="p">(</span><span class="n">xref</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># this has also reformatted the PDF commands</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># method 2: extract concatenated contents</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cont</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">read_contents</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># the /Contents source itself is unmodified</span>
+</pre></div>
+</div>
+<p>The clean function <a class="reference internal" href="functions.html#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> does a lot more than just glueing <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects: it also corrects and optimizes the PDF operator syntax of the page and removes any inconsistencies with the page’s object definition.</p>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pdf">
+<h2>如何访问 PDF 目录<a class="headerlink" href="#pdf" title="此标题的永久链接">#</a></h2>
+<p>How to Access the PDF Catalog</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<p>这是 PDF 的一个核心（”根”）对象。它作为访问其他重要对象的起点，同时也包含一些全局选项，如下所示:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">=</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;PyMuPDF.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">pdf_catalog</span><span class="p">()</span>  <span class="c1"># 获取 /Catalog 的 xref</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">cat</span><span class="p">))</span>  <span class="c1"># 打印对象定义</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    /Type/Catalog                 % 对象类型</span>
+<span class="go">    /Pages 3593 0 R               % 指向页面树</span>
+<span class="go">    /OpenAction 225 0 R           % 打开时执行的动作</span>
+<span class="go">    /Names 3832 0 R               % 指向全局名称树</span>
+<span class="go">    /PageMode /UseOutlines        % 初始显示 TOC</span>
+<span class="go">    /PageLabels&lt;&lt;/Nums[0&lt;&lt;/S/D&gt;&gt;2&lt;&lt;/S/r&gt;&gt;8&lt;&lt;/S/D&gt;&gt;]&gt;&gt; % 页面标签</span>
+<span class="go">    /Outlines 3835 0 R            % 指向大纲树</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>为了说明目的，这里插入了缩进、换行符和注释，通常不会出现。有关 PDF 目录的更多信息，请参阅 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 71 页的第 7.7.2 节。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<p>This is a central (“root”) object of a PDF. It serves as a starting point to reach important other objects and it also contains some global options for the PDF:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">=</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;PyMuPDF.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">pdf_catalog</span><span class="p">()</span>  <span class="c1"># get xref of the /Catalog</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">cat</span><span class="p">))</span>  <span class="c1"># print object definition</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">    /Type/Catalog                 % object type</span>
+<span class="go">    /Pages 3593 0 R               % points to page tree</span>
+<span class="go">    /OpenAction 225 0 R           % action to perform on open</span>
+<span class="go">    /Names 3832 0 R               % points to global names tree</span>
+<span class="go">    /PageMode /UseOutlines        % initially show the TOC</span>
+<span class="go">    /PageLabels&lt;&lt;/Nums[0&lt;&lt;/S/D&gt;&gt;2&lt;&lt;/S/r&gt;&gt;8&lt;&lt;/S/D&gt;&gt;]&gt;&gt; % labels given to pages</span>
+<span class="go">    /Outlines 3835 0 R            % points to outline tree</span>
+<span class="go">&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Indentation, line breaks and comments are inserted here for clarification purposes only and will not normally appear. For more information on the PDF catalog see section 7.7.2 on page 71 of the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a>.</p>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2>如何访问 PDF 文件尾部<a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h2>
+<p>How to Access the PDF File Trailer</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>PDF 文件的尾部包含一个 <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a>，称为 trailer。它包含特殊对象和指向重要其他信息的指针。参见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 42 页。以下是概述：</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>类型</strong></p></th>
+<th class="head"><p><strong>值</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>int</p></td>
+<td><p>在交叉引用表中的条目数 + 1。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prev</p></td>
+<td><p>int</p></td>
+<td><p>指向先前 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 部分的偏移量（表示增量更新）。</p></td>
+</tr>
+<tr class="row-even"><td><p>Root</p></td>
+<td><p>dictionary</p></td>
+<td><p>（间接）指向目录的指针。参见前一节。</p></td>
+</tr>
+<tr class="row-odd"><td><p>Encrypt</p></td>
+<td><p>dictionary</p></td>
+<td><p>指向加密对象的指针（仅限加密文件）。</p></td>
+</tr>
+<tr class="row-even"><td><p>Info</p></td>
+<td><p>dictionary</p></td>
+<td><p>（间接）指向信息（元数据）的指针。</p></td>
+</tr>
+<tr class="row-odd"><td><p>ID</p></td>
+<td><p>array</p></td>
+<td><p>由两个字节字符串组成的文件标识符。</p></td>
+</tr>
+<tr class="row-even"><td><p>XRefStm</p></td>
+<td><p>int</p></td>
+<td><p>交叉引用流的偏移量。参见 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 49 页。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以通过 PyMuPDF 使用 <a class="reference internal" href="document.html#Document.pdf_trailer" title="Document.pdf_trailer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.pdf_trailer()</span></code></a> 或者使用 <a class="reference internal" href="document.html#Document.xref_object" title="Document.xref_object"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_object()</span></code></a>，传入 -1 代替有效的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 数字来访问这些信息。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">=</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;PyMuPDF.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># 或者：print(doc.pdf_trailer())</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">/Type /XRef</span>
+<span class="go">/Index [ 0 8263 ]</span>
+<span class="go">/Size 8263</span>
+<span class="go">/W [ 1 3 1 ]</span>
+<span class="go">/Root 8260 0 R</span>
+<span class="go">/Info 8261 0 R</span>
+<span class="go">/ID [ &lt;4339B9CEE46C2CD28A79EBDDD67CC9B3&gt; &lt;4339B9CEE46C2CD28A79EBDDD67CC9B3&gt; ]</span>
+<span class="go">/Length 19883</span>
+<span class="go">/Filter /FlateDecode</span>
+<span class="go">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>The trailer of a PDF file is a <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a> located towards the end of the file. It contains special objects, and pointers to important other information. See <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> p. 42. Here is an overview:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Size</p></td>
+<td><p>int</p></td>
+<td><p>Number of entries in the cross-reference table + 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prev</p></td>
+<td><p>int</p></td>
+<td><p>Offset to previous <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> section (indicates incremental updates).</p></td>
+</tr>
+<tr class="row-even"><td><p>Root</p></td>
+<td><p>dictionary</p></td>
+<td><p>(indirect) Pointer to the catalog. See previous section.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Encrypt</p></td>
+<td><p>dictionary</p></td>
+<td><p>Pointer to encryption object (encrypted files only).</p></td>
+</tr>
+<tr class="row-even"><td><p>Info</p></td>
+<td><p>dictionary</p></td>
+<td><p>(indirect) Pointer to information (metadata).</p></td>
+</tr>
+<tr class="row-odd"><td><p>ID</p></td>
+<td><p>array</p></td>
+<td><p>File identifier consisting of two byte strings.</p></td>
+</tr>
+<tr class="row-even"><td><p>XRefStm</p></td>
+<td><p>int</p></td>
+<td><p>Offset of a cross-reference stream. See <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> p. 49.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Access this information via PyMuPDF with <a class="reference internal" href="document.html#Document.pdf_trailer" title="Document.pdf_trailer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.pdf_trailer()</span></code></a> or, equivalently, via <a class="reference internal" href="document.html#Document.xref_object" title="Document.xref_object"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_object()</span></code></a> using -1 instead of a valid <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">=</span><span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;PyMuPDF.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># or: print(doc.pdf_trailer())</span>
+<span class="go">&lt;&lt;</span>
+<span class="go">/Type /XRef</span>
+<span class="go">/Index [ 0 8263 ]</span>
+<span class="go">/Size 8263</span>
+<span class="go">/W [ 1 3 1 ]</span>
+<span class="go">/Root 8260 0 R</span>
+<span class="go">/Info 8261 0 R</span>
+<span class="go">/ID [ &lt;4339B9CEE46C2CD28A79EBDDD67CC9B3&gt; &lt;4339B9CEE46C2CD28A79EBDDD67CC9B3&gt; ]</span>
+<span class="go">/Length 19883</span>
+<span class="go">/Filter /FlateDecode</span>
+<span class="go">&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="xml">
+<h2>如何访问 XML 元数据<a class="headerlink" href="#xml" title="此标题的永久链接">#</a></h2>
+<p>How to Access XML Metadata</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>PDF 文件可能包含 XML 元数据，除了标准的元数据格式外。事实上，大多数 PDF 查看器或修改软件（如 Adobe、Nitro PDF、PDF-XChange 等）在保存 PDF 时会添加此类信息。</p>
+<p>PyMuPDF 不能直接 <strong>解释或更改</strong> 这些信息，因为它不包含 XML 特性。然而，XML 元数据存储为 <a class="reference internal" href="glossary.html#stream" title="stream"><code class="xref py py-data docutils literal notranslate"><span class="pre">stream</span></code></a> 对象，因此可以读取、使用适当的软件修改并写回。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xmlmetadata</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get_xml_metadata</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">xmlmetadata</span><span class="p">)</span>
+<span class="go">&lt;?xpacket begin=&quot;\ufeff&quot; id=&quot;W5M0MpCehiHzreSzNTczkc9d&quot;?&gt;</span>
+<span class="go">&lt;x:xmpmeta xmlns:x=&quot;adobe:ns:meta/&quot; x:xmptk=&quot;3.1-702&quot;&gt;</span>
+<span class="go">&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;</span>
+<span class="go">...</span>
+<span class="go">omitted data</span>
+<span class="go">...</span>
+<span class="go">&lt;?xpacket end=&quot;w&quot;?&gt;</span>
+</pre></div>
+</div>
+<p>使用一些 XML 包，可以解释和/或修改 XML 数据，然后将其存储回来。以下操作也适用于如果 PDF 之前没有 XML 元数据的情况:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># 写回修改后的 XML 元数据：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">set_xml_metadata</span><span class="p">(</span><span class="n">xmlmetadata</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 可以像这样删除 XML 元数据：</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">del_xml_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>A PDF may contain XML metadata in addition to the standard metadata format. In fact, most PDF viewer or modification software adds this type of information when saving the PDF (Adobe, Nitro PDF, PDF-XChange, etc.).</p>
+<p>PyMuPDF has no way to <strong>interpret or change</strong> this information directly, because it contains no XML features. XML metadata is however stored as a <a class="reference internal" href="glossary.html#stream" title="stream"><code class="xref py py-data docutils literal notranslate"><span class="pre">stream</span></code></a> object, so it can be read, modified with appropriate software and written back.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">xmlmetadata</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">get_xml_metadata</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">xmlmetadata</span><span class="p">)</span>
+<span class="go">&lt;?xpacket begin=&quot;\ufeff&quot; id=&quot;W5M0MpCehiHzreSzNTczkc9d&quot;?&gt;</span>
+<span class="go">&lt;x:xmpmeta xmlns:x=&quot;adobe:ns:meta/&quot; x:xmptk=&quot;3.1-702&quot;&gt;</span>
+<span class="go">&lt;rdf:RDF xmlns:rdf=&quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;&gt;</span>
+<span class="go">...</span>
+<span class="go">omitted data</span>
+<span class="go">...</span>
+<span class="go">&lt;?xpacket end=&quot;w&quot;?&gt;</span>
+</pre></div>
+</div>
+<p>Using some XML package, the XML data can be interpreted and / or modified and then stored back. The following also works, if the PDF previously had no XML metadata:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># write back modified XML metadata:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">set_xml_metadata</span><span class="p">(</span><span class="n">xmlmetadata</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># XML metadata can be deleted like this:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">del_xml_metadata</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id5">
+<h2>如何扩展 PDF 元数据<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>How to Extend PDF Metadata</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p>属性 <a class="reference internal" href="document.html#Document.metadata" title="Document.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.metadata</span></code></a> 设计为以相同的方式适用于所有 <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">支持的文件类型</span></a>：它是一个包含 <strong>固定键值对</strong> 的 Python 字典。因此，<a class="reference internal" href="document.html#Document.set_metadata" title="Document.set_metadata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.set_metadata()</span></code></a> 只接受标准键。</p>
+<p>然而，PDF 可能包含无法直接访问的项目。也可能有理由存储额外的信息，如版权。下面是使用 PyMuPDF 低级函数处理 <strong>任意元数据项</strong> 的方法。</p>
+<p>例如，查看某个 PDF 的标准元数据输出:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---------------------</span>
+<span class="c1"># 标准元数据</span>
+<span class="c1"># ---------------------</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;creationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;encryption&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF 1.4&#39;</span><span class="p">,</span>
+<span class="s1">&#39;keywords&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="s1">&#39;modDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">,</span>
+<span class="s1">&#39;trapped&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>使用以下代码查看 <strong>所有项</strong> 存储在元数据对象中:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ----------------------------------</span>
+<span class="c1"># 包括私有项的元数据</span>
+<span class="c1"># ----------------------------------</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># 创建我自己的元数据字典</span>
+<span class="n">what</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Info&quot;</span><span class="p">)</span>  <span class="c1"># 获取 /Info 键在 trailer 中的值</span>
+<span class="k">if</span> <span class="n">what</span> <span class="o">!=</span> <span class="s2">&quot;xref&quot;</span><span class="p">:</span>
+    <span class="k">pass</span>  <span class="c1"># PDF 没有元数据</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">xref</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;0 R&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>  <span class="c1"># 提取元数据的 xref</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">xref</span><span class="p">):</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="n">key</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;Author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CreationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ModDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;PXCViewerInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF-XChange Viewer;2.5.312.1;Feb  9 &#39;</span>
+                <span class="s2">&quot;2015;12:00:06;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">}</span>
+<span class="c1"># ---------------------------------------------------------------</span>
+<span class="c1"># 注意额外的 &#39;PXCViewerInfo&#39; 键 - 标准元数据中未包含！</span>
+<span class="c1"># ---------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p><em>反过来</em>，您也可以 <strong>存储私有元数据项</strong> 到 PDF 中。您需要确保这些项符合 PDF 规范，特别是它们必须是（Unicode）字符串。有关详细信息和注意事项，请参阅 <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> 第 14.3 节（第 548 页）:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">what</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Info&quot;</span><span class="p">)</span>  <span class="c1"># 获取 /Info 键在 trailer 中的值</span>
+<span class="k">if</span> <span class="n">what</span> <span class="o">!=</span> <span class="s2">&quot;xref&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;PDF 没有元数据&quot;</span><span class="p">)</span>
+<span class="n">xref</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;0 R&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>  <span class="c1"># 提取元数据的 xref</span>
+<span class="c1"># 添加一些私有信息</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;mykey&quot;</span><span class="p">,</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">get_pdf_str</span><span class="p">(</span><span class="s2">&quot;北京 is Beijing&quot;</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="c1"># 执行上述代码片段后，您将看到：</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;Author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CreationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ModDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;PXCViewerInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF-XChange Viewer;2.5.312.1;Feb  9 &#39;</span>
+                  <span class="s2">&quot;2015;12:00:06;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">,</span>
+<span class="s1">&#39;mykey&#39;</span><span class="p">:</span> <span class="s1">&#39;北京 is Beijing&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>要删除选定的键，可以使用 <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(xref,</span> <span class="pre">&quot;mykey&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>。如下一节所述，字符串 “null” 是 PDF 中 Python <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> 的等效物。具有该值的键将被视为未指定 – 并在垃圾回收中物理删除。</p>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<p>Attribute <a class="reference internal" href="document.html#Document.metadata" title="Document.metadata"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Document.metadata</span></code></a> is designed so it works for all <a class="reference internal" href="how-to-open-a-file.html#supported-file-types"><span class="std std-ref">supported document types</span></a> in the same way: it is a Python dictionary with a <strong>fixed set of key-value pairs</strong>. Correspondingly, <a class="reference internal" href="document.html#Document.set_metadata" title="Document.set_metadata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.set_metadata()</span></code></a> only accepts standard keys.</p>
+<p>However, PDFs may contain items not accessible like this. Also, there may be reasons to store additional information, like copyrights. Here is a way to handle <strong>arbitrary metadata items</strong> by using PyMuPDF low-level functions.</p>
+<p>As an example, look at this standard metadata output of some PDF:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ---------------------</span>
+<span class="c1"># standard metadata</span>
+<span class="c1"># ---------------------</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;creationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;encryption&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF 1.4&#39;</span><span class="p">,</span>
+<span class="s1">&#39;keywords&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="s1">&#39;modDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;subject&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">,</span>
+<span class="s1">&#39;trapped&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Use the following code to see <strong>all items</strong> stored in the metadata object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ----------------------------------</span>
+<span class="c1"># metadata including private items</span>
+<span class="c1"># ----------------------------------</span>
+<span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>  <span class="c1"># make my own metadata dict</span>
+<span class="n">what</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Info&quot;</span><span class="p">)</span>  <span class="c1"># /Info key in the trailer</span>
+<span class="k">if</span> <span class="n">what</span> <span class="o">!=</span> <span class="s2">&quot;xref&quot;</span><span class="p">:</span>
+    <span class="k">pass</span>  <span class="c1"># PDF has no metadata</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">xref</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;0 R&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>  <span class="c1"># extract the metadata xref</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">xref</span><span class="p">):</span>
+        <span class="n">metadata</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="n">key</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;Author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CreationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ModDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;PXCViewerInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF-XChange Viewer;2.5.312.1;Feb  9 &#39;</span>
+                <span class="s2">&quot;2015;12:00:06;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">}</span>
+<span class="c1"># ---------------------------------------------------------------</span>
+<span class="c1"># note the additional &#39;PXCViewerInfo&#39; key - ignored in standard!</span>
+<span class="c1"># ---------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p><em>Vice versa</em>, you can also <strong>store private metadata items</strong> in a PDF. It is your responsibility to make sure that these items conform to PDF specifications - especially they must be (unicode) strings. Consult section 14.3 (p. 548) of the <a class="reference internal" href="app3.html#adobemanual"><span class="std std-ref">Adobe PDF 参考</span></a> for details and caveats:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">what</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Info&quot;</span><span class="p">)</span>  <span class="c1"># /Info key in the trailer</span>
+<span class="k">if</span> <span class="n">what</span> <span class="o">!=</span> <span class="s2">&quot;xref&quot;</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;PDF has no metadata&quot;</span><span class="p">)</span>
+<span class="n">xref</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;0 R&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>  <span class="c1"># extract the metadata xref</span>
+<span class="c1"># add some private information</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;mykey&quot;</span><span class="p">,</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">get_pdf_str</span><span class="p">(</span><span class="s2">&quot;北京 is Beijing&quot;</span><span class="p">))</span>
+<span class="c1">#</span>
+<span class="c1"># after executing the previous code snippet, we will see this:</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+<span class="p">{</span><span class="s1">&#39;Author&#39;</span><span class="p">:</span> <span class="s1">&#39;PRINCE&#39;</span><span class="p">,</span>
+<span class="s1">&#39;CreationDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:2010102417034406&#39;-30&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Creator&#39;</span><span class="p">:</span> <span class="s1">&#39;PrimoPDF http://www.primopdf.com/&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ModDate&#39;</span><span class="p">:</span> <span class="s2">&quot;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;PXCViewerInfo&#39;</span><span class="p">:</span> <span class="s1">&#39;PDF-XChange Viewer;2.5.312.1;Feb  9 &#39;</span>
+                  <span class="s2">&quot;2015;12:00:06;D:20200725062431-04&#39;00&#39;&quot;</span><span class="p">,</span>
+<span class="s1">&#39;Producer&#39;</span><span class="p">:</span> <span class="s1">&#39;macOS Version 10.15.6 (Build 19G71a) Quartz PDFContext, &#39;</span>
+            <span class="s1">&#39;AppendMode 1.1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Title&#39;</span><span class="p">:</span> <span class="s1">&#39;Full page fax print&#39;</span><span class="p">,</span>
+<span class="s1">&#39;mykey&#39;</span><span class="p">:</span> <span class="s1">&#39;北京 is Beijing&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>To delete selected keys, use <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(xref,</span> <span class="pre">&quot;mykey&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>. As explained in the next section, string “null” is the PDF equivalent to Python’s <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>. A key with that value will be treated as not being specified – and physically removed in garbage collections.</p>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id6">
+<h2>如何读取和更新 PDF 对象<a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h2>
+<p>How to Read and Update PDF Objects</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--8-input--1" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--1">中文</label><div class="tab-content docutils container">
+<p>也有一些细粒度、优雅的方式来访问和操作选定的 PDF <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a> 键。</p>
+<ul>
+<li><p><a class="reference internal" href="document.html#Document.xref_get_keys" title="Document.xref_get_keys"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_keys()</span></code></a> 返回对象在 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 处的 PDF 键:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;pymupdf.pdf&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">pprint</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="p">(</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Contents&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">,</span> <span class="s1">&#39;MediaBox&#39;</span><span class="p">,</span> <span class="s1">&#39;Parent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>与完整的对象定义进行比较:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="mi">1296</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>单个键也可以通过 <a class="reference internal" href="document.html#Document.xref_get_key" title="Document.xref_get_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_key()</span></code></a> 直接访问。值 <strong>始终是一个字符串</strong> ，并附带类型信息，有助于解释它:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;MediaBox&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="s1">&#39;[0 0 612 792]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>以下是上述页面键的完整列表:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">):</span>
+<span class="o">...</span><span class="p">:</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="n">key</span><span class="p">)))</span>
+<span class="o">...</span><span class="p">:</span>
+<span class="n">Type</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;/Page&#39;</span><span class="p">)</span>
+<span class="n">Contents</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1297 0 R&#39;</span><span class="p">)</span>
+<span class="n">Resources</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1296 0 R&#39;</span><span class="p">)</span>
+<span class="n">MediaBox</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="s1">&#39;[0 0 612 792]&#39;</span><span class="p">)</span>
+<span class="n">Parent</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1301 0 R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>未定义的键查询将返回 <code class="xref any docutils literal notranslate"><span class="pre">('null',</span> <span class="pre">'null')</span></code> – PDF 对象类型 <code class="xref any docutils literal notranslate"><span class="pre">null</span></code> 对应于 Python 中的 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。对于布尔值 <code class="xref any docutils literal notranslate"><span class="pre">true</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">false</span></code> 也类似。</p></li>
+<li><p>让我们向页面定义中添加一个新的键，将其旋转角度设置为 90 度（你知道其实已经有 <a class="reference internal" href="page.html#Page.set_rotation" title="Page.set_rotation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.set_rotation()</span></code></a> 方法来实现这一点了吗？）:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Rotate&quot;</span><span class="p">)</span>  <span class="c1"># 没有设置旋转：</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;null&#39;</span><span class="p">,</span> <span class="s1">&#39;null&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Rotate&quot;</span><span class="p">,</span> <span class="s2">&quot;90&quot;</span><span class="p">)</span>  <span class="c1"># 插入一个新键</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># 确认成功</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="mi">1296</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>这种方法还可以通过将键的值设置为 <code class="xref any docutils literal notranslate"><span class="pre">null</span></code> 来从 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 字典中移除一个键：以下将从页面中移除旋转规格：<code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Rotate&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>。类似地，要从页面中删除所有链接、注释和字段，可以使用 <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Annots&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>。因为 <code class="xref any docutils literal notranslate"><span class="pre">Annots</span></code> 本身是一个数组，所以使用语句 <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Annots&quot;,</span> <span class="pre">&quot;[]&quot;)</span></code> 来设置一个空数组，也能达到同样的效果。</p></li>
+<li><p>PDF 字典可以是层次结构嵌套的。在以下页面对象定义中，<a class="reference internal" href="font.html#font"><span class="std std-ref">Font</span></a> 和 <code class="xref any docutils literal notranslate"><span class="pre">XObject</span></code> 都是 <code class="xref any docutils literal notranslate"><span class="pre">Resources</span></code> 的子字典:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">XObject</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">Im1</span> <span class="mi">1291</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">Font</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">F39</span> <span class="mi">1299</span> <span class="mi">0</span> <span class="n">R</span>
+      <span class="o">/</span><span class="n">F40</span> <span class="mi">1300</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>上述情况可通过方法 <a class="reference internal" href="document.html#Document.xref_set_key" title="Document.xref_set_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_set_key()</span></code></a> 和 <a class="reference internal" href="document.html#Document.xref_get_key" title="Document.xref_get_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_key()</span></code></a> <strong>支持</strong> ：使用类似路径的表示法来指向所需的键。例如，要获取上述 <code class="xref any docutils literal notranslate"><span class="pre">Im1</span></code> 键的值，需要在键参数中指定“位于其上方”的完整字典链：<code class="xref any docutils literal notranslate"><span class="pre">&quot;Resources/XObject/Im1&quot;</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Resources/XObject/Im1&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1291 0 R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>该路径表示法也可用于 <strong>直接设置值</strong>：使用以下代码让 <code class="xref any docutils literal notranslate"><span class="pre">Im1</span></code> 指向另一个对象:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Resources/XObject/Im1&quot;</span><span class="p">,</span> <span class="s2">&quot;9999 0 R&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># 确认成功:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">XObject</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">Im1</span> <span class="mi">9999</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">Font</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">F39</span> <span class="mi">1299</span> <span class="mi">0</span> <span class="n">R</span>
+      <span class="o">/</span><span class="n">F40</span> <span class="mi">1300</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>请注意，此处 <strong>不会进行任何语义检查</strong>：如果 PDF 中没有 xref 9999，当前操作不会检测到这一点。</p>
+</li>
+<li><p>如果键不存在，则在设置其值时会自动创建它。此外，如果中间键也不存在，它们将根据需要自动创建。以下代码在已存在的字典 <code class="xref any docutils literal notranslate"><span class="pre">A</span></code> 之下的多个层级创建了数组 <code class="xref any docutils literal notranslate"><span class="pre">D</span></code>。其中，中间字典 <code class="xref any docutils literal notranslate"><span class="pre">B</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">C</span></code> 也会被自动创建:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># 一些已存在的 PDF 对象:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">A</span> <span class="o">&lt;&lt;</span>
+  <span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="c1"># 以下代码将创建 &#39;B&#39;、&#39;C&#39; 和 &#39;D&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;A/B/C/D&quot;</span><span class="p">,</span> <span class="s2">&quot;[1 2 3 4]&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># 查看结果:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">A</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">B</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">C</span> <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">D</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="p">]</span>
+      <span class="o">&gt;&gt;</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>在设置键值时，MuPDF 会进行基本的 <strong>PDF 语法检查</strong>。例如，新的键只能创建在 <strong>字典下方</strong>。以下代码尝试在先前创建的数组 <code class="xref any docutils literal notranslate"><span class="pre">D</span></code> 下创建一个新的字符串项 <code class="xref any docutils literal notranslate"><span class="pre">E</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="c1"># &#39;D&#39; 是一个数组，而不是字典！</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;A/B/C/D/E&quot;</span><span class="p">,</span> <span class="s2">&quot;(hello)&quot;</span><span class="p">)</span>
+<span class="n">mupdf</span><span class="p">:</span> <span class="ow">not</span> <span class="n">a</span> <span class="nb">dict</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="o">---</span> <span class="o">...</span> <span class="o">---</span>
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="ow">not</span> <span class="n">a</span> <span class="nb">dict</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>另外，如果某个上层键是 <strong>“间接对象”</strong> （即 xref），则无法创建新键。换句话说，xref 只能被直接修改，不能通过其他引用它的对象间接修改:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="c1"># 下面的对象指向了一个 xref</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">E</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">&gt;&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="c1"># &#39;E&#39; 是一个间接对象，因此无法在这里修改！</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;E/F&quot;</span><span class="p">,</span> <span class="s2">&quot;90&quot;</span><span class="p">)</span>
+<span class="n">mupdf</span><span class="p">:</span> <span class="n">path</span> <span class="n">to</span> <span class="s1">&#39;F&#39;</span> <span class="n">has</span> <span class="n">indirects</span>
+<span class="o">---</span> <span class="o">...</span> <span class="o">---</span>
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">path</span> <span class="n">to</span> <span class="s1">&#39;F&#39;</span> <span class="n">has</span> <span class="n">indirects</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>这些是 <strong>高级功能</strong>！不会验证指定的 PDF 对象、xref 等是否有效。与其他底层方法一样，误用可能会导致 PDF 文件或其中的部分内容变得不可用。</p>
+</div>
+</div>
+<input class="tab-input" id="tab-set--8-input--2" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--2">英文</label><div class="tab-content docutils container">
+<p>There also exist granular, elegant ways to access and manipulate selected PDF <a class="reference internal" href="glossary.html#dictionary" title="dictionary"><code class="xref py py-data docutils literal notranslate"><span class="pre">dictionary</span></code></a> keys.</p>
+<ul>
+<li><p><a class="reference internal" href="document.html#Document.xref_get_keys" title="Document.xref_get_keys"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_keys()</span></code></a> returns the PDF keys of the object at <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;pymupdf.pdf&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">page</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">pprint</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="p">(</span><span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Contents&#39;</span><span class="p">,</span> <span class="s1">&#39;Resources&#39;</span><span class="p">,</span> <span class="s1">&#39;MediaBox&#39;</span><span class="p">,</span> <span class="s1">&#39;Parent&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Compare with the full object definition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="mi">1296</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Single keys can also be accessed directly via <a class="reference internal" href="document.html#Document.xref_get_key" title="Document.xref_get_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_key()</span></code></a>. The value <strong>always is a string</strong> together with type information, that helps with interpreting it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;MediaBox&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="s1">&#39;[0 0 612 792]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Here is a full listing of the above page keys:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_keys</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">):</span>
+<span class="o">...</span><span class="p">:</span>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="n">key</span><span class="p">)))</span>
+<span class="o">...</span><span class="p">:</span>
+<span class="n">Type</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;/Page&#39;</span><span class="p">)</span>
+<span class="n">Contents</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1297 0 R&#39;</span><span class="p">)</span>
+<span class="n">Resources</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1296 0 R&#39;</span><span class="p">)</span>
+<span class="n">MediaBox</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;array&#39;</span><span class="p">,</span> <span class="s1">&#39;[0 0 612 792]&#39;</span><span class="p">)</span>
+<span class="n">Parent</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1301 0 R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>An undefined key inquiry returns <code class="xref any docutils literal notranslate"><span class="pre">('null',</span> <span class="pre">'null')</span></code> – PDF object type <code class="xref any docutils literal notranslate"><span class="pre">null</span></code> corresponds to <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> in Python. Similar for the booleans <code class="xref any docutils literal notranslate"><span class="pre">true</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p>Let us add a new key to the page definition that sets its rotation to 90 degrees (you are aware that there actually exists <a class="reference internal" href="page.html#Page.set_rotation" title="Page.set_rotation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.set_rotation()</span></code></a> for this?):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Rotate&quot;</span><span class="p">)</span>  <span class="c1"># no rotation set:</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;null&#39;</span><span class="p">,</span> <span class="s1">&#39;null&#39;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Rotate&quot;</span><span class="p">,</span> <span class="s2">&quot;90&quot;</span><span class="p">)</span>  <span class="c1"># insert a new key</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># confirm success</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="mi">1296</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>This method can also be used to remove a key from the <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> dictionary by setting its value to <code class="xref any docutils literal notranslate"><span class="pre">null</span></code>: The following will remove the rotation specification from the page: <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Rotate&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>. Similarly, to remove all links, annotations and fields from a page, use <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Annots&quot;,</span> <span class="pre">&quot;null&quot;)</span></code>. Because <code class="xref any docutils literal notranslate"><span class="pre">Annots</span></code> by definition is an array, setting en empty array with the statement <code class="xref any docutils literal notranslate"><span class="pre">doc.xref_set_key(page.xref,</span> <span class="pre">&quot;Annots&quot;,</span> <span class="pre">&quot;[]&quot;)</span></code> would do the same job in this case.</p></li>
+<li><p>PDF dictionaries can be hierarchically nested. In the following page object definition both, <a class="reference internal" href="font.html#font"><span class="std std-ref">Font</span></a> and <code class="xref any docutils literal notranslate"><span class="pre">XObject</span></code> are subdictionaries of <code class="xref any docutils literal notranslate"><span class="pre">Resources</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">XObject</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">Im1</span> <span class="mi">1291</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">Font</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">F39</span> <span class="mi">1299</span> <span class="mi">0</span> <span class="n">R</span>
+      <span class="o">/</span><span class="n">F40</span> <span class="mi">1300</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>The above situation <strong>is supported</strong> by methods <a class="reference internal" href="document.html#Document.xref_set_key" title="Document.xref_set_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_set_key()</span></code></a> and <a class="reference internal" href="document.html#Document.xref_get_key" title="Document.xref_get_key"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_get_key()</span></code></a>: use a path-like notation to point at the required key. For example, to retrieve the value of key <code class="xref any docutils literal notranslate"><span class="pre">Im1</span></code> above, specify the complete chain of dictionaries “above” it in the key argument: <code class="xref any docutils literal notranslate"><span class="pre">&quot;Resources/XObject/Im1&quot;</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_get_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Resources/XObject/Im1&quot;</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;xref&#39;</span><span class="p">,</span> <span class="s1">&#39;1291 0 R&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>The path notation can also be used to <strong>directly set a value</strong>: use the following to let <code class="xref any docutils literal notranslate"><span class="pre">Im1</span></code> point to a different object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;Resources/XObject/Im1&quot;</span><span class="p">,</span> <span class="s2">&quot;9999 0 R&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># confirm success:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Page</span>
+  <span class="o">/</span><span class="n">Contents</span> <span class="mi">1297</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Resources</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">XObject</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">Im1</span> <span class="mi">9999</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">Font</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">F39</span> <span class="mi">1299</span> <span class="mi">0</span> <span class="n">R</span>
+      <span class="o">/</span><span class="n">F40</span> <span class="mi">1300</span> <span class="mi">0</span> <span class="n">R</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="o">/</span><span class="n">MediaBox</span> <span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">612</span> <span class="mi">792</span> <span class="p">]</span>
+  <span class="o">/</span><span class="n">Parent</span> <span class="mi">1301</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">/</span><span class="n">Rotate</span> <span class="mi">90</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Be aware, that <strong>no semantic checks</strong> whatsoever will take place here: if the PDF has no xref 9999, it won’t be detected at this point.</p>
+</li>
+<li><p>If a key does not exist, it will be created by setting its value. Moreover, if any intermediate keys do not exist either, they will also be created as necessary. The following creates an array <code class="xref any docutils literal notranslate"><span class="pre">D</span></code> several levels below the existing dictionary <code class="xref any docutils literal notranslate"><span class="pre">A</span></code>. Intermediate dictionaries <code class="xref any docutils literal notranslate"><span class="pre">B</span></code> and <code class="xref any docutils literal notranslate"><span class="pre">C</span></code> are automatically created:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># some existing PDF object:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">A</span> <span class="o">&lt;&lt;</span>
+  <span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="c1"># the following will create &#39;B&#39;, &#39;C&#39; and &#39;D&#39;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;A/B/C/D&quot;</span><span class="p">,</span> <span class="s2">&quot;[1 2 3 4]&quot;</span><span class="p">)</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="n">xref</span><span class="p">))</span>  <span class="c1"># check out what happened:</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">A</span> <span class="o">&lt;&lt;</span>
+    <span class="o">/</span><span class="n">B</span> <span class="o">&lt;&lt;</span>
+      <span class="o">/</span><span class="n">C</span> <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">D</span> <span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="p">]</span>
+      <span class="o">&gt;&gt;</span>
+    <span class="o">&gt;&gt;</span>
+  <span class="o">&gt;&gt;</span>
+<span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>When setting key values, basic <strong>PDF syntax checking</strong> will be done by MuPDF. For example, new keys can only be created <strong>below a dictionary</strong>. The following tries to create some new string item <code class="xref any docutils literal notranslate"><span class="pre">E</span></code> below the previously created array <code class="xref any docutils literal notranslate"><span class="pre">D</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="c1"># &#39;D&#39; is an array, no dictionary!</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="n">xref</span><span class="p">,</span> <span class="s2">&quot;A/B/C/D/E&quot;</span><span class="p">,</span> <span class="s2">&quot;(hello)&quot;</span><span class="p">)</span>
+<span class="n">mupdf</span><span class="p">:</span> <span class="ow">not</span> <span class="n">a</span> <span class="nb">dict</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="o">---</span> <span class="o">...</span> <span class="o">---</span>
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="ow">not</span> <span class="n">a</span> <span class="nb">dict</span> <span class="p">(</span><span class="n">array</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>It is also <strong>not possible</strong>, to create a key if some higher level key is an <strong>“indirect”</strong> object, i.e. an xref. In other words, xrefs can only be modified directly and not implicitly via other objects referencing them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="c1"># the following object points to an xref</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">14</span><span class="p">]:</span> <span class="nb">print</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">xref_object</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="o">&lt;&lt;</span>
+  <span class="o">/</span><span class="n">E</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">&gt;&gt;</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">15</span><span class="p">]:</span> <span class="c1"># &#39;E&#39; is an indirect object and cannot be modified here!</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">16</span><span class="p">]:</span> <span class="n">doc</span><span class="o">.</span><span class="n">xref_set_key</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;E/F&quot;</span><span class="p">,</span> <span class="s2">&quot;90&quot;</span><span class="p">)</span>
+<span class="n">mupdf</span><span class="p">:</span> <span class="n">path</span> <span class="n">to</span> <span class="s1">&#39;F&#39;</span> <span class="n">has</span> <span class="n">indirects</span>
+<span class="o">---</span> <span class="o">...</span> <span class="o">---</span>
+<span class="ne">RuntimeError</span><span class="p">:</span> <span class="n">path</span> <span class="n">to</span> <span class="s1">&#39;F&#39;</span> <span class="n">has</span> <span class="n">indirects</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">小心</p>
+<p>These are expert functions! There are no validations as to whether valid PDF objects, xrefs, etc. are specified. As with other low-level methods there is the risk to render the PDF, or parts of it unusable.</p>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="recipes-common-issues-and-their-solutions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">常见问题及其解决方案</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="recipes-optional-content.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">可选内容支持</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">低级接口</a><ul>
+<li><a class="reference internal" href="#xref">如何遍历 <code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code> 表</a></li>
+<li><a class="reference internal" href="#id2">如何处理对象流</a></li>
+<li><a class="reference internal" href="#id3">如何处理页面内容</a></li>
+<li><a class="reference internal" href="#pdf">如何访问 PDF 目录</a></li>
+<li><a class="reference internal" href="#id4">如何访问 PDF 文件尾部</a></li>
+<li><a class="reference internal" href="#xml">如何访问 XML 元数据</a></li>
+<li><a class="reference internal" href="#id5">如何扩展 PDF 元数据</a></li>
+<li><a class="reference internal" href="#id6">如何读取和更新 PDF 对象</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

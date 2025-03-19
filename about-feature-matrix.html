@@ -1,0 +1,909 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>&lt;no title&gt; - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <a class="reference internal image-reference" href="_images/icon-pdf.svg"><img alt="_images/icon-pdf.svg" height="0" src="_images/icon-pdf.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-svg.svg"><img alt="_images/icon-svg.svg" height="0" src="_images/icon-svg.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-xps.svg"><img alt="_images/icon-xps.svg" height="0" src="_images/icon-xps.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-cbz.svg"><img alt="_images/icon-cbz.svg" height="0" src="_images/icon-cbz.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-mobi.svg"><img alt="_images/icon-mobi.svg" height="0" src="_images/icon-mobi.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-epub.svg"><img alt="_images/icon-epub.svg" height="0" src="_images/icon-epub.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-image.svg"><img alt="_images/icon-image.svg" height="0" src="_images/icon-image.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-fb2.svg"><img alt="_images/icon-fb2.svg" height="0" src="_images/icon-fb2.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-txt.svg"><img alt="_images/icon-txt.svg" height="0" src="_images/icon-txt.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-docx.svg"><img alt="_images/icon-docx.svg" height="0" src="_images/icon-docx.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-pptx.svg"><img alt="_images/icon-pptx.svg" height="0" src="_images/icon-pptx.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-xlsx.svg"><img alt="_images/icon-xlsx.svg" height="0" src="_images/icon-xlsx.svg" width="0" /></a>
+<a class="reference internal image-reference" href="_images/icon-hangul.svg"><img alt="_images/icon-hangul.svg" height="0" src="_images/icon-hangul.svg" width="0" /></a>
+<style>
+
+    table {
+        border-style: hidden;
+    }
+
+    #feature-matrix th {
+        border: 1px #999 solid;
+        padding: 10px 2px;
+        background-color: #007aff;
+        color: white;
+        text-align: center;
+    }
+
+    #feature-matrix tr {
+
+    }
+
+    #feature-matrix td {
+        border: 1px #999 solid;
+        padding: 10px 2px;
+        text-align: center;
+    }
+
+    #feature-matrix tr td.yes {
+        background-color: #83e57c !important;
+        color: #000;
+    }
+
+    #feature-matrix tr td.yes::before {
+        content: "✔︎ ";
+    }
+
+    #feature-matrix tr td.no {
+        background-color: #e5887c !important;
+        color: #000;
+    }
+
+    #feature-matrix tr td.no::before {
+        content: "✕ ";
+    }
+
+    #feature-matrix tr td.limited {
+        background-color: #e4c07b !important;
+        color: #000;
+    }
+
+    #feature-matrix .icon-holder {
+        line-height: 40px;
+    }
+
+    #feature-matrix .icon {
+        text-indent: 45px;
+        line-height: 40px;
+        width: 100px;
+        height: 40px;
+    }
+
+    #feature-matrix .icon.pdf {
+        background: url("_images/icon-pdf.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.xps {
+        background: url("_images/icon-xps.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.epub {
+        background: url("_images/icon-epub.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.mobi {
+        background: url("_images/icon-mobi.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.fb2 {
+        background: url("_images/icon-fb2.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.cbz {
+        background: url("_images/icon-cbz.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.svg {
+        background: url("_images/icon-svg.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.image {
+        background: url("_images/icon-image.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.txt {
+        background: url("_images/icon-txt.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.docx {
+        background: url("_images/icon-docx.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.pptx {
+        background: url("_images/icon-pptx.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.xlsx {
+        background: url("_images/icon-xlsx.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+    #feature-matrix .icon.hangul {
+        background: url("_images/icon-hangul.svg") 0 0 transparent no-repeat;
+        background-size: 40px 40px;
+    }
+
+</style>
+
+
+<table id="feature-matrix" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <th id="transFM1">Feature</th>
+        <th>PyMuPDF</th>
+        <th>pikepdf</th>
+        <th>PyPDF2</th>
+        <th>pdfrw</th>
+        <th>pdfplumber / pdfminer</th>
+    </tr>
+
+
+    <tr id="PyMuPDFFileSupport">
+        <td><cite id="transFM2">Supports Multiple Document Formats</cite></td>
+
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+            <span class="icon xps"><cite>XPS</cite></span>
+            <span class="icon epub"><cite>EPUB</cite></span>
+            <span class="icon mobi"><cite>MOBI</cite></span>
+            <span class="icon fb2"><cite>FB2</cite></span>
+            <span class="icon cbz"><cite>CBZ</cite></span>
+            <span class="icon svg"><cite>SVG</cite></span>
+            <span class="icon txt"><cite>TXT</cite></span>
+            <span class="icon image"><cite id="transFM3">Image</cite></span>
+            <hr/>
+            <span class="icon docx"><cite>DOCX</cite></span>
+            <span class="icon xlsx"><cite>XLSX</cite></span>
+            <span class="icon pptx"><cite>PPTX</cite></span>
+            <span class="icon hangul"><cite>HWPX</cite></span>
+            <span class=""><cite>See <a href="#note">note</a></cite></span>
+        </td>
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+        </td>
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+        </td>
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+        </td>
+        <td>
+            <span class="icon pdf"><cite>PDF</cite></span>
+        </td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM4">Implementation</cite></td>
+        <td><cite>Python</cite> <span id="transFM5">and</span> <cite>C</cite></td>
+        <td><cite>Python</cite> <span id="transFM6">and</span> <cite>C++</cite></td>
+        <td><cite>Python</cite></td>
+        <td><cite>Python</cite></td>
+        <td><cite>Python</cite></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM7">Render Document Pages</cite></td>
+        <td class="yes" id="transFM8">All document types</td>
+        <td class="no" id="transFM9">No rendering</td>
+        <td class="no" id="transFM10">No rendering</td>
+        <td class="no" id="transFM11">No rendering</td>
+        <td class="no" id="transFM11x">No rendering</td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM7x">Write Text to PDF Page</cite></td>
+        <td class="yes">
+            <br/>
+            <small>See:
+                <a style="color:black;" href="page.html#Page.insert_htmlbox">Page.insert_htmlbox</a>
+                <br/>or:<br/>
+                <a style="color:black;" href="page.html#Page.insert_textbox ">Page.insert_textbox</a>
+                <br/>or:<br/>
+                <a style="color:black;" href="textwriter.html">TextWriter</a>
+            <small>
+        </td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFMSupportsCJK">Supports CJK characters</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="yes"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM12">Extract Text</cite></td>
+        <td class="yes" id="transFM13">All document types</td>
+        <td class="no"></td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM14">only</span></td>
+        <td class="no"></td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM14x">only</span></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFMSupportsMarkdown">Extract Text as Markdown (.md)</cite></td>
+        <td class="yes" id="transFM13x">All document types</td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td style="padding:20px 0;"><cite id="transFMExtractTables">Extract Tables</cite></td>
+        <td class="yes" id="transFM13xx">All document types</td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM14xx">only</span></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM15">Extract Vector Graphics</cite></td>
+        <td class="yes" id="transFM16">All document types</td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="limited" id="transFM16x">Limited</td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM17">Draw Vector Graphics (PDF)</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM18">Based on Existing, Mature Library</cite></td>
+        <td class="yes"><cite>MuPDF</cite></td>
+        <td class="yes"><cite>QPDF</cite></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM19">Automatic Repair of Damaged PDFs</cite></td>
+        <td class="yes"></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM20">Encrypted PDFs</cite></td>
+        <td class="yes"></td>
+        <td class="yes"></td>
+        <td class="limited" id="transFM21">Limited</td>
+        <td class="no"></td>
+        <td class="limited" id="transFM21x">Limited</td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM22">Linerarized PDFs</cite></td>
+        <td class="yes"></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM23">Incremental Updates</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM24">Integrates with Jupyter and IPython Notebooks</cite></td>
+        <td class="yes"></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="yes"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM25">Joining / Merging PDF with other Document Types</cite></td>
+        <td class="yes" id="transFM26">All document types</td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM27">only</span> </td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM28">only</span> </td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM29">only</span> </td>
+        <td class="yes"><cite>PDF</cite> <span id="transFM29x">only</span> </td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM30">OCR API for Seamless Integration with Tesseract</cite></td>
+        <td class="yes" id="transFM31">All document types</td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM32">Integrated Checkpoint / Restart Feature (PDF)</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM33">PDF Optional Content</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM34">PDF Embedded Files</cite></td>
+        <td class="yes"></td>
+        <td class="yes"></td>
+        <td class="limited" id="transFM35">Limited</td>
+        <td class="no"></td>
+        <td class="limited" id="transFM35x">Limited</td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM36">PDF Redactions</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM37">PDF Annotations</cite></td>
+        <td class="yes" id="transFM38">Full</td>
+        <td class="no"></td>
+        <td class="limited" id="transFM39">Limited</td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM40">PDF Form Fields</cite></td>
+        <td class="yes" id="transFM41">Create, read, update</td>
+        <td class="no"></td>
+        <td class="limited" id="transFM42">Limited, no creation</td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM43">PDF Page Labels</cite></td>
+        <td class="yes"></td>
+        <td class="limited">Read-only</td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+    <tr>
+        <td><cite id="transFM44">Support Font Sub-Setting</cite></td>
+        <td class="yes"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+        <td class="no"></td>
+    </tr>
+
+
+</table>
+
+<script>
+
+    let lang = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+    function getTranslation(str) {
+        if (lang == "ja") {
+            if (str=="Feature") {
+                return "特徴";
+            } else if (str=="Supports Multiple Document Formats") {
+                return "複数の文書形式に対応";
+            } else if (str=="Image") {
+                return "画像";
+            } else if (str=="Implementation") {
+                return "実装";
+            } else if (str=="and") {
+                return "と";
+            } else if (str=="Render Document Pages") {
+                return "文書ページの表示";
+            } else if (str=="All document types") {
+                return "すべてのドキュメントタイプ";
+            } else if (str=="No rendering") {
+                return "レンダリングなし";
+            } else if (str=="Extract Text") {
+                return "テキストを抽出する";
+            } else if (str=="Write Text to PDF Page") {
+                return "PDF ページにテキストを書き込む";
+            } else if (str=="only") {
+                return "のみ";
+            } else if (str=="Extract Vector Graphics") {
+                return "ベクターグラフィックスを抽出する";
+            } else if (str=="Draw Vector Graphics (PDF)") {
+                return "ベクターグラフィックスを描(PDF)";
+            } else if (str=="Based on Existing, Mature Library") {
+                return "既存で成熟したライブラリに基づいています";
+            } else if (str=="Automatic Repair of Damaged PDFs") {
+                return "PDFファイルの自動修復";
+            } else if (str=="Encrypted PDFs") {
+                return "暗号化されたPDFファイル";
+            } else if (str=="Limited") {
+                return "一部対応";
+            } else if (str=="Linerarized PDFs") {
+                return "リニアライズされたPDFファイル";
+            } else if (str=="Incremental Updates") {
+                return "インクリメンタル更新";
+            } else if (str=="Integrates with Jupyter and IPython Notebooks") {
+                return "JupyterおよびIPython Notebooksと統合";
+            } else if (str=="Joining / Merging PDF with other Document Types") {
+                return "他のドキュメントタイプとPDFの結合 / マージ";
+            } else if (str=="OCR API for Seamless Integration with Tesseract") {
+                return "Tesseractとのシームレスな統合のためのOCR API";
+            } else if (str=="Integrated Checkpoint / Restart Feature (PDF)") {
+                return "統合されたチェックポイント / リスタート機能(PDF)";
+            } else if (str=="PDF Optional Content") {
+                return "PDF オプションコンテンツ";
+            } else if (str=="PDF Embedded Files") {
+                return "PDF 埋め込みファイル";
+            } else if (str=="PDF Redactions") {
+                return "PDFの隠蔽";
+            } else if (str=="PDF Annotations") {
+                return "PDFの注釈";
+            } else if (str=="Full") {
+                return "すべて";
+            } else if (str=="PDF Form Fields") {
+                return "PDFフォームフィールド";
+            } else if (str=="Create, read, update") {
+                return "作成、読み取り、更新";
+            } else if (str=="Limited, no creation") {
+                return "一部対応、作成不可";
+            } else if (str=="PDF Page Labels") {
+                return "PDFページラベル";
+            } else if (str=="Support Font Sub-Setting") {
+                return "フォントのサブセット化をサポートする";
+            } else if (str=="Extract Tables") {
+                return "ページからのテーブルの抽出";
+            } else if (str=="Supports CJK characters") {
+                return "CJK 文字をサポートしています";
+            } else if (str == "Extract Text as Markdown (.md)") {
+                return "テキストを Markdown (.md) として抽出";
+            }
+
+
+
+
+        }
+
+        return str;
+    }
+
+    document.getElementById("transFM1").innerHTML = getTranslation("Feature");
+    document.getElementById("transFM2").innerHTML = getTranslation("Supports Multiple Document Formats");
+    document.getElementById("transFM3").innerHTML = getTranslation("Image");
+    document.getElementById("transFM4").innerHTML = getTranslation("Implementation");
+    document.getElementById("transFM5").innerHTML = getTranslation("and");
+    document.getElementById("transFM6").innerHTML = getTranslation("and");
+    document.getElementById("transFM7").innerHTML = getTranslation("Render Document Pages");
+    document.getElementById("transFM7x").innerHTML = getTranslation("Write Text to PDF Page");
+    document.getElementById("transFM8").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM9").innerHTML = getTranslation("No rendering");
+    document.getElementById("transFM10").innerHTML = getTranslation("No rendering");
+    document.getElementById("transFM11").innerHTML = getTranslation("No rendering");
+    document.getElementById("transFM11x").innerHTML = getTranslation("No rendering");
+    document.getElementById("transFM12").innerHTML = getTranslation("Extract Text");
+    document.getElementById("transFM13").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM13x").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM13xx").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM14").innerHTML = getTranslation("only");
+    document.getElementById("transFM14x").innerHTML = getTranslation("only");
+    document.getElementById("transFM14xx").innerHTML = getTranslation("only");
+    document.getElementById("transFM15").innerHTML = getTranslation("Extract Vector Graphics");
+    document.getElementById("transFM16").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM16x").innerHTML = getTranslation("Limited");
+    document.getElementById("transFM17").innerHTML = getTranslation("Draw Vector Graphics (PDF)");
+    document.getElementById("transFM18").innerHTML = getTranslation("Based on Existing, Mature Library");
+    document.getElementById("transFM19").innerHTML = getTranslation("Automatic Repair of Damaged PDFs");
+    document.getElementById("transFM20").innerHTML = getTranslation("Encrypted PDFs");
+    document.getElementById("transFM21").innerHTML = getTranslation("Limited");
+    document.getElementById("transFM21x").innerHTML = getTranslation("Limited");
+    document.getElementById("transFM22").innerHTML = getTranslation("Linerarized PDFs");
+    document.getElementById("transFM23").innerHTML = getTranslation("Incremental Updates");
+    document.getElementById("transFM24").innerHTML = getTranslation("Integrates with Jupyter and IPython Notebooks");
+    document.getElementById("transFM25").innerHTML = getTranslation("Joining / Merging PDF with other Document Types");
+    document.getElementById("transFM26").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM27").innerHTML = getTranslation("only");
+    document.getElementById("transFM28").innerHTML = getTranslation("only");
+    document.getElementById("transFM29").innerHTML = getTranslation("only");
+    document.getElementById("transFM29x").innerHTML = getTranslation("only");
+    document.getElementById("transFM30").innerHTML = getTranslation("OCR API for Seamless Integration with Tesseract");
+    document.getElementById("transFM31").innerHTML = getTranslation("All document types");
+    document.getElementById("transFM32").innerHTML = getTranslation("Integrated Checkpoint / Restart Feature (PDF)");
+    document.getElementById("transFM33").innerHTML = getTranslation("PDF Optional Content");
+    document.getElementById("transFM34").innerHTML = getTranslation("PDF Embedded Files");
+    document.getElementById("transFM35").innerHTML = getTranslation("Limited");
+    document.getElementById("transFM35x").innerHTML = getTranslation("Limited");
+    document.getElementById("transFM36").innerHTML = getTranslation("PDF Redactions");
+    document.getElementById("transFM37").innerHTML = getTranslation("PDF Annotations");
+    document.getElementById("transFM38").innerHTML = getTranslation("Full");
+    document.getElementById("transFM39").innerHTML = getTranslation("Limited");
+
+    document.getElementById("transFM40").innerHTML = getTranslation("PDF Form Fields");
+    document.getElementById("transFM41").innerHTML = getTranslation("Create, read, update");
+    document.getElementById("transFM42").innerHTML = getTranslation("Limited, no creation");
+
+    document.getElementById("transFM43").innerHTML = getTranslation("PDF Page Labels");
+    document.getElementById("transFM44").innerHTML = getTranslation("Support Font Sub-Setting");
+
+
+    document.getElementById("transFMSupportsCJK").innerHTML = getTranslation("Supports CJK characters");
+    document.getElementById("transFMSupportsMarkdown").innerHTML = getTranslation("Extract Text as Markdown (.md)");
+    document.getElementById("transFMExtractTables").innerHTML = getTranslation("Extract Tables");
+
+
+</script>
+
+
+<br/>
+
+<div id="note"></div>
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

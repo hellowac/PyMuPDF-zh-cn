@@ -1,0 +1,1057 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="Widget" href="widget.html" /><link rel="prev" title="TextWriter" href="textwriter.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Tools - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="tools">
+<span id="id1"></span><h1>Tools<a class="headerlink" href="#tools" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>该类是一个实用方法和属性的集合，主要用于内存管理。为了简化和加速其使用，当PyMuPDF被导入时，它会自动实例化为名为 <em>TOOLS</em> 的对象。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.gen_id" title="Tools.gen_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.gen_id()</span></code></a></p></td>
+<td><p>生成唯一的标识符</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.store_shrink" title="Tools.store_shrink"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.store_shrink()</span></code></a></p></td>
+<td><p>缩小存储缓存 <a class="footnote-reference brackets" href="#f3" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.mupdf_warnings" title="Tools.mupdf_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_warnings()</span></code></a></p></td>
+<td><p>返回累积的MuPDF警告</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.mupdf_display_errors" title="Tools.mupdf_display_errors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_display_errors()</span></code></a></p></td>
+<td><p>控制是否将MuPDF错误作为消息显示</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.mupdf_display_warnings" title="Tools.mupdf_display_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_display_warnings()</span></code></a></p></td>
+<td><p>控制是否将MuPDF警告作为消息显示</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.reset_mupdf_warnings" title="Tools.reset_mupdf_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.reset_mupdf_warnings()</span></code></a></p></td>
+<td><p>清空MuPDF警告/错误消息缓冲区</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.set_aa_level" title="Tools.set_aa_level"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_aa_level()</span></code></a></p></td>
+<td><p>设置抗锯齿值</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.set_annot_stem" title="Tools.set_annot_stem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_annot_stem()</span></code></a></p></td>
+<td><p>设置新注释/链接ID的前缀</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.set_small_glyph_heights" title="Tools.set_small_glyph_heights"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_small_glyph_heights()</span></code></a></p></td>
+<td><p>使用较小的bbox高度进行搜索和提取</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.set_subset_fontnames" title="Tools.set_subset_fontnames"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_subset_fontnames()</span></code></a></p></td>
+<td><p>控制子集字体名标签的抑制</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.show_aa_level" title="Tools.show_aa_level"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.show_aa_level()</span></code></a></p></td>
+<td><p>返回抗锯齿值</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.unset_quad_corrections" title="Tools.unset_quad_corrections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.unset_quad_corrections()</span></code></a></p></td>
+<td><p>禁用PyMuPDF特有的代码</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.fitz_config" title="Tools.fitz_config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.fitz_config</span></code></a></p></td>
+<td><p>PyMuPDF的配置设置</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.store_maxsize" title="Tools.store_maxsize"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.store_maxsize</span></code></a></p></td>
+<td><p>最大存储缓存大小</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.store_size" title="Tools.store_size"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.store_size</span></code></a></p></td>
+<td><p>当前存储缓存大小</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>类 API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Tools">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Tools</span></span><a class="headerlink" href="#Tools" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Tools.gen_id">
+<span class="sig-name descname"><span class="pre">gen_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Tools.gen_id" title="永久链接至目标">#</a></dt>
+<dd><p>一个方便的方法，返回一个唯一的正整数，每次调用时该整数会增加1。示例用法包括在数据库中创建唯一的键——它的创建速度应比使用时间戳快一个数量级。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>MuPDF已在v1.14.0版本中不再支持此功能，因此我们重新实现了一个类似的函数，具有以下区别：</p>
+<ul class="simple">
+<li><p>它不是MuPDF的全局上下文的一部分，也不是线程安全的（因为我们在PyMuPDF中不支持线程，所以这不是问题）。</p></li>
+<li><p>它被实现为 <em>int</em> 类型。这意味着最大值为 <em>sys.maxsize</em> 。如果这个数字被超过，计数器将从1重新开始。</p></li>
+</ul>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个唯一的正整数。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.set_annot_stem">
+<span class="sig-name descname"><span class="pre">set_annot_stem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.set_annot_stem" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.18.6</p></li>
+</ul>
+<p>设置或查询新注释、字段或链接ID的前缀。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stem</strong> (<em>str</em>) – 如果省略，则返回当前值，默认值为“fitz”。注释、字段/小部件和链接在PDF文档中实际上是同一类型对象(<code class="xref any docutils literal notranslate"><span class="pre">/Annot</span></code>)的子类型。一个`/Annot`对象可以在页面中具有唯一的标识符。对于每种适用的子类型，PyMuPDF会生成“stem-Annn”、“stem-Wnnn”或“stem-Lnnn”的标识符，其中“nnn”用于强制要求唯一性。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>当前值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.set_small_glyph_heights">
+<span class="sig-name descname"><span class="pre">set_small_glyph_heights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.set_small_glyph_heights" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.18.5</p></li>
+</ul>
+<p>设置或查询文本提取和文本搜索方法中的缩小bbox高度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>on</strong> (<em>bool</em>) – 如果省略或为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，则返回当前设置。对于其他值，将应用 <em>bool()</em> 函数来设置全局变量。如果为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>，则 <a class="reference internal" href="page.html#Page.search_for" title="Page.search_for"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.search_for()</span></code></a> 和 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 方法返回的字符、跨度、行或块的bbox高度将是 <em>字体大小</em> 。如果为 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code> （PyMuPDF导入时的标准设置），则bbox高度将基于字体属性，并通常等于 <em>行高</em> 。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>True</em> 或 <em>False</em>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>文本提取选项“xml”、“xhtml”和“html”，这些直接封装了MuPDF代码，不受此设置的影响。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.set_subset_fontnames">
+<span class="sig-name descname"><span class="pre">set_subset_fontnames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.set_subset_fontnames" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.18.9</p></li>
+</ul>
+<p>控制在文本提取时是否抑制子集字体名称标签。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>on</strong> (<em>bool</em>) – 如果省略或为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> ，则返回当前设置。将传入 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code> 值会设置全局变量。如果为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> ，选项”dict”、”json”、”rawdict”和”rawjson”将返回 <code class="xref any docutils literal notranslate"><span class="pre">&quot;NOHSJV+Calibri-Light&quot;</span></code> ，否则将仅返回 <code class="xref any docutils literal notranslate"><span class="pre">&quot;Calibri-Light&quot;</span></code> （默认值）。该设置会一直生效，直到再次更改。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>True</em> 或 <em>False</em>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>除上述提到的选项外，其他文本提取变体不受此设置的影响。特别是对于”xml”、”xhtml”和”html”选项，这些基于MuPDF代码的选项，会提取字体名称 <code class="xref any docutils literal notranslate"><span class="pre">&quot;Calibri-Light&quot;</span></code> ，甚至只是 <strong>字体家族</strong> 名称——例如 <code class="xref any docutils literal notranslate"><span class="pre">Calibri</span></code> 。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.unset_quad_corrections">
+<span class="sig-name descname"><span class="pre">unset_quad_corrections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.unset_quad_corrections" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.18.10</p></li>
+</ul>
+<p>启用/禁用PyMuPDF特有的代码，该代码在遇到 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">Page.get_text</span></code></a> 文本提取中的无效字符四边形时，尝试重建有效的字符四边形。该代码依赖于某些字体属性（升高字形和下降字形），在某些罕见情况下，这些属性不存在，并且在尝试访问时会导致段错误。此方法设置PyMuPDF中的全局参数，抑制此代码的执行。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>on</strong> (<em>bool</em>) – 如果省略或为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> ，则返回当前设置。对于其他值，将应用 <em>bool()</em> 函数来设置全局变量。如果为 <code class="xref any docutils literal notranslate"><span class="pre">True</span></code> ，PyMuPDF将不尝试访问相应的字体属性，而是使用 <code class="xref any docutils literal notranslate"><span class="pre">ascender=0.8</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">descender=-0.2</span></code> 作为默认值。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>True</em> 或 <em>False</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.store_shrink">
+<span class="sig-name descname"><span class="pre">store_shrink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percent</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.store_shrink" title="永久链接至目标">#</a></dt>
+<dd><p>按当前大小的百分比减少存储缓存。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>percent</strong> (<em>int</em>) – 要释放的当前大小的百分比。如果为100或更大，缓存将被清空；如果为零，则不做任何操作。MuPDF的缓存策略是“最近最少使用”，因此最少使用的元素将被优先删除。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>新的当前存储大小。根据情况，减少的大小可能大于请求的百分比。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.show_aa_level">
+<span class="sig-name descname"><span class="pre">show_aa_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Tools.show_aa_level" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.16.14</p></li>
+</ul>
+<p>返回当前的抗锯齿值。这些值控制图形和文本元素的渲染质量。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个字典，初始内容为：<code class="xref any docutils literal notranslate"><span class="pre">{'graphics':</span> <span class="pre">8,</span> <span class="pre">'text':</span> <span class="pre">8,</span> <span class="pre">'graphics_min_line_width':</span> <span class="pre">0.0}</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.set_aa_level">
+<span class="sig-name descname"><span class="pre">set_aa_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.set_aa_level" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.16.14</p></li>
+</ul>
+<p>设置用于抗锯齿的位数。当前该值适用于图形和文本渲染。未来的MuPDF版本可能会有所不同。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>int</em>) – 一个介于0到8之间的整数。范围之外的值会被自动更改为有效值。该值将在当前会话期间或直到再次更改为止保持有效。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.reset_mupdf_warnings">
+<span class="sig-name descname"><span class="pre">reset_mupdf_warnings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Tools.reset_mupdf_warnings" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.16.0</p></li>
+</ul>
+<p>清空MuPDF警告消息缓冲区。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.mupdf_display_errors">
+<span class="sig-name descname"><span class="pre">mupdf_display_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.mupdf_display_errors" title="永久链接至目标">#</a></dt>
+<dd><p>控制是否应将MuPDF错误显示为|PyMuPDF|消息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <ul class="simple">
+<li><p>如果为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> ，当前设置保持不变。</p></li>
+<li><p>否则更改当前设置为 <code class="xref any docutils literal notranslate"><span class="pre">bool(value)</span></code> ；如果为 <em>True</em> ，未来的MuPDF错误将作为消息显示。</p></li>
+<li><p>无论此设置如何，MuPDF错误总是会存储在警告存储区中。</p></li>
+<li><p>在导入 <cite>PyMuPDF</cite> 时，该值默认为 <em>True</em> 。</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>当前设置为 <em>True</em> 或 <em>False</em> 。</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>新增于v1.16.8</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.mupdf_display_warnings">
+<span class="sig-name descname"><span class="pre">mupdf_display_warnings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.mupdf_display_warnings" title="永久链接至目标">#</a></dt>
+<dd><p>控制是否应将MuPDF警告显示为|PyMuPDF|消息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <ul class="simple">
+<li><p>如果为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> ，当前设置保持不变。</p></li>
+<li><p>否则更改当前设置为 <code class="xref any docutils literal notranslate"><span class="pre">bool(value)</span></code> ； 如果为 <em>True</em> ，未来的MuPDF警告将作为消息显示。</p></li>
+<li><p>无论此设置如何，MuPDF警告总是会存储在警告存储区中。</p></li>
+<li><p>在导入 <cite>PyMuPDF</cite> 时，该值默认为 <em>True</em> 。</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>当前设置为 <em>True</em> 或 <em>False</em> 。</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>新增于v1.16.8</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tools.mupdf_warnings">
+<span class="sig-name descname"><span class="pre">mupdf_warnings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tools.mupdf_warnings" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>新增于v1.16.0</p></li>
+</ul>
+<p>返回所有存储的MuPDF消息，格式为字符串并带有换行符。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>reset</strong> (<em>bool</em>) – <em>(v1.16.7中新功能)</em> 是否自动清空存储区。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Tools.fitz_config">
+<span class="sig-name descname"><span class="pre">fitz_config</span></span><a class="headerlink" href="#Tools.fitz_config" title="永久链接至目标">#</a></dt>
+<dd><p>一个字典，包含用于配置PyMuPDF和MuPDF的实际值。也请参考安装章节。以下是各个键的概述，每个键描述了某个支持方面的状态。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>键</strong></p></th>
+<th class="head"><p><strong>支持的内容</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>plotter-g</p></td>
+<td><p>灰度颜色空间渲染</p></td>
+</tr>
+<tr class="row-odd"><td><p>plotter-rgb</p></td>
+<td><p>RGB颜色空间渲染</p></td>
+</tr>
+<tr class="row-even"><td><p>plotter-cmyk</p></td>
+<td><p>CMYK颜色空间渲染</p></td>
+</tr>
+<tr class="row-odd"><td><p>plotter-n</p></td>
+<td><p>覆印渲染</p></td>
+</tr>
+<tr class="row-even"><td><p>pdf</p></td>
+<td><p>PDF文档</p></td>
+</tr>
+<tr class="row-odd"><td><p>xps</p></td>
+<td><p>XPS文档</p></td>
+</tr>
+<tr class="row-even"><td><p>svg</p></td>
+<td><p>SVG文档</p></td>
+</tr>
+<tr class="row-odd"><td><p>cbz</p></td>
+<td><p>CBZ文档</p></td>
+</tr>
+<tr class="row-even"><td><p>img</p></td>
+<td><p>IMG文档</p></td>
+</tr>
+<tr class="row-odd"><td><p>html</p></td>
+<td><p>HTML文档</p></td>
+</tr>
+<tr class="row-even"><td><p>epub</p></td>
+<td><p>EPUB文档</p></td>
+</tr>
+<tr class="row-odd"><td><p>jpx</p></td>
+<td><p>JPEG2000图像</p></td>
+</tr>
+<tr class="row-even"><td><p>js</p></td>
+<td><p>JavaScript</p></td>
+</tr>
+<tr class="row-odd"><td><p>tofu</p></td>
+<td><p>所有TOFU字体</p></td>
+</tr>
+<tr class="row-even"><td><p>tofu-cjk</p></td>
+<td><p>CJK字体子集（中国、日本、韩国）</p></td>
+</tr>
+<tr class="row-odd"><td><p>tofu-cjk-ext</p></td>
+<td><p>CJK字体扩展</p></td>
+</tr>
+<tr class="row-even"><td><p>tofu-cjk-lang</p></td>
+<td><p>CJK字体语言扩展</p></td>
+</tr>
+<tr class="row-odd"><td><p>tofu-emoji</p></td>
+<td><p>TOFU表情符号字体</p></td>
+</tr>
+<tr class="row-even"><td><p>tofu-historic</p></td>
+<td><p>TOFU历史字体</p></td>
+</tr>
+<tr class="row-odd"><td><p>tofu-symbol</p></td>
+<td><p>TOFU符号字体</p></td>
+</tr>
+<tr class="row-even"><td><p>tofu-sil</p></td>
+<td><p>TOFU SIL字体</p></td>
+</tr>
+<tr class="row-odd"><td><p>icc</p></td>
+<td><p>ICC色彩配置文件</p></td>
+</tr>
+<tr class="row-even"><td><p>py-memory</p></td>
+<td><p>使用Python内存管理 <a class="footnote-reference brackets" href="#f4" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>base14</p></td>
+<td><p>基础14字体（应始终为True）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>关于“TOFU”一词的解释，请参阅 <a class="reference external" href="https://zh.wikipedia.org/wiki/Noto">此维基百科条目</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">TOOLS</span><span class="o">.</span><span class="n">fitz_config</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+<span class="p">{</span><span class="s1">&#39;plotter-g&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;plotter-rgb&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;plotter-cmyk&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;plotter-n&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;pdf&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;xps&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;svg&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;cbz&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;img&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;html&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;epub&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;jpx&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;js&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;tofu&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-cjk&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;tofu-cjk-ext&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-cjk-lang&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-emoji&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-historic&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-symbol&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;tofu-sil&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;icc&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;py-memory&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;base14&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Tools.store_maxsize">
+<span class="sig-name descname"><span class="pre">store_maxsize</span></span><a class="headerlink" href="#Tools.store_maxsize" title="永久链接至目标">#</a></dt>
+<dd><p>存储缓存的最大大小，以字节为单位。 <strong>PyMuPDF</strong> 默认值为 268’435’456（256 MB），因此您应始终看到这个值。如果该值为零，则允许“无限制”增长。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Tools.store_size">
+<span class="sig-name descname"><span class="pre">store_size</span></span><a class="headerlink" href="#Tools.store_size" title="永久链接至目标">#</a></dt>
+<dd><p>当前存储缓存的大小，以字节为单位。此值可能会随每次使用 <strong>PyMuPDF</strong> 函数而变化（通常会增加）。只有当超出 <a class="reference internal" href="#Tools.store_maxsize" title="Tools.store_maxsize"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.store_maxsize</span></code></a> 时，这个值才会（自动）减少：在这种情况下， <strong>MuPDF</strong> 将逐出低使用率的对象，直到值重新回到正常范围。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>This class is a collection of utility methods and attributes, mainly around memory management. To simplify and speed up its use, it is automatically instantiated under the name <em>TOOLS</em> when PyMuPDF is imported.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method / Attribute</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.gen_id" title="Tools.gen_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.gen_id()</span></code></a></p></td>
+<td><p>generate a unique identifier</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.store_shrink" title="Tools.store_shrink"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.store_shrink()</span></code></a></p></td>
+<td><p>shrink the storables cache <a class="footnote-reference brackets" href="#f1" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.mupdf_warnings" title="Tools.mupdf_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_warnings()</span></code></a></p></td>
+<td><p>return the accumulated MuPDF warnings</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.mupdf_display_errors" title="Tools.mupdf_display_errors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_display_errors()</span></code></a></p></td>
+<td><p>control whether MuPDF errors are displayed as messages.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.mupdf_display_warnings" title="Tools.mupdf_display_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.mupdf_display_warnings()</span></code></a></p></td>
+<td><p>control whether MuPDF warnings are displayed as messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.reset_mupdf_warnings" title="Tools.reset_mupdf_warnings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.reset_mupdf_warnings()</span></code></a></p></td>
+<td><p>empty MuPDF warnings/errors message buffer.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.set_aa_level" title="Tools.set_aa_level"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_aa_level()</span></code></a></p></td>
+<td><p>set the anti-aliasing values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.set_annot_stem" title="Tools.set_annot_stem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_annot_stem()</span></code></a></p></td>
+<td><p>set the prefix of new annotation / link ids</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.set_small_glyph_heights" title="Tools.set_small_glyph_heights"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_small_glyph_heights()</span></code></a></p></td>
+<td><p>search and extract using small bbox heights</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.set_subset_fontnames" title="Tools.set_subset_fontnames"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.set_subset_fontnames()</span></code></a></p></td>
+<td><p>control suppression of subset fontname tags</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.show_aa_level" title="Tools.show_aa_level"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.show_aa_level()</span></code></a></p></td>
+<td><p>return the anti-aliasing values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.unset_quad_corrections" title="Tools.unset_quad_corrections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tools.unset_quad_corrections()</span></code></a></p></td>
+<td><p>disable PyMuPDF-specific code</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.fitz_config" title="Tools.fitz_config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.fitz_config</span></code></a></p></td>
+<td><p>configuration settings of PyMuPDF</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Tools.store_maxsize" title="Tools.store_maxsize"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.store_maxsize</span></code></a></p></td>
+<td><p>maximum storables cache size</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Tools.store_size" title="Tools.store_size"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Tools.store_size</span></code></a></p></td>
+<td><p>current storables cache size</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="example-session">
+<h2>Example Session<a class="headerlink" href="#example-session" title="此标题的永久链接">#</a></h2>
+<p>Example Session</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="go"># 打印最大和当前缓存大小</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_maxsize</span>
+<span class="go">268435456</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;demo1.pdf&quot;</span><span class="p">)</span>
+<span class="go"># 创建pixmap会将许多对象放入缓存（文本、图像、字体），</span>
+<span class="go"># 除了pixmap本身</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pix</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">454519</span>
+<span class="go"># 释放（至少）50%的存储空间</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_shrink</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">13471</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">13471</span>
+<span class="go"># 获取几个唯一的编号</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="go"># 关闭文档并查看仍然使用的缓存量</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="go"># print the maximum and current cache sizes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_maxsize</span>
+<span class="go">268435456</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;demo1.pdf&quot;</span><span class="p">)</span>
+<span class="go"># pixmap creation puts lots of object in cache (text, images, fonts),</span>
+<span class="go"># apart from the pixmap itself</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pix</span> <span class="o">=</span> <span class="n">doc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">454519</span>
+<span class="go"># release (at least) 50% of the storage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_shrink</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">13471</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">13471</span>
+<span class="go"># get a few unique numbers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">gen_id</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="go"># close document and see how much cache is still in use</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">doc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">TOOLS</span><span class="o">.</span><span class="n">store_size</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="f1" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>This memory area is internally used by MuPDF, and it serves as a cache for objects that have already been read and interpreted, thus improving performance. The most bulky object types are images and also fonts. When an application starts up the MuPDF library (in our case this happens as part of <em>import pymupdf</em>), it must specify a maximum size for this area. PyMuPDF’s uses the default value (256 MB) to limit memory consumption. Use the methods here to control or investigate store usage. For example: even after a document has been closed and all related objects have been deleted, the store usage may still not drop down to zero. So you might want to enforce that before opening another document.</p>
+</aside>
+<aside class="footnote brackets" id="f2" role="note">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>By default PyMuPDF and MuPDF use <code class="xref any docutils literal notranslate"><span class="pre">malloc()</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">free()</span></code> for dynamic memory management. One can instead force them to use the Python allocation functions <code class="xref any docutils literal notranslate"><span class="pre">PyMem_New()</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">PyMem_Del()</span></code>, by modifying <em>fitz/fitz.i</em> to do <code class="xref any docutils literal notranslate"><span class="pre">#define</span> <span class="pre">JM_MEMORY</span> <span class="pre">1</span></code> and rebuilding PyMuPDF.</p>
+</aside>
+<aside class="footnote brackets" id="f3" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">3</a><span class="fn-bracket">]</span></span>
+<p>该内存区域是MuPDF内部使用的，用作已经读取和解释的对象的缓存，从而提高性能。最大的对象类型是图像和字体。当应用程序启动MuPDF库时（在我们的案例中，这发生在 <em>import pymupdf</em> 过程中），它必须指定该区域的最大大小。PyMuPDF使用默认值（256 MB）来限制内存消耗。使用这里的方法可以控制或调查存储使用情况。例如：即使文档已经关闭并且所有相关对象都已删除，存储使用情况仍然可能不会降到零。因此，您可能希望在打开另一个文档之前强制执行此操作。</p>
+</aside>
+<aside class="footnote brackets" id="f4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">4</a><span class="fn-bracket">]</span></span>
+<p>默认情况下，PyMuPDF和MuPDF使用 <code class="xref any docutils literal notranslate"><span class="pre">malloc()</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">free()</span></code> 进行动态内存管理。可以通过修改 <em>fitz/fitz.i</em> 文件，将 <code class="xref any docutils literal notranslate"><span class="pre">#define</span> <span class="pre">JM_MEMORY</span> <span class="pre">1</span></code> 并重新构建PyMuPDF，强制它们使用Python的分配函数 <code class="xref any docutils literal notranslate"><span class="pre">PyMem_New()</span></code>/<code class="xref any docutils literal notranslate"><span class="pre">PyMem_Del()</span></code>。</p>
+</aside>
+</aside>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="widget.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Widget</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="textwriter.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">TextWriter</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Tools</a><ul>
+<li><a class="reference internal" href="#Tools"><code class="docutils literal notranslate"><span class="pre">Tools</span></code></a><ul>
+<li><a class="reference internal" href="#Tools.gen_id"><code class="docutils literal notranslate"><span class="pre">Tools.gen_id()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.set_annot_stem"><code class="docutils literal notranslate"><span class="pre">Tools.set_annot_stem()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.set_small_glyph_heights"><code class="docutils literal notranslate"><span class="pre">Tools.set_small_glyph_heights()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.set_subset_fontnames"><code class="docutils literal notranslate"><span class="pre">Tools.set_subset_fontnames()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.unset_quad_corrections"><code class="docutils literal notranslate"><span class="pre">Tools.unset_quad_corrections()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.store_shrink"><code class="docutils literal notranslate"><span class="pre">Tools.store_shrink()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.show_aa_level"><code class="docutils literal notranslate"><span class="pre">Tools.show_aa_level()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.set_aa_level"><code class="docutils literal notranslate"><span class="pre">Tools.set_aa_level()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.reset_mupdf_warnings"><code class="docutils literal notranslate"><span class="pre">Tools.reset_mupdf_warnings()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.mupdf_display_errors"><code class="docutils literal notranslate"><span class="pre">Tools.mupdf_display_errors()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.mupdf_display_warnings"><code class="docutils literal notranslate"><span class="pre">Tools.mupdf_display_warnings()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.mupdf_warnings"><code class="docutils literal notranslate"><span class="pre">Tools.mupdf_warnings()</span></code></a></li>
+<li><a class="reference internal" href="#Tools.fitz_config"><code class="docutils literal notranslate"><span class="pre">Tools.fitz_config</span></code></a></li>
+<li><a class="reference internal" href="#Tools.store_maxsize"><code class="docutils literal notranslate"><span class="pre">Tools.store_maxsize</span></code></a></li>
+<li><a class="reference internal" href="#Tools.store_size"><code class="docutils literal notranslate"><span class="pre">Tools.store_size</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example-session">Example Session</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

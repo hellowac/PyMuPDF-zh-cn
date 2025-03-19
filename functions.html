@@ -1,0 +1,1881 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="设备" href="device.html" /><link rel="prev" title="低级函数和类" href="lowlevel.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>函数 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="id1">
+<h1>函数<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<p>Functions</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>以下是一些技术细节相对较低的杂项函数和属性。</p>
+<p>一些函数提供对 PDF 结构的详细访问。其他函数是其他函数的精简版高性能版本, 可提供更多信息。</p>
+<p>还有一些是方便的通用实用程序。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>函数</strong></p></th>
+<th class="head"><p><strong>简要描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.apn_bbox</span></code></p></td>
+<td><p>仅限 PDF：外观对象的 bbox</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.apn_matrix</span></code></p></td>
+<td><p>仅限 PDF：外观对象的矩阵</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.is_wrapped" title="Page.is_wrapped"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.is_wrapped</span></code></a></p></td>
+<td><p>检查内容是否存在换行</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#adobe_glyph_names" title="adobe_glyph_names"><code class="xref py py-meth docutils literal notranslate"><span class="pre">adobe_glyph_names()</span></code></a></p></td>
+<td><p>Adobe 字形列表中定义的字形名称列表</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#adobe_glyph_unicodes" title="adobe_glyph_unicodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">adobe_glyph_unicodes()</span></code></a></p></td>
+<td><p>Adobe 字形列表中定义的 Unicode 列表</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.clean_contents" title="Annot.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.clean_contents()</span></code></a></p></td>
+<td><p>仅限 PDF：清理批注的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_apn_bbox()</span></code></p></td>
+<td><p>仅限 PDF：设置外观对象的 bbox</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_apn_matrix()</span></code></p></td>
+<td><p>仅限 PDF：设置外观对象的矩阵</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ConversionHeader" title="ConversionHeader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ConversionHeader()</span></code></a></p></td>
+<td><p>返回 <em>get_text</em> 方法的头部字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ConversionTrailer" title="ConversionTrailer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ConversionTrailer()</span></code></a></p></td>
+<td><p>返回 <em>get_text</em> 方法的尾部字符串</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.del_xml_metadata" title="Document.del_xml_metadata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.del_xml_metadata()</span></code></a></p></td>
+<td><p>仅限 PDF：删除 XML 元数据</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.get_char_widths" title="Document.get_char_widths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_char_widths()</span></code></a></p></td>
+<td><p>仅限 PDF：返回字体的字形宽度列表</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.get_new_xref" title="Document.get_new_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_new_xref()</span></code></a></p></td>
+<td><p>仅限 PDF：创建并返回新的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 条目</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.is_stream" title="Document.is_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.is_stream()</span></code></a></p></td>
+<td><p>仅限 PDF：检查 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 是否为流对象</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.xml_metadata_xref" title="Document.xml_metadata_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xml_metadata_xref()</span></code></a></p></td>
+<td><p>仅限 PDF：返回 XML 元数据的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.xref_length" title="Document.xref_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_length()</span></code></a></p></td>
+<td><p>仅限 PDF：返回 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表的长度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#EMPTY_IRECT" title="EMPTY_IRECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_IRECT()</span></code></a></p></td>
+<td><p>返回(标准的)空 / 无效矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#EMPTY_QUAD" title="EMPTY_QUAD"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_QUAD()</span></code></a></p></td>
+<td><p>返回(标准的)空 / 无效四边形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#EMPTY_RECT" title="EMPTY_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_RECT()</span></code></a></p></td>
+<td><p>返回(标准的)空 / 无效矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#get_pdf_now" title="get_pdf_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pdf_now()</span></code></a></p></td>
+<td><p>以 PDF 格式返回当前时间戳</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#get_pdf_str" title="get_pdf_str"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pdf_str()</span></code></a></p></td>
+<td><p>返回 PDF 兼容字符串</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#get_text_length" title="get_text_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_text_length()</span></code></a></p></td>
+<td><p>返回给定字体和 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 的字符串长度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#glyph_name_to_unicode" title="glyph_name_to_unicode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">glyph_name_to_unicode()</span></code></a></p></td>
+<td><p>从字形名称返回 Unicode</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#image_profile" title="image_profile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">image_profile()</span></code></a></p></td>
+<td><p>返回包含基本图像属性的字典</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#INFINITE_IRECT" title="INFINITE_IRECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_IRECT()</span></code></a></p></td>
+<td><p>返回(唯一存在的)无限矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#INFINITE_QUAD" title="INFINITE_QUAD"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_QUAD()</span></code></a></p></td>
+<td><p>返回(唯一存在的)无限四边形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#INFINITE_RECT" title="INFINITE_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_RECT()</span></code></a></p></td>
+<td><p>返回(唯一存在的)无限矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#make_table" title="make_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_table()</span></code></a></p></td>
+<td><p>将矩形拆分为子矩形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a></p></td>
+<td><p>仅限 PDF：清理页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_bboxlog" title="Page.get_bboxlog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_bboxlog()</span></code></a></p></td>
+<td><p>获取包围文本、绘图或图像对象的矩形列表</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_contents" title="Page.get_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_contents()</span></code></a></p></td>
+<td><p>仅限 PDF：返回内容的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号列表</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_displaylist" title="Page.get_displaylist"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_displaylist()</span></code></a></p></td>
+<td><p>创建页面的显示列表</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_text_blocks" title="Page.get_text_blocks"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text_blocks()</span></code></a></p></td>
+<td><p>以 Python 列表的形式提取文本块</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_text_words" title="Page.get_text_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text_words()</span></code></a></p></td>
+<td><p>以 Python 列表的形式提取文本单词</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a></p></td>
+<td><p>提供底层文本信息</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.read_contents" title="Page.read_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.read_contents()</span></code></a></p></td>
+<td><p>仅限 PDF：获取完整的、拼接后的 /Contents 源数据</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.run" title="Page.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.run()</span></code></a></p></td>
+<td><p>通过设备运行页面</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.set_contents" title="Page.set_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.set_contents()</span></code></a></p></td>
+<td><p>仅限 PDF：将页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 设置为某个 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.wrap_contents" title="Page.wrap_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.wrap_contents()</span></code></a></p></td>
+<td><p>使用堆叠命令包裹内容</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#css_for_pymupdf_font" title="css_for_pymupdf_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">css_for_pymupdf_font()</span></code></a></p></td>
+<td><p>为 pymupdf_fonts 包中的字体创建 CSS 源代码</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#paper_rect" title="paper_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_rect()</span></code></a></p></td>
+<td><p>返回已知纸张格式的矩形</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#paper_size" title="paper_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_size()</span></code></a></p></td>
+<td><p>返回已知纸张格式的宽度和高度</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#paper_sizes" title="paper_sizes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_sizes()</span></code></a></p></td>
+<td><p>预定义纸张格式的字典</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#planish_line" title="planish_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">planish_line()</span></code></a></p></td>
+<td><p>计算映射到 x 轴的矩阵</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#recover_char_quad" title="recover_char_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a></p></td>
+<td><p>计算字符的四边形 (“rawdict”)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#recover_line_quad" title="recover_line_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_line_quad()</span></code></a></p></td>
+<td><p>计算行跨度子集的四边形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#recover_quad" title="recover_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_quad()</span></code></a></p></td>
+<td><p>计算跨度的四边形 (“dict”, “rawdict”)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#recover_span_quad" title="recover_span_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a></p></td>
+<td><p>计算跨度字符子集的四边形</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#set_messages" title="set_messages"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_messages()</span></code></a></p></td>
+<td><p>设置 <cite>PyMuPDF</cite> 消息的输出位置</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sRGB_to_pdf" title="sRGB_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_pdf()</span></code></a></p></td>
+<td><p>从 sRGB 整数返回 PDF RGB 颜色元组</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sRGB_to_rgb" title="sRGB_to_rgb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_rgb()</span></code></a></p></td>
+<td><p>从 sRGB 整数返回 (R, G, B) 颜色元组</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unicode_to_glyph_name" title="unicode_to_glyph_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unicode_to_glyph_name()</span></code></a></p></td>
+<td><p>从 Unicode 返回字形名称</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#get_tessdata" title="get_tessdata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_tessdata()</span></code></a></p></td>
+<td><p>定位 Tesseract-OCR 安装的语言支持数据</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#colors_pdf_dict" title="colors_pdf_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">colors_pdf_dict()</span></code></a></p></td>
+<td><p>返回颜色名称字典.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#colors_wx_list" title="colors_wx_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">colors_wx_list()</span></code></a></p></td>
+<td><p>返回颜色名称字典.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#fitz_fontdescriptors" title="fitz_fontdescriptors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fitz_fontdescriptors</span></code></a></p></td>
+<td><p>可用的补充字体字典</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#PYMUPDF_MESSAGE" title="PYMUPDF_MESSAGE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a></p></td>
+<td><p><cite>PyMuPDF</cite> 消息的输出位置</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pdfcolor" title="pdfcolor"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pdfcolor</span></code></a></p></td>
+<td><p>近 500 种 PDF 格式的 RGB 颜色字典</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="paper_size">
+<span class="sig-name descname"><span class="pre">paper_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#paper_size" title="永久链接至目标">#</a></dt>
+<dd><p>便捷函数, 用于返回已知纸张格式代码的宽度和高度。这些值以像素为单位, 基于标准分辨率 72 像素 = 1 英寸。</p>
+<p>目前定义的格式包括 <strong>‘A0’</strong> 到 <strong>‘A10’</strong>, <strong>‘B0’</strong> 到 <strong>‘B10’</strong>, <strong>‘C0’</strong> 到 <strong>‘C10’</strong>, <strong>‘Card-4x6’</strong>, <strong>‘Card-5x7’</strong>, <strong>‘Commercial’</strong>, <strong>‘Executive’</strong>, <strong>‘Invoice’</strong>, <strong>‘Ledger’</strong>, <strong>‘Legal’</strong>, <strong>‘Legal-13’</strong>, <strong>‘Letter’</strong>, <strong>‘Monarch’</strong> 和 <strong>‘Tabloid-Extra’</strong>, 每种格式均可选择纵向(portrait)或横向(landscape)。</p>
+<p>需要以字符串形式提供格式名称(不区分大小写), 并可选择性地添加后缀 “-L”(横向)或 “-P”(纵向)。如果没有后缀, 默认采用纵向。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – 以上任意格式名称, 可使用大写或小写, 例如 <em>“A4”</em> 或 <em>“letter-l”</em>。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>纸张格式的 <em>(宽度, 高度)</em>。如果格式未知, 则返回 <em>(-1, -1)</em>。示例：<em>pymupdf.paper_size(“A4”)</em> 返回 <em>(595, 842)</em>, <em>pymupdf.paper_size(“letter-l”)</em> 返回 <em>(792, 612)</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="paper_rect">
+<span class="sig-name descname"><span class="pre">paper_rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#paper_rect" title="永久链接至目标">#</a></dt>
+<dd><p>便捷函数, 用于返回已知纸张格式的 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – 任何受 <a class="reference internal" href="#paper_size" title="paper_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_size()</span></code></a> 支持的格式名称。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>pymupdf.Rect(0, 0, width, height)</em>, 其中 <em>width, height=pymupdf.paper_size(s)</em>。</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pymupdf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pymupdf</span><span class="o">.</span><span class="n">paper_rect</span><span class="p">(</span><span class="s2">&quot;letter-l&quot;</span><span class="p">)</span>
+<span class="go">pymupdf.Rect(0.0, 0.0, 792.0, 612.0)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="set_messages">
+<span class="sig-name descname"><span class="pre">set_messages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pylogging</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pylogging_logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pylogging_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pylogging_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#set_messages" title="永久链接至目标">#</a></dt>
+<dd><p>设置 <cite>PyMuPDF</cite> 消息的输出位置, 可以是文件描述符、文件、已有的流或 <a class="reference external" href="https://docs.python.org/3/library/logging.html">Python 的日志系统</a>。</p>
+<p>通常情况下, 只需设置一个参数, 或者一个或多个 <code class="xref any docutils literal notranslate"><span class="pre">pylogging*</span></code> 参数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – 目标位置的文本描述；详细信息请参阅环境变量 <a class="reference internal" href="#PYMUPDF_MESSAGE" title="PYMUPDF_MESSAGE"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a> 的说明。</p></li>
+<li><p><strong>fd</strong> (<em>int</em>) – 写入文件描述符。</p></li>
+<li><p><strong>stream</strong> – 写入已有的流, 该流必须具有 <code class="xref any docutils literal notranslate"><span class="pre">.write(text)</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">.flush()</span></code> 方法。</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – 写入文件。</p></li>
+<li><p><strong>path_append</strong> (<em>str</em>) – 追加写入文件。</p></li>
+<li><p><strong>pylogging</strong> – 写入 Python 的 <code class="xref any docutils literal notranslate"><span class="pre">logging</span></code> 系统。</p></li>
+<li><p><strong>pylogging_logger</strong> (<em>logging.Logger</em>) – 使用指定的 Logger 写入 Python 的 <code class="xref any docutils literal notranslate"><span class="pre">logging</span></code> 系统。</p></li>
+<li><p><strong>pylogging_level</strong> (<em>int</em>) – 使用指定的日志级别写入 Python 的 <code class="xref any docutils literal notranslate"><span class="pre">logging</span></code> 系统。</p></li>
+<li><p><strong>pylogging_name</strong> (<em>str</em>) – 使用指定的日志记录器名称写入 Python 的 <code class="xref any docutils literal notranslate"><span class="pre">logging</span></code> 系统。
+仅在 <code class="xref any docutils literal notranslate"><span class="pre">pylogging_logger</span></code> 为 None 时使用, 默认值为 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf</span></code>。</p></li>
+</ul>
+</dd>
+</dl>
+<p>如果任何 <code class="xref any docutils literal notranslate"><span class="pre">pylogging*</span></code> 参数不为 None, 则消息将写入 <a class="reference external" href="https://docs.python.org/3/library/logging.html">Python 的日志系统</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sRGB_to_pdf">
+<span class="sig-name descname"><span class="pre">sRGB_to_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">srgb</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sRGB_to_pdf" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.17.4 版本起新增</em></p>
+<p>便捷函数, 将给定的 sRGB 颜色整数转换为 PDF 颜色三元组(red, green, blue)。该格式用于 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 返回的 “dict” 和 “rawdict” 结构中。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>srgb</strong> (<em>int</em>) – 形如 RRGGBB 的整数, 每个颜色分量的取值范围为 0-255。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>颜色三元组 (red, green, blue), 其中每个值都是 <em>0 &lt;= item &lt;= 1</em> 之间的浮点数, 表示相同颜色。例如  <code class="xref any docutils literal notranslate"><span class="pre">sRGB_to_pdf(0xff0000)</span> <span class="pre">=</span> <span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">0)</span></code> (红色)。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sRGB_to_rgb">
+<span class="sig-name descname"><span class="pre">sRGB_to_rgb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">srgb</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sRGB_to_rgb" title="永久链接至目标">#</a></dt>
+<dd><p><em>New in v1.17.4</em></p>
+<p>Convenience function returning a color (red, green, blue) for a given <em>sRGB</em> color integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>srgb</strong> (<em>int</em>) – an integer of format RRGGBB, where each color component is an integer in range(255).</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>a tuple (red, green, blue) with integer items in <code class="xref any docutils literal notranslate"><span class="pre">range(256)</span></code> representing the same color. Example <code class="xref any docutils literal notranslate"><span class="pre">sRGB_to_pdf(0xff0000)</span> <span class="pre">=</span> <span class="pre">(255,</span> <span class="pre">0,</span> <span class="pre">0)</span></code> (red).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="glyph_name_to_unicode">
+<span class="sig-name descname"><span class="pre">glyph_name_to_unicode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#glyph_name_to_unicode" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.18.0 版本起新增</em></p>
+<p>根据 <strong>Adobe Glyph List</strong> 返回字形名称对应的 Unicode 编码。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – 字形名称。本函数基于 <a class="reference external" href="https://github.com/adobe-type-tools/agl-aglfn/blob/master/glyphlist.txt">Adobe Glyph List</a>。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>对应的 Unicode 编码。如果 <em>name</em> 无效，则返回 <code class="xref any docutils literal notranslate"><span class="pre">0xfffd</span> <span class="pre">(65533)</span></code>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>类似功能也由 <a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> 包的 <em>agl</em> 子包提供。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="unicode_to_glyph_name">
+<span class="sig-name descname"><span class="pre">unicode_to_glyph_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#unicode_to_glyph_name" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.18.0 版本起新增</em></p>
+<p>根据 <strong>Adobe Glyph List</strong> 返回 Unicode 编码对应的字形名称。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ch</strong> (<em>int</em>) – <p>Unicode 编码，例如 <code class="xref any docutils literal notranslate"><span class="pre">ord(&quot;ß&quot;)</span></code>。本函数基于 <a class="reference external" href="https://github.com/adobe-type-tools/agl-aglfn/blob/master/glyphlist.txt">Adobe Glyph List</a>。</p>
+</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>对应的字形名称。例如 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.unicode_to_glyph_name(ord(&quot;Ä&quot;))</span></code> 返回 <code class="xref any docutils literal notranslate"><span class="pre">'Adieresis'</span></code>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>类似功能也由 <a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> 包的 <em>agl</em> 子包提供。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adobe_glyph_names">
+<span class="sig-name descname"><span class="pre">adobe_glyph_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adobe_glyph_names" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.18.0 版本起新增</em></p>
+<p>返回 <strong>Adobe Glyph List</strong> 中定义的字形名称列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>字符串列表。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>类似功能也由 <a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> 包的 <em>agl</em> 子包提供。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="adobe_glyph_unicodes">
+<span class="sig-name descname"><span class="pre">adobe_glyph_unicodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#adobe_glyph_unicodes" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.18.0 版本起新增</em></p>
+<p>返回 <strong>Adobe Glyph List</strong> 中存在字形名称的 Unicode 编码列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>整数列表。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>类似功能也由 <a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> 包的 <em>agl</em> 子包提供。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="css_for_pymupdf_font">
+<span class="sig-name descname"><span class="pre">css_for_pymupdf_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fontcode</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CSS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#css_for_pymupdf_font" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.21.0 版本起新增</em></p>
+<p><strong>用于 “Story” 应用的实用函数。</strong></p>
+<p>为 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf-fonts</span></code> 中的指定字体代码生成 CSS <code class="xref any docutils literal notranslate"><span class="pre">&#64;font-face</span></code> 规则，并创建一个包含所有匹配字体的 <code class="xref any docutils literal notranslate"><span class="pre">font-family</span></code> 定义。</p>
+<p>在 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf-fonts</span></code> 包中，字体的命名规则为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;fontcode&lt;sf&gt;&quot;</span></code> ，其中后缀 <code class="xref any docutils literal notranslate"><span class="pre">&quot;sf&quot;</span></code> 可以是 <code class="xref any docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> (空，表示常规体)、 <code class="xref any docutils literal notranslate"><span class="pre">&quot;it&quot;/&quot;i&quot;</span></code> (斜体)、 <code class="xref any docutils literal notranslate"><span class="pre">&quot;bo&quot;/&quot;b&quot;</span></code> (加粗)或 <code class="xref any docutils literal notranslate"><span class="pre">&quot;bi&quot;</span></code> (加粗斜体)。这些后缀代表该字体系列的不同变体。</p>
+<p>例如，字体代码 <code class="xref any docutils literal notranslate"><span class="pre">&quot;notos&quot;</span></code> 代表以下字体：</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;notos&quot;</span></code> - “Noto Sans Regular”</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;notosit&quot;</span></code> - “Noto Sans Italic”</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;notosbo&quot;</span></code> - “Noto Sans Bold”</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;notosbi&quot;</span></code> - “Noto Sans Bold Italic”</p></li>
+</ul>
+<p>该函数会生成最多四个 <code class="xref any docutils literal notranslate"><span class="pre">&#64;font-face</span></code> 规则，并将它们统一分配给 <code class="xref any docutils literal notranslate"><span class="pre">font-family</span></code> 名称 <code class="xref any docutils literal notranslate"><span class="pre">&quot;notos&quot;</span></code> (或者使用 <a class="reference internal" href="colorspace.html#Colorspace.name" title="Colorspace.name"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> 参数指定的名称)。相关字体数据将存储或添加到提供的 <a class="reference internal" href="archive-class.html#archive"><span class="std std-ref">Archive</span></a> 归档对象中。</p>
+<p>在 <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> 的 Python API 中，可以执行 <code class="xref any docutils literal notranslate"><span class="pre">.set_font(fontcode)</span></code> (或提供的 <a class="reference internal" href="colorspace.html#Colorspace.name" title="Colorspace.name"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>)，以确保根据需要自动选择正确的字重或样式。</p>
+<p>例如，要用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;notos&quot;</span></code> 字体替换 HTML 标准的 <code class="xref any docutils literal notranslate"><span class="pre">&quot;sans-serif&quot;</span></code> (即 Helvetica)，可以执行以下代码。这样，每当使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;sans-serif&quot;</span></code> (无论是显式还是隐式)时，都会选择 Noto Sans 字体：</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">CSS</span> <span class="pre">=</span> <span class="pre">pymupdf.css_for_pymupdf_font(&quot;notos&quot;,</span> <span class="pre">name=&quot;sans-serif&quot;,</span> <span class="pre">archive=...)</span></code></p>
+<p>该函数接受并返回 CSS 源码，会在提供的 CSS 源码末尾追加新的 <code class="xref any docutils literal notranslate"><span class="pre">&#64;font-face</span></code> 规则。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fontcode</strong> (<em>str</em>) – <a class="reference external" href="https://pypi.org/project/pymupdf-fonts/">pymupdf-fonts</a> 包中的字体代码，通常代表该字体系列的常规体。</p></li>
+<li><p><strong>CSS</strong> (<em>str</em>) – 现有的 CSS 源码，或 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。函数会将新的 <code class="xref any docutils literal notranslate"><span class="pre">&#64;font-face</span></code> 规则追加到此字符串中。 <strong>此字符串必须作为</strong> <code class="xref any docutils literal notranslate"><span class="pre">user_css</span></code> <strong>传递给</strong> <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a>。</p></li>
+<li><p><strong>archive</strong> – <a class="reference internal" href="archive-class.html#archive"><span class="std std-ref">Archive</span></a>， <strong>必填</strong> 。所有找到的字体二进制数据(最多四个变体)将被添加到此归档对象。 <strong>此对象必须作为</strong> <a class="reference internal" href="archive-class.html#archive"><span class="std std-ref">Archive</span></a> <strong>传递给</strong> <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a>。</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – 字体的 <code class="xref any docutils literal notranslate"><span class="pre">font-family</span></code> 名称。如果未提供，则默认使用 <code class="xref any docutils literal notranslate"><span class="pre">fontcode</span></code>。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>修改后的 CSS 代码，其中包含 <code class="xref any docutils literal notranslate"><span class="pre">fontcode</span></code> 对应的 <code class="xref any docutils literal notranslate"><span class="pre">&#64;font-face</span></code> 规则。同时，相关字体数据会被添加到 <a class="reference internal" href="archive-class.html#archive"><span class="std std-ref">Archive</span></a> 中。该函数会自动查找最多四种字体变体。<code class="xref any docutils literal notranslate"><span class="pre">pymupdf-fonts</span></code> 中的所有常规字体(非数学或音乐特殊用途字体)均有常规、加粗、斜体和加粗斜体四个变体。可以执行 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.fitz_fontdescriptors.keys()</span></code> 以查看当前可用的字体代码，例如:</p>
+<dl class="simple">
+<dt>dict_keys([‘cascadia’, ‘cascadiai’, ‘cascadiab’, ‘cascadiabi’, ‘figbo’, ‘figo’, ‘figbi’, ‘figit’,</dt><dd><p>’fimbo’, ‘fimo’, ‘spacembo’, ‘spacembi’, ‘spacemit’, ‘spacemo’, ‘math’, ‘music’,
+‘symbol1’, ‘symbol2’, ‘notosbo’, ‘notosbi’, ‘notosit’, ‘notos’, ‘ubuntu’, ‘ubuntubo’,
+‘ubuntubi’, ‘ubuntuit’, ‘ubuntm’, ‘ubuntmbo’, ‘ubuntmbi’, ‘ubuntmit’])</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+<p>以下是完整示例，使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;Noto</span> <span class="pre">Sans&quot;</span></code> 代替 <code class="xref any docutils literal notranslate"><span class="pre">&quot;Helvetica&quot;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">arch</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Archive</span><span class="p">()</span>
+<span class="n">CSS</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">css_for_pymupdf_font</span><span class="p">(</span><span class="s2">&quot;notos&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sans-serif&quot;</span><span class="p">,</span> <span class="n">archive</span><span class="o">=</span><span class="n">arch</span><span class="p">)</span>
+<span class="n">story</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Story</span><span class="p">(</span><span class="n">user_css</span><span class="o">=</span><span class="n">CSS</span><span class="p">,</span> <span class="n">archive</span><span class="o">=</span><span class="n">arch</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="functions-make-table"></span><dl class="py method">
+<dt class="sig sig-object py" id="make_table">
+<span class="sig-name descname"><span class="pre">make_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#make_table" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.17.4 版本起新增</em></p>
+<p>该方法用于将一个矩形区域均匀划分为多个子矩形，并返回一个列表，其中每个子列表代表一行，包含 <code class="xref any docutils literal notranslate"><span class="pre">cols</span></code> 个 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 对象。每个子矩形可以通过其行索引和列索引进行访问。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rect</strong> (<em>rect_like</em>) – 需要拆分的矩形区域。</p></li>
+<li><p><strong>cols</strong> (<em>int</em>) – 需要划分的列数。</p></li>
+<li><p><strong>rows</strong> (<em>int</em>) – 需要划分的行数。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个包含 <a class="reference internal" href="rect.html#rect"><span class="std std-ref">Rect</span></a> 对象的列表，这些矩形大小相等，并且它们的并集等于 <a class="reference internal" href="rect.html"><span class="doc">Rect</span></a>。以下是使用 <code class="xref any docutils literal notranslate"><span class="pre">cell</span> <span class="pre">=</span> <span class="pre">pymupdf.make_table(rect,</span> <span class="pre">cols=4,</span> <span class="pre">rows=3)</span></code> 创建的 3x4 表格的示例布局：</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/img-make-table.jpg"><img alt="_images/img-make-table.jpg" src="_images/img-make-table.jpg" style="width: 438.0px; height: 153.6px;" /></a>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="planish_line">
+<span class="sig-name descname"><span class="pre">planish_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#planish_line" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.16.2 版本起新增</em></p>
+<p>计算一个矩阵，该矩阵可将从 <code class="xref any docutils literal notranslate"><span class="pre">p1</span></code> 到 <code class="xref any docutils literal notranslate"><span class="pre">p2</span></code> 的直线映射到 x 轴，使得 <code class="xref any docutils literal notranslate"><span class="pre">p1</span></code> 变为 (0,0)，而 <code class="xref any docutils literal notranslate"><span class="pre">p2</span></code> 变为一个与 (0,0) 具有相同距离的点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<em>point_like</em>) – 线段的起点。</p></li>
+<li><p><strong>p2</strong> (<em>point_like</em>) – 线段的终点。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>结合旋转和平移的变换矩阵。例如:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span><span class="p">)</span>  <span class="c1"># 计算点之间的距离</span>
+<span class="go">5.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">planish_line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">*</span> <span class="n">m</span>
+<span class="go">Point(0.0, 0.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">*</span> <span class="n">m</span>
+<span class="go">Point(5.0, -5.960464477539063e-08)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 计算变换后的点之间的距离</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">abs</span><span class="p">(</span><span class="n">p2</span> <span class="o">*</span> <span class="n">m</span> <span class="o">-</span> <span class="n">p1</span> <span class="o">*</span> <span class="n">m</span><span class="p">)</span>
+<span class="go">5.0</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/img-planish.png"><img alt="_images/img-planish.png" src="_images/img-planish.png" style="width: 280.8px; height: 306.0px;" /></a>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="paper_sizes">
+<span class="sig-name descname"><span class="pre">paper_sizes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#paper_sizes" title="永久链接至目标">#</a></dt>
+<dd><p>一个包含预定义纸张格式的字典，作为 <a class="reference internal" href="#paper_size" title="paper_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_size()</span></code></a> 的基础数据。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="fitz_fontdescriptors">
+<span class="sig-name descname"><span class="pre">fitz_fontdescriptors</span></span><a class="headerlink" href="#fitz_fontdescriptors" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.17.5 版本起新增</em></p>
+<p>一个字典，包含 <a class="reference external" href="https://pypi.org/project/pymupdf-fonts/">pymupdf-fonts</a> 仓库中的可用字体。键是字体的预留名称，字典的值提供如下信息:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">fitz_fontdescriptors</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;figbo&#39;</span><span class="p">,</span> <span class="s1">&#39;figo&#39;</span><span class="p">,</span> <span class="s1">&#39;figbi&#39;</span><span class="p">,</span> <span class="s1">&#39;figit&#39;</span><span class="p">,</span> <span class="s1">&#39;fimbo&#39;</span><span class="p">,</span> <span class="s1">&#39;fimo&#39;</span><span class="p">,</span>
+<span class="s1">&#39;spacembo&#39;</span><span class="p">,</span> <span class="s1">&#39;spacembi&#39;</span><span class="p">,</span> <span class="s1">&#39;spacemit&#39;</span><span class="p">,</span> <span class="s1">&#39;spacemo&#39;</span><span class="p">,</span> <span class="s1">&#39;math&#39;</span><span class="p">,</span> <span class="s1">&#39;music&#39;</span><span class="p">,</span> <span class="s1">&#39;symbol1&#39;</span><span class="p">,</span>
+<span class="s1">&#39;symbol2&#39;</span><span class="p">])</span>
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">fitz_fontdescriptors</span><span class="p">[</span><span class="s2">&quot;fimo&quot;</span><span class="p">]</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
+<span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Fira Mono Regular&#39;</span><span class="p">,</span>
+<span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">125712</span><span class="p">,</span>
+<span class="s1">&#39;mono&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;bold&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;italic&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="s1">&#39;serif&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="s1">&#39;glyphs&#39;</span><span class="p">:</span> <span class="mi">1485</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>如果 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf-fonts</span></code> 未安装，该字典将为空。</p>
+<p>这些字典键可用于定义 <a class="reference internal" href="font.html#font"><span class="std std-ref">Font</span></a>，例如:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">font</span> <span class="o">=</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">Font</span><span class="p">(</span><span class="s2">&quot;fimo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这种方式与内置字体（如 <code class="xref any docutils literal notranslate"><span class="pre">&quot;Helvetica&quot;</span></code>）的使用方式相同。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="PYMUPDF_MESSAGE">
+<span class="sig-name descname"><span class="pre">PYMUPDF_MESSAGE</span></span><a class="headerlink" href="#PYMUPDF_MESSAGE" title="永久链接至目标">#</a></dt>
+<dd><p>如果在 <cite>PyMuPDF</cite> 导入时 <code class="xref any docutils literal notranslate"><span class="pre">os.environ</span></code> 中包含该变量，则该变量用于设置 <cite>PyMuPDF</cite> 消息的目标位置。否则，消息将发送到 <code class="xref any docutils literal notranslate"><span class="pre">sys.stdout</span></code>。</p>
+<ul>
+<li><p>若值以 <code class="xref any docutils literal notranslate"><span class="pre">fd:</span></code> 开头，则剩余部分应为一个整数文件描述符，消息将被写入该描述符。</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>例如，<code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE=fd:2</span></code> 将消息发送到 <code class="xref any docutils literal notranslate"><span class="pre">stderr</span></code>。</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>若值以 <code class="xref any docutils literal notranslate"><span class="pre">path:</span></code> 开头，则剩余部分应为一个文件路径，消息将被写入该文件。如果文件已存在，则会被清空。</p></li>
+<li><p>若值以 <code class="xref any docutils literal notranslate"><span class="pre">path+:</span></code> 开头，则剩余部分应为一个文件路径，消息将被追加写入该文件（若已存在）。</p></li>
+<li><p>若值以 <code class="xref any docutils literal notranslate"><span class="pre">logging:</span></code> 开头，则消息将被写入 <a class="reference external" href="https://docs.python.org/3/library/logging.html">Python 日志系统</a>。剩余部分可以包含逗号分隔的 <code class="xref any docutils literal notranslate"><span class="pre">name=value</span></code> 项：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">level=</span></code> 设置日志级别。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">name=</span></code> 设置日志器名称（默认为 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf</span></code>）。</p></li>
+</ul>
+<p>其他项将被忽略。</p>
+</div></blockquote>
+</li>
+<li><p>其他前缀将导致错误。</p></li>
+</ul>
+<p>另见 <a class="reference internal" href="#set_messages" title="set_messages"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">set_messages()</span></code></a>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pdfcolor">
+<span class="sig-name descname"><span class="pre">pdfcolor</span></span><a class="headerlink" href="#pdfcolor" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.19.6 版本起新增</em></p>
+<p>包含约 500 种 PDF 颜色格式的 RGB 颜色，颜色名称作为键。可以使用 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.pdfcolor.keys()</span></code> 查看所有可用颜色。</p>
+<p>示例：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.pdfcolor[&quot;red&quot;]</span> <span class="pre">=</span> <span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.pdfcolor[&quot;skyblue&quot;]</span> <span class="pre">=</span> <span class="pre">(0.5294117647058824,</span> <span class="pre">0.807843137254902,</span> <span class="pre">0.9215686274509803)</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">pymupdf.pdfcolor[&quot;wheat&quot;]</span> <span class="pre">=</span> <span class="pre">(0.9607843137254902,</span> <span class="pre">0.8705882352941177,</span> <span class="pre">0.7019607843137254)</span></code></p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="get_pdf_now">
+<span class="sig-name descname"><span class="pre">get_pdf_now</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#get_pdf_now" title="永久链接至目标">#</a></dt>
+<dd><p>该方法用于返回当前本地时间戳，并以 PDF 兼容格式表示，例如 <em>D:20170501121525-04’00’</em> 对应于 2017 年 5 月 1 日 12:15:25（本地时区比 UTC 偏西 4 小时）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>当前本地 PDF 时间戳。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="get_text_length">
+<span class="sig-name descname"><span class="pre">get_text_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'helv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">11</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TEXT_ENCODING_LATIN</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_text_length" title="永久链接至目标">#</a></dt>
+<dd><p><em>自 v1.14.7 版本起新增</em></p>
+<p>计算给定 <strong>内置</strong> 字体、<a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a> 和编码情况下，文本的输出长度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<em>str</em>) – 需要计算长度的文本字符串。</p></li>
+<li><p><strong>fontname</strong> (<em>str</em>) – 字体名称，必须是 <a class="reference internal" href="app3.html#base-14-fonts"><span class="std std-ref">PDF Base 14 字体</span></a> 或 CJK 字体之一，可通过其“预留”字体名称标识（参见 <a class="reference internal" href="page.html#Page.insert_font" title="Page.insert_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_font()</span></code></a>）。</p></li>
+<li><p><strong>fontsize</strong> (<em>float</em>) – <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a>，即字体大小。</p></li>
+<li><p><strong>encoding</strong> (<em>int</em>) – 要使用的编码。除了 0 = Latin，还支持 1 = Greek 和 2 = Cyrillic（俄语）。仅适用于 Base-14 字体（如 “Helvetica”、”Courier” 和 “Times” 及其变体）。请确保使用与插入文本时相同的编码值。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>计算出的文本长度（单位：点），例如用于 <a class="reference internal" href="page.html#Page.insert_text" title="Page.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_text()</span></code></a>。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>该函数仅计算长度，不会插入字体或文本。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><a class="reference internal" href="font.html#font"><span class="std std-ref">Font</span></a> 类提供了类似的方法 <a class="reference internal" href="font.html#Font.text_length" title="Font.text_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Font.text_length()</span></code></a>，支持 Base-14 字体以及任何具有字符映射（CMap，Type 0 字体）的字体。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>若使用该方法来计算 (<a class="reference internal" href="page.html#page"><span class="std std-ref">Page</span></a> 或 <a class="reference internal" href="shape.html#shape"><span class="std std-ref">Shape</span></a>) <a class="reference internal" href="page.html#Page.insert_textbox" title="Page.insert_textbox"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">insert_textbox</span></code></a> 方法所需的矩形宽度，需注意它们是按 <strong>字符级</strong> 计算的。由于四舍五入的影响，以下计算通常会产生稍大的数值：</p>
+<p><em>sum([pymupdf.get_text_length(c) for c in text]) &gt; pymupdf.get_text_length(text)</em></p>
+<p>解决方案：
+(1) 采用相同的逐字符计算方式；或
+(2) 使用 <code class="xref any docutils literal notranslate"><span class="pre">pymupdf.get_text_length(text</span> <span class="pre">+</span> <span class="pre">&quot;'&quot;)</span></code> 进行计算，以确保宽度足够。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="get_pdf_str">
+<span class="sig-name descname"><span class="pre">get_pdf_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_pdf_str" title="永久链接至目标">#</a></dt>
+<dd><p>生成 PDF 兼容的字符串：如果文本包含 Unicode 代码点 <em>ord(c) &gt; 255</em>，则转换为 UTF-16BE 编码，并作为十六进制字符字符串用 “&lt;&gt;” 括起来，如 <em>&lt;feff…&gt;</em>。否则，返回字符串，并用圆括号 <em>()</em> 括起来，同时将 ASCII 范围外的字符替换为特殊代码。此外，所有 <code class="xref any docutils literal notranslate"><span class="pre">&quot;(&quot;</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">&quot;)&quot;</span></code> 和反斜杠 <code class="xref any docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> 都会被转义为 <code class="xref any docutils literal notranslate"><span class="pre">&quot;\&quot;</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – 需要转换的对象。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>以 <em>()</em> 或 <em>&lt;&gt;</em> 括起的 PDF 兼容字符串。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="image_profile">
+<span class="sig-name descname"><span class="pre">image_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#image_profile" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>自 v1.16.7 版本起新增</p></li>
+<li><p>v1.19.5 版本变更：如果 EXIF 数据中存在自然图像方向信息，则返回该信息。</p></li>
+<li><p>v1.22.5 版本变更：错误情况下始终返回 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，而不是空字典。</p></li>
+</ul>
+<p>获取提供的图像的关键属性，避免使用其他 Python 库来确定这些信息。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stream</strong> (<em>bytes</em><em>|</em><em>bytearray</em><em>|</em><em>BytesIO</em><em>|</em><em>file</em>) – 传入的图像可以是内存中的数据或 <strong>已打开的</strong> 文件。内存中的图像可以是 <code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code>、 <code class="xref any docutils literal notranslate"><span class="pre">bytearray</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">io.BytesIO</span></code> 格式。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>方法不会引发异常，若出错，则返回 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。否则，返回包含以下内容的字典:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">pymupdf</span><span class="o">.</span><span class="n">image_profile</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;nur-ruhig.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+<span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="mi">439</span><span class="p">,</span>
+<span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="mi">501</span><span class="p">,</span>
+<span class="s1">&#39;orientation&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># 自然方向（来自 EXIF）</span>
+<span class="s1">&#39;transform&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>  <span class="c1"># 方向变换矩阵</span>
+<span class="s1">&#39;xres&#39;</span><span class="p">:</span> <span class="mi">96</span><span class="p">,</span>
+<span class="s1">&#39;yres&#39;</span><span class="p">:</span> <span class="mi">96</span><span class="p">,</span>
+<span class="s1">&#39;colorspace&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+<span class="s1">&#39;bpc&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+<span class="s1">&#39;ext&#39;</span><span class="p">:</span> <span class="s1">&#39;jpeg&#39;</span><span class="p">,</span>
+<span class="s1">&#39;cs-name&#39;</span><span class="p">:</span> <span class="s1">&#39;DeviceRGB&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>其中， <code class="xref any docutils literal notranslate"><span class="pre">orientation</span></code> 及相应的 <a class="reference internal" href="point.html#Point.transform" title="Point.transform"><code class="xref any py py-meth docutils literal notranslate"><span class="pre">transform</span></code></a> 变换矩阵与 <strong>Exif</strong> 信息的对应关系如下（引自 MuPDF 文档， <em>ccw</em> 表示逆时针旋转）：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>未定义</p></li>
+<li><p>0° 逆时针旋转（Exif = 1）</p></li>
+<li><p>90° 逆时针旋转（Exif = 8）</p></li>
+<li><p>180° 逆时针旋转（Exif = 3）</p></li>
+<li><p>270° 逆时针旋转（Exif = 6）</p></li>
+<li><p>X 轴翻转（Exif = 2）</p></li>
+<li><p>X 轴翻转后再 90° 逆时针旋转（Exif = 5）</p></li>
+<li><p>X 轴翻转后再 180° 逆时针旋转（Exif = 4）</p></li>
+<li><p>X 轴翻转后再 270° 逆时针旋转（Exif = 7）</p></li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<ul class="simple">
+<li><p>对于某些“特殊”图像（如 FAX 编码、RAW 格式等），该方法可能无法使用。但仍可在 PyMuPDF 中处理这些图像，例如使用 <a class="reference internal" href="document.html#Document.extract_image" title="Document.extract_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.extract_image()</span></code></a> 方法或通过 <code class="xref any docutils literal notranslate"><span class="pre">Pixmap(doc,</span> <span class="pre">xref)</span></code> 创建像素图。这些方法会自动将特殊图像转换为 PNG 格式后返回结果。</p></li>
+<li><p>可通过 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 获取嵌入在 PDF 文档中的图像属性。在这种情况下，请确保提取原始数据流：<code class="xref any docutils literal notranslate"><span class="pre">pymupdf.image_profile(doc.xref_stream_raw(xref))</span></code>。</p></li>
+<li><p>通过 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;dict&quot;</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">&quot;rawdict&quot;</span></code> 选项返回的图像数据块也受支持。</p></li>
+</ul>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ConversionHeader">
+<span class="sig-name descname"><span class="pre">ConversionHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">&quot;text&quot;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename=&quot;UNKNOWN&quot;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ConversionHeader" title="永久链接至目标">#</a></dt>
+<dd><p>返回用于构造有效文档的页文本输出所需的头部字符串。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<em>str</em>) – 文档类型。应与 <em>get_text()</em> 方法的输出参数一致。</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – （可选）在 “json” 和 “xml” 输出类型下使用的任意文件名。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ConversionTrailer">
+<span class="sig-name descname"><span class="pre">ConversionTrailer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ConversionTrailer" title="永久链接至目标">#</a></dt>
+<dd><p>返回用于构造有效文档的页文本输出所需的尾部字符串。示例请参见 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> (<em>str</em>) – 文档类型。应与 <em>get_text()</em> 方法的输出参数一致。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.del_xml_metadata">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">del_xml_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Document.del_xml_metadata" title="永久链接至目标">#</a></dt>
+<dd><p>删除 PDF 中包含 XML 元数据的对象。(Py-) MuPDF 不支持 XML 格式的元数据。如果希望仅使用传统的元数据字典，请使用此方法。许多第三方 PDF 程序会插入 XML 格式的元数据，这可能会覆盖传统字典中的存储内容。本方法会删除该 XML 参考，并在下次文件垃圾回收时移除相应的 PDF 对象。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.xml_metadata_xref">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">xml_metadata_xref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Document.xml_metadata_xref" title="永久链接至目标">#</a></dt>
+<dd><p>返回 PDF 文件级 XML 元数据的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> （如果存在）。参考 <a class="reference internal" href="#Document.del_xml_metadata" title="Document.del_xml_metadata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.del_xml_metadata()</span></code></a>。可以使用 <a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> 获取其内容，并使用 XML 处理工具进行操作。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>PDF 文件级 XML 元数据的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>，若无则返回 0。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.run">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.run" title="永久链接至目标">#</a></dt>
+<dd><p>通过设备处理页面。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> (<a class="reference internal" href="device.html#device"><span class="std std-ref">设备</span></a>) – 设备对象，由 <a class="reference internal" href="device.html#device"><span class="std std-ref">设备</span></a> 构造方法之一获取。</p></li>
+<li><p><strong>transform</strong> (<a class="reference internal" href="matrix.html#matrix"><span class="std std-ref">Matrix</span></a>) – 应用于页面的变换。若不需要变换，则设为 <a class="reference internal" href="identity.html#identity"><span class="std std-ref">Identity</span></a>。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_bboxlog">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_bboxlog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_bboxlog" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>自 v1.19.0 版本起新增</p></li>
+<li><p>v1.22.0 版本变更：可选地返回适用于边界框的 OCG（可选内容组）名称。</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p><p>一个矩形列表，表示文本、图像或绘图对象的包围盒。列表中的每个项为一个元组 <code class="xref any docutils literal notranslate"><span class="pre">(type,</span> <span class="pre">(x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1))</span></code>，其中第二个元组为矩形坐标，<a class="reference internal" href="annot.html#Annot.type" title="Annot.type"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">type</span></code></a> 取以下值之一。如果 <code class="xref any docutils literal notranslate"><span class="pre">layers=True</span></code>，则元组中会包含第三项，即 OCG 名称或 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> ： <code class="xref any docutils literal notranslate"><span class="pre">(type,</span> <span class="pre">(x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1),</span> <span class="pre">None)</span></code>。</p>
+<ul class="simple">
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fill-text&quot;</span></code> —— 普通文本（绘制时不带字符边框）</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;stroke-text&quot;</span></code> —— 仅显示字符边框的文本</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;ignore-text&quot;</span></code> —— 不应显示的文本（如 OCR 文本层）</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fill-path&quot;</span></code> —— 仅填充颜色的绘图（无边框）</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;stroke-path&quot;</span></code> —— 仅绘制边框的绘图（无填充色）</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fill-image&quot;</span></code> —— 显示图像</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fill-shade&quot;</span></code> —— 显示渐变填充</p></li>
+</ul>
+<p>元素的顺序表示 <strong>页面渲染这些命令的顺序</strong>。因此，如果某个元素的包围盒与前一个元素相交或包含前一个元素，则前一个元素可能会被部分或完全覆盖。</p>
+<p>该列表可用于检测此类情况。元素在此列表中的索引等于 <a class="reference internal" href="page.html#Page.get_drawings" title="Page.get_drawings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_drawings()</span></code></a> 和 <a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a> 返回的字典中的 <code class="xref any docutils literal notranslate"><span class="pre">&quot;seqno&quot;</span></code> 值。</p>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_texttrace">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_texttrace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_texttrace" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>自 v1.18.16 版本起新增</p></li>
+<li><p>v1.19.0 版本变更：新增键 <code class="xref any docutils literal notranslate"><span class="pre">&quot;seqno&quot;</span></code>。</p></li>
+<li><p>v1.19.1 版本变更：描边和填充颜色现在始终为 RGB 或 GRAY。</p></li>
+<li><p>v1.19.3 版本变更：当 <code class="xref any docutils literal notranslate"><span class="pre">dir</span> <span class="pre">!=</span> <span class="pre">(1,</span> <span class="pre">0)</span></code> 时，跨度和字符的 bbox 也能正确计算。</p></li>
+<li><p>v1.22.0 版本变更：新增字典键 <code class="xref any docutils literal notranslate"><span class="pre">&quot;layer&quot;</span></code>。</p></li>
+</ul>
+<p>返回页面的底层文本信息。本方法适用于 <strong>所有</strong> 文档类型。结果是一个包含以下内容的 Python 字典列表:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s1">&#39;ascender&#39;</span><span class="p">:</span> <span class="mf">0.83251953125</span><span class="p">,</span>          <span class="c1"># 字体上升部 (1)</span>
+   <span class="s1">&#39;bbox&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">458.14019775390625</span><span class="p">,</span>        <span class="c1"># 跨度 bbox x0 (7)</span>
+            <span class="mf">749.4671630859375</span><span class="p">,</span>         <span class="c1"># 跨度 bbox y0</span>
+            <span class="mf">467.76458740234375</span><span class="p">,</span>        <span class="c1"># 跨度 bbox x1</span>
+            <span class="mf">757.5071411132812</span><span class="p">),</span>        <span class="c1"># 跨度 bbox y1</span>
+   <span class="s1">&#39;bidi&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                          <span class="c1"># 双向级别 (1)</span>
+   <span class="s1">&#39;chars&#39;</span><span class="p">:</span> <span class="p">(</span>                          <span class="c1"># 字符信息，tuple[tuple]</span>
+               <span class="p">(</span><span class="mi">45</span><span class="p">,</span>                    <span class="c1"># Unicode 编码 (4)</span>
+               <span class="mi">16</span><span class="p">,</span>                     <span class="c1"># 字形 ID（字体相关）</span>
+               <span class="p">(</span><span class="mf">458.14019775390625</span><span class="p">,</span>    <span class="c1"># 原点 x 坐标 (1)</span>
+               <span class="mf">755.3758544921875</span><span class="p">),</span>     <span class="c1"># 原点 y 坐标 (1)</span>
+               <span class="p">(</span><span class="mf">458.14019775390625</span><span class="p">,</span>    <span class="c1"># 字符 bbox x0 (6)</span>
+               <span class="mf">749.4671630859375</span><span class="p">,</span>      <span class="c1"># 字符 bbox y0</span>
+               <span class="mf">462.9649963378906</span><span class="p">,</span>      <span class="c1"># 字符 bbox x1</span>
+               <span class="mf">757.5071411132812</span><span class="p">)),</span>    <span class="c1"># 字符 bbox y1</span>
+               <span class="p">(</span> <span class="o">...</span> <span class="p">),</span>                <span class="c1"># 更多字符</span>
+            <span class="p">),</span>
+   <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,),</span>                    <span class="c1"># 文本颜色，tuple[float] (1)</span>
+   <span class="s1">&#39;colorspace&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>                    <span class="c1"># 颜色空间分量数 (1)</span>
+   <span class="s1">&#39;descender&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.30029296875</span><span class="p">,</span>        <span class="c1"># 字体下降部 (1)</span>
+   <span class="s1">&#39;dir&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>                  <span class="c1"># 书写方向 (1)</span>
+   <span class="s1">&#39;flags&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>                        <span class="c1"># 字体标志 (1)</span>
+   <span class="s1">&#39;font&#39;</span><span class="p">:</span> <span class="s1">&#39;CourierNewPSMT&#39;</span><span class="p">,</span>           <span class="c1"># 字体名称 (1)</span>
+   <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.4019999980926514</span><span class="p">,</span>    <span class="c1"># 当前线宽值 (3)</span>
+   <span class="s1">&#39;opacity&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>                     <span class="c1"># 文本透明度 (5)</span>
+   <span class="s1">&#39;layer&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>                      <span class="c1"># 可选内容组（OCG）名称 (9)</span>
+   <span class="s1">&#39;seqno&#39;</span><span class="p">:</span> <span class="mi">246</span><span class="p">,</span>                       <span class="c1"># 序列号 (8)</span>
+   <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mf">8.039999961853027</span><span class="p">,</span>          <span class="c1"># 字体大小 (1)</span>
+   <span class="s1">&#39;spacewidth&#39;</span><span class="p">:</span> <span class="mf">4.824785133358091</span><span class="p">,</span>    <span class="c1"># 空格字符宽度</span>
+   <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>                          <span class="c1"># 跨度类型 (2)</span>
+   <span class="s1">&#39;wmode&#39;</span><span class="p">:</span> <span class="mi">0</span>                          <span class="c1"># 书写模式 (1)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>详细信息：</p>
+<ol class="arabic simple">
+<li><p>标记为 “(1)” 的信息与 <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a> 解释的含义和数值相同。</p>
+<ul class="simple">
+<li><p>请注意，字体 <code class="xref any docutils literal notranslate"><span class="pre">&quot;flags&quot;</span></code> 值不会包含 <em>上标</em> 标志位：上标检测是在 MuPDF <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a> 代码中执行的，而不是字体的固有属性。</p></li>
+<li><p>还要注意，文本 <em>颜色</em> 以 <code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">f</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code> 的浮点数元组编码，而不是 sRGB 格式。根据 <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;type&quot;]</span></code>，解释为填充颜色或描边颜色。</p></li>
+</ul>
+</li>
+<li><p>文本跨度类型共有 3 种：</p>
+<ul class="simple">
+<li><p>0：填充文本 —— 等同于 PDF 渲染模式 0 (<code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">Tr</span></code>，PDF 默认)，仅显示字符内部。</p></li>
+<li><p>1：描边文本 —— 等同于 <code class="xref any docutils literal notranslate"><span class="pre">1</span> <span class="pre">Tr</span></code>，仅显示字符边框。</p></li>
+<li><p>3：隐藏文本 —— 等同于 <code class="xref any docutils literal notranslate"><span class="pre">3</span> <span class="pre">Tr</span></code> （隐藏文本）。</p></li>
+</ul>
+</li>
+<li><p>线宽对 <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;type&quot;]</span> <span class="pre">!=</span> <span class="pre">0</span></code> 情况较为重要：它决定了字符边框线的厚度。如果文本数据未提供此值，则会生成 <code class="xref any docutils literal notranslate"><span class="pre">5%</span></code> 字体大小的默认值 (<code class="xref any docutils literal notranslate"><span class="pre">span[&quot;size&quot;]</span> <span class="pre">*</span> <span class="pre">0.05</span></code>)。PDF 中常用 <code class="xref any docutils literal notranslate"><span class="pre">2</span> <span class="pre">Tr</span></code> 方式创建 <em>伪加粗</em> 文本，此情况下没有对应的跨度类型，而是生成两个连续跨度，分别对应 <code class="xref any docutils literal notranslate"><span class="pre">0</span></code> 和 <code class="xref any docutils literal notranslate"><span class="pre">1</span></code>，需要自行处理。</p></li>
+<li><p>字符 Unicode 提供 <code class="xref any docutils literal notranslate"><span class="pre">chr()</span></code> 以获取字符本身。</p></li>
+<li><p>透明度 (<code class="xref any docutils literal notranslate"><span class="pre">0</span> <span class="pre">&lt;=</span> <span class="pre">opacity</span> <span class="pre">&lt;=</span> <span class="pre">1</span></code>) 影响文本是否可见，0 表示完全透明，1 表示完全不透明。根据 <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;type&quot;]</span></code>，可解释为填充或描边透明度。</p></li>
+<li><p><strong>（v1.19.0 变更）</strong> <a class="reference internal" href="font.html#Font.bbox" title="Font.bbox"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">bbox</span></code></a> 值等同或接近 <code class="xref any docutils literal notranslate"><span class="pre">&quot;rawdict&quot;</span></code> 中的 <code class="xref any docutils literal notranslate"><span class="pre">char[&quot;bbox&quot;]</span></code>，高度计算始终假设启用了 <em>小字形高度</em>。</p></li>
+<li><p><strong>（v1.19.0 新增）</strong> <a class="reference internal" href="font.html#Font.bbox" title="Font.bbox"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">bbox</span></code></a> 是所有字符 <a class="reference internal" href="font.html#Font.bbox" title="Font.bbox"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">bbox</span></code></a> 的并集。</p></li>
+<li><p><strong>（v1.19.0 新增）</strong> <code class="xref any docutils literal notranslate"><span class="pre">seqno</span></code> 枚举页面外观的渲染顺序。较大序列号的对象可能会遮挡较小序列号的文本。</p></li>
+<li><p><strong>（v1.22.0 新增）</strong> <code class="xref any docutils literal notranslate"><span class="pre">&quot;layer&quot;</span></code> 为可选内容组 (OCG) 名称，或 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+</ol>
+<p><strong>与</strong> <code class="xref any docutils literal notranslate"><span class="pre">page.get_text(&quot;rawdict&quot;)</span></code> <strong>的比较：</strong></p>
+<ul class="simple">
+<li><p>本方法 <strong>提取速度提高约 2 倍</strong> （视文本量而定）。</p></li>
+<li><p>结果数据 <strong>更小</strong>，但提供更多信息。</p></li>
+<li><p>可 <strong>检测文本不可见性</strong> （透明度为 0，类型 &gt; 1，或被更高序列号对象遮挡）。</p></li>
+<li><p>MuPDF 若返回 <code class="xref any docutils literal notranslate"><span class="pre">0xFFFD</span> <span class="pre">(65533)</span></code> 作为未识别字符，可根据字形 ID 推测信息。</p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">span[&quot;chars&quot;]</span></code> <strong>不包含空格</strong>，除非文档创建者显式编码；但提供空格宽度，以便计算文本间距。</p></li>
+<li><p>文本不会像 <a class="reference internal" href="textpage.html#textpage"><span class="std std-ref">TextPage</span></a> 组织为块、行、跨度、字符，而是按顺序提取，遇到样式变化即开始新跨度。同一跨度可能包含不同 <code class="xref any docutils literal notranslate"><span class="pre">origin.y</span></code> 值的字符（即处于不同行）。不保证跨度字符排序，需要自行处理，如使用 <code class="xref any docutils literal notranslate"><span class="pre">span[&quot;dir&quot;]</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">span[&quot;wmode&quot;]</span></code> 等。</p></li>
+</ul>
+<p><strong>连字（Ligature）处理：</strong>
+- MuPDF 处理 <code class="xref any docutils literal notranslate"><span class="pre">&quot;fi&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;ff&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;fl&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;ft&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;st&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;ffi&quot;</span></code>, <code class="xref any docutils literal notranslate"><span class="pre">&quot;ffl&quot;</span></code> 这些连字（常见前三种）。
+- 例如：”fi” 可能存储为两个字符:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="n">glyph</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">))</span>  <span class="c1"># &#39;f&#39; 的 bbox</span>
+<span class="p">(</span><span class="mi">105</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y1</span><span class="p">))</span>     <span class="c1"># &#39;i&#39;，bbox 宽度为 0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>可替换为单个 Unicode 代码：</p>
+<ul>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;ff&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB00</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fi&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB01</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;fl&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB02</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;ffi&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB03</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;ffl&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB04</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;ft&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB05</span></code></p></li>
+<li><p><code class="xref any docutils literal notranslate"><span class="pre">&quot;st&quot;</span></code> -&gt; <code class="xref any docutils literal notranslate"><span class="pre">0xFB06</span></code></p></li>
+</ul>
+</li>
+<li><p>例如，将上述示例转换为 <code class="xref any docutils literal notranslate"><span class="pre">(0xFB01,</span> <span class="pre">glyph,</span> <span class="pre">(x,</span> <span class="pre">y),</span> <span class="pre">(x0,</span> <span class="pre">y0,</span> <span class="pre">x1,</span> <span class="pre">y1))</span></code>。</p></li>
+</ul>
+<p><strong>（v1.19.3 变更）</strong> 跨度和字符 <a class="reference internal" href="font.html#Font.bbox" title="Font.bbox"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">bbox</span></code></a> 现在包围字符四边形，可用 <a class="reference internal" href="#recover_quad" title="recover_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_quad()</span></code></a>、<a class="reference internal" href="#recover_char_quad" title="recover_char_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a>、<a class="reference internal" href="#recover_span_quad" title="recover_span_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a> 还原。</p>
+<p><strong>（v1.21.1 变更）</strong> <code class="xref any docutils literal notranslate"><span class="pre">&quot;layer&quot;</span></code> 字段提供 OCG 名称（如适用）。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.wrap_contents">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">wrap_contents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Page.wrap_contents" title="永久链接至目标">#</a></dt>
+<dd><p>确保页面的所谓图形状态是平衡的，并且新内容能够正确插入。</p>
+<p>在 PyMuPDF v1.24.1+ 版本中，此方法得到了改进，并在需要时自动执行，因此您无需再关心此方法。</p>
+<p>我们不建议使用 <a class="reference internal" href="#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> 来实现此功能。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Page.is_wrapped">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">is_wrapped</span></span><a class="headerlink" href="#Page.is_wrapped" title="永久链接至目标">#</a></dt>
+<dd><p>指示页面的所谓图形状态是否平衡。如果为 <code class="xref any docutils literal notranslate"><span class="pre">False</span></code>，则在插入新内容时应执行 <a class="reference internal" href="#Page.wrap_contents" title="Page.wrap_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.wrap_contents()</span></code></a> （仅在 <code class="xref any docutils literal notranslate"><span class="pre">overlay=True</span></code> 模式下相关）。在较新的版本中（1.24.1+），此检查和相应的调整会自动执行，因此您无需再担心此问题。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_text_blocks">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_text_blocks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_text_blocks" title="永久链接至目标">#</a></dt>
+<dd><p>已废弃的 <a class="reference internal" href="textpage.html#TextPage.extractBLOCKS" title="TextPage.extractBLOCKS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractBLOCKS()</span></code></a> 的包装器。请改用 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 并使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;blocks&quot;</span></code> 选项。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_text_words">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_text_words</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delimiters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_text_words" title="永久链接至目标">#</a></dt>
+<dd><p>已废弃的 <a class="reference internal" href="textpage.html#TextPage.extractWORDS" title="TextPage.extractWORDS"><code class="xref py py-meth docutils literal notranslate"><span class="pre">TextPage.extractWORDS()</span></code></a> 的包装器。请改用 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 并使用 <code class="xref any docutils literal notranslate"><span class="pre">&quot;words&quot;</span></code> 选项。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_displaylist">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_displaylist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_displaylist" title="永久链接至目标">#</a></dt>
+<dd><p>将页面传递给列表设备并返回其显示列表。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="displaylist.html#displaylist"><span class="std std-ref">DisplayList</span></a></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>页面的显示列表。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.get_contents">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">get_contents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Page.get_contents" title="永久链接至目标">#</a></dt>
+<dd><p>仅适用于 PDF：检索页面的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 列表，表示页面的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象。可能为空，或包含多个整数。如果页面已清理（使用 <a class="reference internal" href="#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> ），则该列表最多包含一个条目。每个 <code class="xref any docutils literal notranslate"><span class="pre">/Contents</span></code> 对象的 “源” 可以通过 <a class="reference internal" href="document.html#Document.xref_stream" title="Document.xref_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_stream()</span></code></a> 使用此列表中的项单独读取。与此相对，方法 <a class="reference internal" href="#Page.read_contents" title="Page.read_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.read_contents()</span></code></a> 会遍历此列表并将相应的源连接成一个 <code class="xref any docutils literal notranslate"><span class="pre">bytes</span></code> 对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.set_contents">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">set_contents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.set_contents" title="永久链接至目标">#</a></dt>
+<dd><p>仅适用于 PDF： 让页面的 <code class="xref any docutils literal notranslate"><span class="pre">/Contents</span></code> 键指向此 xref。任何先前使用的内容对象将被忽略，并且可以通过垃圾回收删除。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.clean_contents">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">clean_contents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sanitize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Page.clean_contents" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>在 v1.17.6 中更改</p></li>
+</ul>
+<p>仅适用于 PDF：清理并连接与此页面相关的所有 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象。”清理” 包括语法修正、标准化和 “美化” 内容流。如果 sanitize 为 true，内容对象中的资源与实际使用的资源之间的差异也将被修正。有关更多详细信息，请参阅 <a class="reference internal" href="#Page.get_contents" title="Page.get_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_contents()</span></code></a>。</p>
+<p>在 v1.16.0 版本中，注释不再由此方法隐式清理。请单独使用 <a class="reference internal" href="#Annot.clean_contents" title="Annot.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.clean_contents()</span></code></a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sanitize</strong> (<em>bool</em>) – <em>(在 v1.17.6 中新增)</em> 如果为真，则会同步资源与其在内容对象中的实际使用。例如，如果某个字体没有实际用于页面中的任何文本，则会从 <code class="xref any docutils literal notranslate"><span class="pre">/Resources/Font</span></code> 对象中删除该字体。</p>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>这是一个复杂的功能，可能会生成大量的新数据，并使旧数据变得无效。 <strong>不推荐</strong> 与 <strong>增量保存</strong> 选项一起使用。还请注意，生成的单例新 <em>/Contents</em> 对象是 <strong>未压缩</strong> 的。因此，您应该使用选项 <em>“deflate=True, garbage=3”</em> 将其保存到 <strong>新文件</strong> 中。</p>
+<p>不再使用此方法来确保 PDF 页面上正确的插入。自 PyMuPDF v1.24.2 版本起，这一功能已自动处理。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Page.read_contents">
+<span class="sig-prename descclassname"><span class="pre">Page.</span></span><span class="sig-name descname"><span class="pre">read_contents</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Page.read_contents" title="永久链接至目标">#</a></dt>
+<dd><p><em>在 v1.17.0 中新增。</em>
+返回与页面关联的所有 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 对象的连接体 – 不进行清理或其他修改。每当您需要解析整个源而不关心有多少个独立的内容对象时，请使用此方法。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bytes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Annot.clean_contents">
+<span class="sig-prename descclassname"><span class="pre">Annot.</span></span><span class="sig-name descname"><span class="pre">clean_contents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sanitize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Annot.clean_contents" title="永久链接至目标">#</a></dt>
+<dd><p>清理与注释相关的 <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> 流。这与 <a class="reference internal" href="#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a> 执行的操作相同，只是此操作仅限于该注释。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.get_char_widths">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">get_char_widths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Document.get_char_widths" title="永久链接至目标">#</a></dt>
+<dd><p>返回文档中某字体的字符字形及其宽度的列表。必须通过其 PDF 交叉引用号 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 来指定字体。此函数会在 <a class="reference internal" href="page.html#Page.insert_text" title="Page.insert_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_text()</span></code></a> 和 <a class="reference internal" href="page.html#Page.insert_textbox" title="Page.insert_textbox"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.insert_textbox()</span></code></a> 中自动调用，因此您通常无需手动调用。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xref</strong> (<em>int</em>) – 嵌入 PDF 中的字体的交叉引用号。要查找字体的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a>，可以使用例如 <em>doc.get_page_fonts(pno)</em> 获取页面号 <em>pno</em> 的字体，并取返回列表中的第一个条目。</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – 限制返回的条目数。默认值为 256，适用于仅支持 1 字节字符的字体，所谓的 “简单字体”（通过此方法检查）。所有 <a class="reference internal" href="app3.html#base-14-fonts"><span class="std std-ref">PDF Base 14 字体</span></a> 都是简单字体。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p>list</p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>一个 <em>limit</em> 元组的列表。每个字符 <em>c</em> 在该列表中有一个条目 <em>(g, w)</em>，其中 <em>g</em> 是字符的字形 ID（整数）， <em>w</em> 是其标准化宽度。对于某些 <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a>，实际宽度可以计算为 <em>w * fontsize</em>。对于简单字体，<em>g</em> 条目可以安全地忽略。在所有其他情况下，<em>g</em> 是图形表示 <em>c</em> 的基础。</p>
+</dd>
+</dl>
+<p>该函数计算一个字符串 <em>text</em> 的像素宽度，如下所示:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pixlen</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">widthlist</span><span class="p">,</span> <span class="n">fontsize</span><span class="p">):</span>
+   <span class="k">try</span><span class="p">:</span>
+      <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">widthlist</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">text</span><span class="p">])</span> <span class="o">*</span> <span class="n">fontsize</span>
+   <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">:(</span><span class="s2">&quot;max. code point found: </span><span class="si">%i</span><span class="s2">, increase limit&quot;</span> <span class="o">%</span> <span class="nb">ord</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">text</span><span class="p">)))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.is_stream">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">is_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xref</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Document.is_stream" title="永久链接至目标">#</a></dt>
+<dd><ul class="simple">
+<li><p>在 v1.14.14 中新增</p></li>
+</ul>
+<p>仅适用于 PDF：检查由 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表示的对象是否为 <a class="reference internal" href="glossary.html#stream" title="stream"><code class="xref py py-data docutils literal notranslate"><span class="pre">stream</span></code></a> 类型。如果不是 PDF 或者该数字超出了有效的 xref 范围，则返回 <em>False</em>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>xref</strong> (<em>int</em>) – <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果对象定义后跟有以 <em>stream</em> 和 <em>endstream</em> 关键字对包裹的数据，则返回 <em>True</em>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.get_new_xref">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">get_new_xref</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Document.get_new_xref" title="永久链接至目标">#</a></dt>
+<dd><p>将 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 号增加一个条目并返回该号码。然后可以使用该号码插入一个新的对象。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>新的 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 条目的号码。请注意，这仅在 PDF 的交叉引用表中创建一个新条目。此时，还不会与之关联任何 PDF 对象。要使用此号码创建（空的）对象，请使用 <code class="xref any docutils literal notranslate"><span class="pre">doc.update_xref(xref,</span> <span class="pre">&quot;&lt;&lt;&gt;&gt;&quot;)</span></code>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Document.xref_length">
+<span class="sig-prename descclassname"><span class="pre">Document.</span></span><span class="sig-name descname"><span class="pre">xref_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Document.xref_length" title="永久链接至目标">#</a></dt>
+<dd><p>返回 <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表的长度。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> 表中的条目数。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="recover_quad">
+<span class="sig-name descname"><span class="pre">recover_quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recover_quad" title="永久链接至目标">#</a></dt>
+<dd><p>计算通过 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 的 “dict” 或 “rawdict” 选项提取的文本跨度的四边形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line_dir</strong> (<em>tuple</em>) – 所属行的 <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;dir&quot;]</span></code>。对于从 <a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a> 提取的跨度，请使用 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+<li><p><strong>span</strong> (<em>dict</em>) – 跨度。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>跨度的 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a>，可用于文本标记注释（例如“高亮”）。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="recover_char_quad">
+<span class="sig-name descname"><span class="pre">recover_char_quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recover_char_quad" title="永久链接至目标">#</a></dt>
+<dd><p>计算通过 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 的 “rawdict” 选项提取的文本字符的四边形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line_dir</strong> (<em>tuple</em>) – 所属行的 <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;dir&quot;]</span></code>。对于从 <a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a> 提取的跨度，请使用 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+<li><p><strong>span</strong> (<em>dict</em>) – 跨度。</p></li>
+<li><p><strong>char</strong> (<em>dict</em>) – 字符。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>字符的 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a>，可用于文本标记注释（例如“高亮”）。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="recover_span_quad">
+<span class="sig-name descname"><span class="pre">recover_span_quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">span</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recover_span_quad" title="永久链接至目标">#</a></dt>
+<dd><p>计算通过 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 的 “rawdict” 选项提取的一个跨度中子集字符的四边形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line_dir</strong> (<em>tuple</em>) – 所属行的 <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;dir&quot;]</span></code>。对于从 <a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a> 提取的跨度，请使用 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+<li><p><strong>span</strong> (<em>dict</em>) – 跨度。</p></li>
+<li><p><strong>chars</strong> (<em>list</em>) – 要考虑的字符。如果给定，选择的提取选项必须是 “rawdict”。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>所选字符的 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a>，可用于文本标记注释（例如“高亮”）。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="recover_line_quad">
+<span class="sig-name descname"><span class="pre">recover_line_quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spans</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recover_line_quad" title="永久链接至目标">#</a></dt>
+<dd><p>计算通过 <a class="reference internal" href="page.html#Page.get_text" title="Page.get_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text()</span></code></a> 的 “dict” 或 “rawdict” 选项提取的文本行的子集跨度的四边形。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<em>dict</em>) – 该行。</p></li>
+<li><p><strong>spans</strong> (<em>list</em>) – <code class="xref any docutils literal notranslate"><span class="pre">line[&quot;spans&quot;]</span></code> 的子列表。如果省略，将返回完整的行四边形。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>所选行跨度的 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a>，可用于文本标记注释（例如“高亮”）。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="get_tessdata">
+<span class="sig-name descname"><span class="pre">get_tessdata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tessdata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#get_tessdata" title="永久链接至目标">#</a></dt>
+<dd><p>检测 Tesseract 语言支持文件夹。</p>
+<p>此函数用于启用 Tesseract 的 OCR，即使语言支持文件夹未直接指定或未在环境变量 TESSDATA_PREFIX 中设置。</p>
+<ul class="simple">
+<li><p>如果设置了 &lt;tessdata&gt;，我们将直接返回它。</p></li>
+<li><p>否则，如果设置了 <code class="xref any docutils literal notranslate"><span class="pre">os.environ['TESSDATA_PREFIX']</span></code>，则返回它。</p></li>
+<li><p>否则，我们将搜索 Tesseract 安装并返回其语言支持文件夹。</p></li>
+<li><p>否则，我们会引发异常。</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="INFINITE_QUAD">
+<span class="sig-name descname"><span class="pre">INFINITE_QUAD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#INFINITE_QUAD" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="INFINITE_RECT">
+<span class="sig-name descname"><span class="pre">INFINITE_RECT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#INFINITE_RECT" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="INFINITE_IRECT">
+<span class="sig-name descname"><span class="pre">INFINITE_IRECT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#INFINITE_IRECT" title="永久链接至目标">#</a></dt>
+<dd><p>返回 (唯一的) 无限矩形 <code class="xref any docutils literal notranslate"><span class="pre">Rect(-2147483648.0,</span> <span class="pre">-2147483648.0,</span> <span class="pre">2147483520.0,</span> <span class="pre">2147483520.0)</span></code>，分别是 <a class="reference internal" href="irect.html#irect"><span class="std std-ref">IRect</span></a> 和 <a class="reference internal" href="quad.html#quad"><span class="std std-ref">Quad</span></a> 对应物。它是可能的最大矩形：所有有效的矩形都包含在其中。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="EMPTY_QUAD">
+<span class="sig-name descname"><span class="pre">EMPTY_QUAD</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EMPTY_QUAD" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="EMPTY_RECT">
+<span class="sig-name descname"><span class="pre">EMPTY_RECT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EMPTY_RECT" title="永久链接至目标">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="EMPTY_IRECT">
+<span class="sig-name descname"><span class="pre">EMPTY_IRECT</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#EMPTY_IRECT" title="永久链接至目标">#</a></dt>
+<dd><p>返回 “标准” 空和无效矩形 <code class="xref any docutils literal notranslate"><span class="pre">Rect(2147483520.0,</span> <span class="pre">2147483520.0,</span> <span class="pre">-2147483648.0,</span> <span class="pre">-2147483648.0)</span></code>，分别是四边形。它的左上角和右下角点的值与无限矩形相反。它将用于表示 <code class="xref any docutils literal notranslate"><span class="pre">page.get_text(&quot;dict&quot;)</span></code> 字典中的空 bbox。然而，也有无数空的或无效的矩形。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colors_pdf_dict">
+<span class="sig-name descname"><span class="pre">colors_pdf_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#colors_pdf_dict" title="永久链接至目标">#</a></dt>
+<dd><p>返回一个字典，将小写颜色名称映射到 <code class="xref any docutils literal notranslate"><span class="pre">(red,</span> <span class="pre">green,</span> <span class="pre">blue)</span></code> 元组，其中 <code class="xref any docutils literal notranslate"><span class="pre">red</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">green</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">blue</span></code> 是范围在 0 到 1 之间的浮点数。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="colors_wx_list">
+<span class="sig-name descname"><span class="pre">colors_wx_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#colors_wx_list" title="永久链接至目标">#</a></dt>
+<dd><p>返回一个列表，其中包含 <code class="xref any docutils literal notranslate"><span class="pre">(colorname,</span> <span class="pre">red,</span> <span class="pre">green,</span> <span class="pre">blue)</span></code> 元组，其中 <code class="xref any docutils literal notranslate"><span class="pre">colorname</span></code> 为大写，<code class="xref any docutils literal notranslate"><span class="pre">red</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">green</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">blue</span></code> 是范围在 0 到 255 之间的整数。</p>
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>The following are miscellaneous functions and attributes on a fairly low-level technical detail.</p>
+<p>Some functions provide detail access to PDF structures. Others are stripped-down, high performance versions of other functions which provide more information.</p>
+<p>Yet others are handy, general-purpose utilities.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Function</strong></p></th>
+<th class="head"><p><strong>Short Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.apn_bbox</span></code></p></td>
+<td><p>PDF only: bbox of the appearance object</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">Annot.apn_matrix</span></code></p></td>
+<td><p>PDF only: the matrix of the appearance object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.is_wrapped" title="Page.is_wrapped"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Page.is_wrapped</span></code></a></p></td>
+<td><p>check whether contents wrapping is present</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#adobe_glyph_names" title="adobe_glyph_names"><code class="xref py py-meth docutils literal notranslate"><span class="pre">adobe_glyph_names()</span></code></a></p></td>
+<td><p>list of glyph names defined in <strong>Adobe Glyph List</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#adobe_glyph_unicodes" title="adobe_glyph_unicodes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">adobe_glyph_unicodes()</span></code></a></p></td>
+<td><p>list of unicodes defined in <strong>Adobe Glyph List</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Annot.clean_contents" title="Annot.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.clean_contents()</span></code></a></p></td>
+<td><p>PDF only: clean the annot’s <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> object</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_apn_bbox()</span></code></p></td>
+<td><p>PDF only: set the bbox of the appearance object</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Annot.set_apn_matrix()</span></code></p></td>
+<td><p>PDF only: set the matrix of the appearance object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ConversionHeader" title="ConversionHeader"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ConversionHeader()</span></code></a></p></td>
+<td><p>return header string for <em>get_text</em> methods</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ConversionTrailer" title="ConversionTrailer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ConversionTrailer()</span></code></a></p></td>
+<td><p>return trailer string for <em>get_text</em> methods</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.del_xml_metadata" title="Document.del_xml_metadata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.del_xml_metadata()</span></code></a></p></td>
+<td><p>PDF only: remove XML metadata</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.get_char_widths" title="Document.get_char_widths"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_char_widths()</span></code></a></p></td>
+<td><p>PDF only: return a list of glyph widths of a font</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.get_new_xref" title="Document.get_new_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.get_new_xref()</span></code></a></p></td>
+<td><p>PDF only: create and return a new <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> entry</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.is_stream" title="Document.is_stream"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.is_stream()</span></code></a></p></td>
+<td><p>PDF only: check whether an <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> is a stream object</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Document.xml_metadata_xref" title="Document.xml_metadata_xref"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xml_metadata_xref()</span></code></a></p></td>
+<td><p>PDF only: return XML metadata <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> number</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Document.xref_length" title="Document.xref_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.xref_length()</span></code></a></p></td>
+<td><p>PDF only: return length of <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> table</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#EMPTY_IRECT" title="EMPTY_IRECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_IRECT()</span></code></a></p></td>
+<td><p>return the (standard) empty / invalid rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#EMPTY_QUAD" title="EMPTY_QUAD"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_QUAD()</span></code></a></p></td>
+<td><p>return the (standard) empty / invalid quad</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#EMPTY_RECT" title="EMPTY_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EMPTY_RECT()</span></code></a></p></td>
+<td><p>return the (standard) empty / invalid rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#get_pdf_now" title="get_pdf_now"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pdf_now()</span></code></a></p></td>
+<td><p>return the current timestamp in PDF format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#get_pdf_str" title="get_pdf_str"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_pdf_str()</span></code></a></p></td>
+<td><p>return PDF-compatible string</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#get_text_length" title="get_text_length"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_text_length()</span></code></a></p></td>
+<td><p>return string length for a given font &amp; <a class="reference internal" href="glossary.html#fontsize" title="fontsize"><code class="xref py py-data docutils literal notranslate"><span class="pre">fontsize</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#glyph_name_to_unicode" title="glyph_name_to_unicode"><code class="xref py py-meth docutils literal notranslate"><span class="pre">glyph_name_to_unicode()</span></code></a></p></td>
+<td><p>return unicode from a glyph name</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#image_profile" title="image_profile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">image_profile()</span></code></a></p></td>
+<td><p>return a dictionary of basic image properties</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#INFINITE_IRECT" title="INFINITE_IRECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_IRECT()</span></code></a></p></td>
+<td><p>return the (only existing) infinite rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#INFINITE_QUAD" title="INFINITE_QUAD"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_QUAD()</span></code></a></p></td>
+<td><p>return the (only existing) infinite quad</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#INFINITE_RECT" title="INFINITE_RECT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">INFINITE_RECT()</span></code></a></p></td>
+<td><p>return the (only existing) infinite rectangle</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#make_table" title="make_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_table()</span></code></a></p></td>
+<td><p>split rectangle in sub-rectangles</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.clean_contents" title="Page.clean_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a></p></td>
+<td><p>PDF only: clean the page’s <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> objects</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_bboxlog" title="Page.get_bboxlog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_bboxlog()</span></code></a></p></td>
+<td><p>list of rectangles that envelop text, drawing or image objects</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_contents" title="Page.get_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_contents()</span></code></a></p></td>
+<td><p>PDF only: return a list of content <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a> numbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_displaylist" title="Page.get_displaylist"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_displaylist()</span></code></a></p></td>
+<td><p>create the page’s display list</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_text_blocks" title="Page.get_text_blocks"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text_blocks()</span></code></a></p></td>
+<td><p>extract text blocks as a Python list</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.get_text_words" title="Page.get_text_words"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_text_words()</span></code></a></p></td>
+<td><p>extract text words as a Python list</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.get_texttrace" title="Page.get_texttrace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a></p></td>
+<td><p>low-level text information</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.read_contents" title="Page.read_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.read_contents()</span></code></a></p></td>
+<td><p>PDF only: get complete, concatenated /Contents source</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.run" title="Page.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.run()</span></code></a></p></td>
+<td><p>run a page through a device</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Page.set_contents" title="Page.set_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.set_contents()</span></code></a></p></td>
+<td><p>PDF only: set page’s <a class="reference internal" href="glossary.html#contents" title="contents"><code class="xref py py-data docutils literal notranslate"><span class="pre">contents</span></code></a> to some <a class="reference internal" href="glossary.html#xref" title="xref"><code class="xref py py-data docutils literal notranslate"><span class="pre">xref</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Page.wrap_contents" title="Page.wrap_contents"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Page.wrap_contents()</span></code></a></p></td>
+<td><p>wrap contents with stacking commands</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#css_for_pymupdf_font" title="css_for_pymupdf_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">css_for_pymupdf_font()</span></code></a></p></td>
+<td><p>create CSS source for a font in package pymupdf_fonts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#paper_rect" title="paper_rect"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_rect()</span></code></a></p></td>
+<td><p>return rectangle for a known paper format</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#paper_size" title="paper_size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_size()</span></code></a></p></td>
+<td><p>return width, height for a known paper format</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#paper_sizes" title="paper_sizes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">paper_sizes()</span></code></a></p></td>
+<td><p>dictionary of pre-defined paper formats</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#planish_line" title="planish_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">planish_line()</span></code></a></p></td>
+<td><p>matrix to map a line to the x-axis</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#recover_char_quad" title="recover_char_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a></p></td>
+<td><p>compute the quad of a char (“rawdict”)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#recover_line_quad" title="recover_line_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_line_quad()</span></code></a></p></td>
+<td><p>compute the quad of a subset of line spans</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#recover_quad" title="recover_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_quad()</span></code></a></p></td>
+<td><p>compute the quad of a span (“dict”, “rawdict”)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#recover_span_quad" title="recover_span_quad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a></p></td>
+<td><p>compute the quad of a subset of span characters</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#set_messages" title="set_messages"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_messages()</span></code></a></p></td>
+<td><p>set destination of <cite>PyMuPDF</cite> messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#sRGB_to_pdf" title="sRGB_to_pdf"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_pdf()</span></code></a></p></td>
+<td><p>return PDF RGB color tuple from an sRGB integer</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sRGB_to_rgb" title="sRGB_to_rgb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sRGB_to_rgb()</span></code></a></p></td>
+<td><p>return (R, G, B) color tuple from an sRGB integer</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#unicode_to_glyph_name" title="unicode_to_glyph_name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unicode_to_glyph_name()</span></code></a></p></td>
+<td><p>return glyph name from a unicode</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#get_tessdata" title="get_tessdata"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_tessdata()</span></code></a></p></td>
+<td><p>locates the language support of the Tesseract-OCR installation</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#colors_pdf_dict" title="colors_pdf_dict"><code class="xref py py-meth docutils literal notranslate"><span class="pre">colors_pdf_dict()</span></code></a></p></td>
+<td><p>return dict of color names.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#colors_wx_list" title="colors_wx_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">colors_wx_list()</span></code></a></p></td>
+<td><p>return list of color names.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#fitz_fontdescriptors" title="fitz_fontdescriptors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fitz_fontdescriptors</span></code></a></p></td>
+<td><p>dictionary of available supplement fonts</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#PYMUPDF_MESSAGE" title="PYMUPDF_MESSAGE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a></p></td>
+<td><p>destination of <cite>PyMuPDF</cite> messages.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pdfcolor" title="pdfcolor"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pdfcolor</span></code></a></p></td>
+<td><p>dictionary of almost 500 RGB colors in PDF format.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="device.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">设备</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="lowlevel.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">低级函数和类</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">函数</a><ul>
+<li><a class="reference internal" href="#paper_size"><code class="docutils literal notranslate"><span class="pre">paper_size()</span></code></a></li>
+<li><a class="reference internal" href="#paper_rect"><code class="docutils literal notranslate"><span class="pre">paper_rect()</span></code></a></li>
+<li><a class="reference internal" href="#set_messages"><code class="docutils literal notranslate"><span class="pre">set_messages()</span></code></a></li>
+<li><a class="reference internal" href="#sRGB_to_pdf"><code class="docutils literal notranslate"><span class="pre">sRGB_to_pdf()</span></code></a></li>
+<li><a class="reference internal" href="#sRGB_to_rgb"><code class="docutils literal notranslate"><span class="pre">sRGB_to_rgb()</span></code></a></li>
+<li><a class="reference internal" href="#glyph_name_to_unicode"><code class="docutils literal notranslate"><span class="pre">glyph_name_to_unicode()</span></code></a></li>
+<li><a class="reference internal" href="#unicode_to_glyph_name"><code class="docutils literal notranslate"><span class="pre">unicode_to_glyph_name()</span></code></a></li>
+<li><a class="reference internal" href="#adobe_glyph_names"><code class="docutils literal notranslate"><span class="pre">adobe_glyph_names()</span></code></a></li>
+<li><a class="reference internal" href="#adobe_glyph_unicodes"><code class="docutils literal notranslate"><span class="pre">adobe_glyph_unicodes()</span></code></a></li>
+<li><a class="reference internal" href="#css_for_pymupdf_font"><code class="docutils literal notranslate"><span class="pre">css_for_pymupdf_font()</span></code></a></li>
+<li><a class="reference internal" href="#make_table"><code class="docutils literal notranslate"><span class="pre">make_table()</span></code></a></li>
+<li><a class="reference internal" href="#planish_line"><code class="docutils literal notranslate"><span class="pre">planish_line()</span></code></a></li>
+<li><a class="reference internal" href="#paper_sizes"><code class="docutils literal notranslate"><span class="pre">paper_sizes()</span></code></a></li>
+<li><a class="reference internal" href="#fitz_fontdescriptors"><code class="docutils literal notranslate"><span class="pre">fitz_fontdescriptors</span></code></a></li>
+<li><a class="reference internal" href="#PYMUPDF_MESSAGE"><code class="docutils literal notranslate"><span class="pre">PYMUPDF_MESSAGE</span></code></a></li>
+<li><a class="reference internal" href="#pdfcolor"><code class="docutils literal notranslate"><span class="pre">pdfcolor</span></code></a></li>
+<li><a class="reference internal" href="#get_pdf_now"><code class="docutils literal notranslate"><span class="pre">get_pdf_now()</span></code></a></li>
+<li><a class="reference internal" href="#get_text_length"><code class="docutils literal notranslate"><span class="pre">get_text_length()</span></code></a></li>
+<li><a class="reference internal" href="#get_pdf_str"><code class="docutils literal notranslate"><span class="pre">get_pdf_str()</span></code></a></li>
+<li><a class="reference internal" href="#image_profile"><code class="docutils literal notranslate"><span class="pre">image_profile()</span></code></a></li>
+<li><a class="reference internal" href="#ConversionHeader"><code class="docutils literal notranslate"><span class="pre">ConversionHeader()</span></code></a></li>
+<li><a class="reference internal" href="#ConversionTrailer"><code class="docutils literal notranslate"><span class="pre">ConversionTrailer()</span></code></a></li>
+<li><a class="reference internal" href="#Document.del_xml_metadata"><code class="docutils literal notranslate"><span class="pre">Document.del_xml_metadata()</span></code></a></li>
+<li><a class="reference internal" href="#Document.xml_metadata_xref"><code class="docutils literal notranslate"><span class="pre">Document.xml_metadata_xref()</span></code></a></li>
+<li><a class="reference internal" href="#Page.run"><code class="docutils literal notranslate"><span class="pre">Page.run()</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_bboxlog"><code class="docutils literal notranslate"><span class="pre">Page.get_bboxlog()</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_texttrace"><code class="docutils literal notranslate"><span class="pre">Page.get_texttrace()</span></code></a></li>
+<li><a class="reference internal" href="#Page.wrap_contents"><code class="docutils literal notranslate"><span class="pre">Page.wrap_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Page.is_wrapped"><code class="docutils literal notranslate"><span class="pre">Page.is_wrapped</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_text_blocks"><code class="docutils literal notranslate"><span class="pre">Page.get_text_blocks()</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_text_words"><code class="docutils literal notranslate"><span class="pre">Page.get_text_words()</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_displaylist"><code class="docutils literal notranslate"><span class="pre">Page.get_displaylist()</span></code></a></li>
+<li><a class="reference internal" href="#Page.get_contents"><code class="docutils literal notranslate"><span class="pre">Page.get_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Page.set_contents"><code class="docutils literal notranslate"><span class="pre">Page.set_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Page.clean_contents"><code class="docutils literal notranslate"><span class="pre">Page.clean_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Page.read_contents"><code class="docutils literal notranslate"><span class="pre">Page.read_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Annot.clean_contents"><code class="docutils literal notranslate"><span class="pre">Annot.clean_contents()</span></code></a></li>
+<li><a class="reference internal" href="#Document.get_char_widths"><code class="docutils literal notranslate"><span class="pre">Document.get_char_widths()</span></code></a></li>
+<li><a class="reference internal" href="#Document.is_stream"><code class="docutils literal notranslate"><span class="pre">Document.is_stream()</span></code></a></li>
+<li><a class="reference internal" href="#Document.get_new_xref"><code class="docutils literal notranslate"><span class="pre">Document.get_new_xref()</span></code></a></li>
+<li><a class="reference internal" href="#Document.xref_length"><code class="docutils literal notranslate"><span class="pre">Document.xref_length()</span></code></a></li>
+<li><a class="reference internal" href="#recover_quad"><code class="docutils literal notranslate"><span class="pre">recover_quad()</span></code></a></li>
+<li><a class="reference internal" href="#recover_char_quad"><code class="docutils literal notranslate"><span class="pre">recover_char_quad()</span></code></a></li>
+<li><a class="reference internal" href="#recover_span_quad"><code class="docutils literal notranslate"><span class="pre">recover_span_quad()</span></code></a></li>
+<li><a class="reference internal" href="#recover_line_quad"><code class="docutils literal notranslate"><span class="pre">recover_line_quad()</span></code></a></li>
+<li><a class="reference internal" href="#get_tessdata"><code class="docutils literal notranslate"><span class="pre">get_tessdata()</span></code></a></li>
+<li><a class="reference internal" href="#INFINITE_QUAD"><code class="docutils literal notranslate"><span class="pre">INFINITE_QUAD()</span></code></a></li>
+<li><a class="reference internal" href="#INFINITE_RECT"><code class="docutils literal notranslate"><span class="pre">INFINITE_RECT()</span></code></a></li>
+<li><a class="reference internal" href="#INFINITE_IRECT"><code class="docutils literal notranslate"><span class="pre">INFINITE_IRECT()</span></code></a></li>
+<li><a class="reference internal" href="#EMPTY_QUAD"><code class="docutils literal notranslate"><span class="pre">EMPTY_QUAD()</span></code></a></li>
+<li><a class="reference internal" href="#EMPTY_RECT"><code class="docutils literal notranslate"><span class="pre">EMPTY_RECT()</span></code></a></li>
+<li><a class="reference internal" href="#EMPTY_IRECT"><code class="docutils literal notranslate"><span class="pre">EMPTY_IRECT()</span></code></a></li>
+<li><a class="reference internal" href="#colors_pdf_dict"><code class="docutils literal notranslate"><span class="pre">colors_pdf_dict()</span></code></a></li>
+<li><a class="reference internal" href="#colors_wx_list"><code class="docutils literal notranslate"><span class="pre">colors_wx_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

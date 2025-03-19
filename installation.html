@@ -1,0 +1,1025 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="基础用法" href="the-basics.html" /><link rel="prev" title="PyMuPDF Pro" href="pymupdf-pro.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>安装 - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="classes.html">类</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml-class.html">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="id1">
+<h1>安装<a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h1>
+<p>Installation</p>
+<section id="id2">
+<h2>依赖<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>Requirements</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<p>以下所有示例均假设您在 Python 虚拟环境中运行。
+详情请参见：<a class="reference external" href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a>。
+同时，我们假设 <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> 已是最新版本。</p>
+<p>例如：</p>
+<ul>
+<li><p>Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>
+<span class="o">.</span>\<span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p>Linux, MacOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>
+<span class="o">.</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<p>All the examples below assume that you are running inside a Python virtual
+environment. See: <a class="reference external" href="https://docs.python.org/3/library/venv.html">https://docs.python.org/3/library/venv.html</a> for details.
+We also assume that <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> is up to date.</p>
+<p>For example:</p>
+<ul>
+<li><p>Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">py</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>
+<span class="o">.</span>\<span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+<li><p>Linux, MacOS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span>
+<span class="o">.</span> <span class="n">pymupdf</span><span class="o">-</span><span class="n">venv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>安装<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Installation</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>PyMuPDF 应使用 pip 安装:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pymupdf</span>
+</pre></div>
+</div>
+<p>如果您的平台有 Python wheel，这将从 Python wheel 安装。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>PyMuPDF should be installed using pip with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pymupdf</span>
+</pre></div>
+</div>
+<p>This will install from a Python wheel if one is available for your platform.</p>
+</div>
+</div>
+</section>
+<section id="whell">
+<h2>在没有合适whell时的安装<a class="headerlink" href="#whell" title="此标题的永久链接">#</a></h2>
+<p>Installation when a suitable wheel is not available</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>如果没有可用的 Python 轮子 (<code class="xref any docutils literal notranslate"><span class="pre">wheel</span></code>)，<code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> 将自动使用 Python 源代码分发包 (<code class="xref any docutils literal notranslate"><span class="pre">sdist</span></code>) 进行构建。</p>
+<p><strong>这需要安装 C/C++ 开发工具</strong>：</p>
+<ul class="simple">
+<li><p>在 Windows 上：</p>
+<ul>
+<li><p>安装 Visual Studio 2019。如果未安装在标准位置，需要将环境变量 <code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_DEVENV</span></code> 设置为 <code class="xref any docutils literal notranslate"><span class="pre">devenv.com</span></code> 二进制文件所在的目录。</p></li>
+<li><p>如果安装了其他版本的 Visual Studio，例如 Visual Studio 2022，可能会导致问题，因为 MuPDF 和 PyMuPDF 代码可能会使用不同版本的编译器进行编译。</p></li>
+</ul>
+</li>
+</ul>
+<p>构建过程中将自动下载并构建 MuPDF。</p>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>If a suitable Python wheel is not available, pip will automatically build from
+source using a Python sdist.</p>
+<p><strong>This requires C/C++ development tools to be installed</strong>:</p>
+<ul class="simple">
+<li><p>On Windows:</p>
+<ul>
+<li><p>Install Visual Studio 2019. If not installed in a standard location, set
+environmental variable <code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_DEVENV</span></code> to the location of the
+<code class="xref any docutils literal notranslate"><span class="pre">devenv.com</span></code> binary.</p></li>
+<li><p>Having other installed versions of Visual Studio, for example Visual Studio
+2022, can cause problems because one can end up with MuPDF and PyMuPDF code
+being compiled with different compiler versions.</p></li>
+</ul>
+</li>
+</ul>
+<p>The build will automatically download and build MuPDF.</p>
+</div>
+</div>
+</section>
+<section id="problems-after-installation">
+<span id="id4"></span><h2>安装后的问题<a class="headerlink" href="#problems-after-installation" title="此标题的永久链接">#</a></h2>
+<p>Problems after installation</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--3-input--1" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p>在 Windows 上，可能遇到 Python 错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="n">DLL</span> <span class="n">load</span> <span class="n">failed</span> <span class="k">while</span> <span class="n">importing</span> <span class="n">_fitz</span>
+</pre></div>
+</div>
+<p>这可能是由于 <code class="xref any docutils literal notranslate"><span class="pre">MSVCP140.dll</span></code> 缺失造成的，通常与某些版本（2015-2017）的 <code class="xref any docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Visual</span> <span class="pre">C++</span> <span class="pre">Redistributables</span></code> 相关的错误有关。</p>
+<p>建议在 <a class="reference external" href="https://msdn.com">https://msdn.com</a> 上搜索 <code class="xref any docutils literal notranslate"><span class="pre">MSVCP140.dll</span></code>，查找如何重新安装的说明。例如，
+<a class="reference external" href="https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist">https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist</a> 提供了最新支持版本的永久链接。</p>
+<p>详情请参见：<a class="reference external" href="https://github.com/pymupdf/PyMuPDF/issues/2678">https://github.com/pymupdf/PyMuPDF/issues/2678</a>。</p>
+</li>
+<li><p>可能遇到 Python 错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;frontend&#39;</span>
+</pre></div>
+</div>
+<p>这通常发生在 PyMuPDF 的旧名称 <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> 被错误使用时（例如 <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">fitz</span></code> 而非 <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span></code>），
+并且安装了一个无关的 Python 包 <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> （<a class="reference external" href="https://pypi.org/project/fitz/">https://pypi.org/project/fitz/</a>）。</p>
+<p><code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> 包似乎已不再维护（最新发布于 2017 年），但目前无法从 pypi.org 移除。
+它不仅无法独立运行，还会破坏 PyMuPDF 的旧名称 <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> 的使用。</p>
+<p>有几种方法可以避免此问题：</p>
+<ul>
+<li><p>使用 <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span></code> 替代 <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">fitz</span></code>，并更新代码以匹配新的导入方式。</p></li>
+<li><p>或者卸载 <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> 包并重新安装 PyMuPDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">fitz</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">pymupdf</span>
+</pre></div>
+</div>
+</li>
+<li><p>或者使用 <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span> <span class="pre">as</span> <span class="pre">fitz</span></code>，但此方法尚未经过充分测试。</p></li>
+</ul>
+</li>
+<li><p>在 Apple Silicon (arm64) 上使用 Jupyter Lab 时，可能遇到 Python 错误:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pymupdf</span><span class="o">/</span><span class="n">libmupdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.24.4</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">symbol</span><span class="p">:</span> <span class="n">fz_pclm_write_options_usage</span>
+</pre></div>
+</div>
+<p>这似乎是 Jupyter Lab 的问题，详情请参见：
+<a class="reference external" href="https://github.com/pymupdf/PyMuPDF/issues/3643#issuecomment-2210588778">https://github.com/pymupdf/PyMuPDF/issues/3643#issuecomment-2210588778</a>。</p>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--3-input--2" name="tab-set--3" type="radio"><label class="tab-label" for="tab-set--3-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p>On Windows, Python error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="n">DLL</span> <span class="n">load</span> <span class="n">failed</span> <span class="k">while</span> <span class="n">importing</span> <span class="n">_fitz</span>
+</pre></div>
+</div>
+<p>This has been occasionally seen if <code class="xref any docutils literal notranslate"><span class="pre">MSVCP140.dll</span></code> is missing, and appears
+to be caused by a bug in some versions (2015-2017) of <code class="xref any docutils literal notranslate"><span class="pre">Microsoft</span> <span class="pre">Visual</span> <span class="pre">C++</span>
+<span class="pre">Redistributables</span></code>.</p>
+<p>It is recommended to search for <code class="xref any docutils literal notranslate"><span class="pre">MSVCP140.dll</span></code> in <a class="reference external" href="https://msdn.com">https://msdn.com</a>
+to find instructions for how to reinstall it. For example
+<a class="reference external" href="https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist">https://learn.microsoft.com/cpp/windows/latest-supported-vc-redist</a> has
+permalinks to the latest supported versions.</p>
+<p>See <a class="reference external" href="https://github.com/pymupdf/PyMuPDF/issues/2678">https://github.com/pymupdf/PyMuPDF/issues/2678</a> for more details.</p>
+</li>
+<li><p>Python error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;frontend&#39;</span>
+</pre></div>
+</div>
+<p>This can happen if PyMuPDF’s legacy name <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> is used (for example <code class="xref any docutils literal notranslate"><span class="pre">import</span>
+<span class="pre">fitz</span></code> instead of <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span></code>), and an unrelated Python package called
+<code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> (<a class="reference external" href="https://pypi.org/project/fitz/">https://pypi.org/project/fitz/</a>) is installed.</p>
+<p>The fitz package appears to be no longer maintained (the latest release is
+from 2017), but unfortunately it does not seem possible to remove it from
+pypi.org. It does not even work on its own, as well as breaking the use of
+PyMuPDF’s legacy name.</p>
+<p>There are a few ways to avoid this problem:</p>
+<ul>
+<li><p>Use <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span></code> instead of <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">fitz</span></code>, and update one’s code to
+match.</p></li>
+<li><p>Or uninstall the <code class="xref any docutils literal notranslate"><span class="pre">fitz</span></code> package and reinstall PyMuPDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">fitz</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">pymupdf</span>
+</pre></div>
+</div>
+</li>
+<li><p>Or use <code class="xref any docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymupdf</span> <span class="pre">as</span> <span class="pre">fitz</span></code>. However this has not been well tested.</p></li>
+</ul>
+</li>
+<li><p>With Jupyter labs on Apple Silicon (arm64), Python error:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">conda</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="mf">.11</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pymupdf</span><span class="o">/</span><span class="n">libmupdf</span><span class="o">.</span><span class="n">so</span><span class="mf">.24.4</span><span class="p">:</span> <span class="n">undefined</span> <span class="n">symbol</span><span class="p">:</span> <span class="n">fz_pclm_write_options_usage</span>
+</pre></div>
+</div>
+<p>This appears to be a problem in Jupyter labs; see:
+<a class="reference external" href="https://github.com/pymupdf/PyMuPDF/issues/3643#issuecomment-2210588778">https://github.com/pymupdf/PyMuPDF/issues/3643#issuecomment-2210588778</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>笔记<a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h2>
+<p>Notes</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--4-input--1" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--1">中文</label><div class="tab-content docutils container">
+<ul>
+<li><p>以下平台提供预构建的 Wheels：</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Windows 32 位 Intel。</p></li>
+<li><p>Windows 64 位 Intel。</p></li>
+<li><p>Linux 64 位 Intel。</p></li>
+<li><p>Linux 64 位 ARM。</p></li>
+<li><p>MacOS 64 位 Intel。</p></li>
+<li><p>MacOS 64 位 ARM。</p></li>
+</ul>
+</div></blockquote>
+<p>详情如下：</p>
+<ul class="simple">
+<li><p>每个平台仅发布一个 Wheel 文件。</p></li>
+<li><p>每个 Wheel 文件均使用当前最旧的受支持 Python 版本的稳定 ABI（目前为 3.9），
+因此可与所有更高版本的 Python 兼容，包括新的 Python 发行版本。</p></li>
+<li><p>Wheels 已在所有当前被标记为“受支持”的 Python 版本上进行了测试，
+详情请见：<a class="reference external" href="https://devguide.python.org/versions/">https://devguide.python.org/versions/</a>，目前支持 3.9、3.10、3.11、3.12 和 3.13。</p></li>
+</ul>
+</li>
+<li><p>Windows 通过 <a class="reference external" href="https://chocolatey.org/">Chocolatey</a> 安装的 Python <strong>不支持</strong> Wheels。
+请改用 python.org 官网提供的 Windows 安装程序进行安装：
+<a class="reference external" href="http://www.python.org/downloads">http://www.python.org/downloads</a></p></li>
+<li><p>对于 Linux-aarch64 平台，使用 <a class="reference external" href="https://musl.libc.org/">Musl libc</a> （例如 <a class="reference external" href="https://alpinelinux.org/">Alpine Linux</a>），
+不提供 Wheels，且已知从源码构建会失败。</p></li>
+<li><p><strong>没有强制性外部依赖</strong>，但某些可选功能需要额外安装组件：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/Pillow/">Pillow</a> ：用于 <a class="reference internal" href="pixmap.html#Pixmap.pil_save" title="Pixmap.pil_save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.pil_save()</span></code></a> 和 <a class="reference internal" href="pixmap.html#Pixmap.pil_tobytes" title="Pixmap.pil_tobytes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.pil_tobytes()</span></code></a> 方法。</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> ：用于 <a class="reference internal" href="document.html#Document.subset_fonts" title="Document.subset_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.subset_fonts()</span></code></a> 方法。</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pymupdf-fonts/">pymupdf-fonts</a> ：包含一组可用于文本输出方法的精美字体。</p></li>
+<li><p><a class="reference external" href="https://github.com/tesseract-ocr/tesseract">Tesseract-OCR</a> ：用于图像和文档页面的光学字符识别（OCR）。
+Tesseract 是一个独立的软件，而非 Python 包。要在 PyMuPDF 中启用 OCR 功能，
+需要安装 Tesseract 并指定 <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> 文件夹名称，具体请见下文。</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>这些组件可以在安装 PyMuPDF 之前或之后随时添加。PyMuPDF 会在导入或使用相关功能时自动检测其是否可用。</p>
+</div>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--4-input--2" name="tab-set--4" type="radio"><label class="tab-label" for="tab-set--4-input--2">英文</label><div class="tab-content docutils container">
+<ul>
+<li><p>Wheels are available for the following platforms:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Windows 32-bit Intel.</p></li>
+<li><p>Windows 64-bit Intel.</p></li>
+<li><p>Linux 64-bit Intel.</p></li>
+<li><p>Linux 64-bit ARM.</p></li>
+<li><p>MacOS 64-bit Intel.</p></li>
+<li><p>MacOS 64-bit ARM.</p></li>
+</ul>
+</div></blockquote>
+<p>Details:</p>
+<ul class="simple">
+<li><p>We release a single wheel for each of the above platforms.</p></li>
+<li><p>Each wheel uses the Python Stable ABI of the current oldest supported
+Python version (currently 3.9), and so works with all later Python
+versions, including new Python releases.</p></li>
+<li><p>Wheels are tested on all Python versions currently marked as “Supported” on
+<a class="reference external" href="https://devguide.python.org/versions/">https://devguide.python.org/versions/</a>, currently 3.9, 3.10, 3.11, 3.12 and
+3.13.</p></li>
+</ul>
+</li>
+<li><p>Wheels are not available for Python installed with <a class="reference external" href="https://chocolatey.org/">Chocolatey</a> on Windows. Instead install Python
+using the Windows installer from the python.org website, see:
+<a class="reference external" href="http://www.python.org/downloads">http://www.python.org/downloads</a></p></li>
+<li><p>Wheels are not available for Linux-aarch64 with <a class="reference external" href="https://musl.libc.org/">Musl libc</a> (For example <a class="reference external" href="https://alpinelinux.org/">Alpine Linux</a> on aarch64), and building from source is known
+to fail.</p></li>
+<li><p>There are no <strong>mandatory</strong> external dependencies. However, some optional feature are available only if additional components are installed:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/Pillow/">Pillow</a> is required for <a class="reference internal" href="pixmap.html#Pixmap.pil_save" title="Pixmap.pil_save"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.pil_save()</span></code></a> and <a class="reference internal" href="pixmap.html#Pixmap.pil_tobytes" title="Pixmap.pil_tobytes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Pixmap.pil_tobytes()</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/fonttools/">fontTools</a> is required for <a class="reference internal" href="document.html#Document.subset_fonts" title="Document.subset_fonts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Document.subset_fonts()</span></code></a>.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pymupdf-fonts/">pymupdf-fonts</a> is a collection of nice fonts to be used for text output methods.</p></li>
+<li><p><a class="reference external" href="https://github.com/tesseract-ocr/tesseract">Tesseract-OCR</a> for optical
+character recognition in images and document pages. Tesseract is separate
+software, not a Python package. To enable OCR functions in PyMuPDF,
+Tesseract must be installed and the <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> folder name specified; see
+below.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>You can install these additional components at any time – before or after installing PyMuPDF. PyMuPDF will detect their presence during import or when the respective functions are being used.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="pymupdf">
+<h2>从本地 PyMuPDF 源树构建并安装<a class="headerlink" href="#pymupdf" title="此标题的永久链接">#</a></h2>
+<p>Build and install from a local PyMuPDF source tree</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--5-input--1" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--1">中文</label><div class="tab-content docutils container">
+<p>初始化设置：</p>
+<ul>
+<li><p>按上述说明安装 C/C++ 开发工具。</p></li>
+<li><p>进入 Python 虚拟环境（venv）并更新 pip，如前所述。</p></li>
+<li><p>获取 PyMuPDF 源代码：</p>
+<ul>
+<li><p>克隆 PyMuPDF Git 仓库:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymupdf</span><span class="o">/</span><span class="n">PyMuPDF</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>或从 <a class="reference external" href="https://github.com/pymupdf/PyMuPDF/releases">https://github.com/pymupdf/PyMuPDF/releases</a> 下载 <code class="xref any docutils literal notranslate"><span class="pre">.zip</span></code> 或 <code class="xref any docutils literal notranslate"><span class="pre">.tar.gz</span></code> 源代码发布包并解压。</p></li>
+</ul>
+</li>
+</ul>
+<p>然后，可以通过以下两种方式构建 PyMuPDF：</p>
+<ul>
+<li><p>使用默认的 MuPDF 版本构建并安装 PyMuPDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>这将自动下载一个特定的 MuPDF 源代码版本，并将其构建到 PyMuPDF 中。</p>
+</li>
+<li><p>或者使用本地 MuPDF 源代码树构建并安装 PyMuPDF：</p>
+<ul>
+<li><p>克隆 MuPDF Git 仓库:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">git</span><span class="o">.</span><span class="n">ghostscript</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mupdf</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>构建 PyMuPDF，并使用环境变量 <code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_MUPDF_BUILD</span></code> 指定本地 MuPDF 代码目录:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">PYMUPDF_SETUP_MUPDF_BUILD</span><span class="o">=../</span><span class="n">mupdf</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p>此外，可以在同一 PyMuPDF 源代码目录下为不同的 Python 版本构建 PyMuPDF：</p>
+<ul>
+<li><p>PyMuPDF 将为运行 <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> 的 Python 版本进行构建。要使用特定的 Python 版本运行 <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code>，请使用 <code class="xref any docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span></code> 而不是 <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code>。</p>
+<p>例如，在 Windows 上，可以使用以下方式构建不同版本的 PyMuPDF:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">py</span> <span class="o">-</span><span class="mf">3.9</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>或者:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">py</span> <span class="o">-</span><span class="mf">3.10</span><span class="o">-</span><span class="mi">32</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--5-input--2" name="tab-set--5" type="radio"><label class="tab-label" for="tab-set--5-input--2">英文</label><div class="tab-content docutils container">
+<p>Initial setup:</p>
+<ul>
+<li><p>Install C/C++ development tools as described above.</p></li>
+<li><p>Enter a Python venv and update pip, as described above.</p></li>
+<li><p>Get a PyMuPDF source tree:</p>
+<ul>
+<li><p>Clone the PyMuPDF git repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pymupdf</span><span class="o">/</span><span class="n">PyMuPDF</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Or download and extract a <code class="xref any docutils literal notranslate"><span class="pre">.zip</span></code> or <code class="xref any docutils literal notranslate"><span class="pre">.tar.gz</span></code> source release from
+<a class="reference external" href="https://github.com/pymupdf/PyMuPDF/releases">https://github.com/pymupdf/PyMuPDF/releases</a>.</p></li>
+</ul>
+</li>
+</ul>
+<p>Then one can build PyMuPDF in two ways:</p>
+<ul>
+<li><p>Build and install PyMuPDF with default MuPDF version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>This will automatically download a specific hard-coded MuPDF source
+release, and build it into PyMuPDF.</p>
+</li>
+<li><p>Or build and install PyMuPDF using a local MuPDF source tree:</p>
+<ul>
+<li><p>Clone the MuPDF git repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">git</span><span class="o">.</span><span class="n">ghostscript</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mupdf</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build PyMuPDF, specifying the location of the local MuPDF tree with the
+environmental variables <code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_MUPDF_BUILD</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">PYMUPDF_SETUP_MUPDF_BUILD</span><span class="o">=../</span><span class="n">mupdf</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p>Also, one can build for different Python versions in the same PyMuPDF tree:</p>
+<ul>
+<li><p>PyMuPDF will build for the version of Python that is being used to run
+<code class="xref any docutils literal notranslate"><span class="pre">pip</span></code>. To run <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> with a specific Python version, use <code class="xref any docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span></code>
+instead of <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<p>So for example on Windows one can build different versions with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">py</span> <span class="o">-</span><span class="mf">3.9</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">PyMuPDF</span> <span class="o">&amp;&amp;</span> <span class="n">py</span> <span class="o">-</span><span class="mf">3.10</span><span class="o">-</span><span class="mi">32</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="id13">
+<h2>运行测试<a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h2>
+<p>Running tests</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--6-input--1" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--1">中文</label><div class="tab-content docutils container">
+<p>有了 PyMuPDF 树，就可以运行 PyMuPDF 的 <code class="xref any docutils literal notranslate"><span class="pre">pytest</span></code> 测试套件:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span> <span class="n">fontTools</span>
+<span class="n">pytest</span> <span class="n">PyMuPDF</span><span class="o">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--6-input--2" name="tab-set--6" type="radio"><label class="tab-label" for="tab-set--6-input--2">英文</label><div class="tab-content docutils container">
+<p>Having a PyMuPDF tree available allows one to run PyMuPDF’s <code class="xref any docutils literal notranslate"><span class="pre">pytest</span></code> test suite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span> <span class="n">fontTools</span>
+<span class="n">pytest</span> <span class="n">PyMuPDF</span><span class="o">/</span><span class="n">tests</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="mupdf">
+<h3>关于使用非默认 MuPDF 的注意事项<a class="headerlink" href="#mupdf" title="此标题的永久链接">#</a></h3>
+<p>Notes about using a non-default MuPDF</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--7-input--1" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--1">中文</label><div class="tab-content docutils container">
+<p>通过设置环境变量 <code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_MUPDF_BUILD</span></code> 使用非默认版本的 MuPDF 可能会导致各种问题，因此通常不建议使用：</p>
+<ul class="simple">
+<li><p>如果 MuPDF 的主版本号与 PyMuPDF 默认使用的版本不同，PyMuPDF 可能无法构建，因为 MuPDF 的 API 在不同的主版本之间可能会发生变化。</p></li>
+<li><p>PyMuPDF 的运行时行为可能会发生变化，因为 MuPDF 在不同的小版本之间的运行时行为可能会不同。这也可能会导致一些 PyMuPDF 测试失败。</p></li>
+<li><p>如果 MuPDF 是使用其默认配置构建的，而不是 PyMuPDF 的自定义配置（例如，如果 MuPDF 是系统安装），那么 <code class="xref any docutils literal notranslate"><span class="pre">tests/test_textbox.py:test_textbox3()</span></code> 可能会失败。可以通过在 <code class="xref any docutils literal notranslate"><span class="pre">pytest</span></code> 命令行中添加 <code class="xref any docutils literal notranslate"><span class="pre">-k</span> <span class="pre">'not</span> <span class="pre">test_textbox3'</span></code> 来跳过此特定测试。</p></li>
+</ul>
+</div>
+<input class="tab-input" id="tab-set--7-input--2" name="tab-set--7" type="radio"><label class="tab-label" for="tab-set--7-input--2">英文</label><div class="tab-content docutils container">
+<blockquote>
+<div><p>Using a non-default build of MuPDF by setting environmental variable
+<code class="xref any docutils literal notranslate"><span class="pre">PYMUPDF_SETUP_MUPDF_BUILD</span></code> can cause various things to go wrong and so is
+not generally supported:</p>
+<ul class="simple">
+<li><p>If MuPDF’s major version number differs from what PyMuPDF uses by default,
+PyMuPDF can fail to build, because MuPDF’s API can change between major
+versions.</p></li>
+<li><p>Runtime behaviour of PyMuPDF can change because MuPDF’s runtime behaviour
+changes between different minor releases. This can also break some PyMuPDF
+tests.</p></li>
+<li><p>If MuPDF was built with its default config instead of PyMuPDF’s customised
+config (for example if MuPDF is a system install), it is possible that
+<code class="xref any docutils literal notranslate"><span class="pre">tests/test_textbox.py:test_textbox3()</span></code> will fail. One can skip this
+particular test by adding <code class="xref any docutils literal notranslate"><span class="pre">-k</span> <span class="pre">'not</span> <span class="pre">test_textbox3'</span></code> to the <code class="xref any docutils literal notranslate"><span class="pre">pytest</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>command line.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="id14">
+<h2>打包<a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h2>
+<p>Packaging</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--8-input--1" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--1">中文</label><div class="tab-content docutils container">
+<p>见 <a class="reference internal" href="packaging.html"><span class="doc">Packaging for Linux distributions</span></a>.</p>
+</div>
+<input class="tab-input" id="tab-set--8-input--2" name="tab-set--8" type="radio"><label class="tab-label" for="tab-set--8-input--2">英文</label><div class="tab-content docutils container">
+<p>See <a class="reference internal" href="packaging.html"><span class="doc">Packaging for Linux distributions</span></a>.</p>
+</div>
+</div>
+</section>
+<section id="pyodide">
+<h2>与 Pyodide 一起使用<a class="headerlink" href="#pyodide" title="此标题的永久链接">#</a></h2>
+<p>Using with Pyodide</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--9-input--1" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--1">中文</label><div class="tab-content docutils container">
+<p>见 <a class="reference internal" href="pyodide.html"><span class="doc">Pyodide</span></a>.</p>
+</div>
+<input class="tab-input" id="tab-set--9-input--2" name="tab-set--9" type="radio"><label class="tab-label" for="tab-set--9-input--2">英文</label><div class="tab-content docutils container">
+<p>See <a class="reference internal" href="pyodide.html"><span class="doc">Pyodide</span></a>.</p>
+</div>
+</div>
+</section>
+<section id="ocr">
+<span id="installation-ocr"></span><h2>启用集成 OCR 支持<a class="headerlink" href="#ocr" title="此标题的永久链接">#</a></h2>
+<p>Enabling Integrated OCR Support</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--10-input--1" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--1">中文</label><div class="tab-content docutils container">
+<p>如果您不打算使用此功能，请跳过此步骤。否则，它对于两种安装方式都必需：<strong>通过轮子（wheels）和源代码（sources）安装</strong>。</p>
+<p>PyMuPDF 已经包含了支持 OCR 功能的所有逻辑。但它还需要 <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">Tesseract 的语言支持数据</a>。</p>
+<p>如果没有明确指定，PyMuPDF 会尝试查找已安装的 Tesseract 的 tessdata，但这不应依赖于此。</p>
+<p>否则，PyMuPDF 要求明确指定 Tesseract 的语言支持文件夹，无论是通过 PyMuPDF OCR 函数的 <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> 参数，还是通过 <code class="xref any docutils literal notranslate"><span class="pre">os.environ[&quot;TESSDATA_PREFIX&quot;]</span></code>。</p>
+<p>因此，要使 OCR 功能正常工作，请确保完成以下检查：</p>
+<ol class="arabic simple">
+<li><p>找到 Tesseract 的语言支持文件夹。通常您会在以下位置找到它：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Windows: <code class="xref any docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/Tesseract-OCR/tessdata</span></code></p></li>
+<li><p>Unix 系统: <code class="xref any docutils literal notranslate"><span class="pre">/usr/share/tesseract-ocr/4.00/tessdata</span></code></p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>在调用 PyMuPDF OCR 函数时指定语言支持文件夹：</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>设置 <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> 参数。</p></li>
+<li><p>或在 Python 中设置 <code class="xref any docutils literal notranslate"><span class="pre">os.environ[&quot;TESSDATA_PREFIX&quot;]</span></code>。</p></li>
+<li><p>或在运行 Python 之前设置环境变量 <code class="xref any docutils literal notranslate"><span class="pre">TESSDATA_PREFIX</span></code>，例如：</p>
+<ul>
+<li><p>Windows: <code class="xref any docutils literal notranslate"><span class="pre">setx</span> <span class="pre">TESSDATA_PREFIX</span> <span class="pre">&quot;C:/Program</span> <span class="pre">Files/Tesseract-OCR/tessdata&quot;</span></code></p></li>
+<li><p>Unix 系统: <code class="xref any docutils literal notranslate"><span class="pre">declare</span> <span class="pre">-x</span> <span class="pre">TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<input class="tab-input" id="tab-set--10-input--2" name="tab-set--10" type="radio"><label class="tab-label" for="tab-set--10-input--2">英文</label><div class="tab-content docutils container">
+<p>If you do not intend to use this feature, skip this step. Otherwise, it is required for both installation paths: <strong>from wheels and from sources.</strong></p>
+<p>PyMuPDF will already contain all the logic to support OCR functions. But it additionally does need <a class="reference external" href="https://github.com/tesseract-ocr/tessdata">Tesseract’s language support data</a>.</p>
+<p>If not specified explicitly, PyMuPDF will attempt to find the installed
+Tesseract’s tessdata, but this should probably not be relied upon.</p>
+<p>Otherwise PyMuPDF requires that Tesseract’s language support folder is
+specified explicitly either in PyMuPDF OCR functions’ <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> arguments or
+<code class="xref any docutils literal notranslate"><span class="pre">os.environ[&quot;TESSDATA_PREFIX&quot;]</span></code>.</p>
+<p>So for a working OCR functionality, make sure to complete this checklist:</p>
+<ol class="arabic simple">
+<li><p>Locate Tesseract’s language support folder. Typically you will find it here:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Windows: <code class="xref any docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/Tesseract-OCR/tessdata</span></code></p></li>
+<li><p>Unix systems: <code class="xref any docutils literal notranslate"><span class="pre">/usr/share/tesseract-ocr/4.00/tessdata</span></code></p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Specify the language support folder when calling PyMuPDF OCR functions:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>Set the <code class="xref any docutils literal notranslate"><span class="pre">tessdata</span></code> argument.</p></li>
+<li><p>Or set <code class="xref any docutils literal notranslate"><span class="pre">os.environ[&quot;TESSDATA_PREFIX&quot;]</span></code> from within Python.</p></li>
+<li><p>Or set environment variable <code class="xref any docutils literal notranslate"><span class="pre">TESSDATA_PREFIX</span></code> before running Python, for example:</p>
+<ul>
+<li><p>Windows: <code class="xref any docutils literal notranslate"><span class="pre">setx</span> <span class="pre">TESSDATA_PREFIX</span> <span class="pre">&quot;C:/Program</span> <span class="pre">Files/Tesseract-OCR/tessdata&quot;</span></code></p></li>
+<li><p>Unix systems: <code class="xref any docutils literal notranslate"><span class="pre">declare</span> <span class="pre">-x</span> <span class="pre">TESSDATA_PREFIX=/usr/share/tesseract-ocr/4.00/tessdata</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="the-basics.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">基础用法</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="pymupdf-pro.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">PyMuPDF Pro</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">安装</a><ul>
+<li><a class="reference internal" href="#id2">依赖</a></li>
+<li><a class="reference internal" href="#id3">安装</a></li>
+<li><a class="reference internal" href="#whell">在没有合适whell时的安装</a></li>
+<li><a class="reference internal" href="#problems-after-installation">安装后的问题</a></li>
+<li><a class="reference internal" href="#id5">笔记</a></li>
+<li><a class="reference internal" href="#pymupdf">从本地 PyMuPDF 源树构建并安装</a></li>
+<li><a class="reference internal" href="#id13">运行测试</a><ul>
+<li><a class="reference internal" href="#mupdf">关于使用非默认 MuPDF 的注意事项</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id14">打包</a></li>
+<li><a class="reference internal" href="#pyodide">与 Pyodide 一起使用</a></li>
+<li><a class="reference internal" href="#ocr">启用集成 OCR 支持</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>

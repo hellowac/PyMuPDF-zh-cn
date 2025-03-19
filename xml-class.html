@@ -1,0 +1,1491 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<meta content="Artifex" name="author" />
+<meta content="PyMuPDF 是一个高性能 Python 库，用于 PDF（及其他）文档的数据提取、分析、转换和操作。" name="description" />
+<meta content="PDF Text Extraction, PDF Image Extraction, PDF Conversion, PDF Tables, PDF Splitting, PDF Creation, Pyodide, PyScript" name="keywords" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZTN4VTL9M"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-JZTN4VTL9M');
+    </script>
+    <link rel="author" title="关于此文档" href="about.html" /><link rel="index" title="索引" href="genindex.html" /><link rel="search" title="搜索" href="search.html" /><link rel="next" title="几何对象的运算符代数" href="algebra.html" /><link rel="prev" title="Widget" href="widget.html" />
+
+    <link rel="shortcut icon" href="_static/PyMuPDF.ico"/><!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
+        <title>Xml - PyMuPDF 1.25.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">PyMuPDF 1.25.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/sidebar-logo-dark.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/sidebar-logo-light.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">PyMuPDF 1.25.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">关于/About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">功能比较</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-performance">性能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html#about-license">许可和版权</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf4llm/index.html">PyMuPDF4LLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pymupdf-pro.html">PyMuPDF Pro</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户指南/User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the-basics.html">基础用法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">教程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rag.html">PyMuPDF、LLM 和 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">资源</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">教程/How to Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="how-to-open-a-file.html">打开文件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-text.html">文本</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-images.html">图片</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-annotations.html">注释</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-drawing-and-graphics.html">绘图和图形</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-stories.html">故事</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-journalling.html">日记</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-multiprocessing.html">多进程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-ocr.html">OCR - 光学字符识别</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-optional-content.html">可选内容支持</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-low-level-interfaces.html">低级接口</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recipes-common-issues-and-their-solutions.html">常见问题及其解决方案</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API参考/API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="module.html">命令行界面</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="classes.html">类</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="annot.html">Annot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archive-class.html">Archive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorspace.html">Colorspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="displaylist.html">DisplayList</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document.html">Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="document-writer-class.html">DocumentWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="font.html">Font</a></li>
+<li class="toctree-l2"><a class="reference internal" href="identity.html">Identity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="irect.html">IRect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="link.html">Link</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkdest.html">linkDest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matrix.html">Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outline.html">Outline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="page.html">Page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pixmap.html">Pixmap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="point.html">Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quad.html">Quad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rect.html">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shape.html">Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="story-class.html">Story</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textpage.html">TextPage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="textwriter.html">TextWriter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="widget.html">Widget</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Xml</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="algebra.html">几何对象的运算符代数</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="lowlevel.html">低级函数和类</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="functions.html">函数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device.html">设备</a></li>
+<li class="toctree-l2"><a class="reference internal" href="coop_low.html">协同工作: DisplayList 和 TextPage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">术语</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vars.html">常量和枚举</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colors.html">颜色数据库</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他/Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="app1.html">附录 1：文本提取详细信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app2.html">附录 2：嵌入式文件的注意事项</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app3.html">附录 3：各类技术信息</a></li>
+<li class="toctree-l1"><a class="reference internal" href="app4.html">附录 4：性能比较方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">更新日志</a></li>
+<li class="toctree-l1"><a class="reference internal" href="znames.html">已废弃名称</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <div style="display:flex;justify-content:space-between;align-items: center;">
+    <form class="sidebar-search-container top" method="get" action="search.html" role="search" style="width:75%">
+      <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+      <input type="hidden" name="check_keywords" value="yes">
+      <input type="hidden" name="area" value="default">
+    </form>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:20px;">
+    <div class="discordLink" style="display:flex;align-items:center;margin-top: -5px;">
+        <a href="https://discord.gg/TSpYGBW4eq" id="findOnDiscord" target=_blank>Find <b>#pymupdf</b> on <b>Discord</b></a>
+        <a href="https://discord.gg/TSpYGBW4eq" target=_blank>
+            <div style="width:30px;height:30px;margin-left:5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                    <defs>
+                        <style>.discordLogoFill{fill:#5865f2;}</style>
+                    </defs>
+                    <g id="Discord_Logo" data-name="Discord Logo">
+                        <path class="discordLogoFill" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                    </g>
+                </svg>
+            </div>
+        </a>
+    </div>
+
+</div><section id="xml">
+<span id="id1"></span><h1>Xml<a class="headerlink" href="#xml" title="此标题的永久链接">#</a></h1>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--0-input--1" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--1">中文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>新增于 v1.21.0</p></li>
+</ul>
+<p>该类表示一个 HTML 或 XML 节点。它是一个辅助类，旨在访问 <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> 对象的 DOM（文档对象模型）内容。</p>
+<p>无需直接创建 <a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a> 对象：在创建 <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> 之后，直接使用 <a class="reference internal" href="story-class.html#Story.body" title="Story.body"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Story.body</span></code></a> （它是一个 Xml 节点），即可遍历 Story 的 DOM 结构。</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>方法 / 属性</strong></p></th>
+<th class="head"><p><strong>描述</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_bullet_list" title="Xml.add_bullet_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_bullet_list()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">ul</em> 标签（无序列表），上下文管理器。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_codeblock" title="Xml.add_codeblock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_codeblock()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">pre</em> 标签（代码块），上下文管理器。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_description_list" title="Xml.add_description_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_description_list()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">dl</em> 标签（描述列表），上下文管理器。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_division" title="Xml.add_division"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_division()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">div</em> 标签（重命名自“section”），上下文管理器。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_header" title="Xml.add_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_header()</span></code></a></p></td>
+<td><p>添加标题标签（<em class="htmltag">h1</em> 到 <em class="htmltag">h6</em> 之一），上下文管理器。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_horizontal_line" title="Xml.add_horizontal_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_horizontal_line()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">hr</em> 标签（水平分割线）。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_image" title="Xml.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_image()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">img</em> 标签（图片）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_link" title="Xml.add_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_link()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">a</em> 标签（超链接）。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_number_list" title="Xml.add_number_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_number_list()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">ol</em> 标签（有序列表），上下文管理器。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_paragraph" title="Xml.add_paragraph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_paragraph()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">p</em> 标签（段落）。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_span" title="Xml.add_span"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_span()</span></code></a></p></td>
+<td><p>添加 <em class="htmltag">span</em> 标签，上下文管理器。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_subscript" title="Xml.add_subscript"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_subscript()</span></code></a></p></td>
+<td><p>添加下标文本（<em class="htmltag">sub</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_superscript" title="Xml.add_superscript"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_superscript()</span></code></a></p></td>
+<td><p>添加上标文本（<em class="htmltag">sup</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_code" title="Xml.add_code"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_code()</span></code></a></p></td>
+<td><p>添加代码文本（<em class="htmltag">code</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_var" title="Xml.add_var"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_var()</span></code></a></p></td>
+<td><p>添加代码文本（<em class="htmltag">code</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_samp" title="Xml.add_samp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_samp()</span></code></a></p></td>
+<td><p>添加代码文本（<em class="htmltag">code</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_kbd" title="Xml.add_kbd"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_kbd()</span></code></a></p></td>
+<td><p>添加代码文本（<em class="htmltag">code</em> 标签），作为行内元素，处理方式类似文本。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_text" title="Xml.add_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_text()</span></code></a></p></td>
+<td><p>添加文本字符串，换行符 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 会被解析为 <em class="htmltag">br</em> 标签。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.append_child" title="Xml.append_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_child()</span></code></a></p></td>
+<td><p>添加子节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.clone" title="Xml.clone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clone()</span></code></a></p></td>
+<td><p>复制当前节点。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.create_element" title="Xml.create_element"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_element()</span></code></a></p></td>
+<td><p>创建一个指定标签的新节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.create_text_node" title="Xml.create_text_node"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_text_node()</span></code></a></p></td>
+<td><p>为当前节点创建文本内容。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.find" title="Xml.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find()</span></code></a></p></td>
+<td><p>查找具有指定属性的子节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.find_next" title="Xml.find_next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_next()</span></code></a></p></td>
+<td><p>使用相同的查找条件重复执行“查找”操作。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.insert_after" title="Xml.insert_after"><code class="xref py py-meth docutils literal notranslate"><span class="pre">insert_after()</span></code></a></p></td>
+<td><p>在当前节点后插入一个元素。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.insert_before" title="Xml.insert_before"><code class="xref py py-meth docutils literal notranslate"><span class="pre">insert_before()</span></code></a></p></td>
+<td><p>在当前节点前插入一个元素。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.remove" title="Xml.remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code></a></p></td>
+<td><p>移除当前节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_align" title="Xml.set_align"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_align()</span></code></a></p></td>
+<td><p>使用 CSS 样式设置对齐方式，仅适用于块级标签。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_attribute" title="Xml.set_attribute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_attribute()</span></code></a></p></td>
+<td><p>设置任意属性键及其值（值可以为空）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_bgcolor" title="Xml.set_bgcolor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_bgcolor()</span></code></a></p></td>
+<td><p>设置背景颜色，仅适用于块级标签。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_bold" title="Xml.set_bold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_bold()</span></code></a></p></td>
+<td><p>设置加粗（开启、关闭或指定字符串值）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_color" title="Xml.set_color"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_color()</span></code></a></p></td>
+<td><p>设置文本颜色。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_columns" title="Xml.set_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_columns()</span></code></a></p></td>
+<td><p>设置列数，参数可以是任何有效的数值或字符串。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_font" title="Xml.set_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_font()</span></code></a></p></td>
+<td><p>设置字体，例如 “sans-serif”。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_fontsize" title="Xml.set_fontsize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_fontsize()</span></code></a></p></td>
+<td><p>设置字体大小，可以是浮点数或有效的 HTML/CSS 字符串。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_id" title="Xml.set_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_id()</span></code></a></p></td>
+<td><p>设置 <em class="htmltag">id</em>，并检查唯一性。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_italic" title="Xml.set_italic"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_italic()</span></code></a></p></td>
+<td><p>设置斜体（开启、关闭或指定字符串值）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_leading" title="Xml.set_leading"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_leading()</span></code></a></p></td>
+<td><p>设置文本块间距（<code class="xref any docutils literal notranslate"><span class="pre">-mupdf-leading</span></code>），仅适用于块级节点。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_lineheight" title="Xml.set_lineheight"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_lineheight()</span></code></a></p></td>
+<td><p>设置行高，例如 1.5（表示 <code class="xref any docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">fontsize</span></code>）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_margins" title="Xml.set_margins"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_margins()</span></code></a></p></td>
+<td><p>设置边距，可以是浮点数或最多包含 4 个值的字符串。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_pagebreak_after" title="Xml.set_pagebreak_after"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_pagebreak_after()</span></code></a></p></td>
+<td><p>在当前节点后插入分页符。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_pagebreak_before" title="Xml.set_pagebreak_before"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_pagebreak_before()</span></code></a></p></td>
+<td><p>在当前节点前插入分页符。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_properties" title="Xml.set_properties"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_properties()</span></code></a></p></td>
+<td><p>一次性设置一个或多个属性。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_style" title="Xml.add_style"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_style()</span></code></a></p></td>
+<td><p>添加一个 <code class="xref any docutils literal notranslate"><span class="pre">set_</span></code> 方法未提供支持的样式。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_class" title="Xml.add_class"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_class()</span></code></a></p></td>
+<td><p>添加 <code class="xref any docutils literal notranslate"><span class="pre">class</span></code> 属性。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_text_indent" title="Xml.set_text_indent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_text_indent()</span></code></a></p></td>
+<td><p>设置首行文本缩进，仅适用于块级节点。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.tagname" title="Xml.tagname"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tagname</span></code></a></p></td>
+<td><p>HTML 标签名称（如 <em class="htmltag">p</em>），如果是文本节点则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.text" title="Xml.text"><code class="xref py py-attr docutils literal notranslate"><span class="pre">text</span></code></a></p></td>
+<td><p>节点文本内容，如果是标签节点则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.is_text" title="Xml.is_text"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_text</span></code></a></p></td>
+<td><p>判断该节点是否为文本节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.first_child" title="Xml.first_child"><code class="xref py py-attr docutils literal notranslate"><span class="pre">first_child</span></code></a></p></td>
+<td><p>该节点的第一个子节点（若无则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>）。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.last_child" title="Xml.last_child"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_child</span></code></a></p></td>
+<td><p>该节点的最后一个子节点（若无则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>）。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="annot.html#Annot.next" title="Annot.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">next</span></code></a></p></td>
+<td><p>该层级中的下一个节点（若无则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>）。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.previous" title="Xml.previous"><code class="xref py py-attr docutils literal notranslate"><span class="pre">previous</span></code></a></p></td>
+<td><p>该层级中的上一个节点。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.root" title="Xml.root"><code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code></a></p></td>
+<td><p>DOM 树的顶级节点，其标签名为 <em class="htmltag">html</em>。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="Xml">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Xml</span></span><a class="headerlink" href="#Xml" title="永久链接至目标">#</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_bullet_list">
+<span class="sig-name descname"><span class="pre">add_bullet_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_bullet_list" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">ul</em> 标签（无序列表），上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul">ul</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_codeblock">
+<span class="sig-name descname"><span class="pre">add_codeblock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_codeblock" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">pre</em> 标签（代码块），上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre">pre</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_description_list">
+<span class="sig-name descname"><span class="pre">add_description_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_description_list" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">dl</em> 标签（描述列表），上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl">dl</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_division">
+<span class="sig-name descname"><span class="pre">add_division</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_division" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">div</em> 标签，上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">div</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_header">
+<span class="sig-name descname"><span class="pre">add_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_header" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个标题标签（<em class="htmltag">h1</em> 到 <em class="htmltag">h6</em>），上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements">headings</a>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>int</em>) – 一个 1 - 6 之间的数值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_horizontal_line">
+<span class="sig-name descname"><span class="pre">add_horizontal_line</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_horizontal_line" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">hr</em> 标签（水平分割线）。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr">hr</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_image">
+<span class="sig-name descname"><span class="pre">add_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_image" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">img</em> 标签（图片）。该方法将在 DOM 中包含指定名称的图片。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – 图片的文件名。该文件 <strong>必须是</strong> <a class="reference internal" href="archive-class.html#archive"><span class="std std-ref">Archive</span></a> 参数中的成员，且属于 <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> 构造函数的输入。</p></li>
+<li><p><strong>width</strong> – 如果提供，可以是绝对值（int），也可以是类似 “30%” 的百分比字符串。百分比值表示相对于 <a class="reference internal" href="story-class.html#Story.place" title="Story.place"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.place()</span></code></a> 方法中 <code class="xref any docutils literal notranslate"><span class="pre">where</span></code> 矩形区域的宽度。如果提供 <a class="reference internal" href="irect.html#IRect.width" title="IRect.width"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> 而省略 <a class="reference internal" href="irect.html#IRect.height" title="IRect.height"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">height</span></code></a>，则图片将保持其纵横比。</p></li>
+<li><p><strong>height</strong> – 如果提供，可以是绝对值（int），也可以是类似 “30%” 的百分比字符串。百分比值表示相对于 <a class="reference internal" href="story-class.html#Story.place" title="Story.place"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Story.place()</span></code></a> 方法中 <code class="xref any docutils literal notranslate"><span class="pre">where</span></code> 矩形区域的高度。如果提供 <a class="reference internal" href="irect.html#IRect.height" title="IRect.height"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">height</span></code></a> 而省略 <a class="reference internal" href="irect.html#IRect.width" title="IRect.width"><code class="xref any py py-attr docutils literal notranslate"><span class="pre">width</span></code></a>，则图片的纵横比将被保留。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_link">
+<span class="sig-name descname"><span class="pre">add_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">href</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_link" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">a</em> 标签（超链接）—— 行内元素，作为文本处理。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>href</strong> (<em>str</em>) – 目标 URL。</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – 要显示的文本。如果省略，则默认显示 <code class="xref any docutils literal notranslate"><span class="pre">href</span></code> 作为文本。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_number_list">
+<span class="sig-name descname"><span class="pre">add_number_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_number_list" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">ol</em> 标签（有序列表），上下文管理器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_paragraph">
+<span class="sig-name descname"><span class="pre">add_paragraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_paragraph" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">p</em> 标签（段落），上下文管理器。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_span">
+<span class="sig-name descname"><span class="pre">add_span</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_span" title="永久链接至目标">#</a></dt>
+<dd><p>添加一个 <em class="htmltag">span</em> 标签，上下文管理器。参见 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span">span</a>。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_subscript">
+<span class="sig-name descname"><span class="pre">add_subscript</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_subscript" title="永久链接至目标">#</a></dt>
+<dd><p>添加“下标”文本（<em class="htmltag">sub</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_superscript">
+<span class="sig-name descname"><span class="pre">add_superscript</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_superscript" title="永久链接至目标">#</a></dt>
+<dd><p>添加“上标”文本（<em class="htmltag">sup</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_code">
+<span class="sig-name descname"><span class="pre">add_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_code" title="永久链接至目标">#</a></dt>
+<dd><p>添加“代码”文本（<em class="htmltag">code</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_var">
+<span class="sig-name descname"><span class="pre">add_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_var" title="永久链接至目标">#</a></dt>
+<dd><p>添加“变量”文本（<em class="htmltag">var</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_samp">
+<span class="sig-name descname"><span class="pre">add_samp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_samp" title="永久链接至目标">#</a></dt>
+<dd><p>添加“示例输出”文本（<em class="htmltag">samp</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_kbd">
+<span class="sig-name descname"><span class="pre">add_kbd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_kbd" title="永久链接至目标">#</a></dt>
+<dd><p>添加“键盘输入”文本（<em class="htmltag">kbd</em> 标签）—— 行内元素，作为文本处理。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_text">
+<span class="sig-name descname"><span class="pre">add_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_text" title="永久链接至目标">#</a></dt>
+<dd><p>添加文本字符串。换行符 <code class="docutils literal notranslate"><span class="pre">\n</span></code> 会被视为 <em class="htmltag">br</em> 标签。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_align">
+<span class="sig-name descname"><span class="pre">set_align</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_align" title="永久链接至目标">#</a></dt>
+<dd><p>设置文本对齐方式，仅适用于块级标签。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 可以是 <a class="reference internal" href="vars.html#textalign"><span class="std std-ref">文本对齐</span></a> 中的值，或者 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align">text-align</a> 中的有效值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_attribute">
+<span class="sig-name descname"><span class="pre">set_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_attribute" title="永久链接至目标">#</a></dt>
+<dd><p>设置一个属性键及其值（值可以为空）。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – 属性名称。</p></li>
+<li><p><strong>value</strong> (<em>str</em>) – （可选）属性值。</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.get_attributes">
+<span class="sig-name descname"><span class="pre">get_attributes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.get_attributes" title="永久链接至目标">#</a></dt>
+<dd><p>以字典形式获取当前节点的所有属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>一个包含节点属性及其值的字典。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.get_attribute_value">
+<span class="sig-name descname"><span class="pre">get_attribute_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.get_attribute_value" title="永久链接至目标">#</a></dt>
+<dd><p>获取属性 <code class="xref any docutils literal notranslate"><span class="pre">key</span></code> 的值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – 属性名称。</p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>一个包含 <code class="xref any docutils literal notranslate"><span class="pre">key</span></code> 对应值的字符串。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.remove_attribute">
+<span class="sig-name descname"><span class="pre">remove_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.remove_attribute" title="永久链接至目标">#</a></dt>
+<dd><p>从节点中移除属性 <code class="xref any docutils literal notranslate"><span class="pre">key</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – 属性名称。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_bgcolor">
+<span class="sig-name descname"><span class="pre">set_bgcolor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_bgcolor" title="永久链接至目标">#</a></dt>
+<dd><p>设置背景颜色，仅适用于块级标签。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 可以是 RGB 值，例如 (255, 0, 0)（表示“红色”），或者是 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a> 允许的值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_bold">
+<span class="sig-name descname"><span class="pre">set_bold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_bold" title="永久链接至目标">#</a></dt>
+<dd><p>设置加粗样式，可以开启、关闭或指定具体的字符串值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">False</span></code>，或者一个有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight">font-weight</a> 值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_color">
+<span class="sig-name descname"><span class="pre">set_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_color" title="永久链接至目标">#</a></dt>
+<dd><p>设置后续文本的颜色。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 可以是 RGB 值，例如 (255, 0, 0)（表示“红色”），或者是有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">color</a> 值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_columns">
+<span class="sig-name descname"><span class="pre">set_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_columns" title="永久链接至目标">#</a></dt>
+<dd><p>设置列数。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 一个有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/columns">columns</a> 值。</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>目前未生效，未来 MuPDF 版本将支持。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_font">
+<span class="sig-name descname"><span class="pre">set_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_font" title="永久链接至目标">#</a></dt>
+<dd><p>设置字体系列。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – 例如 “sans-serif”。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_fontsize">
+<span class="sig-name descname"><span class="pre">set_fontsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_fontsize" title="永久链接至目标">#</a></dt>
+<dd><p>设置后续文本的字体大小。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 一个浮点数，或者是有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size">font-size</a> 值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_id">
+<span class="sig-name descname"><span class="pre">set_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unqid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_id" title="永久链接至目标">#</a></dt>
+<dd><p>设置 <em class="htmltag">id</em>，用于在 DOM 中唯一标识该节点。可用于轻松定位节点，以便检查或修改。系统会检查 ID 的唯一性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>unqid</strong> (<em>str</em>) – 节点的唯一 ID 字符串。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_italic">
+<span class="sig-name descname"><span class="pre">set_italic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_italic" title="永久链接至目标">#</a></dt>
+<dd><p>设置斜体，可以开启、关闭或指定具体的字符串值。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – <code class="xref any docutils literal notranslate"><span class="pre">True</span></code>、<code class="xref any docutils literal notranslate"><span class="pre">False</span></code>，或一个有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style">font-style</a> 值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_leading">
+<span class="sig-name descname"><span class="pre">set_leading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_leading" title="永久链接至目标">#</a></dt>
+<dd><p>设置块间文本间距（<code class="xref any docutils literal notranslate"><span class="pre">-mupdf-leading</span></code>），仅适用于块级节点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – 以点（points）为单位的间距，表示与前一个块的距离。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_lineheight">
+<span class="sig-name descname"><span class="pre">set_lineheight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_lineheight" title="永久链接至目标">#</a></dt>
+<dd><p>设置行高。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 例如 1.5（表示 <code class="xref any docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">fontsize</span></code>），或一个有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/line-height">line-height</a> 值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_margins">
+<span class="sig-name descname"><span class="pre">set_margins</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_margins" title="永久链接至目标">#</a></dt>
+<dd><p>设置边距。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 一个浮点数或包含最多 4 个值的字符串。参考 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin">CSS 文档</a>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_pagebreak_after">
+<span class="sig-name descname"><span class="pre">set_pagebreak_after</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_pagebreak_after" title="永久链接至目标">#</a></dt>
+<dd><p>在该节点后插入分页符。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_pagebreak_before">
+<span class="sig-name descname"><span class="pre">set_pagebreak_before</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_pagebreak_before" title="永久链接至目标">#</a></dt>
+<dd><p>在该节点前插入分页符。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_properties">
+<span class="sig-name descname"><span class="pre">set_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">align</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">italic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leading</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineheight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagebreak_after</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagebreak_before</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unqid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_properties" title="永久链接至目标">#</a></dt>
+<dd><p>一次性设置一个或多个属性。各参数的含义与对应的 <code class="xref any docutils literal notranslate"><span class="pre">set_</span></code> 方法相同。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>此方法直接将属性附加到节点，而 <code class="xref any docutils literal notranslate"><span class="pre">set_</span></code> 方法通常会在当前节点下生成一个新的 <em class="htmltag">span</em>，并应用相应的属性。因此，例如要“全局”设置 <em class="htmltag">body</em> 的某些属性，必须使用此方法。</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_style">
+<span class="sig-name descname"><span class="pre">add_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_style" title="永久链接至目标">#</a></dt>
+<dd><p>添加某些 <code class="xref any docutils literal notranslate"><span class="pre">set_</span></code> 方法不支持的样式属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – 任何有效的 CSS 样式值。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.add_class">
+<span class="sig-name descname"><span class="pre">add_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.add_class" title="永久链接至目标">#</a></dt>
+<dd><p>添加 <code class="xref any docutils literal notranslate"><span class="pre">class</span></code> 属性。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – 类名。必须在 HTML 或 CSS 源代码中已定义。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.set_text_indent">
+<span class="sig-name descname"><span class="pre">set_text_indent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.set_text_indent" title="永久链接至目标">#</a></dt>
+<dd><p>设置首行缩进，仅适用于块级节点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – 一个有效的 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-indent">text-indent</a> 值。请注意，负值无效。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.append_child">
+<span class="sig-name descname"><span class="pre">append_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.append_child" title="永久链接至目标">#</a></dt>
+<dd><p>添加子节点。这是一个低级方法，其他方法（如 <a class="reference internal" href="#Xml.add_paragraph" title="Xml.add_paragraph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.add_paragraph()</span></code></a>）会调用它。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> – 要追加的 <a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a> 节点。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.create_text_node">
+<span class="sig-name descname"><span class="pre">create_text_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.create_text_node" title="永久链接至目标">#</a></dt>
+<dd><p>为当前节点创建文本内容。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – 要添加的文本。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>创建的文本节点。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.create_element">
+<span class="sig-name descname"><span class="pre">create_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.create_element" title="永久链接至目标">#</a></dt>
+<dd><p>创建具有指定标签的新节点。这是一个低级方法，其他方法（如 <a class="reference internal" href="#Xml.add_paragraph" title="Xml.add_paragraph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.add_paragraph()</span></code></a>）会调用它。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tag</strong> (<em>str</em>) – 元素标签。</p>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>创建的元素。要将其绑定到 DOM，请使用 <a class="reference internal" href="#Xml.append_child" title="Xml.append_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.append_child()</span></code></a>。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.insert_before">
+<span class="sig-name descname"><span class="pre">insert_before</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.insert_before" title="永久链接至目标">#</a></dt>
+<dd><p>在当前节点之前插入指定元素 <code class="xref any docutils literal notranslate"><span class="pre">elem</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>elem</strong> – 一个 <a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a> 元素。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.insert_after">
+<span class="sig-name descname"><span class="pre">insert_after</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elem</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.insert_after" title="永久链接至目标">#</a></dt>
+<dd><p>在当前节点之后插入指定元素 <code class="xref any docutils literal notranslate"><span class="pre">elem</span></code>。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>elem</strong> – 一个 <a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a> 元素。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.clone" title="永久链接至目标">#</a></dt>
+<dd><p>复制当前节点，可通过 <a class="reference internal" href="#Xml.append_child" title="Xml.append_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.append_child()</span></code></a> 添加到 DOM，或通过 <a class="reference internal" href="#Xml.insert_before" title="Xml.insert_before"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.insert_before()</span></code></a> 、 <a class="reference internal" href="#Xml.insert_after" title="Xml.insert_after"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.insert_after()</span></code></a> 插入。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>当前节点的克隆 (<a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a>)。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.remove" title="永久链接至目标">#</a></dt>
+<dd><p>从 DOM 中移除当前节点。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Xml.debug" title="永久链接至目标">#</a></dt>
+<dd><p>用于调试，以简化的形式打印该节点的结构。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.find" title="永久链接至目标">#</a></dt>
+<dd><p>在当前节点下，查找第一个符合指定 <code class="xref any docutils literal notranslate"><span class="pre">tag</span></code>、属性 <code class="xref any docutils literal notranslate"><span class="pre">att</span></code> 和值 <code class="xref any docutils literal notranslate"><span class="pre">match</span></code> 的节点。</p>
+<dl class="field-list simple">
+<dt class="field-odd">参数<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<em>str</em>) – 限定搜索范围的标签。可以为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，表示不限制。</p></li>
+<li><p><strong>att</strong> (<em>str</em>) – 需要检查的属性。可以为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+<li><p><strong>match</strong> (<em>str</em>) – 需要匹配的属性值。可以为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p></li>
+</ul>
+</dd>
+<dt class="field-even">返回类型<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a></p>
+</dd>
+<dt class="field-odd">返回<span class="colon">:</span></dt>
+<dd class="field-odd"><p>如果未找到，则返回 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，否则返回第一个匹配的节点。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Xml.find_next">
+<span class="sig-name descname"><span class="pre">find_next</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">att</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Xml.find_next" title="永久链接至目标">#</a></dt>
+<dd><p>继续上一次的 <a class="reference internal" href="#Xml.find" title="Xml.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.find()</span></code></a> 或 <a class="reference internal" href="#Xml.find_next" title="Xml.find_next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_next()</span></code></a> 操作，使用相同的搜索条件。</p>
+<dl class="field-list simple">
+<dt class="field-odd">返回类型<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a></p>
+</dd>
+<dt class="field-even">返回<span class="colon">:</span></dt>
+<dd class="field-even"><p>如果未找到更多匹配项，则返回 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>，否则返回下一个匹配的节点。</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.tagname">
+<span class="sig-name descname"><span class="pre">tagname</span></span><a class="headerlink" href="#Xml.tagname" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的 HTML 标签名，例如 <em class="htmltag">p</em>，如果是文本节点，则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.text">
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#Xml.text" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的文本内容，如果是标签节点，则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.is_text">
+<span class="sig-name descname"><span class="pre">is_text</span></span><a class="headerlink" href="#Xml.is_text" title="永久链接至目标">#</a></dt>
+<dd><p>检查当前节点是否为文本节点。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.first_child">
+<span class="sig-name descname"><span class="pre">first_child</span></span><a class="headerlink" href="#Xml.first_child" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的第一个子节点，如果没有，则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.last_child">
+<span class="sig-name descname"><span class="pre">last_child</span></span><a class="headerlink" href="#Xml.last_child" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的最后一个子节点，如果没有，则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.next">
+<span class="sig-name descname"><span class="pre">next</span></span><a class="headerlink" href="#Xml.next" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的同级下一个节点，如果没有，则为 <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.previous">
+<span class="sig-name descname"><span class="pre">previous</span></span><a class="headerlink" href="#Xml.previous" title="永久链接至目标">#</a></dt>
+<dd><p>当前节点的同级上一个节点。</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="Xml.root">
+<span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#Xml.root" title="永久链接至目标">#</a></dt>
+<dd><p>DOM 的顶层节点，其标签名为 <em class="htmltag">html</em>。</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<input class="tab-input" id="tab-set--0-input--2" name="tab-set--0" type="radio"><label class="tab-label" for="tab-set--0-input--2">英文</label><div class="tab-content docutils container">
+<ul class="simple">
+<li><p>New in v1.21.0</p></li>
+</ul>
+<p>This represents an HTML or an XML node. It is a helper class intended to access the DOM (Document Object Model) content of a <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a> object.</p>
+<p>There is no need to ever directly construct an <a class="reference internal" href="#xml"><span class="std std-ref">Xml</span></a> object: after creating a <a class="reference internal" href="story-class.html#story"><span class="std std-ref">Story</span></a>, simply take <a class="reference internal" href="story-class.html#Story.body" title="Story.body"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Story.body</span></code></a> – which is an Xml node – and use it to navigate your way through the story’s DOM.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Method / Attribute</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_bullet_list" title="Xml.add_bullet_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_bullet_list()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">ul</em> tag - bulleted list, context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_codeblock" title="Xml.add_codeblock"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_codeblock()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">pre</em> tag, context manager.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_description_list" title="Xml.add_description_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_description_list()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">dl</em> tag, context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_division" title="Xml.add_division"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_division()</span></code></a></p></td>
+<td><p>add a <em class="htmltag">div</em> tag (renamed from “section”), context manager.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_header" title="Xml.add_header"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_header()</span></code></a></p></td>
+<td><p>Add a header tag (one of <em class="htmltag">h1</em> to <em class="htmltag">h6</em>), context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_horizontal_line" title="Xml.add_horizontal_line"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_horizontal_line()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">hr</em> tag.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_image" title="Xml.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_image()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">img</em> tag.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_link" title="Xml.add_link"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_link()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">a</em> tag.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_number_list" title="Xml.add_number_list"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_number_list()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">ol</em> tag, context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_paragraph" title="Xml.add_paragraph"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_paragraph()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">p</em> tag.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_span" title="Xml.add_span"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_span()</span></code></a></p></td>
+<td><p>Add a <em class="htmltag">span</em> tag, context manager.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_subscript" title="Xml.add_subscript"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_subscript()</span></code></a></p></td>
+<td><p>Add subscript text(<em class="htmltag">sub</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_superscript" title="Xml.add_superscript"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_superscript()</span></code></a></p></td>
+<td><p>Add subscript text (<em class="htmltag">sup</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_code" title="Xml.add_code"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_code()</span></code></a></p></td>
+<td><p>Add code text (<em class="htmltag">code</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_var" title="Xml.add_var"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_var()</span></code></a></p></td>
+<td><p>Add code text (<em class="htmltag">code</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_samp" title="Xml.add_samp"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_samp()</span></code></a></p></td>
+<td><p>Add code text (<em class="htmltag">code</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_kbd" title="Xml.add_kbd"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_kbd()</span></code></a></p></td>
+<td><p>Add code text (<em class="htmltag">code</em> tag) - inline element, treated like text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_text" title="Xml.add_text"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_text()</span></code></a></p></td>
+<td><p>Add a text string. Line breaks <code class="docutils literal notranslate"><span class="pre">\n</span></code> are honored as <em class="htmltag">br</em> tags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.append_child" title="Xml.append_child"><code class="xref py py-meth docutils literal notranslate"><span class="pre">append_child()</span></code></a></p></td>
+<td><p>Append a child node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.clone" title="Xml.clone"><code class="xref py py-meth docutils literal notranslate"><span class="pre">clone()</span></code></a></p></td>
+<td><p>Make a copy if this node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.create_element" title="Xml.create_element"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_element()</span></code></a></p></td>
+<td><p>Make a new node with a given tag name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.create_text_node" title="Xml.create_text_node"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_text_node()</span></code></a></p></td>
+<td><p>Create direct text for the current node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.find" title="Xml.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find()</span></code></a></p></td>
+<td><p>Find a sub-node with given properties.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.find_next" title="Xml.find_next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">find_next()</span></code></a></p></td>
+<td><p>Repeat previous “find” with the same criteria.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.insert_after" title="Xml.insert_after"><code class="xref py py-meth docutils literal notranslate"><span class="pre">insert_after()</span></code></a></p></td>
+<td><p>Insert an element after current node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.insert_before" title="Xml.insert_before"><code class="xref py py-meth docutils literal notranslate"><span class="pre">insert_before()</span></code></a></p></td>
+<td><p>Insert an element before current node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.remove" title="Xml.remove"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove()</span></code></a></p></td>
+<td><p>Remove this node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_align" title="Xml.set_align"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_align()</span></code></a></p></td>
+<td><p>Set the alignment using a CSS style spec. Only works for block-level tags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_attribute" title="Xml.set_attribute"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_attribute()</span></code></a></p></td>
+<td><p>Set an arbitrary key to some value (which may be empty).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_bgcolor" title="Xml.set_bgcolor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_bgcolor()</span></code></a></p></td>
+<td><p>Set the background color. Only works for block-level tags.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_bold" title="Xml.set_bold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_bold()</span></code></a></p></td>
+<td><p>Set bold on or off or to some string value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_color" title="Xml.set_color"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_color()</span></code></a></p></td>
+<td><p>Set text color.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_columns" title="Xml.set_columns"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_columns()</span></code></a></p></td>
+<td><p>Set the number of columns. Argument may be any valid number or string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_font" title="Xml.set_font"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_font()</span></code></a></p></td>
+<td><p>Set the font-family, e.g. “sans-serif”.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_fontsize" title="Xml.set_fontsize"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_fontsize()</span></code></a></p></td>
+<td><p>Set the font size. Either a float or a valid HTML/CSS string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_id" title="Xml.set_id"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_id()</span></code></a></p></td>
+<td><p>Set a <em class="htmltag">id</em>. A check for uniqueness is performed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_italic" title="Xml.set_italic"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_italic()</span></code></a></p></td>
+<td><p>Set italic on or off or to some string value.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_leading" title="Xml.set_leading"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_leading()</span></code></a></p></td>
+<td><p>Set inter-block text distance (<code class="xref any docutils literal notranslate"><span class="pre">-mupdf-leading</span></code>), only works on block-level nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_lineheight" title="Xml.set_lineheight"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_lineheight()</span></code></a></p></td>
+<td><p>Set height of a line. Float like 1.5, which sets to <code class="xref any docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">fontsize</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_margins" title="Xml.set_margins"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_margins()</span></code></a></p></td>
+<td><p>Set the margin(s), float or string with up to 4 values.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_pagebreak_after" title="Xml.set_pagebreak_after"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_pagebreak_after()</span></code></a></p></td>
+<td><p>Insert a page break after this node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_pagebreak_before" title="Xml.set_pagebreak_before"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_pagebreak_before()</span></code></a></p></td>
+<td><p>Insert a page break before this node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.set_properties" title="Xml.set_properties"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_properties()</span></code></a></p></td>
+<td><p>Set any or all desired properties in one call.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.add_style" title="Xml.add_style"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_style()</span></code></a></p></td>
+<td><p>Set (add) a “style” that is not supported by its own <code class="xref any docutils literal notranslate"><span class="pre">set_</span></code> method.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.add_class" title="Xml.add_class"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_class()</span></code></a></p></td>
+<td><p>Set (add) a “class” attribute.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.set_text_indent" title="Xml.set_text_indent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_text_indent()</span></code></a></p></td>
+<td><p>Set indentation for first textblock line. Only works for block-level nodes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.tagname" title="Xml.tagname"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tagname</span></code></a></p></td>
+<td><p>Either the HTML tag name like <em class="htmltag">p</em> or <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> if a text node.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.text" title="Xml.text"><code class="xref py py-attr docutils literal notranslate"><span class="pre">text</span></code></a></p></td>
+<td><p>Either the node’s text or <code class="xref any docutils literal notranslate"><span class="pre">None</span></code> if a tag node.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.is_text" title="Xml.is_text"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_text</span></code></a></p></td>
+<td><p>Check if the node is a text.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.first_child" title="Xml.first_child"><code class="xref py py-attr docutils literal notranslate"><span class="pre">first_child</span></code></a></p></td>
+<td><p>Contains the first node one level below this one (or <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.last_child" title="Xml.last_child"><code class="xref py py-attr docutils literal notranslate"><span class="pre">last_child</span></code></a></p></td>
+<td><p>Contains the last node one level below this one (or <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="annot.html#Annot.next" title="Annot.next"><code class="xref py py-attr docutils literal notranslate"><span class="pre">next</span></code></a></p></td>
+<td><p>The next node at the same level (or <code class="xref any docutils literal notranslate"><span class="pre">None</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#Xml.previous" title="Xml.previous"><code class="xref py py-attr docutils literal notranslate"><span class="pre">previous</span></code></a></p></td>
+<td><p>The previous node at the same level.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#Xml.root" title="Xml.root"><code class="xref py py-attr docutils literal notranslate"><span class="pre">root</span></code></a></p></td>
+<td><p>The top node of the DOM, which hence has the tagname <em class="htmltag">html</em>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Class API</strong></p>
+</div>
+</div>
+<section id="id2">
+<h2>设置文本属性<a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h2>
+<p>Setting Text properties</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--1-input--1" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--1">中文</label><div class="tab-content docutils container">
+<p>在 HTML 中，标签可以嵌套，使最内层文本 <strong>继承</strong> 其父标签外层标签的属性。例如：</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;p&gt;&lt;b&gt;some</span> <span class="pre">bold</span> <span class="pre">text&lt;i&gt;this</span> <span class="pre">is</span> <span class="pre">bold</span> <span class="pre">and</span> <span class="pre">italic&lt;/i&gt;&lt;/b&gt;regular</span> <span class="pre">text&lt;/p&gt;</span></code>。</p>
+<p>为了实现相同的效果，方法如 <a class="reference internal" href="#Xml.set_bold" title="Xml.set_bold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.set_bold()</span></code></a> 和 <a class="reference internal" href="#Xml.set_italic" title="Xml.set_italic"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.set_italic()</span></code></a> 会在当前节点下创建一个临时的 <em class="htmltag">span</em>，并应用相应的样式。</p>
+<p>此外，这些方法会返回它们的父节点，因此可以进行链式调用。</p>
+</div>
+<input class="tab-input" id="tab-set--1-input--2" name="tab-set--1" type="radio"><label class="tab-label" for="tab-set--1-input--2">英文</label><div class="tab-content docutils container">
+<p>In HTML tags can be nested such that innermost text <strong>inherits properties</strong> from the tag enveloping its parent tag. For example <code class="xref any docutils literal notranslate"><span class="pre">&lt;p&gt;</span></code>.</p>
+<p>To achieve the same effect, methods like <a class="reference internal" href="#Xml.set_bold" title="Xml.set_bold"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.set_bold()</span></code></a> and <a class="reference internal" href="#Xml.set_italic" title="Xml.set_italic"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Xml.set_italic()</span></code></a> each open a temporary <em class="htmltag">span</em> with the desired property underneath the current node.</p>
+<p>In addition, these methods return there parent node, so they can be concatenated with each other.</p>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>上下文管理器支持<a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h2>
+<p>Context Manager support</p>
+<div class="tab-set docutils container">
+<input checked="True" class="tab-input" id="tab-set--2-input--1" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--1">中文</label><div class="tab-content docutils container">
+<p>向 DOM 添加节点的标准方式如下:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">body</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">body</span>
+<span class="n">para</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">()</span>  <span class="c1"># 添加一个段落</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_bold</span><span class="p">()</span>  <span class="c1"># 接下来的文本将加粗</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;some bold text&quot;</span><span class="p">)</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">()</span>  <span class="c1"># 接下来的文本将额外变为斜体</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;this is bold and italic&quot;</span><span class="p">)</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_bold</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 之后的所有文本恢复正常</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;regular text&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>标记为“上下文管理器”的方法可以方便地这样使用:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">body</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">body</span>
+<span class="k">with</span> <span class="n">body</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">()</span> <span class="k">as</span> <span class="n">para</span><span class="p">:</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_bold</span><span class="p">()</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;some bold text&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">()</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;this is bold and italic&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_bold</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;regular text&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;more regular text&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<input class="tab-input" id="tab-set--2-input--2" name="tab-set--2" type="radio"><label class="tab-label" for="tab-set--2-input--2">英文</label><div class="tab-content docutils container">
+<p>The standard way to add nodes to a DOM is this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">body</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">body</span>
+<span class="n">para</span> <span class="o">=</span> <span class="n">body</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">()</span>  <span class="c1"># add a paragraph</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_bold</span><span class="p">()</span>  <span class="c1"># text that follows will be bold</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;some bold text&quot;</span><span class="p">)</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">()</span>  <span class="c1"># text that follows will additionally be italic</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_txt</span><span class="p">(</span><span class="s2">&quot;this is bold and italic&quot;</span><span class="p">)</span>
+<span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_bold</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># all following text will be regular</span>
+<span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;regular text&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Methods that are flagged as “context managers” can conveniently be used in this way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">body</span> <span class="o">=</span> <span class="n">story</span><span class="o">.</span><span class="n">body</span>
+<span class="k">with</span> <span class="n">body</span><span class="o">.</span><span class="n">add_paragraph</span><span class="p">()</span> <span class="k">as</span> <span class="n">para</span><span class="p">:</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_bold</span><span class="p">()</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;some bold text&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">()</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;this is bold and italic&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">set_italic</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">set_bold</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;regular text&quot;</span><span class="p">)</span>
+   <span class="n">para</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="s2">&quot;more regular text&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="feedbackLink"><a id="feedbackLinkBottom" target=_blank>您对此页面有任何反馈吗？</b></a></div><hr class="docutils" />
+<script>
+
+   var url_string = window.location.href;
+   var a = document.getElementById('feedbackLinkBottom');
+   a.setAttribute("href", "https://artifex.com/contributor/feedback.php?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link&url="+url_string);
+
+</script>
+
+<p style="color:#999" id="footerDisclaimer">本软件按原样提供，不作任何明示或暗示担保。本软件根据许可分发，除非根据该许可条款明确授权，否则不得复制、修改或分发。请参阅 <a href="https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link">artifex.com</a> 上的许可信息，或联系 Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States 了解更多信息。</p>
+
+
+
+<script>
+
+   let docLanguage = document.getElementsByTagName('html')[0].getAttribute('lang');
+
+   function getHeaderAndFooterTranslation(str) {
+       if (docLanguage == "ja") {
+           if (str == "Do you have any feedback on this page?") {
+               return "このページに関するご意見はありますか？";
+           } else if (str == "Find <b>#pymupdf</b> on <b>Discord</b>") {
+               return "<b>Discord</b>の <b>#pymupdf</b> を見つける";
+           } else if (str == "This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.") {
+
+               return "このソフトウェアは無保証で提供されており、明示または黙示を問わず、いかなる保証もありません。このソフトウェアはライセンスの下で配布され、ライセンスの条件に明示的に許可されている場合を除き、コピー、変更、または配布してはなりません。ライセンシング情報については、<a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a>でライセンス情報を参照するか、アメリカ合衆国カリフォルニア州サンフランシスコのArtifex Software Inc. までお問い合わせください。"
+
+           }
+       }
+
+       return str;
+   }
+
+   document.getElementById("findOnDiscord").innerHTML = getHeaderAndFooterTranslation("Find <b>#pymupdf</b> on <b>Discord</b>");
+   document.getElementById("feedbackLinkTop").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("feedbackLinkBottom").innerHTML = getHeaderAndFooterTranslation("Do you have any feedback on this page?");
+   document.getElementById("footerDisclaimer").innerHTML = getHeaderAndFooterTranslation("This software is provided AS-IS with no warranty, either express or implied. This software is distributed under license and may not be copied, modified or distributed except as expressly authorized under the terms of that license. Refer to licensing information at <a href='https://www.artifex.com?utm_source=rtd-pymupdf&utm_medium=rtd&utm_content=footer-link'>artifex.com</a> or contact Artifex Software Inc., 39 Mesa Street, Suite 108A, San Francisco CA 94129, United States for further information.");
+
+
+   // more translation for admonition-title as the in-built translation isn't great, needs: 注釈 -> 注
+   if (docLanguage == "ja") {
+       const collection = document.getElementsByClassName("admonition-title");
+       for (var i=0;i<collection.length;i++) {
+           collection[i].innerHTML = "注";
+       }
+   }
+
+
+</script><p class="footer-version">This documentation covers all versions up to 1.25.4.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="algebra.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">几何对象的运算符代数</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="widget.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Widget</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2015-2025, Artifex
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 19. 3月 2025</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Xml</a><ul>
+<li><a class="reference internal" href="#Xml"><code class="docutils literal notranslate"><span class="pre">Xml</span></code></a><ul>
+<li><a class="reference internal" href="#Xml.add_bullet_list"><code class="docutils literal notranslate"><span class="pre">Xml.add_bullet_list()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_codeblock"><code class="docutils literal notranslate"><span class="pre">Xml.add_codeblock()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_description_list"><code class="docutils literal notranslate"><span class="pre">Xml.add_description_list()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_division"><code class="docutils literal notranslate"><span class="pre">Xml.add_division()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_header"><code class="docutils literal notranslate"><span class="pre">Xml.add_header()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_horizontal_line"><code class="docutils literal notranslate"><span class="pre">Xml.add_horizontal_line()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_image"><code class="docutils literal notranslate"><span class="pre">Xml.add_image()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_link"><code class="docutils literal notranslate"><span class="pre">Xml.add_link()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_number_list"><code class="docutils literal notranslate"><span class="pre">Xml.add_number_list()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_paragraph"><code class="docutils literal notranslate"><span class="pre">Xml.add_paragraph()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_span"><code class="docutils literal notranslate"><span class="pre">Xml.add_span()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_subscript"><code class="docutils literal notranslate"><span class="pre">Xml.add_subscript()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_superscript"><code class="docutils literal notranslate"><span class="pre">Xml.add_superscript()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_code"><code class="docutils literal notranslate"><span class="pre">Xml.add_code()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_var"><code class="docutils literal notranslate"><span class="pre">Xml.add_var()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_samp"><code class="docutils literal notranslate"><span class="pre">Xml.add_samp()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_kbd"><code class="docutils literal notranslate"><span class="pre">Xml.add_kbd()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_text"><code class="docutils literal notranslate"><span class="pre">Xml.add_text()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_align"><code class="docutils literal notranslate"><span class="pre">Xml.set_align()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_attribute"><code class="docutils literal notranslate"><span class="pre">Xml.set_attribute()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.get_attributes"><code class="docutils literal notranslate"><span class="pre">Xml.get_attributes()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.get_attribute_value"><code class="docutils literal notranslate"><span class="pre">Xml.get_attribute_value()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.remove_attribute"><code class="docutils literal notranslate"><span class="pre">Xml.remove_attribute()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_bgcolor"><code class="docutils literal notranslate"><span class="pre">Xml.set_bgcolor()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_bold"><code class="docutils literal notranslate"><span class="pre">Xml.set_bold()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_color"><code class="docutils literal notranslate"><span class="pre">Xml.set_color()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_columns"><code class="docutils literal notranslate"><span class="pre">Xml.set_columns()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_font"><code class="docutils literal notranslate"><span class="pre">Xml.set_font()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_fontsize"><code class="docutils literal notranslate"><span class="pre">Xml.set_fontsize()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_id"><code class="docutils literal notranslate"><span class="pre">Xml.set_id()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_italic"><code class="docutils literal notranslate"><span class="pre">Xml.set_italic()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_leading"><code class="docutils literal notranslate"><span class="pre">Xml.set_leading()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_lineheight"><code class="docutils literal notranslate"><span class="pre">Xml.set_lineheight()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_margins"><code class="docutils literal notranslate"><span class="pre">Xml.set_margins()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_pagebreak_after"><code class="docutils literal notranslate"><span class="pre">Xml.set_pagebreak_after()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_pagebreak_before"><code class="docutils literal notranslate"><span class="pre">Xml.set_pagebreak_before()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_properties"><code class="docutils literal notranslate"><span class="pre">Xml.set_properties()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_style"><code class="docutils literal notranslate"><span class="pre">Xml.add_style()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.add_class"><code class="docutils literal notranslate"><span class="pre">Xml.add_class()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.set_text_indent"><code class="docutils literal notranslate"><span class="pre">Xml.set_text_indent()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.append_child"><code class="docutils literal notranslate"><span class="pre">Xml.append_child()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.create_text_node"><code class="docutils literal notranslate"><span class="pre">Xml.create_text_node()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.create_element"><code class="docutils literal notranslate"><span class="pre">Xml.create_element()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.insert_before"><code class="docutils literal notranslate"><span class="pre">Xml.insert_before()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.insert_after"><code class="docutils literal notranslate"><span class="pre">Xml.insert_after()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.clone"><code class="docutils literal notranslate"><span class="pre">Xml.clone()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.remove"><code class="docutils literal notranslate"><span class="pre">Xml.remove()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.debug"><code class="docutils literal notranslate"><span class="pre">Xml.debug()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.find"><code class="docutils literal notranslate"><span class="pre">Xml.find()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.find_next"><code class="docutils literal notranslate"><span class="pre">Xml.find_next()</span></code></a></li>
+<li><a class="reference internal" href="#Xml.tagname"><code class="docutils literal notranslate"><span class="pre">Xml.tagname</span></code></a></li>
+<li><a class="reference internal" href="#Xml.text"><code class="docutils literal notranslate"><span class="pre">Xml.text</span></code></a></li>
+<li><a class="reference internal" href="#Xml.is_text"><code class="docutils literal notranslate"><span class="pre">Xml.is_text</span></code></a></li>
+<li><a class="reference internal" href="#Xml.first_child"><code class="docutils literal notranslate"><span class="pre">Xml.first_child</span></code></a></li>
+<li><a class="reference internal" href="#Xml.last_child"><code class="docutils literal notranslate"><span class="pre">Xml.last_child</span></code></a></li>
+<li><a class="reference internal" href="#Xml.next"><code class="docutils literal notranslate"><span class="pre">Xml.next</span></code></a></li>
+<li><a class="reference internal" href="#Xml.previous"><code class="docutils literal notranslate"><span class="pre">Xml.previous</span></code></a></li>
+<li><a class="reference internal" href="#Xml.root"><code class="docutils literal notranslate"><span class="pre">Xml.root</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">设置文本属性</a></li>
+<li><a class="reference internal" href="#id3">上下文管理器支持</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/tabs.js"></script>
+    <script src="_static/translations.js"></script>
+    </body>
+</html>
