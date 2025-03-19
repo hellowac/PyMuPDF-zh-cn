@@ -180,7 +180,7 @@ Using with |PyMuPDF Pro|
 
 .. tab:: 中文
 
-    对于 **Office** 文档支持，|PyMuPDF4LLM| 可与 |PyMuPDF Pro| 无缝协作。假设您已安装 :doc:`../pymupdf-pro`，您将能够按预期使用 **Office** 文档：
+    对于 **Office** 文档支持， |PyMuPDF4LLM| 可与 |PyMuPDF Pro| 无缝协作。假设您已安装 :doc:`../pymupdf-pro`，您将能够按预期使用 **Office** 文档：
 
     .. code-block:: python
 
@@ -189,7 +189,7 @@ Using with |PyMuPDF Pro|
         pymupdf.pro.unlock()
         md_text = pymupdf4llm.to_markdown("sample.doc")
 
-    如您所见，|PyMuPDF Pro| 功能将在 |PyMuPDF4LLM| 上下文中可用！
+    如您所见， |PyMuPDF Pro| 功能将在 |PyMuPDF4LLM| 上下文中可用！
 
 .. tab:: 英文
 

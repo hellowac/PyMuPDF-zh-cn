@@ -20,7 +20,7 @@ How to Make Images from Document Pages
 
     这个小脚本将获取一个文档文件名，并生成每一页的PNG文件。
 
-    文档可以是任何：ref:`支持的类型<Supported_File_Types>`。
+    文档可以是任何 :ref:`支持的类型<Supported_File_Types>`。
 
     该脚本作为命令行工具工作，期望将文件名作为参数传递。生成的图像文件（每页一个）将存储在脚本所在的目录中::
 
@@ -176,7 +176,7 @@ How to Zoom a Clip to a GUI Window
         mat = pymupdf.Matrix(zoom, zoom)
         pix = page.get_pixmap(matrix=mat, clip=clip)
 
-    反过来，现在假设您**已知**缩放因子，并需要**计算适配的裁剪区域**。
+    反过来，现在假设您 **已知** 缩放因子，并需要 **计算适配的裁剪区域** 。
 
     在这种情况下，我们有 `zoom = HEIGHT/clip.height = WIDTH/clip.width`，因此我们必须设置 `clip.height = HEIGHT/zoom` 和 `clip.width = WIDTH/zoom`。选择页面上裁剪区域的左上角点 `tl` 来计算正确的像素图::
 
@@ -342,7 +342,7 @@ How to Extract Images: PDF Documents
 
     与 PDF 中的任何其他“对象”一样，图像通过交叉引用编号（:data:`xref`，一个整数）来标识。如果您知道这个编号，有两种方法可以访问图像的数据：
 
-    1. **创建**图像的 :ref:`Pixmap`，使用指令 *pix = pymupdf.Pixmap(doc, xref)* 。这种方法 **非常** 快（单数字微秒级）。pixmap 的属性（宽度、高度等）将与图像的实际属性相对应。在这种情况下，无法得知嵌入的原始图像是什么格式。
+    1. **创建** 图像的 :ref:`Pixmap` ，使用指令 *pix = pymupdf.Pixmap(doc, xref)* 。这种方法 **非常** 快（单数字微秒级）。pixmap 的属性（宽度、高度等）将与图像的实际属性相对应。在这种情况下，无法得知嵌入的原始图像是什么格式。
 
     2. **提取** 图像，使用 *img = doc.extract_image(xref)*。这将返回一个包含二进制图像数据 *img["image"]* 的字典。同时提供了许多元数据——大多与图像的 pixmap 中的信息相同。主要区别在于字符串 *img["ext"]*，它指定了图像格式：除了 "png" 之外，还可能出现 "jpeg"、"bmp"、"tiff" 等字符串。如果您想将图像存储到磁盘，可以使用这个字符串作为文件扩展名。此方法的执行速度应与 *pix = pymupdf.Pixmap(doc, xref); pix.tobytes()* 组合语句的速度进行比较。如果嵌入的图像是 PNG 格式，:meth:`Document.extract_image` 的速度大致相同（并且二进制图像数据也相同）。否则，此方法 **快数千倍** ，并且 **图像数据要小得多** 。
 

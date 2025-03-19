@@ -663,7 +663,7 @@ Document
           * "doc.pages(0, None, 2)" 返回所有偶数页。
           * "doc.pages(-2)" 返回最后两页。
           * "doc.pages(-1, -1)" 返回所有页面，按相反顺序。
-          * "doc.pages(-1, -10)" 总是以相反顺序返回 10 页，从最后一页开始——如果文档少于 10 页，则**重复**返回。例如，对于一个 4 页的文档，返回的页面编号依次为：3, 2, 1, 0, 3, 2, 1, 0, 3, 2, 1, 0, 3。
+          * "doc.pages(-1, -10)" 总是以相反顺序返回 10 页，从最后一页开始——如果文档少于 10 页，则 **重复** 返回。例如，对于一个 4 页的文档，返回的页面编号依次为：3, 2, 1, 0, 3, 2, 1, 0, 3, 2, 1, 0, 3。
 
     .. index::
       pair: from_page; Document.convert_to_pdf
@@ -875,7 +875,7 @@ Document
       仅限 PDF：返回页面直接或间接引用的所有图像的列表。
 
       :arg int pno: 页面编号，基于零，`-∞ < pno < page_count`。
-      :arg bool full: 是否还包括引用者的 :data:`xref`（如果是页面，则为零）。
+      :arg bool full: 是否还包括引用者的 :data:`xref` （如果是页面，则为零）。
 
       :rtype: list
 
@@ -1401,7 +1401,7 @@ Document
 
         *(变更于 v1.14.17，优化于 v1.17.7)* 为了保持有效的 PDF 结构，此方法和 :meth:`delete_page` 还会停用指向已删除页面的目录项。此处的“停用”意味着书签将不指向任何位置，并且支持的 PDF 查看器将显示为灰色标题。总体目录结构保持不变。
 
-        它还会移除所有指向已删除页面的**链接**，此操作可能对页面较多的文档有较长的响应时间。
+        它还会移除所有指向已删除页面的 **链接** ，此操作可能对页面较多的文档有较长的响应时间。
 
         以下示例将删除第 500 页至第 519 页：
 
@@ -2020,7 +2020,7 @@ Document
       对于 PDF 文档，除 *format* 和 *encryption* 之外，键名对应于 PDF 的标准元数据键，例如 */Creator*、*/Producer*、*/CreationDate*、*/ModDate*、*/Title*、*/Author*、*/Subject*、*/Trapped* 和 */Keywords*。
 
       - *format* 表示文档格式（如 `'PDF-1.6'`、`'XPS'`、`'EPUB'`）。
-      - *encryption* 指示加密方式，可能为 `None`（未加密）或加密算法名称（如 `'Standard V4 R4 128-bit RC4'`）。即使 *needs_pass=False*，文档仍可能受到部分权限限制，可通过 :attr:`Document.permissions` 检查具体权限。
+      - *encryption* 指示加密方式，可能为 `None` （未加密）或加密算法名称（如 `'Standard V4 R4 128-bit RC4'`）。即使 *needs_pass=False*，文档仍可能受到部分权限限制，可通过 :attr:`Document.permissions` 检查具体权限。
 
       - 如果日期字段包含有效数据（这并不总是保证的），则采用 PDF 专用时间戳格式 `"D:<TS><TZ>"`，其中：
       

@@ -145,7 +145,7 @@ Problems after installation
           ModuleNotFoundError: No module named 'frontend'
       
       这通常发生在 PyMuPDF 的旧名称 `fitz` 被错误使用时（例如 `import fitz` 而非 `import pymupdf`），
-      并且安装了一个无关的 Python 包 `fitz`（https://pypi.org/project/fitz/）。
+      并且安装了一个无关的 Python 包 `fitz` （https://pypi.org/project/fitz/）。
     
       `fitz` 包似乎已不再维护（最新发布于 2017 年），但目前无法从 pypi.org 移除。
       它不仅无法独立运行，还会破坏 PyMuPDF 的旧名称 `fitz` 的使用。
@@ -256,7 +256,7 @@ Notes
       http://www.python.org/downloads
     
     *
-      对于 Linux-aarch64 平台，使用 `Musl libc <https://musl.libc.org/>`_（例如 `Alpine Linux <https://alpinelinux.org/>`_），
+      对于 Linux-aarch64 平台，使用 `Musl libc <https://musl.libc.org/>`_ （例如 `Alpine Linux <https://alpinelinux.org/>`_），
       不提供 Wheels，且已知从源码构建会失败。
     
     *

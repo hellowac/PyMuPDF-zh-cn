@@ -554,7 +554,7 @@ Pixmap
 
       .. attribute:: colorspace
 
-         pixmap 的颜色空间。如果图像被视为所谓的 *图像遮罩* 或 *模板遮罩*，则该值可能为 *None*（当前仅在提取的 PDF 文档图像中发生）。
+         pixmap 的颜色空间。如果图像被视为所谓的 *图像遮罩* 或 *模板遮罩*，则该值可能为 *None* （当前仅在提取的 PDF 文档图像中发生）。
 
          :type: :ref:`Colorspace`
 
@@ -674,7 +674,7 @@ Pixmap
 
       .. attribute:: n
 
-         每个像素的组件数量。这个数值取决于颜色空间和 alpha。如果颜色空间不是 *None*（例如模板遮罩），那么 *Pixmap.n - Pixmap.alpha == pixmap.colorspace.n* 为真。如果颜色空间是 *None*，则 *n == alpha == 1*。
+         每个像素的组件数量。这个数值取决于颜色空间和 alpha。如果颜色空间不是 *None* （例如模板遮罩），那么 *Pixmap.n - Pixmap.alpha == pixmap.colorspace.n* 为真。如果颜色空间是 *None*，则 *n == alpha == 1*。
 
          :type: int
 

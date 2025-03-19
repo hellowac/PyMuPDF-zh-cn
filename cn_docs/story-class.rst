@@ -36,308 +36,293 @@ Story
 
         .. method:: __init__(self, html=None, user_css=None, em=12, archive=None)
 
-            Create a **story**, optionally providing HTML and CSS source.
-            The HTML is parsed, and held within the Story as a DOM (Document Object Model).
+            创建一个 **story** （故事），可选地提供 HTML 和 CSS 源代码。
+            HTML 将被解析，并作为 DOM（文档对象模型）存储在 Story 中。
 
-            This structure may be modified: content (text, images) may be added,
-            copied, modified or removed by using methods of the :ref:`Xml` class.
+            该结构可以被修改：可以使用 :ref:`Xml` 类的方法添加、复制、修改或删除内容（文本、图像）。
 
-            When finished, the **story** can be written to any device;
-            in typical usage the device may be provided by a :ref:`DocumentWriter` to make new pages.
+            完成后， **story** 可以写入任何设备；
+            在典型的使用场景中，该设备可能由 :ref:`DocumentWriter` 提供，以创建新页面。
 
-            Here are some general remarks:
+            以下是一些一般性说明：
 
-            * The :ref:`Story` constructor parses and validates the provided HTML to create the DOM.
-            * PyMuPDF provides a number of ways to manipulate the HTML source by
-                providing access to the *nodes* of the underlying DOM.
-                Documents can be completely built from ground up programmatically,
-                or the existing DOM can be modified pretty arbitrarily.
-                For details of this interface, please see the :ref:`Xml` class.
-            * If no (or no more) changes to the DOM are required,
-                the story is ready to be laid out and to be fed to a series of devices
-                (typically devices provided by a :ref:`DocumentWriter` to produce new pages).
-            * The next step is to place the story and write it out.
-                This can either be done directly, by looping around calling `place()` and `draw()`,
-                or alternatively,
-                the looping can handled for you using the `write()` or `write_stabilised()` methods.
-                Which method you choose is largely a matter of taste.
+            * :ref:`Story` 构造函数会解析并验证提供的 HTML 以创建 DOM。
+            * PyMuPDF 提供了多种方法来操作 HTML 源代码，允许访问底层 DOM 的 *节点*。文档可以完全从头开始以编程方式构建，或者对现有 DOM 进行任意修改。有关该接口的详细信息，请参阅 :ref:`Xml` 类。
+            * 如果不再需要对 DOM 进行更改，则 story 准备好进行布局，并可写入一系列设备（通常是由 :ref:`DocumentWriter` 提供的设备，以生成新页面）。
+            * 下一步是放置 story 并将其写入输出。这可以直接完成，通过循环调用 `place()` 和 `draw()`，或者使用 `write()` 或 `write_stabilized()` 方法让它自动处理循环。选择哪种方式主要取决于个人偏好。
                 
-                * To work in the first of these styles, the following loop should be used:
+                * 如果选择手动方式，建议使用以下循环：
                 
-                1. Obtain a suitable device to write to;
-                    typically by requesting a new,
-                    empty page from a :ref:`DocumentWriter`.
-                2. Determine one or more rectangles on the page,
-                    that should receive **story** data.
-                    Note that not every page needs to have the same set of rectangles.
-                3. Pass each rectangle to the **story** to place it,
-                    learning what part of that rectangle has been filled,
-                    and whether there is more story data that did not fit.
-                    This step can be repeated several times with adjusted rectangles
-                    until the caller is happy with the results. 
-                4. Optionally, at this point,
-                    we can request details of where interesting items have been placed,
-                    by calling the `element_positions()` method.
-                    Items are deemed to be interesting if their integer `heading` attribute is a non-zero
-                    (corresponding to HTML tags :htmlTag:`h1` - :htmlTag:`h6`),
-                    if their `id` attribute is not `None` (corresponding to HTML tag :htmlTag:`id`),
-                    or if their `href` attribute is not `None` (responding to HTML tag :htmlTag:`href`).
-                    This can conveniently be used for automatic generation of a Table of Contents,
-                    an index of images or the like.
-                5. Next, draw that rectangle out to the device with the `draw()` method.
-                6. If the most recent call to `place()` indicated that all the story data had fitted,
-                    stop now.
-                7. Otherwise, we can loop back.
-                    If there are more rectangles to be placed on the current device (page),
-                    we jump back to step 3 - if not, we jump back to step 1 to get a new device.
-                * Alternatively, in the case where you are using a :ref:`DocumentWriter`,
-                the `write()` or `write_stabilized()` methods can be used.
-                These handle all the looping for you,
-                in exchange for being provided with callbacks that control the behaviour
-                (notably a callback that enumerates the rectangles/pages to use).
-            * Which part of the **story** will land on which rectangle / which page,
-                is fully under control of the :ref:`Story` object and cannot be predicted.
-            * Images may be part of a **story**. They will be placed together with any surrounding text.
-            * Multiple stories may - independently from each other - write to the same page.
-                For example, one may have separate stories for page header,
-                page footer, regular text, comment boxes, etc.
+                1. 获取一个合适的设备进行写入；通常通过从 :ref:`DocumentWriter` 请求一个新的空白页面。
+                2. 确定页面上的一个或多个矩形区域，这些区域将用于接收 **story** 数据。请注意，并非每个页面都需要使用相同的矩形区域集。
+                3. 将每个矩形传递给 **story** 以进行放置，了解该矩形的填充情况，以及是否还有未适应的 story 数据。这一步可以重复多次，并调整矩形区域，直到获得满意的结果。 
+                4. 在此阶段，可以通过调用 `element_positions()` 方法请求有关已放置项目的位置的详细信息。如果 `heading` 属性为非零整数（对应于 HTML 标签 :htmlTag:`h1` - :htmlTag:`h6`），或者 `id` 属性不为 `None` （对应于 HTML 标签 :htmlTag:`id`），或者 `href` 属性不为 `None` （对应于 HTML 标签 :htmlTag:`href`），则该元素被视为“感兴趣的元素”。这对于自动生成目录（Table of Contents）、索引或类似用途非常方便。
+                5. 使用 `draw()` 方法将该矩形绘制到设备上。
+                6. 如果最近一次 `place()` 调用表明所有 story 数据均已适应，则停止。
+                7. 否则，循环回到前面：如果当前设备（页面）上还有更多的矩形需要填充，则返回到步骤 3；如果没有，则返回步骤 1 以获取新设备（页面）。
 
-            :arg str html: HTML source code. If omitted, a basic minimum is generated (see below).
-                If provided, not a complete HTML document is needed.
-                The in-built source parser will forgive (many / most)
-                HTML syntax errors and also accepts HTML fragments like
-                `"<b>Hello, <i>World!</i></b>"`.
-            :arg str user_css: CSS source code. If provided, must contain valid CSS specifications.
-            :arg float em: the default text font size.
-            :arg archive: an :ref:`Archive` from which to load resources for rendering. Currently supported resource types are images and text fonts. If omitted, the story will not try to look up any such data and may thus produce incomplete output.
-            
-            .. note:: Instead of an actual archive, valid arguments for **creating** an :ref:`Archive` can also be provided -- in which case an archive will temporarily be constructed. So, instead of `story = pymupdf.Story(archive=pymupdf.Archive("myfolder"))`, one can also shorter write `story = pymupdf.Story(archive="myfolder")`.
+                * 另一种方式，如果使用 :ref:`DocumentWriter`，
+                可以使用 `write()` 或 `write_stabilized()` 方法。
+                这些方法会自动处理所有循环，
+                只需提供控制行为的回调（主要是一个枚举矩形/页面的回调函数）。
+
+            * **story** 的内容将如何分布到哪些矩形 / 页面，完全由 :ref:`Story` 对象控制，无法预知。
+            * 图像可以包含在 **story** 中，并与周围文本一起放置。
+            * 多个 story 可以独立地写入同一页面。例如，可以使用不同的 story 分别处理页眉、页脚、正文文本、注释框等。
+
+            :arg str html: HTML 源代码。如果省略，将生成一个基本的最小结构（见下文）。
+                如果提供，则无需是完整的 HTML 文档。
+                内置解析器会容忍（大多数）HTML 语法错误，并接受 HTML 片段，如
+                `"<b>Hello, <i>World!</i></b>"`。
+            :arg str user_css: CSS 源代码。如果提供，则必须包含有效的 CSS 规则。
+            :arg float em: 默认文本字体大小。
+            :arg archive: 一个 :ref:`Archive` 对象，用于加载渲染资源。
+                目前支持的资源类型包括图像和字体。
+                如果省略，story 将不会查找任何此类数据，因此可能会导致输出不完整。
+
+            .. note:: 除了实际的 archive 对象，也可以提供创建 :ref:`Archive` 的有效参数。
+                例如，`story = pymupdf.Story(archive=pymupdf.Archive("myfolder"))` 可以简化为
+                `story = pymupdf.Story(archive="myfolder")`。
 
         .. method:: place(where)
 
-            Calculate that part of the story's content, that will fit in the provided rectangle. The method maintains a pointer which part of the story's content has already been written and upon the next invocation resumes from that pointer's position.
+            计算 story 内容中可以适应提供矩形的部分。
+            该方法会维护一个指针，指示 story 内容已经写入的位置，
+            并在下一次调用时从该指针处继续。
 
-            :arg rect_like where: layout the current part of the content to fit into this rectangle. This must be a sub-rectangle of the page's :ref:`MediaBox<Glossary_MediaBox>`.
+            :arg rect_like where: 将当前内容布局到该矩形中。该矩形必须是页面 :ref:`MediaBox<Glossary_MediaBox>` 的子矩形。
 
             :rtype: tuple[bool, rect_like]
-            :returns: a bool (int) `more` and a rectangle `filled`. If `more == 0`, all content of the story has been written, otherwise more is waiting to be written to subsequent rectangles / pages. Rectangle `filled` is the part of `where` that has actually been filled.
+            :returns: 一个布尔值 `more` 和一个矩形 `filled`。
+                如果 `more == 0`，则 story 的所有内容均已写入；
+                否则，仍有内容等待写入后续矩形或页面。
+                `filled` 是 `where` 中实际被填充的部分。
 
         .. method:: draw(dev, matrix=None)
 
-            Write the content part prepared by :meth:`Story.place` to the page.
+            将 :meth:`Story.place` 计算出的内容写入页面。
 
-            :arg dev: the :ref:`Device` created by `dev = writer.begin_page(mediabox)`. The device knows how to call all MuPDF functions needed to write the content.
-            :arg matrix_like matrix: a matrix for transforming content when writing to the page. An example may be writing rotated text. The default means no transformation (i.e. the :ref:`Identity` matrix).
+            :arg dev: 由 `dev = writer.begin_page(mediabox)` 创建的 :ref:`Device`。
+                该设备知道如何调用所有必要的 MuPDF 函数以写入内容。
+            :arg matrix_like matrix: 写入页面时用于变换内容的矩阵，例如可用于旋转文本。
+                默认值表示不进行变换（即使用 :ref:`Identity` 矩阵）。
 
         .. method:: element_positions(function, args=None)
 
-            Let the Story provide positioning information about certain HTML elements once their place on the current page has been computed - i.e. invoke this method **directly after** :meth:`Story.place`.
+            在 story 计算出 HTML 元素在当前页面的位置后，
+            让它提供这些信息 - **必须在** :meth:`Story.place` **之后立即调用**。
 
-            *Story* will pass position information to *function*. This information can for example be used to generate a Table of Contents.
+            *Story* 将位置信息传递给 *function*，例如可用于生成目录（Table of Contents）。
 
-            :arg callable function: a Python function accepting an :class:`ElementPosition` object. It will be invoked by the Story object to process positioning information. The function **must** be a callable accepting exactly one argument.
-            :arg dict args: an optional dictionary with any **additional** information that should be added to the :class:`ElementPosition` instance passed to `function`.
-            Like for example the current output page number.
-            Every key in this dictionary must be a string that conforms to the rules for a valid Python identifier.
-            The complete set of information is explained below.
-
+            :arg callable function: 接受一个 :class:`ElementPosition` 对象的 Python 函数。
+                该函数会被 Story 对象调用来处理位置信息。
+                该函数 **必须** 是一个接受 **唯一** 一个参数的可调用对象。
+            :arg dict args: 可选字典，包含应添加到 `ElementPosition` 实例中的 **额外信息**，
+                例如当前输出页面编号。
+                该字典的每个键必须是符合 Python 标识符规则的字符串。
+                下面会详细说明完整的信息集。
 
         .. method:: reset()
 
-            Rewind the story's document to the beginning for starting over its output.
+            将 story 文档倒回到起始位置，以便重新开始输出。
 
         .. attribute:: body
 
-            The :htmlTag:`body` part of the story's DOM. This attribute contains the :ref:`Xml` node of :htmlTag:`body`. All relevant content for PDF production is contained between "<body>" and "</body>".
+            story DOM 的 :htmlTag:`body` 部分。
+            该属性包含 :htmlTag:`body` 的 :ref:`Xml` 节点。
+            所有 PDF 生产相关的内容都包含在 "<body>" 和 "</body>" 之间。
 
         .. method:: write(writer, rectfn, positionfn=None, pagefn=None)
 
-            Places and draws Story to a `DocumentWriter`. Avoids the need for
-            calling code to implement a loop that calls `Story.place()` and
-            `Story.draw()` etc, at the expense of having to provide at least the
-            `rectfn()` callback.
-        
-            :arg writer: a `DocumentWriter` or None.
-            :arg rectfn: a callable taking `(rect_num: int, filled: Rect)` and
-                returning `(mediabox, rect, ctm)`:
+            将 story 放置并绘制到 `DocumentWriter`，避免调用代码
+            需要手动实现循环来调用 `Story.place()` 和 `Story.draw()`。
+
+            :arg writer: `DocumentWriter` 实例，或 `None`。
+            :arg rectfn: 一个可调用对象，接受 `(rect_num: int, filled: Rect)` 并返回 `(mediabox, rect, ctm)`：
                 
-                * mediabox: None or rect for new page.
-                * rect: The next rect into which content should be placed.
-                * ctm: None or a `Matrix`.
-            :arg positionfn: None, or a callable taking `(position: ElementPosition)`:
+                * mediabox: `None` 或者表示新页面的矩形。
+                * rect: 下一块应放置内容的矩形区域。
+                * ctm: `None` 或 `Matrix` 变换矩阵。
+
+            :arg positionfn: `None`，或一个可调用对象，接受 `(position: ElementPosition)`：
                 
-                * position:
-                    An `ElementPosition` with an extra `.page_num` member.
-                Typically called multiple times as we generate elements that
-                are headings or have an id.
-            :arg pagefn:
-                None, or a callable taking `(page_num, mediabox, dev, after)`;
-                called at start (`after=0`) and end (`after=1`) of each page.
+                * position: 一个 `ElementPosition` 实例，具有额外的 `.page_num` 成员。
+                该函数通常会在生成标题元素或具有 `id` 的元素时被多次调用。
+
+            :arg pagefn: `None`，或一个可调用对象，接受 `(page_num, mediabox, dev, after)`：
+                在每个页面的开始 (`after=0`) 和结束 (`after=1`) 处调用。
 
         .. staticmethod:: write_stabilized(writer, contentfn, rectfn, user_css=None, em=12, positionfn=None, pagefn=None, archive=None, add_header_ids=True)
-        
-            Static method that does iterative layout of html content to a
-            `DocumentWriter`.
 
-            For example this allows one to add a table of contents section
-            while ensuring that page numbers are patched up until stable.
+            静态方法，对 HTML 内容进行迭代布局，并写入 `DocumentWriter`。
 
-            Repeatedly creates a new `Story` from `(contentfn(),
-            user_css, em, archive)` and lays it out with internal call
-            to `Story.write()`; uses a None writer and extracts the list
-            of `ElementPosition`'s which is passed to the next call of
-            `contentfn()`.
+            例如，这允许在确保页码稳定的情况下添加目录（Table of Contents）部分。
 
-            When the html from `contentfn()` becomes unchanged, we do a
-            final iteration using `writer`.
+            该方法会重复执行以下操作：
+
+            1. 使用 `(contentfn(), user_css, em, archive)` 创建新的 `Story` 实例。
+            2. 通过内部调用 `Story.write()` 进行布局，并使用 `None` 作为 writer 提取 `ElementPosition` 列表，该列表会传递给下一次 `contentfn()` 调用。
+            3. 当 `contentfn()` 生成的 HTML 内容不再变化时，执行最终迭代，并使用 `writer` 进行最终写入。
 
             :arg writer:
-                A `DocumentWriter`.
+                一个 `DocumentWriter`。
             :arg contentfn:
-                A function taking a list of `ElementPositions` and
-                returning a string containing html. The returned html
-                can depend on the list of positions, for example with a
-                table of contents near the start.
+                一个函数，接受 `ElementPositions` 列表，并返回包含 HTML 内容的字符串。
+                返回的 HTML 可以依赖于该列表，例如用于在文档开头生成目录。
             :arg rectfn:
-                A callable taking `(rect_num: int, filled: Rect)` and
-                returning `(mediabox, rect, ctm)`:
+                一个可调用对象，接受 `(rect_num: int, filled: Rect)` 并返回 `(mediabox, rect, ctm)`：
 
-                * mediabox: None or rect for new page.
-                * rect: The next rect into which content should be placed.
-                * ctm: A `Matrix`.
+                * mediabox: `None` 或者新页面的矩形。
+                * rect: 下一个应放置内容的矩形区域。
+                * ctm: `Matrix` 变换矩阵。
+
             :arg pagefn:
-                None, or a callable taking `(page_num, medibox,
-                dev, after)`; called at start (`after=0`) and end
-                (`after=1`) of each page.
+                `None`，或一个可调用对象，接受 `(page_num, mediabox, dev, after)`；
+                在每个页面的开始 (`after=0`) 和结束 (`after=1`) 处调用。
+
             :arg archive:
+                资源存储 `Archive`，可用于加载图像和字体。
+
             :arg add_header_ids:
-                If true, we add unique ids to all header tags that
-                don't already have an id. This can help automatic
-                generation of tables of contents.
-            Returns:
-                None.
-            
+                若为 `True`，则对所有没有 `id` 的 HTML 标题标签（如 `<h1>`-`<h6>`）添加唯一的 `id`，
+                以便自动生成目录。
+
+            :returns:
+                `None`。
+
         .. method:: write_with_links(rectfn, positionfn=None, pagefn=None)
 
-            Similar to `write()` except that we don't have a `writer` arg
-            and we return a PDF `Document` in which links have been created
-            for each internal html link.
+            类似于 `write()`，但没有 `writer` 参数，
+            并返回一个包含内部 HTML 链接的 PDF `Document`。
 
         .. staticmethod:: write_stabilized_with_links(contentfn, rectfn, user_css=None, em=12, positionfn=None, pagefn=None, archive=None, add_header_ids=True)
 
-            Similar to `write_stabilized()` except that we don't have a `writer`
-            arg and instead return a PDF `Document` in which links have been
-            created for each internal html link.
-            
+            类似于 `write_stabilized()`，但没有 `writer` 参数，
+            而是返回一个包含内部 HTML 链接的 PDF `Document`。
+
         .. class:: Story.FitResult
-            
-            The result from a `Story.fit*()` method.
-            
-            Members:
-            
+
+            `Story.fit*()` 方法的返回结果。
+
+            成员:
+
             `big_enough`:
-                `True` if the fit succeeded.
+                若 `True`，表示内容适应成功。
+
             `filled`:
-                From the last call to `Story.place()`.
+                最后一次 `Story.place()` 调用填充的矩形。
+
             `more`:
-                `False` if the fit succeeded.
+                若 `False`，表示适应成功。
+
             `numcalls`:
-                Number of calls made to `self.place()`.
+                调用了 `self.place()` 的次数。
+
             `parameter`:
-                The successful parameter value, or the largest failing value.
+                适应成功的参数值，或最大的失败参数值。
+
             `rect`:
-                The rect created from `parameter`.
+                由 `parameter` 生成的矩形。
                 
         .. method:: fit(self, fn, pmin=None, pmax=None, delta=0.001, verbose=False)
 
-            Finds optimal rect that contains the story `self`.
-            
-            Returns a `Story.FitResult` instance.
-                
-            On success, the last call to `self.place()` will have been with the
-            returned rectangle, so `self.draw()` can be used directly.
-            
-            :arg fn:
-                A callable taking a floating point `parameter` and returning a
-                `pymupdf.Rect()`. If the rect is empty, we assume the story will
-                not fit and do not call `self.place()`.
+            查找能包含 `self` 的最优矩形。
 
-                Must guarantee that `self.place()` behaves monotonically when
-                given rect `fn(parameter`) as `parameter` increases. This
-                usually means that both width and height increase or stay
-                unchanged as `parameter` increases.
+            返回一个 `Story.FitResult` 实例。
+
+            成功时，`self.place()` 的最后一次调用会使用返回的矩形，因此可以直接调用 `self.draw()` 进行绘制。
+
+            :arg fn:
+                一个可调用对象，接受一个浮点数 `parameter` 并返回 `pymupdf.Rect()`。
+                如果返回的矩形为空，则认为故事无法适应该矩形，并不会调用 `self.place()`。
+
+                该函数必须保证 `self.place()` 在 `fn(parameter)` 增大时单调递增。
+                这通常意味着宽度和高度随着 `parameter` 的增大而增大或保持不变。
+
             :arg pmin:
-                Minimum parameter to consider; `None` for -infinity.
+                要考虑的最小参数值；`None` 表示负无穷大。
+
             :arg pmax:
-                Maximum parameter to consider; `None` for +infinity.
+                要考虑的最大参数值；`None` 表示正无穷大。
+
             :arg delta:
-                Maximum error in returned `parameter`.
+                返回 `parameter` 的最大误差。
+
             :arg verbose:
-                If true we output diagnostics.
+                若为 `True`，则输出诊断信息。
 
         .. method:: fit_scale(self, rect, scale_min=0, scale_max=None, delta=0.001, verbose=False)
 
-            Finds smallest value `scale` in range `scale_min..scale_max` where
-            `scale * rect` is large enough to contain the story `self`.
+            查找范围 `scale_min..scale_max` 内的最小 `scale` 值，使得 `scale * rect`
+            足够大，可以包含 `self`。
 
-            Returns a `Story.FitResult` instance.
+            返回一个 `Story.FitResult` 实例。
 
-            :arg width:
-                width of rect.
-            :arg height:
-                height of rect.
+            :arg rect:
+                原始矩形。
+
             :arg scale_min:
-                Minimum scale to consider; must be >= 0.
+                需要考虑的最小缩放比例，必须大于等于 `0`。
+
             :arg scale_max:
-                Maximum scale to consider, must be >= scale_min or `None` for
-                infinite.
+                需要考虑的最大缩放比例，必须大于等于 `scale_min`，或 `None` 表示无限。
+
             :arg delta:
-                Maximum error in returned scale.
+                返回的缩放比例的最大误差。
+
             :arg verbose:
-                If true we output diagnostics.
+                若为 `True`，则输出诊断信息。
 
         .. method:: fit_height(self, width, height_min=0, height_max=None, origin=(0, 0), delta=0.001, verbose=False)
 
-            Finds smallest height in range `height_min..height_max` where a rect
-            with size `(width, height)` is large enough to contain the story
-            `self`.
+            查找范围 `height_min..height_max` 内的最小高度，使得 `(width, height)` 的矩形足够大，
+            可以包含 `self`。
 
-            Returns a `Story.FitResult` instance.
+            返回一个 `Story.FitResult` 实例。
 
             :arg width:
-                width of rect.
+                矩形的宽度。
+
             :arg height_min:
-                Minimum height to consider; must be >= 0.
+                需要考虑的最小高度，必须大于等于 `0`。
+
             :arg height_max:
-                Maximum height to consider, must be >= height_min or `None` for
-                infinite.
+                需要考虑的最大高度，必须大于等于 `height_min`，或 `None` 表示无限。
+
             :arg origin:
-                `(x0, y0)` of rect.
+                矩形的 `(x0, y0)` 坐标。
+
             :arg delta:
-                Maximum error in returned height.
+                返回的高度的最大误差。
+
             :arg verbose:
-                If true we output diagnostics.
+                若为 `True`，则输出诊断信息。
 
         .. method:: fit_width(self, height, width_min=0, width_max=None, origin=(0, 0), delta=0.001, verbose=False)
 
-            Finds smallest width in range `width_min..width_max` where a rect with size
-            `(width, height)` is large enough to contain the story `self`.
+            查找范围 `width_min..width_max` 内的最小宽度，使得 `(width, height)` 的矩形足够大，
+            可以包含 `self`。
 
-            Returns a `Story.FitResult` instance.
+            返回一个 `Story.FitResult` 实例。
 
             :arg height:
-                height of rect.
+                矩形的高度。
+
             :arg width_min:
-                Minimum width to consider; must be >= 0.
+                需要考虑的最小宽度，必须大于等于 `0`。
+
             :arg width_max:
-                Maximum width to consider, must be >= width_min or `None` for
-                infinite.
+                需要考虑的最大宽度，必须大于等于 `width_min`，或 `None` 表示无限。
+
             :arg origin:
-                `(x0, y0)` of rect.
+                矩形的 `(x0, y0)` 坐标。
+
             :arg delta:
-                Maximum error in returned width.
+                返回的宽度的最大误差。
+
             :arg verbose:
-                If true we output diagnostics.
+                若为 `True`，则输出诊断信息。
+
 
 
 

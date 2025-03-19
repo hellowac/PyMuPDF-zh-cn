@@ -247,7 +247,7 @@ How to :index:`Extract Table Content <pair: extract; table>` from Documents
 
     - **无需依赖外部库**，避免了额外的安装和兼容性问题。
     - **无需使用人工智能或机器学习技术**，提升了可用性和执行效率。
-    - **内置支持 `pandas <https://pypi.org/project/pandas/>`_**，可方便地将表格数据转换为 Pandas 数据框进行分析。
+    - **内置支持** `pandas <https://pypi.org/project/pandas/>`_，可方便地将表格数据转换为 Pandas 数据框进行分析。
 
     你可以参考 `Jupyter Notebook 示例 <https://github.com/pymupdf/PyMuPDF-Utilities/tree/master/table-analysis>`_，其中涵盖了多种标准情况，如：
 
@@ -580,8 +580,8 @@ How to Insert Text
 
         - 来自外部字体文件，
         - 通过 :ref:`Font` 提供（使用 :attr:`Font.buffer`），
-        - 已经存在于**当前或其他** PDF 文件中，
-        - 或者是**内置**字体。
+        - 已经存在于 **当前或其他** PDF 文件中，
+        - 或者是 **内置** 字体。
 
     * :meth:`Page.insert_text` —— 写入若干行文本。该方法在内部调用 :meth:`Shape.insert_text`。
 

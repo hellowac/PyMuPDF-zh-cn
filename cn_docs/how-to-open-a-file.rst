@@ -85,7 +85,7 @@ Opening with :index:`a Wrong File Extension <pair: wrong; file extension>`
 
         如果 |PyMuPDF| 遇到一个未知或缺失扩展名的文件，它将尝试将其作为 |PDF| 打开。因此，在这种情况下无需额外的预防措施。同样，对于内存中的文档，您只需指定 `doc=pymupdf.open(stream=mem_area)` 即可将其作为 |PDF| 文档打开。
 
-        如果您尝试打开一个不受支持的文件，|PyMuPDF| 会抛出文件数据错误。
+        如果您尝试打开一个不受支持的文件， |PyMuPDF| 会抛出文件数据错误。
 
 
 .. tab:: 英文

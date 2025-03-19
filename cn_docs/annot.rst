@@ -126,7 +126,7 @@ Annot
 
          * 变更于 v1.19.2: 添加了对 dpi 参数的支持。
 
-         从注释创建一个像素图，按照页面上的未变换坐标显示。像素图的 :ref:`IRect` 等于 *Annot.rect.irect*（见下文）。**所有参数仅支持关键字传递。**
+         从注释创建一个像素图，按照页面上的未变换坐标显示。像素图的 :ref:`IRect` 等于 *Annot.rect.irect* （见下文）。**所有参数仅支持关键字传递。**
 
          :arg matrix_like matrix: 用于图像创建的矩阵。默认值为 :ref:`Identity`。
 
@@ -319,7 +319,7 @@ Annot
 
          仅适用于 PDF：更改边框的宽度、虚线样式、边框风格和云状效果。详细信息请参阅 :attr:`Annot.border` 属性。
 
-         :arg dict border: 一个字典，键包括 *"width"* (*float*)、*"style"* (*str*)、*"dashes"* (*sequence*) 和 *"clouds"* (*int*)。省略的键不会被更改。若 `border=None`（默认值），则使用其他参数。
+         :arg dict border: 一个字典，键包括 *"width"* (*float*)、*"style"* (*str*)、*"dashes"* (*sequence*) 和 *"clouds"* (*int*)。省略的键不会被更改。若 `border=None` （默认值），则使用其他参数。
 
          :arg float width: 非负值将更改边框线的宽度。
          :arg str style: 若提供非 `None` 值，则修改边框样式。

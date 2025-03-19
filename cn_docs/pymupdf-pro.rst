@@ -18,7 +18,7 @@ PyMuPDF Pro
     - 支持文本和表格提取、 文档转换等。
     - 包括 |PyMuPDF4LLM| 的商业版本。
 
-    要咨询如何获得商业许可，请使用此联系页面 <https://artifex.com/contact/>`_。
+    要咨询如何获得商业许可，请使用 `此联系页面 <https://artifex.com/contact/>`_。
 
     .. note::
 
@@ -166,7 +166,7 @@ Loading an **Office** document
 
     .. note::
 
-        所有标准的 |PyMuPDF| 功能都会按预期提供，|PyMuPDF Pro| 处理扩展的 **Office** 文件类型。
+        所有标准的 |PyMuPDF| 功能都会按预期提供， |PyMuPDF Pro| 处理扩展的 **Office** 文件类型。
 
     从此，您可以像通常一样处理文档页面，但需遵守 `限制 <PyMuPDFPro_Restrictions>`。
 
@@ -225,7 +225,7 @@ Restrictions
 
 .. tab:: 中文
 
-    如果没有许可证密钥，|PyMuPDF Pro| 的功能将受到以下限制：
+    如果没有许可证密钥， |PyMuPDF Pro| 的功能将受到以下限制：
 
     **任何文档的前 3 页都只能使用。**
 
@@ -300,7 +300,7 @@ Fonts
     可以使用仅限关键字参数来控制此行为：
 
     * `fontpath`：指定的字体目录，可以是列表/元组或 `os.sep` 分隔的字符串。
-      如果为 None（默认值），则使用 `os.environ['PYMUPDFPRO_FONT_PATH']`（如果已设置）。
+      如果为 None（默认值），则使用 `os.environ['PYMUPDFPRO_FONT_PATH']` （如果已设置）。
     * `fontpath_auto`：是否追加系统字体目录。
       如果为 None（默认值），则当 `os.environ['PYMUPDFPRO_FONT_PATH_AUTO']` 为 '1' 时默认为 True。
       如果为 True，则会追加所有系统字体目录。

@@ -19,7 +19,7 @@
 Welcome to |PyMuPDF|
 ================================
 
-|PyMuPDF| 是一个高性能 **Python** 库，用于提取、分析、转换和处理 **PDF**（和其他）文档的数据。
+|PyMuPDF| 是一个高性能 **Python** 库，用于提取、分析、转换和处理 **PDF** （和其他）文档的数据。
 
 |PyMuPDF| 托管在 `GitHub <https://github.com/pymupdf/PyMuPDF>`_ 上，并在 `PyPI <https://pypi.org/project/PyMuPDF/>`_ 上注册。
 

@@ -171,14 +171,19 @@ Quad
    **Class API**
 
    .. class:: Quad
+      :no-index:
 
       .. method:: __init__(self)
+         :no-index:
 
       .. method:: __init__(self, ul, ur, ll, lr)
+         :no-index:
 
       .. method:: __init__(self, quad)
+         :no-index:
 
       .. method:: __init__(self, sequence)
+         :no-index:
 
          Overloaded constructors: "ul", "ur", "ll", "lr" stand for :data:`point_like` objects (the four corners), "sequence" is a Python sequence with four :data:`point_like` objects.
 
@@ -188,12 +193,14 @@ Quad
 
 
       .. method:: transform(matrix)
+         :no-index:
 
          Modify the quadrilateral by transforming each of its corners with a matrix.
 
          :arg matrix_like matrix: the matrix.
 
       .. method:: morph(fixpoint, matrix)
+         :no-index:
 
          *(New in version 1.17.0)* "Morph" the quad with a matrix-like using a point-like as fixed point.
 
@@ -203,6 +210,7 @@ Quad
 
 
       .. attribute:: rect
+         :no-index:
 
          The smallest rectangle containing the quad, represented by the blue area in the following picture.
 
@@ -211,30 +219,35 @@ Quad
          :type: :ref:`Rect`
 
       .. attribute:: ul
+         :no-index:
 
          Upper left point.
 
          :type: :ref:`Point`
 
       .. attribute:: ur
+         :no-index:
 
          Upper right point.
 
          :type: :ref:`Point`
 
       .. attribute:: ll
+         :no-index:
 
          Lower left point.
 
          :type: :ref:`Point`
 
       .. attribute:: lr
+         :no-index:
 
          Lower right point.
 
          :type: :ref:`Point`
 
       .. attribute:: is_convex
+         :no-index:
 
          * New in version 1.16.1
 
@@ -246,24 +259,28 @@ Quad
          :type: bool
 
       .. attribute:: is_empty
+         :no-index:
 
          True if enclosed area is zero, which means that at least three of the four corners are on the same line. If this is false, the quad may still be degenerate or not look like a tetragon at all (triangles, parallelograms, trapezoids, ...).
 
          :type: bool
 
       .. attribute:: is_rectangular
+         :no-index:
 
          True if all corner angles are 90 degrees. This implies that the quad is **convex and not empty**.
 
          :type: bool
 
       .. attribute:: width
+         :no-index:
 
          The maximum length of the top and the bottom side.
 
          :type: float
 
       .. attribute:: height
+         :no-index:
 
          The maximum length of the left and the right side.
 

@@ -145,7 +145,7 @@ Functions
 
       :arg int srgb: 形如 RRGGBB 的整数, 每个颜色分量的取值范围为 0-255。
 
-      :returns: 颜色三元组 (red, green, blue), 其中每个值都是 *0 <= item <= 1* 之间的浮点数, 表示相同颜色。例如 `sRGB_to_pdf(0xff0000) = (1, 0, 0)`(红色)。
+      :returns: 颜色三元组 (red, green, blue), 其中每个值都是 *0 <= item <= 1* 之间的浮点数, 表示相同颜色。例如  `sRGB_to_pdf(0xff0000) = (1, 0, 0)` (红色)。
 
 
    -----
@@ -417,7 +417,9 @@ Functions
 
       .. note:: :ref:`Font` 类提供了类似的方法 :meth:`Font.text_length`，支持 Base-14 字体以及任何具有字符映射（CMap，Type 0 字体）的字体。
 
-      .. warning:: 若使用该方法来计算 `(:ref:`Page` 或 :ref:`Shape`) insert_textbox` 方法所需的矩形宽度，需注意它们是按 **字符级** 计算的。由于四舍五入的影响，以下计算通常会产生稍大的数值：
+      .. warning:: 
+         
+         若使用该方法来计算 (:ref:`Page` 或 :ref:`Shape`) `insert_textbox` 方法所需的矩形宽度，需注意它们是按 **字符级** 计算的。由于四舍五入的影响，以下计算通常会产生稍大的数值：
       
          *sum([pymupdf.get_text_length(c) for c in text]) > pymupdf.get_text_length(text)*
 
@@ -514,7 +516,7 @@ Functions
 
    .. method:: Document.xml_metadata_xref()
 
-      返回 PDF 文件级 XML 元数据的 :data:`xref`（如果存在）。参考 :meth:`Document.del_xml_metadata`。可以使用 :meth:`Document.xref_stream` 获取其内容，并使用 XML 处理工具进行操作。
+      返回 PDF 文件级 XML 元数据的 :data:`xref` （如果存在）。参考 :meth:`Document.del_xml_metadata`。可以使用 :meth:`Document.xref_stream` 获取其内容，并使用 XML 处理工具进行操作。
 
       :rtype: int
       :returns: PDF 文件级 XML 元数据的 :data:`xref`，若无则返回 0。
@@ -609,7 +611,7 @@ Functions
 
          - 0：填充文本 —— 等同于 PDF 渲染模式 0 (`0 Tr`，PDF 默认)，仅显示字符内部。
          - 1：描边文本 —— 等同于 `1 Tr`，仅显示字符边框。
-         - 3：隐藏文本 —— 等同于 `3 Tr`（隐藏文本）。
+         - 3：隐藏文本 —— 等同于 `3 Tr` （隐藏文本）。
 
       3. 线宽对 `span["type"] != 0` 情况较为重要：它决定了字符边框线的厚度。如果文本数据未提供此值，则会生成 `5%` 字体大小的默认值 (`span["size"] * 0.05`)。PDF 中常用 `2 Tr` 方式创建 *伪加粗* 文本，此情况下没有对应的跨度类型，而是生成两个连续跨度，分别对应 `0` 和 `1`，需要自行处理。
 
@@ -625,11 +627,11 @@ Functions
 
       9. **（v1.22.0 新增）** `"layer"` 为可选内容组 (OCG) 名称，或 `None`。
 
-      **与 `page.get_text("rawdict")` 的比较：**
+      **与** `page.get_text("rawdict")` **的比较：**
 
-      - 本方法 **提取速度提高约 2 倍**（视文本量而定）。
+      - 本方法 **提取速度提高约 2 倍** （视文本量而定）。
       - 结果数据 **更小**，但提供更多信息。
-      - 可 **检测文本不可见性**（透明度为 0，类型 > 1，或被更高序列号对象遮挡）。
+      - 可 **检测文本不可见性** （透明度为 0，类型 > 1，或被更高序列号对象遮挡）。
       - MuPDF 若返回 `0xFFFD (65533)` 作为未识别字符，可根据字形 ID 推测信息。
       - `span["chars"]` **不包含空格**，除非文档创建者显式编码；但提供空格宽度，以便计算文本间距。
       - 文本不会像 :ref:`TextPage` 组织为块、行、跨度、字符，而是按顺序提取，遇到样式变化即开始新跨度。同一跨度可能包含不同 `origin.y` 值的字符（即处于不同行）。不保证跨度字符排序，需要自行处理，如使用 `span["dir"]`、`span["wmode"]` 等。
@@ -671,7 +673,7 @@ Functions
 
    .. attribute:: Page.is_wrapped
 
-      指示页面的所谓图形状态是否平衡。如果为 `False`，则在插入新内容时应执行 :meth:`Page.wrap_contents`（仅在 `overlay=True` 模式下相关）。在较新的版本中（1.24.1+），此检查和相应的调整会自动执行，因此您无需再担心此问题。
+      指示页面的所谓图形状态是否平衡。如果为 `False`，则在插入新内容时应执行 :meth:`Page.wrap_contents` （仅在 `overlay=True` 模式下相关）。在较新的版本中（1.24.1+），此检查和相应的调整会自动执行，因此您无需再担心此问题。
 
       :rtype: bool
 

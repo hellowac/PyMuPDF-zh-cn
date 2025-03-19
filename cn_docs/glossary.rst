@@ -117,7 +117,7 @@ Glossary
 
         .. data:: resources
 
-                一个 :data:`dictionary`，包含 PDF :data:`page`（强制性，继承性，参考 :ref:`AdobeManual` 第 81 页）及某些其他对象（如表单 XObjects）所需的所有资源的引用（如图像或字体）。此字典作为对象定义中的子字典出现，位于 *Resources* 键下。作为一个继承对象类型，可能存在所有页面或某些页面子集的“父级”资源。
+                一个 :data:`dictionary`，包含 PDF :data:`page` （强制性，继承性，参考 :ref:`AdobeManual` 第 81 页）及某些其他对象（如表单 XObjects）所需的所有资源的引用（如图像或字体）。此字典作为对象定义中的子字典出现，位于 *Resources* 键下。作为一个继承对象类型，可能存在所有页面或某些页面子集的“父级”资源。
 
         .. data:: dictionary
 
@@ -144,7 +144,7 @@ Glossary
 
                 *Contents*、*Type*、*MediaBox* 等是 **键**，*40 0 R*、*Page*、*[0 0 595.32 841.92]* 等是各自的 **值**。字符串 *"<<"* 和 *">>"* 用于包含对象定义。
 
-                此示例还显示了 **嵌套** 字典值的语法：*Resources* 的值是一个对象，而该对象本身是一个字典，包含如 *ExtGState*（其值为 *<</R7 26 0 R>>*，这是另一个字典）等键。
+                此示例还显示了 **嵌套** 字典值的语法： *Resources* 的值是一个对象，而该对象本身是一个字典，包含如 *ExtGState* （其值为 *<</R7 26 0 R>>*，这是另一个字典）等键。
 
         .. data:: page
 
@@ -195,7 +195,13 @@ Glossary
 
         .. data:: OCPD
 
-                可选内容属性字典 - PDF :data:`catalog` 的子 :data:`dictionary`。用于存储可选内容信息，关键字为 `/OCProperties`。该字典有两个必需条目和一个可选条目：（1）`/OCGs`，必需，列出所有可选内容组的数组，（2）`/D`，必需，默认的可选内容配置字典（OCCD），（3）`/Configs`，可选，一个包含备用 OCCD 的数组。
+                可选内容属性字典 - PDF :data:`catalog` 的子 :data:`dictionary`。用于存储可选内容信息，关键字为 `/OCProperties`。该字典有两个必需条目和一个可选条目：
+                
+                （1） `/OCGs` ，必需，列出所有可选内容组的数组，
+                
+                （2） `/D` ，必需，默认的可选内容配置字典（OCCD），
+                
+                （3） `/Configs` ，可选，一个包含备用 OCCD 的数组。
 
         .. data:: OCCD
 

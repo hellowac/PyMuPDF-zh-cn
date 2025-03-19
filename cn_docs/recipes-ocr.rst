@@ -43,8 +43,8 @@ How to OCR an Image
 
    可以使用常用的文本提取和搜索方法（:meth:`Page.get_text`、:meth:`Page.search_for` 等）提取和搜索文本。还请注意以下重要事实和先决条件：
 
-   * 将图像转换为 Pixmap 时，请确认颜色空间为 RGB 且 alpha 为 `False`（无透明度）。如有必要，请转换原始 Pixmap。
-   * 所有文本都使用 Tesseract 自己的 `GlyphLessFont`（一种等宽字体，其度量与 Courier 相当）书写为“隐藏”。
+   * 将图像转换为 Pixmap 时，请确认颜色空间为 RGB 且 alpha 为 `False` （无透明度）。如有必要，请转换原始 Pixmap。
+   * 所有文本都使用 Tesseract 自己的 `GlyphLessFont` （一种等宽字体，其度量与 Courier 相当）书写为“隐藏”。
    * 所有文本都具有常规和黑色属性（即无粗体、无斜体、无原始字体信息）。
    * Tesseract 无法识别矢量图形（即无绘图/线条图）。
 

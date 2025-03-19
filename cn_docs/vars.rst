@@ -528,7 +528,7 @@ Text Extraction Flags
 
     .. py:data:: TEXT_IGNORE_ACTUALTEXT
 
-        2048 -- 忽略例如 PDF 查看器中显示的文本与 PDF 中存储的文本之间的内置差异。有关背景，请参见 :ref:`AdobeManual` 第 615 页。如果设置，则忽略 **存储的**（“替代”）文本，使用显示的文本。
+        2048 -- 忽略例如 PDF 查看器中显示的文本与 PDF 中存储的文本之间的内置差异。有关背景，请参见 :ref:`AdobeManual` 第 615 页。如果设置，则忽略 **存储的** （“替代”）文本，使用显示的文本。
 
     .. py:data:: TEXT_STEXT_SEGMENT
 

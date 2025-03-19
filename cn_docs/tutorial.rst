@@ -13,9 +13,9 @@ Tutorial
 
 .. tab:: 中文
 
-    本教程将逐步向您展示如何在Python中使用|PyMuPDF|，即:title:`MuPDF`。
+    本教程将逐步向您展示如何在Python中使用 |PyMuPDF| ，即 :title:`MuPDF`。
 
-    由于:title:`MuPDF`不仅支持PDF格式，还支持XPS、OpenXPS、CBZ、CBR、FB2和EPUB格式，|PyMuPDF|同样支持这些格式 [#f4]_ 。然而，为了简洁起见，我们将仅讨论PDF文件。在仅支持PDF文件的地方，会明确指出这一点。
+    由于 :title:`MuPDF` 不仅支持PDF格式，还支持XPS、OpenXPS、CBZ、CBR、FB2和EPUB格式， |PyMuPDF| 同样支持这些格式 [#f4]_ 。然而，为了简洁起见，我们将仅讨论PDF文件。在仅支持PDF文件的地方，会明确指出这一点。
 
 
 .. tab:: 英文
@@ -218,7 +218,7 @@ Working with Outlines
 
     .. note:: 
 
-        在代码库中有两个实用脚本，分别是 `toc import (仅限 PDF)`_ 和 `toc export`_，它们分别从 CSV 文件导入或导出目录。
+        在代码库中有两个实用脚本，分别是 `toc import (PDF only)`_ 和 `toc export`_，它们分别从 CSV 文件导入或导出目录。
 
 
 .. tab:: 英文
@@ -445,7 +445,7 @@ Tkinter
 
 .. tab:: 中文
 
-    请参阅 `Pillow 文档`_ 的第 3.19 节::
+    请参阅 `Pillow documentation`_ 的第 3.19 节::
 
         from PIL import Image, ImageTk
 
@@ -491,7 +491,7 @@ PyQt4, PyQt5, PySide
 
 .. tab:: 中文
 
-    请参阅 `Pillow 文档`_ 的第 3.16 节::
+    请参阅 `Pillow documentation`_ 的第 3.16 节::
 
         from PIL import Image, ImageQt
 
@@ -987,4 +987,4 @@ Further Reading
 .. _embedded-list.py: https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/list-embedded/list.py
 .. _Wiki: https://github.com/pymupdf/PyMuPDF/wiki
 
-
+.. _这里是代码!: https://github.com/pymupdf/PyMuPDF-Utilities/blob/master/examples/browse-document/browse.py

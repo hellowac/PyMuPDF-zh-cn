@@ -1060,7 +1060,7 @@ Selecting Pages
 
         现在让我们为双面打印（在不直接支持此功能的打印机上）准备一个 PDF：
 
-        页数由 `len(doc)`（等于 `doc.page_count`）给出。以下分别表示偶数页和奇数页的页码：
+        页数由 `len(doc)` （等于 `doc.page_count`）给出。以下分别表示偶数页和奇数页的页码：
 
         .. code-block:: python
 
@@ -1090,7 +1090,7 @@ Selecting Pages
                 doc.move_page(lastPage, i) # 将当前最后一页移到前面
 
 
-        这个代码片段将 PDF 自身复制，以便它将包含页面 *0, 1, ..., n, 0, 1, ..., n*（**非常快速且几乎不增加文件大小！**）：
+        这个代码片段将 PDF 自身复制，以便它将包含页面 *0, 1, ..., n, 0, 1, ..., n* （**非常快速且几乎不增加文件大小！**）：
 
         .. code-block:: python
 
@@ -1598,7 +1598,7 @@ Combining Single Pages
 
 .. tab:: 中文
 
-    从版本 1.16.0 开始，|PDF| 解密和加密（使用密码）得到了完全支持。您可以执行以下操作：
+    从版本 1.16.0 开始， |PDF| 解密和加密（使用密码）得到了完全支持。您可以执行以下操作：
 
     * 检查文档是否受密码保护 /（仍然）加密 (:attr:`Document.needs_pass`, :attr:`Document.is_encrypted`)。
     * 获取对文档的访问授权 (:meth:`Document.authenticate`)。
@@ -1983,7 +1983,7 @@ Redacting content from a **PDF**
 
     .. warning::
 
-        一旦保存了删除标记版本的文档，**PDF**中的删除内容将*无法恢复*。因此，文档中的删除区域将完全移除该区域的文本和图形内容。
+        一旦保存了删除标记版本的文档， **PDF** 中的删除内容将 *无法恢复* 。因此，文档中的删除区域将完全移除该区域的文本和图形内容。
 
 
     .. note::

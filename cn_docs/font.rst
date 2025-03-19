@@ -101,7 +101,7 @@ Font
 
             但如果你选择其他字体，仍然可以自动写入 CJK 字符：MuPDF 会检测到这种情况，并静默回退到通用字体（该字体仍会被嵌入到 PDF 中）。
 
-            *(v1.17.5 版本新增)* 如果安装了 `pymupdf-fonts <https://pypi.org/project/pymupdf-fonts/>`_（可通过 `pip install pymupdf-fonts` 安装），则可以使用一些新的“保留”字体名称代码。**"Fira Mono"** 是一款等宽无衬线字体，而 **FiraGO** 是另一款“通用”无衬线字体，支持所有拉丁字符（包括西里尔字母和希腊字母）以及泰文、阿拉伯文、希伯来文和梵文（Devanagari）——但不支持 CJK 语言。相比 "Droid Sans Fallback"，FiraGO 字体的大小仅为其四分之一（压缩后 400 KB vs. 1.65 MB），**且** 额外提供了粗体、斜体、粗斜体等字重，而通用字体不提供这些特性。
+            *(v1.17.5 版本新增)* 如果安装了 `pymupdf-fonts <https://pypi.org/project/pymupdf-fonts/>`_ （可通过 `pip install pymupdf-fonts` 安装），则可以使用一些新的“保留”字体名称代码。**"Fira Mono"** 是一款等宽无衬线字体，而 **FiraGO** 是另一款“通用”无衬线字体，支持所有拉丁字符（包括西里尔字母和希腊字母）以及泰文、阿拉伯文、希伯来文和梵文（Devanagari）——但不支持 CJK 语言。相比 "Droid Sans Fallback"，FiraGO 字体的大小仅为其四分之一（压缩后 400 KB vs. 1.65 MB），**且** 额外提供了粗体、斜体、粗斜体等字重，而通用字体不提供这些特性。
 
             **"Space Mono"** 是另一款来自 Google Fonts 的小巧等宽字体，支持扩展拉丁字符集，并提供四种主要字重。
 

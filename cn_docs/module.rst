@@ -910,7 +910,7 @@ Text Extraction
 
     .. note:: 对于 "layout" 模式，**仅支持水平的从左到右、从上到下的文本**，其他方向的文本将被忽略。在此模式下，若文本的 :data:`fontsize` 太小，则该文本也会被忽略。
 
-    相比之下，"simple" 和 "blocks" 模式会输出**所有文本**，无论其字体大小或方向如何。
+    相比之下，"simple" 和 "blocks" 模式会输出 **所有文本** ，无论其字体大小或方向如何。
 
     命令::
 
@@ -947,13 +947,13 @@ Text Extraction
         * `... -output text.txt -noligatures -noformfeed -convert-white -grid 3 -extra-spaces ...`
         * `... -o text.txt -nol -nof -c -g 3 -e ...`
 
-        输出文件名默认为输入文件名，并将其扩展名替换为 `.txt`。与其他命令一样，您可以按照上述格式选择页面范围**（请注意：从 1 开始计数！）**。
+        输出文件名默认为输入文件名，并将其扩展名替换为 `.txt`。与其他命令一样，您可以按照上述格式选择页面范围 **（请注意：从 1 开始计数！）**。
 
     * **mode:** (str) 选择格式模式 -- 默认为 "layout"。
     * **noligatures:** (bool) 相当于 **不** :data:`TEXT_PRESERVE_LIGATURES`。如果指定，连字（如 "fi"）将被分解为其组成字符（即 "f" 和 "i"）。默认保留连字。
     * **convert-white:** (bool) 相当于 **不** :data:`TEXT_PRESERVE_WHITESPACE`。如果指定，所有空白字符（如制表符）将被替换为一个或多个空格。默认保留空白字符。
     * **extra-spaces:** (bool) 相当于 **不** :data:`TEXT_INHIBIT_SPACES`。如果指定，大间隙将填充为一个或多个空格。默认关闭。
-    * **noformfeed:** (bool) 用换行符 `\n` 替代 `hex(12)`（换页符），在输出页面的结尾添加换行符。
+    * **noformfeed:** (bool) 用换行符 `\n` 替代 `hex(12)` （换页符），在输出页面的结尾添加换行符。
     * **skip-empty:** (bool) 跳过没有文本的页面。
     * **grid:** 行的垂直坐标差小于此值（以点为单位）时，将合并为同一输出行。仅对 "layout" 模式相关。**请谨慎使用：** 3 或默认值 2 在大多数情况下已足够。如果 **设置过大**，原本应为不同的行可能会合并，从而导致输出错误或不完整。如果 **设置过小**，某些输入行因字体属性略有不同而可能生成不必要的分离行。
     * **fontsize:** 仅包括字体大小大于此值的文本（默认为 3）。仅对 "layout" 模式相关。

@@ -195,7 +195,7 @@ How to Handle Page Contents
 
 .. tab:: 中文
 
-    PDF 页面可以有零个或多个 :data:`contents` 对象。这些是描述页面上**什么**出现在**哪里**以及**如何**显示的流对象（如文本和图像）。它们使用一种特殊的迷你语言进行编写，例如在 :ref:`AdobeManual` 第 643 页的“附录 A - 操作符摘要”章节中描述。
+    PDF 页面可以有零个或多个 :data:`contents` 对象。这些是描述页面上 **什么** 出现在 **哪里** 以及 **如何** 显示的流对象（如文本和图像）。它们使用一种特殊的迷你语言进行编写，例如在 :ref:`AdobeManual` 第 643 页的“附录 A - 操作符摘要”章节中描述。
 
     每个 PDF 阅读器应用程序必须能够解释内容语法，以重现页面的预期外观。
 
@@ -208,7 +208,7 @@ How to Handle Page Contents
 
     例如，PyMuPDF 在方法 :meth:`Page.insert_image`、:meth:`Page.show_pdf_page` 和 :ref:`Shape` 方法中添加新的小型 :data:`contents` 对象。
 
-    然而，也有一些情况，当只有**一个** :data:`contents` 对象时更为有利：它比多个小的对象更容易解释，且更易于压缩。
+    然而，也有一些情况，当只有 **一个** :data:`contents` 对象时更为有利：它比多个小的对象更容易解释，且更易于压缩。
 
     以下是两种合并页面多个内容的方法::
 
@@ -394,7 +394,7 @@ How to Access XML Metadata
 
     PDF 文件可能包含 XML 元数据，除了标准的元数据格式外。事实上，大多数 PDF 查看器或修改软件（如 Adobe、Nitro PDF、PDF-XChange 等）在保存 PDF 时会添加此类信息。
 
-    PyMuPDF 不能直接**解释或更改**这些信息，因为它不包含 XML 特性。然而，XML 元数据存储为 :data:`stream` 对象，因此可以读取、使用适当的软件修改并写回。
+    PyMuPDF 不能直接 **解释或更改** 这些信息，因为它不包含 XML 特性。然而，XML 元数据存储为 :data:`stream` 对象，因此可以读取、使用适当的软件修改并写回。
 
         >>> xmlmetadata = doc.get_xml_metadata()
         >>> print(xmlmetadata)
