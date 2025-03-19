@@ -101,7 +101,7 @@ Options:
     --pymupdf-pypi <name>
         Do not build PyMuPDF, instead install with `pip install <name>`. For
         example allows testing of a specific version with `--pymupdf-pypi
-        pymupdf==1.25.0`.
+        pymupdf==x.y.z`.
     --system-site-packages 0|1
         If 1, use `--system-site-packages` when creating venv. Defaults is 0.
     --timeout <seconds>
@@ -541,6 +541,9 @@ def pyodide_setup(
         command += ' && pyodide build --exports pyinit'
         subprocess.run(command, shell=1, check=1)
     '''
+    
+    pv = platform.python_version_tuple()[:2]
+    assert pv == ('3', '12'), f'Pyodide builds need to be run with Python-3.12 but current Python is {platform.python_version()}.'
     command = f'cd {directory}'
     
     # Clone/update emsdk. We always use the latest emsdk with `git pull`.
