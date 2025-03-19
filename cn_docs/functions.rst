@@ -70,6 +70,8 @@ Functions
    :meth:`sRGB_to_rgb`                  从 sRGB 整数返回 (R, G, B) 颜色元组
    :meth:`unicode_to_glyph_name`        从 Unicode 返回字形名称
    :meth:`get_tessdata`                 定位 Tesseract-OCR 安装的语言支持数据
+   :meth:`colors_pdf_dict`              返回颜色名称字典.
+   :meth:`colors_wx_list`               返回颜色名称字典.
    :attr:`fitz_fontdescriptors`         可用的补充字体字典
    :attr:`PYMUPDF_MESSAGE`              |PyMuPDF| 消息的输出位置
    :attr:`pdfcolor`                     近 500 种 PDF 格式的 RGB 颜色字典
@@ -878,6 +880,15 @@ Functions
 
       返回 "标准" 空和无效矩形 `Rect(2147483520.0, 2147483520.0, -2147483648.0, -2147483648.0)`，分别是四边形。它的左上角和右下角点的值与无限矩形相反。它将用于表示 `page.get_text("dict")` 字典中的空 bbox。然而，也有无数空的或无效的矩形。
 
+   -----
+
+   .. method:: colors_pdf_dict()
+
+      返回一个字典，将小写颜色名称映射到 `(red, green, blue)` 元组，其中 `red`、`green`、`blue` 是范围在 0 到 1 之间的浮点数。
+
+   .. method:: colors_wx_list()
+
+      返回一个列表，其中包含 `(colorname, red, green, blue)` 元组，其中 `colorname` 为大写，`red`、`green`、`blue` 是范围在 0 到 255 之间的整数。
 
 .. tab:: 英文
 
@@ -944,6 +955,8 @@ Functions
    :meth:`sRGB_to_rgb`                  return (R, G, B) color tuple from an sRGB integer
    :meth:`unicode_to_glyph_name`        return glyph name from a unicode
    :meth:`get_tessdata`                 locates the language support of the Tesseract-OCR installation
+   :meth:`colors_pdf_dict`              return dict of color names.
+   :meth:`colors_wx_list`               return list of color names.
    :attr:`fitz_fontdescriptors`         dictionary of available supplement fonts
    :attr:`PYMUPDF_MESSAGE`              destination of |PyMuPDF| messages.
    :attr:`pdfcolor`                     dictionary of almost 500 RGB colors in PDF format.
@@ -1801,5 +1814,20 @@ Functions
       :no-index:
 
       Return the "standard" empty and invalid rectangle `Rect(2147483520.0, 2147483520.0, -2147483648.0, -2147483648.0)` resp. quad. Its top-left and bottom-right point values are reversed compared to the infinite rectangle. It will e.g. be used to indicate empty bboxes in `page.get_text("dict")` dictionaries. There are however infinitely many empty or invalid rectangles.
+
+   -----
+
+   .. method:: colors_pdf_dict()
+      :no-index:
+   
+      Returns a dict mapping lower-case color name to `(red, green, blue)`
+      tuple, and `red`, `green`, `blue` are floats in range 0..1.
+
+   .. method:: colors_wx_list()
+      :no-index:
+   
+      Returns a list of `(colorname, red, green, blue)` tuples, where
+      `colorname` is upper case and `red`, `green`, `blue` are integers in
+      range 0..255.
 
 .. include:: footer.rst

@@ -24,6 +24,7 @@ Annot
    :meth:`Annot.get_sound`                获取音频注释的声音
    :meth:`Annot.get_text`                 提取注释文本
    :meth:`Annot.get_textbox`              提取注释文本
+   :meth:`Annot.get_textpage`             为注释创建一个 :ref:`TextPage`
    :meth:`Annot.set_border`               设置注释边框属性
    :meth:`Annot.set_blendmode`            设置注释的混合模式
    :meth:`Annot.set_colors`               设置注释颜色
@@ -75,6 +76,7 @@ Annot
    :meth:`Annot.get_sound`            get the sound of an audio annotation
    :meth:`Annot.get_text`             extract annotation text
    :meth:`Annot.get_textbox`          extract annotation text
+   :meth:`Annot.get_textpage`         create a TextPage for the annotation
    :meth:`Annot.set_border`           set annotation's border properties
    :meth:`Annot.set_blendmode`        set annotation's blend mode
    :meth:`Annot.set_colors`           set annotation's colors
@@ -186,6 +188,22 @@ Annot
          返回注释的文本内容。与 :meth:`Annot.get_text` 的 "text" 选项类似（但不包含换行符）。
 
          :arg rect-like rect: 指定区域，默认为 :attr:`Annot.rect`。
+
+      .. method:: get_textpage(clip=None, flags=3)
+
+         为该注释创建一个 :ref:`TextPage`。
+
+         :arg int flags: 指示位，控制后续文本提取和搜索的内容可用性 -- 参见 :meth:`Annot.get_text` 方法的参数。
+
+         :arg rect-like clip: 限制提取文本的区域。
+
+         :returns: :ref:`TextPage`
+
+         |history_begin|
+
+         * v1.25.5: 修复了 `clip` 参数。
+
+         |history_end|
 
       .. method:: set_info(info=None, content=None, title=None, creationDate=None, modDate=None, subject=None)
 
@@ -644,6 +662,23 @@ Annot
          Return the annotation text. Mostly (except line breaks) equal to :meth:`Annot.get_text` with the "text" option.
 
          :arg rect-like rect: the area to consider, defaults to :attr:`Annot.rect`.
+
+      .. method:: get_textpage(clip=None, flags=3)
+         :no-index:
+
+         Create a :ref:`TextPage` for the annotation.
+
+         :arg int flags: indicator bits controlling the content available for subsequent text extractions and searches -- see the parameter of :meth:`Annot.get_text`.
+
+         :arg rect-like clip: restrict extracted text to this area.
+
+         :returns: :ref:`TextPage`
+
+         |history_begin|
+
+         * v1.25.5: fixed `clip` arg.
+
+         |history_end|
 
 
       .. method:: set_info(info=None, content=None, title=None, creationDate=None, modDate=None, subject=None)

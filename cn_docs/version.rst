@@ -2,7 +2,7 @@
 
 .. tab:: 中文
 
-    本文档涵盖截至 **2025-02-06 00:00:01** 的 **PyMuPDF v1.25.3** 功能。
+    本文档涵盖截至 **2025-03-14 00:00:01** 的 **PyMuPDF v1.25.4** 功能。
 
     **PyMuPDF** 和 **MuPDF** 的主要版本和次要版本始终相同。只有第三个限定符（补丁级别）可能与 **MuPDF** 的有所不同。
 
@@ -14,7 +14,7 @@
 
 .. tab:: 英文
 
-    This documentation covers **PyMuPDF v1.25.3** features as of **2025-02-06 00:00:01**.
+    This documentation covers **PyMuPDF v1.25.4** features as of **2025-03-14 00:00:01**.
 
     The major and minor versions of **PyMuPDF** and **MuPDF** will always be the same. Only the third qualifier (patch level) may deviate from that of **MuPDF**.
 
